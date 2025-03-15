@@ -1,0 +1,21 @@
+# 👣 Step 8 - (The End) - Proving Grounds
+
+Hay dos categorias, Play & Practice. Los play son como maquinas de VulnHub, y los Practice, son supuestas maquinas retiradas de la OSCP, la mensualidad cuesta 20€
+
+En esta tabla, selecciono desde mi opinión las mejores maquinas del PG, del listado de TJNull
+
+Esta lista, si intentare hacerla toda, no como la HackTheBox, ya que esta es de la propia Offsec
+
+***
+
+**PG-Practice (PAYMENT) - SUPER RECOMENDADO 1 MES**
+
+<table><thead><tr><th>Machine</th><th>OS</th><th data-type="checkbox">TODO</th><th>FeedBack</th><th data-type="rating" data-max="5">Rating</th></tr></thead><tbody><tr><td>Twiggy</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Exfiltrated</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Pelican</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Astronaut</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Blackgate</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Boolean</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Cockpit</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Codo</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Crane</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Explplorer</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Hub</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Law</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>RubyDome</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Zipper</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>PyLoader</td><td>Linux</td><td>false</td><td></td><td>null</td></tr><tr><td>Helpdesk</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Algernon</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Authby</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Craft</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Huth</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Internal</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Jacko</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Kevin</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Resourced</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Squid</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>DVR4</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Hepet</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Shenzi</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Nickel</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Slort</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>MedJed</td><td>Windows</td><td>false</td><td></td><td>null</td></tr><tr><td>Access</td><td>AD</td><td>false</td><td></td><td>null</td></tr><tr><td>Heist</td><td>AD</td><td>false</td><td></td><td>null</td></tr><tr><td>Vault</td><td>AD</td><td>false</td><td></td><td>null</td></tr><tr><td>Nagoya</td><td>AD</td><td>false</td><td></td><td>null</td></tr><tr><td>Hokkaido</td><td>AD</td><td>false</td><td></td><td>null</td></tr><tr><td>Resourced</td><td>AD</td><td>false</td><td></td><td>null</td></tr><tr><td>Hutch</td><td>AD</td><td>false</td><td></td><td>null</td></tr><tr><td>ClamAV</td><td></td><td>false</td><td></td><td>null</td></tr><tr><td>Fail</td><td></td><td>false</td><td></td><td>null</td></tr><tr><td>Nukem</td><td></td><td>false</td><td></td><td>null</td></tr><tr><td>Readys</td><td></td><td>false</td><td></td><td>null</td></tr><tr><td>Walla</td><td></td><td>false</td><td></td><td>null</td></tr><tr><td>Billyboss</td><td></td><td>false</td><td></td><td>null</td></tr><tr><td>Marketing</td><td></td><td>false</td><td></td><td>null</td></tr></tbody></table>
+
+Y por ultimo, hacer un par de informes basándome en la plantilla de Offsec, poca cosa mas....&#x20;
+
+{% embed url="https://app.gitbook.com/o/ASYFlzT9juOjRPrhL5PH/s/5H6jzrLg2mzudepb74gf/~/changes/26/oscp-how-is-it/inform" %}
+
+> Despues de esto... Solo quedaría presentarse... "tranquilamente"... xd&#x20;
+
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
