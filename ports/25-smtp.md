@@ -1,8 +1,8 @@
 # 25 - SMTP
 
-### Conecction
+## Conecction
 
-#### 1. Conexión con Telnet
+### 1. Conexión con Telnet
 
 ```
 telnet IP_TARGET/EXAMPLE.COM 25
@@ -22,7 +22,7 @@ Deberíamos recibir algo como;&#x20;
 
 `250-EXAMPLE.COM Hello`
 
-#### 2 Probar a enviar desde un FROM (inventado) mandar un correo a un usuario valido del sistema sin necesidad de "logearse"
+### 2 Probar a enviar desde un FROM (inventado) mandar un correo a un usuario valido del sistema sin necesidad de "logearse"
 
 ```
 MAIL FROM: example
