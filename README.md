@@ -14,7 +14,7 @@ Estoy decidido a cumplir mis objetivos personales y sueños. No tengo limite
 
 
 
-> <mark style="background-color:yellow;">**Esta web, esta pensada**</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">para documentar y compartir</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">**un roadmap**</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">de mi camino hacia la certificación OSCP.</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">**(Lo que significa que la web esta en constante construcción y puede haber partes incompletas o cambiar).**</mark>&#x20;
+> <mark style="background-color:yellow;">**Esta web, esta pensada**</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">para documentar y compartir</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">**roadmaps y checklists**</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">de varias certificaciones como la OSCP o CBBH.</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">**(Lo que significa que la web esta en constante construcción y puede haber partes incompletas o cambiar).**</mark>&#x20;
 >
 >
 >
