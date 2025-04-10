@@ -1,6 +1,6 @@
 # 🏴‍☠️ What is OSCP
 
-<figure><img src=".gitbook/assets/image (1).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 La **OSCP (Offensive Security Certified Professional)** es una de las certificaciones más reconocidas en el mundo del **pentesting y la ciberseguridad ofensiva**. Es otorgada por **Offensive Security** y se centra en enseñar y evaluar habilidades prácticas en pentesting
 
