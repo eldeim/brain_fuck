@@ -1,6 +1,6 @@
 # 🕷️ What is CBBH
 
-<figure><img src=".gitbook/assets/image (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 The HTB Certified Bug Bounty Hunter (CBBH) is a hands-on certification that evaluates studens skills in bug hunting and web application testing profesional. Holders will have intermediate level technical competency.&#x20;
 

@@ -4,6 +4,11 @@
 
 * [🕷️ What is CBBH](README.md)
 
+***
+
+* [🕸️ Step 1 - HTB Academy Account](step-1-htb-academy-account.md)
+* [🕸️ Step 2 - Buy Learning Modules & Voucher](step-2-buy-learning-modules-and-voucher.md)
+
 ## 📋 CBBH - HOW IS IT
 
 * [📄 Exam Structure](cbbh-how-is-it/exam-structure.md)

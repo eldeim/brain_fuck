@@ -1,6 +1,6 @@
 # 📄 Exam Structure
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 **The&#x20;**<mark style="color:red;">**examn covers 5 vulnerable webs**</mark>**,** whe it is necessary to **capture the side administrator and obtain a RCE.**
 
