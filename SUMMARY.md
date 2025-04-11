@@ -78,3 +78,4 @@
       * [HyperText Transfer Protocol (HTTP)](htb-cbbh/http-fundamentals/web-requests/hypertext-transfer-protocol-http/README.md)
         * [Hypertext Transfer Protocol Secure (HTTPS)](htb-cbbh/http-fundamentals/web-requests/hypertext-transfer-protocol-http/hypertext-transfer-protocol-secure-https.md)
       * [HTTP Requests and Responses](htb-cbbh/http-fundamentals/web-requests/http-requests-and-responses.md)
+      * [HTTP Headers](htb-cbbh/http-fundamentals/web-requests/http-headers.md)
