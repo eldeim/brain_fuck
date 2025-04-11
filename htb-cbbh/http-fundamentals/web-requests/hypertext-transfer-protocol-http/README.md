@@ -1,10 +1,10 @@
 # HyperText Transfer Protocol (HTTP)
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## HTTP Flow
 
-<figure><img src="../.gitbook/assets/HTTP_Flow.webp" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/HTTP_Flow.webp" alt=""><figcaption></figcaption></figure>
 
 > Note: Our browsers usually first look up records in the local '`/etc/hosts`' file, and if the requested domain does not exist within it, then they would contact other DNS servers. We can use the '`/etc/hosts`' to manually add records to for DNS resolution, by adding the IP followed by the domain name.
 
@@ -39,7 +39,3 @@ In this module, we will be sending web requests through two of the most importan
 |  `curl -X POST http://<SERVER_IP>:<PORT>/api.php/city/ -d '{"city_name":"HTB_City", "country_name":"HTB"}' -H 'Content-Type: application/json'`          | Create (add) entry    |
 |  `curl -X PUT http://<SERVER_IP>:<PORT>/api.php/city/london -d '{"city_name":"New_HTB_City", "country_name":"HTB"}' -H 'Content-Type: application/json'` | Update (modify) entry |
 |  `curl -X DELETE http://<SERVER_IP>:<PORT>/api.php/city/New_HTB_City`                                                                                    | Delete entry          |
-
-## Cheat Sheet PDF
-
-{% file src="../.gitbook/assets/Web_Requests_Module_Cheat_Sheet.pdf" %}
