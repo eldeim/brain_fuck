@@ -72,4 +72,5 @@
   * [Image & Geospatial Intelligence](osint/image-and-geospatial-intelligence.md)
   * [FFmpeg - Geolocating Videos](osint/ffmpeg-geolocating-videos.md)
 * [🗒️ TO-DO](to-do.md)
-* [🕷️ HTB-CBBH](htb-cbbh.md)
+* [🕷️ HTB-CBBH](htb-cbbh/README.md)
+  * [HyperText Transfer Protocol (HTTP)](htb-cbbh/hypertext-transfer-protocol-http.md)
