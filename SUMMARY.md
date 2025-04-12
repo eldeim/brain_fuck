@@ -83,3 +83,4 @@
       * [HTTP Methods & Codes](htb-cbbh/web-requests/http-methods/http-methods-and-codes.md)
       * [GET](htb-cbbh/web-requests/http-methods/get.md)
       * [POST](htb-cbbh/web-requests/http-methods/post.md)
+  * [CRUD API](htb-cbbh/crud-api.md)
