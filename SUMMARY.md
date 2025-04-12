@@ -82,3 +82,4 @@
     * [HTTP Methods](htb-cbbh/web-requests/http-methods/README.md)
       * [HTTP Methods & Codes](htb-cbbh/web-requests/http-methods/http-methods-and-codes.md)
       * [GET](htb-cbbh/web-requests/http-methods/get.md)
+      * [POST](htb-cbbh/web-requests/http-methods/post.md)

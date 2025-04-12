@@ -103,3 +103,22 @@ eldeim@htb[/htb]$ curl -H 'Authorization: Basic YWRtaW46YWRtaW4=' http://<SERVER
 Once we are authenticated, we get access to a `City Search` function, in which we can enter a search term and get a list of matching cities:
 
 <figure><img src="../../../.gitbook/assets/http_auth_index (1).jpg" alt=""><figcaption></figcaption></figure>
+
+We can enter any search term and hit enter, and we will immediately notice a new request being sent to the backend:
+
+<figure><img src="../../../.gitbook/assets/web_requests_get_search.jpg" alt=""><figcaption></figcaption></figure>
+
+Now, we can send the same request directly to `search.php` to get the full search results, though it will probably return them in a specific format (e.g. JSON) without having the HTML layout shown in the above screenshot.
+
+```shell-session
+eldeim@htb[/htb]$ curl 'http://<SERVER_IP>:<PORT>/search.php?search=le' -H 'Authorization: Basic YWRtaW46YWRtaW4='
+
+Leeds (UK)
+Leicester (UK)
+```
+
+> Note: The copied command will contain all headers used in the HTTP request. However, we can remove most of them and only keep necessary authentication headers, like the `Authorization` header.
+
+We can also repeat the exact request right within the browser devtools, by selecting `Copy>Copy as Fetch`. This will copy the same HTTP request using the JavaScript Fetch library.
+
+<figure><img src="../../../.gitbook/assets/web_requests_fetch_search.jpg" alt=""><figcaption></figcaption></figure>
