@@ -79,3 +79,6 @@
         * [Hypertext Transfer Protocol Secure (HTTPS)](htb-cbbh/web-requests/http-fundamentals/hypertext-transfer-protocol-http/hypertext-transfer-protocol-secure-https.md)
       * [HTTP Requests and Responses](htb-cbbh/web-requests/http-fundamentals/http-requests-and-responses.md)
       * [HTTP Headers](htb-cbbh/web-requests/http-fundamentals/http-headers.md)
+    * [HTTP Methods](htb-cbbh/web-requests/http-methods/README.md)
+      * [HTTP Methods & Codes](htb-cbbh/web-requests/http-methods/http-methods-and-codes.md)
+      * [GET](htb-cbbh/web-requests/http-methods/get.md)
