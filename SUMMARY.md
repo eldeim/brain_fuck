@@ -90,3 +90,4 @@
   * [Hacking WordPress](htb-cbbh/hacking-wordpress/README.md)
     * [Info](htb-cbbh/hacking-wordpress/info.md)
     * [Enumeration](htb-cbbh/hacking-wordpress/enumeration.md)
+    * [Exploitin](htb-cbbh/hacking-wordpress/exploitin.md)
