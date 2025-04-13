@@ -87,3 +87,6 @@
   * [Introduction to Web Applications - Fundamentals](htb-cbbh/introduction-to-web-applications-fundamentals/README.md)
     * [Front Components & Vulns](htb-cbbh/introduction-to-web-applications-fundamentals/front-components-and-vulns.md)
     * [Back End Components & Vulns](htb-cbbh/introduction-to-web-applications-fundamentals/back-end-components-and-vulns.md)
+  * [Hacking WordPress](htb-cbbh/hacking-wordpress/README.md)
+    * [Info](htb-cbbh/hacking-wordpress/info.md)
+    * [Enumeration](htb-cbbh/hacking-wordpress/enumeration.md)
