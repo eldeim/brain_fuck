@@ -51,6 +51,12 @@ To speed up enumeration, we could also write a simple bash script or use a tool 
 
 ## Directory Indexing
 
+### Common Rutes
+
+* /wp-content/plugins/{name\_plugin}
+* /wp-content/themes/{name\_theme}
+* /wp-content/uploads
+
 The following example shows a disabled plugin.
 
 ![WordPress plugins list showing 'Mail Masta' with options to activate or delete, and 'Photo Gallery' with option to deactivate.](https://academy.hackthebox.com/storage/modules/17/plugin-deactivated3.png)
