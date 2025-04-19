@@ -94,3 +94,4 @@
     * [Exploitin](htb-cbbh/hacking-wordpress/exploitin.md)
   * [Using Web Proxies](htb-cbbh/using-web-proxies/README.md)
     * [Web Proxy](htb-cbbh/using-web-proxies/web-proxy.md)
+    * [Web Fuzzer](htb-cbbh/using-web-proxies/web-fuzzer.md)
