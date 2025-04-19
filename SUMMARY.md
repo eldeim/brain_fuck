@@ -49,6 +49,7 @@
   * [Rpcclient](tools/rpcclient.md)
   * [Ldapdomaindump](tools/ldapdomaindump.md)
   * [Evil-wmr](tools/evil-wmr.md)
+  * [Burpsuite](tools/burpsuite.md)
 * [📡 Ports](ports/README.md)
   * [21 - FTP](ports/21-ftp.md)
   * [22 - SSH](ports/22-ssh.md)
@@ -91,3 +92,5 @@
     * [Info](htb-cbbh/hacking-wordpress/info.md)
     * [Enumeration](htb-cbbh/hacking-wordpress/enumeration.md)
     * [Exploitin](htb-cbbh/hacking-wordpress/exploitin.md)
+  * [Using Web Proxies](htb-cbbh/using-web-proxies/README.md)
+    * [Web Proxy](htb-cbbh/using-web-proxies/web-proxy.md)
