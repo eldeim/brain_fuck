@@ -95,3 +95,4 @@
   * [Using Web Proxies](htb-cbbh/using-web-proxies/README.md)
     * [Web Proxy](htb-cbbh/using-web-proxies/web-proxy.md)
     * [Web Fuzzer](htb-cbbh/using-web-proxies/web-fuzzer.md)
+    * [Extensions](htb-cbbh/using-web-proxies/extensions.md)

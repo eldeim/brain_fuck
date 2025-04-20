@@ -2,7 +2,7 @@
 
 ## Intercepting Requests
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Let us turn request interception back on in the tool of our choosing, set the `IP` value on the page, then click on the `Ping` button. Once our request is intercepted, we should get a similar HTTP request to the following :
 
@@ -46,9 +46,6 @@ Once we locate the request we want to repeat, we can click \[`CTRL+R`] in Burp t
 > Tip: We can also right-click on the request and select `Change Request Method` to change the HTTP method between POST/GET without having to rewrite the entire request.
 
 ## Encoding/Decoding
-
-\
-
 
 We can input the above string in Burp Decoder and select `Decode as > Base64`, and we'll get the decoded value:
 

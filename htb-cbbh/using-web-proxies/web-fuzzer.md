@@ -62,10 +62,72 @@ The fourth and final option we can apply is `Payload Encoding`, enabling us to e
 
 We'll leave it enabled.
 
-## Options
+### Options
 
 Another useful option is the `Grep - Match`, which enables us to flag specific requests depending on their responses. As we are fuzzing web directories, we are only interested in responses with HTTP code `200 OK`. So, we'll first enable it and then click `Clear` to clear the current list. After that, we can type `200 OK` to match any requests with this string and click `Add` to add the new rule. Finally, we'll also disable `Exclude HTTP Headers`, as what we are looking for is in the HTTP header:
 
 ![options match](https://academy.hackthebox.com/storage/modules/110/burp_intruder_options_match.jpg)
 
 We may also utilize the `Grep - Extract` option, which is useful if the HTTP responses are lengthy, and we're only interested in a certain part of the response. So, this helps us in only showing a specific part of the response. We are only looking for responses with HTTP Code `200 OK`, regardless of their content, so we will not opt for this option.
+
+***
+
+## ZAP Fuzzer
+
+### Fuzz
+
+To start our fuzzing, we will visit the URL from the exercise at the end of this section to capture a sample request. As we will be fuzzing for directories, let's visit `<http://SERVER_IP:PORT/test/>` to place our fuzzing location on `test` later on. Once we locate our request in the proxy history, we will right-click on it and select (`Attack>Fuzz`), which will open the `Fuzzer` window:
+
+![payload processing](https://academy.hackthebox.com/storage/modules/110/zap_fuzzer.jpg)
+
+### Locations
+
+The `Fuzz Location` is very similar to `Intruder Payload Position`, where our payloads will be placed. To place our location on a certain word, we can select it and click on the `Add` button on the right pane. So, let's select `test` and click on `Add`:
+
+![payload processing](https://academy.hackthebox.com/storage/modules/110/zap_fuzzer_add.jpg)
+
+As we can see, this placed a `green` marker on our selected location and opened the `Payloads` window for us to configure our attack payloads.
+
+### Payloads
+
+The attack payloads in ZAP's Fuzzer are similar in concept to Intruder's Payloads, though they are not as advanced as Intruder's. We can click on the `Add` button to add our payloads and select from 8 different payload types. The following are some of them:
+
+* `File`: This allows us to select a payload wordlist from a file.
+* `File Fuzzers`: This allows us to select wordlists from built-in databases of wordlists.
+* `Numberzz`: Generates sequences of numbers with custom increments
+
+&#x20;So, we can select `File Fuzzers` as the `Type`, and then we will select the first wordlist from `dirbuster`:
+
+![payload processing](https://academy.hackthebox.com/storage/modules/110/zap_fuzzer_add_payload.jpg)
+
+Once we click the `Add` button, our payload wordlist will get added, and we can examine it with the `Modify` button.
+
+### Processors
+
+We may also want to perform some processing on each word in our payload wordlist. The following are some of the payload processors we can use:
+
+* Base64 Decode/Encode
+* MD5 Hash
+* Postfix String
+* Prefix String
+* SHA-1/256/512 Hash
+* URL Decode/Encode
+* Script
+
+We can click on the `Generate Preview` button to preview how our final payload will look in the request:
+
+![payload processing](https://academy.hackthebox.com/storage/modules/110/zap_fuzzer_add_processor.jpg)
+
+Once that's done, we can click on `Add` to add the processor and click on `Ok` in the processors and payloads windows to close them.
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+### Start
+
+With all of our options configured, we can finally click on the `Start Fuzzer` button to start our attack. Once our attack is started, we can sort the results by the `Response` code, as we are only interested in responses with code `200`:
+
+![payload processing](https://academy.hackthebox.com/storage/modules/110/zap_fuzzer_attack.jpg)
+
+As we can see, we got one hit with code `200` with the `skills` payload, meaning that the `/skills/` directory exists on the server and is accessible. We can click on the request in the results window to view its details:&#x20;
+
+<figure><img src="https://academy.hackthebox.com/storage/modules/110/zap_fuzzer_dir.jpg" alt=""><figcaption></figcaption></figure>
