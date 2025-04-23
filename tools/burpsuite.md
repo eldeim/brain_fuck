@@ -12,11 +12,7 @@ In Burp's (`Proxy>Intercept`), we can click on `Open Browser`, which will open B
 
 <figure><img src="https://academy.hackthebox.com/storage/modules/110/burp_preconfigured_browser.jpg" alt=""><figcaption></figcaption></figure>
 
-In ZAP, we can click on the Firefox browser icon at the end of the top bar, and it will open the pre-configured browser:
 
-![ZAP Preconfigured Browser](https://academy.hackthebox.com/storage/modules/110/zap_preconfigured_browser.jpg)
-
-For our uses in this module, using the pre-configured browser should be enough.
 
 ***
 
@@ -38,7 +34,7 @@ Once we're on the `options` page, we can click on `add` on the left pane, and th
 
 Note: This configuration is already added to Foxy Proxy in PwnBox, so you don't have to do this step if you are using PwnBox.
 
-Finally, we can click on the `Foxy Proxy` icon and select `Burp`/`ZAP`.&#x20;
+Finally, we can click on the `Foxy Proxy` icon and select `Burp`.&#x20;
 
 <figure><img src="https://academy.hackthebox.com/storage/modules/110/foxyproxy_use.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -53,10 +49,6 @@ We can install Burp's certificate once we select Burp as our proxy in `Foxy Prox
 &#x20; &#x20;
 
 <figure><img src="https://academy.hackthebox.com/storage/modules/110/burp_cert.jpg" alt=""><figcaption></figcaption></figure>
-
-To get ZAP's certificate, we can go to (`Tools>Options>Dynamic SSL Certificate`), then click on `Save`:
-
-![ZAP cert](https://academy.hackthebox.com/storage/modules/110/zap_cert.jpg)
 
 We can also change our certificate by generating a new one with the `Generate` button.
 
