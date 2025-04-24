@@ -1,6 +1,6 @@
 # 👨‍💻 $ whoami
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<div data-full-width="false"><figure><img src=".gitbook/assets/image.png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 Buenas! Soy **eldeim**, ese es mi nombre hacksor pero... me llamo Dani y tengo 22 años.
 
