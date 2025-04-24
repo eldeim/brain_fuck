@@ -111,9 +111,62 @@ canberra-office.zonetransfer.me. 7200 IN A	202.14.81.230
 
 ## Virtual Hosting
 
-```shell-session
-eldeim@htb[/htb]$ gobuster vhost -u http://<target_IP_address> -w <wordlist_file> --append-domain
+```bash
+sudo nano /etc/hosts
+## Add
+94.237.52.18 inlanefreight.htb
+## Run
+gobuster vhost -u http://inlanefreight.htb:39472 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
 ```
 
-* The `--append-domain` flag appends the base domain to each word in the wordlist.
+> The `--append-domain` flag appends the base domain to each word in the wordlist.
 
+### Crt.sh lookup
+
+While `crt.sh` offers a convenient web interface, you can also leverage its API for automated searches directly from your terminal. Let's see how to find all 'dev' subdomains on `facebook.com` using `curl` and `jq`:
+
+```shell-session
+eldeim@htb[/htb]$ curl -s "https://crt.sh/?q=facebook.com&output=json" | jq -r '.[]
+ | select(.name_value | contains("dev")) | .name_value' | sort -u
+ 
+*.dev.facebook.com
+*.newdev.facebook.com
+*.secure.dev.facebook.com
+dev.facebook.com
+devvm1958.ftw3.facebook.com
+facebook-amex-dev.facebook.com
+facebook-amex-sign-enc-dev.facebook.com
+newdev.facebook.com
+secure.dev.facebook.com
+```
+
+## ReconSpider
+
+<pre class="language-bash"><code class="lang-bash"><strong>## Download
+</strong>eldeim@htb[/htb]$ pip3 install scrapy
+<strong>eldeim@htb[/htb]$ wget -O ReconSpider.zip https://academy.hackthebox.com/storage/modules/144/ReconSpider.v1.2.zip
+</strong>eldeim@htb[/htb]$ unzip ReconSpider.zip 
+## Use
+eldeim@htb[/htb]$ python3 ReconSpider.py http://inlanefreight.com
+</code></pre>
+
+## Google Dorking
+
+Here are some common examples of Google Dorks, for more examples, refer to the [Google Hacking Database](https://www.exploit-db.com/google-hacking-database):
+
+* Finding Login Pages:
+  * `site:example.com inurl:login`
+  * `site:example.com (inurl:login OR inurl:admin)`
+* Identifying Exposed Files:
+  * `site:example.com filetype:pdf`
+  * `site:example.com (filetype:xls OR filetype:docx)`
+* Uncovering Configuration Files:
+  * `site:example.com inurl:config.php`
+  * `site:example.com (ext:conf OR ext:cnf)` (searches for extensions commonly used for configuration files)
+*   Locating Database Backups:
+
+    * `site:example.com inurl:backup`
+    * `site:example.com filetype:sql`
+
+
+*
