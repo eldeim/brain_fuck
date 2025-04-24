@@ -96,3 +96,5 @@
     * [Web Proxy](htb-cbbh/using-web-proxies/web-proxy.md)
     * [Web Fuzzer](htb-cbbh/using-web-proxies/web-fuzzer.md)
     * [Extensions](htb-cbbh/using-web-proxies/extensions.md)
+  * [Information Gathering - Web Edition](htb-cbbh/information-gathering-web-edition/README.md)
+    * [DNS & Subdomains](htb-cbbh/information-gathering-web-edition/dns-and-subdomains.md)
