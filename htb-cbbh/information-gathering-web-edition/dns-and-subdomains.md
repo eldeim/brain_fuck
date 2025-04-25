@@ -163,10 +163,6 @@ Here are some common examples of Google Dorks, for more examples, refer to the [
 * Uncovering Configuration Files:
   * `site:example.com inurl:config.php`
   * `site:example.com (ext:conf OR ext:cnf)` (searches for extensions commonly used for configuration files)
-*   Locating Database Backups:
-
-    * `site:example.com inurl:backup`
-    * `site:example.com filetype:sql`
-
-
-*
+* Locating Database Backups:
+  * `site:example.com inurl:backup`
+  * `site:example.com filetype:sql`
