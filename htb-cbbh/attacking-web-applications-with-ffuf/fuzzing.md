@@ -37,7 +37,7 @@ eldeim@htb[/htb]$ ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1mill
 ### Vhosts Fuzzing
 
 ```
-ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://academy.htb:PORT/ -H 'Host: FUZZ.academy.htb' -fs 600
+ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://83.136.254.243:PORT/ -H "Host: FUZZ.academy.htb" \ -fs xxx
 ```
 
 #### Filtering
@@ -59,4 +59,42 @@ FILTER OPTIONS:
   -fs              Filter HTTP response size. Comma separated list of sizes and ranges
   -fw              Filter by amount of words in response. Comma separated list of word counts and ranges
 <...SNIP...>
+```
+
+## Parameter Fuzzing
+
+### GET Request Fuzzing
+
+`GET` requests, which are usually passed right after the URL, with a `?` symbol, like:
+
+* `http://admin.academy.htb:PORT/admin/admin.php?param1=key`.
+
+```shell-session
+eldeim@htb[/htb]$ ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php?FUZZ=key -fs xxx
+```
+
+### Parameter Fuzzing - POST
+
+> Tip: In PHP, "POST" data "content-type" can only accept "application/x-www-form-urlencoded". So, we can set that in "ffuf" with "-H 'Content-Type: application/x-www-form-urlencoded'".
+
+<pre class="language-shell-session"><code class="lang-shell-session"><strong>eldeim@htb[/htb]$ ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'FUZZ=key' -H 'Content-Type: application/x-www-form-urlencoded'
+</strong></code></pre>
+
+As we can see this time, we got a couple of hits, the same one we got when fuzzing `GET` and another parameter, which is `id`. Let's see what we get if we send a `POST` request with the `id` parameter. We can do that with `curl`, as follows:
+
+```shell-session
+eldeim@htb[/htb]$ curl http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=key' -H 'Content-Type: application/x-www-form-urlencoded'
+
+<div class='center'><p>Invalid id!</p></div>
+<...SNIP...>
+```
+
+#### Value Fuzzing
+
+```shell-session
+eldeim@htb[/htb]$ for i in $(seq 1 1000); do echo $i >> ids.txt; done
+```
+
+```shell-session
+eldeim@htb[/htb]$ ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx
 ```
