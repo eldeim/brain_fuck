@@ -40,6 +40,10 @@ eldeim@htb[/htb]$ ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1mill
 ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://83.136.254.243:PORT/ -H "Host: FUZZ.academy.htb" \ -fs xxx
 ```
 
+```
+gobuster vhost -u http://academy.htb:33149 -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain academy.htb
+```
+
 #### Filtering
 
 ```shell-session
