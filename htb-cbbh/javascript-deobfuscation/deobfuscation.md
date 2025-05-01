@@ -25,3 +25,71 @@ We can find many good online tools to deobfuscate JavaScript code and turn it in
 > Tip: Ensure you do not leave any empty lines before the script, as it may affect the deobfuscation process and give inaccurate results.
 
 <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+## POST Request
+
+To send a `POST` request, we should add the `-X POST` flag to our command, and it should send a `POST` request:
+
+```shell-session
+eldeim@htb[/htb]$ curl -s http://SERVER_IP:PORT/ -X POST
+```
+
+Tip: We add the "-s" flag to reduce cluttering the response with unnecessary data
+
+However, `POST` request usually contains `POST` data. To send data, we can use the "`-d "param1=sample"`" flag and include our data for each parameter, as follows:
+
+```shell-session
+eldeim@htb[/htb]$ curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"
+```
+
+Now that we know how to use `cURL` to send basic `POST` requests, in the next section, we will utilize this to replicate what `server.js` is doing to understand its purpose better.
+
+
+
+### **Base64 Encode**
+
+```shell-session
+eldeim@htb[/htb]$ echo https://www.hackthebox.eu/ | base64
+
+aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS8K
+```
+
+### **Base64 Decode**
+
+```shell-session
+eldeim@htb[/htb]$ echo aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS8K | base64 -d
+
+https://www.hackthebox.eu/
+```
+
+### **Hex Encode**
+
+```shell-session
+eldeim@htb[/htb]$ echo https://www.hackthebox.eu/ | xxd -p
+
+68747470733a2f2f7777772e6861636b746865626f782e65752f0a
+```
+
+### **Hex Decode**
+
+```shell-session
+eldeim@htb[/htb]$ echo 68747470733a2f2f7777772e6861636b746865626f782e65752f0a | xxd -p -r
+
+https://www.hackthebox.eu/
+```
+
+### **Rot13 Encode**
+
+```shell-session
+eldeim@htb[/htb]$ echo https://www.hackthebox.eu/ | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+uggcf://jjj.unpxgurobk.rh/
+```
+
+### **Rot13 Decode**
+
+```shell-session
+eldeim@htb[/htb]$ echo uggcf://jjj.unpxgurobk.rh/ | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+https://www.hackthebox.eu/
+```
