@@ -101,4 +101,6 @@
   * [Attacking Web Applications with Ffuf](htb-cbbh/attacking-web-applications-with-ffuf/README.md)
     * [Fuzzing](htb-cbbh/attacking-web-applications-with-ffuf/fuzzing.md)
   * [JavaScript Deobfuscation](htb-cbbh/javascript-deobfuscation/README.md)
-    * [Deobfuscation](htb-cbbh/javascript-deobfuscation/deobfuscation.md)
+    * [Deobfuscation & Decode](htb-cbbh/javascript-deobfuscation/deobfuscation-and-decode.md)
+  * [Cross-Site Scripting (XSS)](htb-cbbh/cross-site-scripting-xss/README.md)
+    * [XSS Basics](htb-cbbh/cross-site-scripting-xss/xss-basics.md)
