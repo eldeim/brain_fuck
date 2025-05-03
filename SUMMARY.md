@@ -50,6 +50,7 @@
   * [Ldapdomaindump](tools/ldapdomaindump.md)
   * [Evil-wmr](tools/evil-wmr.md)
   * [Burpsuite](tools/burpsuite.md)
+  * [KeyHunter](tools/keyhunter.md)
 * [📡 Ports](ports/README.md)
   * [21 - FTP](ports/21-ftp.md)
   * [22 - SSH](ports/22-ssh.md)
