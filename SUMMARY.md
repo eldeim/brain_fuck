@@ -105,3 +105,5 @@
     * [Deobfuscation & Decode](htb-cbbh/javascript-deobfuscation/deobfuscation-and-decode.md)
   * [Cross-Site Scripting (XSS)](htb-cbbh/cross-site-scripting-xss/README.md)
     * [XSS Basics](htb-cbbh/cross-site-scripting-xss/xss-basics.md)
+    * [XSS Phishing](htb-cbbh/cross-site-scripting-xss/xss-phishing.md)
+    * [Blind XSS - Session Hijacking](htb-cbbh/cross-site-scripting-xss/blind-xss-session-hijacking.md)
