@@ -107,3 +107,4 @@
     * [XSS Basics](htb-cbbh/cross-site-scripting-xss/xss-basics.md)
     * [XSS Phishing](htb-cbbh/cross-site-scripting-xss/xss-phishing.md)
     * [Blind XSS - Session Hijacking](htb-cbbh/cross-site-scripting-xss/blind-xss-session-hijacking.md)
+  * [SQL Injection](htb-cbbh/sql-injection.md)
