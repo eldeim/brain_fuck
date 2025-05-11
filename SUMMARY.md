@@ -114,3 +114,4 @@
       * [Database Enumeration](htb-cbbh/sql-injection/exploitation/database-enumeration.md)
       * [Reading Files](htb-cbbh/sql-injection/exploitation/reading-files.md)
       * [Writing Files](htb-cbbh/sql-injection/exploitation/writing-files.md)
+      * [Skills Assessment](htb-cbbh/sql-injection/exploitation/skills-assessment.md)
