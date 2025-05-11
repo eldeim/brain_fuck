@@ -110,4 +110,7 @@
   * [SQL Injection](htb-cbbh/sql-injection/README.md)
     * [Databases & Queries](htb-cbbh/sql-injection/databases-and-queries.md)
     * [SQL Injections](htb-cbbh/sql-injection/sql-injections.md)
-    * [Exploitation](htb-cbbh/sql-injection/exploitation.md)
+    * [Exploitation](htb-cbbh/sql-injection/exploitation/README.md)
+      * [Database Enumeration](htb-cbbh/sql-injection/exploitation/database-enumeration.md)
+      * [Reading Files](htb-cbbh/sql-injection/exploitation/reading-files.md)
+      * [Writing Files](htb-cbbh/sql-injection/exploitation/writing-files.md)
