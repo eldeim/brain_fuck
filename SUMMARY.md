@@ -115,3 +115,5 @@
       * [Reading Files](htb-cbbh/sql-injection/exploitation/reading-files.md)
       * [Writing Files](htb-cbbh/sql-injection/exploitation/writing-files.md)
     * [Skill Assessment](htb-cbbh/sql-injection/skill-assessment.md)
+  * [SQLMap Essentials](htb-cbbh/sqlmap-essentials/README.md)
+    * [Building Attacks](htb-cbbh/sqlmap-essentials/building-attacks.md)
