@@ -117,3 +117,6 @@
     * [Skill Assessment](htb-cbbh/sql-injection/skill-assessment.md)
   * [SQLMap Essentials](htb-cbbh/sqlmap-essentials/README.md)
     * [Building Attacks](htb-cbbh/sqlmap-essentials/building-attacks.md)
+    * [Database Enumeration](htb-cbbh/sqlmap-essentials/database-enumeration.md)
+    * [Advanced SQLMap Usage](htb-cbbh/sqlmap-essentials/advanced-sqlmap-usage.md)
+    * [Skills Assessment](htb-cbbh/sqlmap-essentials/skills-assessment.md)
