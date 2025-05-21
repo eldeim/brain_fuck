@@ -120,3 +120,6 @@
     * [Database Enumeration](htb-cbbh/sqlmap-essentials/database-enumeration.md)
     * [Advanced SQLMap Usage](htb-cbbh/sqlmap-essentials/advanced-sqlmap-usage.md)
     * [Skills Assessment](htb-cbbh/sqlmap-essentials/skills-assessment.md)
+  * [Command Injections](htb-cbbh/command-injections/README.md)
+    * [OS Command Injections](htb-cbbh/command-injections/os-command-injections.md)
+    * [Exploitation](htb-cbbh/command-injections/exploitation.md)
