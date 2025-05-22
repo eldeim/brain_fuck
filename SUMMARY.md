@@ -123,3 +123,4 @@
   * [Command Injections](htb-cbbh/command-injections/README.md)
     * [OS Command Injections](htb-cbbh/command-injections/os-command-injections.md)
     * [Exploitation](htb-cbbh/command-injections/exploitation.md)
+    * [Filter Evasion](htb-cbbh/command-injections/filter-evasion.md)
