@@ -82,3 +82,45 @@ ${IFS}
 * By default, this is a **space** in Bash.
 
 <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+### PoCs - Questions
+
+Use what you learned in this section to find name of the user in the '/home' folder. What user did you find?
+
+In this case, first we need identificate the command injection, we need try all simple and encoder characters -->
+
+{% embed url="https://app.gitbook.com/o/ASYFlzT9juOjRPrhL5PH/s/SrcwXlKGkwhzbrKa8vLU/~/changes/120/htb-cbbh/command-injections/exploitation" %}
+
+The I can see, with the character "%0a" == New Line == \n with out encode, the peticion found
+
+<figure><img src="../../.gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
+
+Now we need go to the /home directory, we can do it out too methods
+
+#### Method 1 -  Path Traversal:
+
+The with "&0a" we can put a command, for example, "ls" and it print the current directory, and we can too write anothers metods for do a path traversal, the objective is to make == "ls ../../../home" but it, block the backend. We can use operators:
+
+```
+echo ${IFS} == SPACE
+echo ${PATH:0:1}
+/
+```
+
+<pre><code><strong>ip=127.0.0.1%0als${IFS}..${PATH:0:1}..${PATH:0:1}..${PATH:0:1}home
+</strong></code></pre>
+
+#### Method 3 - Command Ejecution
+
+We can use a similar method with too ${PWD:0:1}
+
+```
+ip=127.0.0.1%0als${IFS}-la${IFS}${PWD:0:1}home
+```
+
+## Bypassing Blacklisted Commands
+
+### Commands Blacklist
+
+
+
