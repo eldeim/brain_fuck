@@ -45,7 +45,7 @@
   * [Msfvenom](tools/msfvenom.md)
   * [CrackMapExec](tools/crackmapexec.md)
   * [Psexec](tools/psexec.md)
-  * [BloondHound](tools/bloondhound.md)
+  * [BloondHound & Ingestor](tools/bloondhound-and-ingestor.md)
   * [Rpcclient](tools/rpcclient.md)
   * [Ldapdomaindump](tools/ldapdomaindump.md)
   * [Evil-wmr](tools/evil-wmr.md)
