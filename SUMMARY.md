@@ -124,3 +124,4 @@
     * [OS Command Injections](htb-cbbh/command-injections/os-command-injections.md)
     * [Exploitation](htb-cbbh/command-injections/exploitation.md)
     * [Filter Evasion](htb-cbbh/command-injections/filter-evasion.md)
+    * [Skills Assessment](htb-cbbh/command-injections/skills-assessment.md)
