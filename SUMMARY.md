@@ -125,3 +125,6 @@
     * [Exploitation](htb-cbbh/command-injections/exploitation.md)
     * [Filter Evasion](htb-cbbh/command-injections/filter-evasion.md)
     * [Skills Assessment](htb-cbbh/command-injections/skills-assessment.md)
+  * [File Upload Attacks](htb-cbbh/file-upload-attacks/README.md)
+    * [Basic Explotaition](htb-cbbh/file-upload-attacks/basic-explotaition.md)
+    * [Bypassing Filters](htb-cbbh/file-upload-attacks/bypassing-filters.md)
