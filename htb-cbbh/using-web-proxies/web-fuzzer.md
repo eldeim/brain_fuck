@@ -120,7 +120,7 @@ We can click on the `Generate Preview` button to preview how our final payload w
 
 Once that's done, we can click on `Add` to add the processor and click on `Ok` in the processors and payloads windows to close them.
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Start
 

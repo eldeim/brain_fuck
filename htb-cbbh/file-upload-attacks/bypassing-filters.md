@@ -237,3 +237,127 @@ done
 In this case y try with a simple double extensions (jpg.php) but nothing... so, i do it in reverse: (.php.jpg) and error expose, "no valid extension" so, i try with (.phar.jpg)
 
 <figure><img src="../../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## Type Filters
+
+There are two common methods for validating the file content: `Content-Type Header` or `File Content`&#x20;
+
+### Content-Type
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+We see that we get a message saying `Only images are allowed`. The error message persists, and our file fails to upload even if we try some of the tricks we learned in the previous sections. If we change the file name to `shell.jpg.phtml` or `shell.php.jpg`, or even if we use `shell.jpg` with a web shell content, our upload will fail. As the file extension does not affect the error message, the web application must be testing the file content for type validation. As mentioned earlier, this can be either in the `Content-Type Header` or the `File Content`.
+
+We may start by fuzzing the Content-Type header with SecLists' [Content-Type Wordlist](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/web-all-content-types.txt) through Burp Intruder
+
+```shell-session
+eldeim@htb[/htb]$ wget https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
+eldeim@htb[/htb]$ cat web-all-content-types.txt | grep 'image/' > image-content-types.txt
+```
+
+For the sake of simplicity, let's just pick an image type (e.g. `image/jpg`), then intercept our upload request and change the Content-Type header to it:
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+This time we get `File successfully uploaded`
+
+***
+
+### MIME-Type
+
+This is usually done by inspecting the first few bytes of the file's content, which contain the [File Signature](https://en.wikipedia.org/wiki/List_of_file_signatures) or [Magic Bytes](https://web.archive.org/web/20240522030920/https://opensource.apple.com/source/file/file-23/file/magic/magic.mime). For example, if a file starts with (`GIF87a` or `GIF89a`), this indicates that it is a `GIF` image, while a file starting with plaintext is usually considered a `Text` file. If we change the first bytes of any file to the GIF magic bytes, its MIME type would be changed to a GIF image, regardless of its remaining content or extension.
+
+> Tip: Many other image types have non-printable bytes for their file signatures, while a `GIF` image starts with ASCII printable bytes (as shown above), so it is the easiest to imitate. Furthermore, as the string `GIF8` is common between both GIF signatures, it is usually enough to imitate a GIF image.
+
+#### Example
+
+```bash
+eldeim@htb[/htb]$ echo "this is a text file" > text.jpg 
+eldeim@htb[/htb]$ file text.jpg 
+text.jpg: ASCII text
+```
+
+As we see, the file's MIME type is `ASCII text`, even though its extension is `.jpg`. However, if we write `GIF8` to the beginning of the file, it will be considered as a `GIF` image instead, even though its extension is still `.jpg`:
+
+```shell-session
+eldeim@htb[/htb]$ echo "GIF8" > text.jpg 
+eldeim@htb[/htb]$file text.jpg
+text.jpg: GIF image data
+```
+
+As we can see, the MIME types are similar to the ones found in the Content-Type headers, but their source is different, as PHP uses the `mime_content_type()`
+
+`Only images are allowed`. Now, let's try to add `GIF8` before our PHP code to try to imitate a GIF image while keeping our file extension as `.php`, so it would execute PHP code regardless:
+
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+This time we get `File successfully uploaded`, and our file is successfully uploaded to the server
+
+We can use a combination of the two methods discussed in this section, which may help us bypass some more robust content filters. For example, we can try using an `Allowed MIME type with a disallowed Content-Type`, an `Allowed MIME/Content-Type with a disallowed extension`, or a `Disallowed MIME/Content-Type with an allowed extension`, and so on.&#x20;
+
+***
+
+### PoCs - Questions
+
+* The above server employs Client-Side, Blacklist, Whitelist, Content-Type, and MIME-Type filters to ensure the uploaded file is an image. Try to combine all of the attacks you learned so far to bypass these filters and upload a PHP file and read the flag at "/flag.txt"
+
+First i analice the code of upload and i can see the frontend validation. Delete it -->&#x20;
+
+<figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
+
+> onchange = empty & accept = \* (all)
+
+Then update a profile image of example, image.jpg and intercept this peticion with burpsuite -->
+
+**Without drop the first request!** We send the peticion to the repeater:&#x20;
+
+<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
+
+And now, I modifcate the peticion to look something like this -->&#x20;
+
+<figure><img src="../../.gitbook/assets/image (85).png" alt=""><figcaption></figcaption></figure>
+
+Now, we need to test all casuistries with intruder!!! There are 3 camps -->
+
+<figure><img src="../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
+
+For the first camp, the extensions, we need create a personalice diccionary with this script:
+
+```
+for char in '%20' '%0a' '%00' '%0d0a' '/' '.\' '.' '…' ':'; do
+    for ext in '.php' '.phps' '.phtml' '.phar'; do
+        echo "shell$char$ext.jpg" >> wordlist.txt
+        echo "shell$ext$char.jpg" >> wordlist.txt
+        echo "shell.jpg$char$ext" >> wordlist.txt
+        echo "shell.jpg$ext$char" >> wordlist.txt
+    done
+done
+```
+
+> We can add more extension, example: php4, etc...
+
+Then, for the second, we need to have the content type diccionary -->
+
+```
+eldeim@htb[/htb]$ wget https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
+eldeim@htb[/htb]$ cat web-all-content-types.txt | grep 'image/' > image-content-types.txt
+```
+
+For the end, the three camp, we need contemplate the most popural magics numbers -->
+
+<pre><code><strong>GIF8
+</strong>GIF87a
+GIF89a
+ÿØÿà
+ÿØÿî
+ÿØÿÛ
+</code></pre>
+
+With it, we can use the Cluster Bomb attack with intruder and configurate all casuistries and attack, important then, configurate into settings > grep-extract a filter -->
+
+```
+```
