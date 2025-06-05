@@ -129,3 +129,4 @@
     * [Basic Explotaition](htb-cbbh/file-upload-attacks/basic-explotaition.md)
     * [Bypassing Filters](htb-cbbh/file-upload-attacks/bypassing-filters.md)
     * [Other Upload Attacks](htb-cbbh/file-upload-attacks/other-upload-attacks.md)
+    * [Skills Assessment](htb-cbbh/file-upload-attacks/skills-assessment.md)
