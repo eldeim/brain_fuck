@@ -63,9 +63,36 @@ Allright!! With it we can see, the route of save the files/imgs is `/user_feedba
 $fileName = date('ymd') . '_' . basename($_FILES["uploadFile"]["name"]);code
 ```
 
-> data(ymd) \_ name of upload file
+> date(ymd) \_ name of upload file
 
 With it, i can test with a simple upload if i can see the picture -->
 
 <figure><img src="../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
 
+## WebShell Upload
+
+First again, delete de front restriccions -->
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+Then, with the burp active, intercept the peticon of upload a image and send to Repeater:
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+We can upload a simple webshell code, but... we need test all casuistics of the content-type, magics numbers and extensions.
+
+First, we modify the extension to see which can send -->
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+> ws.phar.jpg - doble extension nice! We can use the intruder
+
+Second, we need imput malius code, for examen a web shell and try to upload. The safest, we can see a normal webshell and need alterate the content-type and mime type -->
+
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+> With it, we can see that the content type correct is jpg o jpeg and the Magic Numbers is the yoya of the jpg iamges
+
+To finaly, we can see the content upload and base64 encoded. And with the another vulnerability XXE, we can view the addres to safe the images: `contact/user_feedback_submissions/date(ymd) _ name of upload file` -->
+
+<figure><img src="../../.gitbook/assets/image (101).png" alt=""><figcaption></figcaption></figure>
