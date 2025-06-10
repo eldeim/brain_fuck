@@ -130,3 +130,5 @@
     * [Bypassing Filters](htb-cbbh/file-upload-attacks/bypassing-filters.md)
     * [Other Upload Attacks](htb-cbbh/file-upload-attacks/other-upload-attacks.md)
     * [Skills Assessment](htb-cbbh/file-upload-attacks/skills-assessment.md)
+  * [Server-side Attacks](htb-cbbh/server-side-attacks/README.md)
+    * [SSRF](htb-cbbh/server-side-attacks/ssrf.md)
