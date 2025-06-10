@@ -163,8 +163,59 @@ dateserver=gopher%3a//dateserver.htb%3a80/_POST%2520/admin.php%2520HTTP%252F1.1%
 
 * Exploit the SSRF vulnerability to identify an additional endpoint. Access that endpoint to obtain the flag
 
-<pre><code>file:///etc/passwd
-<strong>## and
-</strong><strong>file:///flag.txt&#x26;
-</strong></code></pre>
+```
+file:///etc/passwd
+## and
+file:///flag.txt
+```
+
+## Blind SSRF
+
+### Identifying Blind SSRF
+
+The sample web application behaves just like in the previous section. We can confirm the SSRF vulnerability just like we did before by supplying a URL to a system under our control and setting up a `netcat` listener:
+
+```shell-session
+eldeim@htb[/htb]$ nc -lnvp 8000
+
+listening on [any] 8000 ...
+connect to [172.17.0.1] from (UNKNOWN) [172.17.0.2] 32928
+GET /index.php HTTP/1.1
+Host: 172.17.0.1:8000
+Accept: */*
+```
+
+However, if we attempt to point the web application to itself, we can observe that the response does not contain the HTML response of the coerced request; instead, it simply lets us know that the date is unavailable. Therefore, this is a blind SSRF vulnerability:
+
+<figure><img src="../../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
+
+### Exploiting Blind SSRF
+
+Depending on the web application's behavior, we might still be able to conduct a (restricted) local port scan of the system, provided the response differs for open and closed ports. In this case, the web application responds with `Something went wrong!` for closed ports:
+
+<figure><img src="../../.gitbook/assets/image (103).png" alt=""><figcaption></figcaption></figure>
+
+However, if a port is open and responds with a valid HTTP response, we get a different error message:
+
+<figure><img src="../../.gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure>
+
+Depending on how the web application catches unexpected errors, we might be unable to identify running services that do not respond with valid HTTP responses. For instance, we are unable to identify the running MySQL service using this technique:
+
+<figure><img src="../../.gitbook/assets/image (106).png" alt=""><figcaption></figcaption></figure>
+
+Furthermore, while we cannot read local files like before, we can use the same technique to identify existing files on the filesystem. That is because the error message is different for existing and non-existing files, just like it differs for open and closed ports:
+
+<figure><img src="../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
+
+For invalid files, the error message is different:
+
+<figure><img src="../../.gitbook/assets/image (108).png" alt=""><figcaption></figcaption></figure>
+
+### PoC - Questions
+
+* Exploit the SSRF to identify open ports on the system. Which port is open in addition to port 80?
+
+Doing fuzzing with intruder with the diccionary : /usr/share/seclists/Discovery/Infrastructure/common-http-ports.txt found -->
+
+<figure><img src="../../.gitbook/assets/image (109).png" alt=""><figcaption></figcaption></figure>
 

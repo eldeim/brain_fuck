@@ -132,3 +132,4 @@
     * [Skills Assessment](htb-cbbh/file-upload-attacks/skills-assessment.md)
   * [Server-side Attacks](htb-cbbh/server-side-attacks/README.md)
     * [SSRF](htb-cbbh/server-side-attacks/ssrf.md)
+    * [SSTI](htb-cbbh/server-side-attacks/ssti.md)
