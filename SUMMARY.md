@@ -133,3 +133,6 @@
   * [Server-side Attacks](htb-cbbh/server-side-attacks/README.md)
     * [SSRF](htb-cbbh/server-side-attacks/ssrf.md)
     * [SSTI](htb-cbbh/server-side-attacks/ssti.md)
+    * [SSI](htb-cbbh/server-side-attacks/ssi.md)
+    * [XSLT](htb-cbbh/server-side-attacks/xslt.md)
+    * [Skills Assessment](htb-cbbh/server-side-attacks/skills-assessment.md)
