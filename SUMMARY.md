@@ -145,3 +145,6 @@
   * [Broken Authentication](htb-cbbh/broken-authentication/README.md)
     * [Brute-Force Attacks](htb-cbbh/broken-authentication/brute-force-attacks.md)
     * [Default Credentials](htb-cbbh/broken-authentication/default-credentials.md)
+    * [Authentication Bypasses](htb-cbbh/broken-authentication/authentication-bypasses.md)
+    * [Session Attacks](htb-cbbh/broken-authentication/session-attacks.md)
+    * [Skills Assessment](htb-cbbh/broken-authentication/skills-assessment.md)
