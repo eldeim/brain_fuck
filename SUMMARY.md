@@ -148,3 +148,5 @@
     * [Authentication Bypasses](htb-cbbh/broken-authentication/authentication-bypasses.md)
     * [Session Attacks](htb-cbbh/broken-authentication/session-attacks.md)
     * [Skills Assessment](htb-cbbh/broken-authentication/skills-assessment.md)
+  * [Web Attacks](htb-cbbh/web-attacks/README.md)
+    * [HTTP Verb Tampering](htb-cbbh/web-attacks/http-verb-tampering.md)
