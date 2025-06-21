@@ -150,3 +150,4 @@
     * [Skills Assessment](htb-cbbh/broken-authentication/skills-assessment.md)
   * [Web Attacks](htb-cbbh/web-attacks/README.md)
     * [HTTP Verb Tampering](htb-cbbh/web-attacks/http-verb-tampering.md)
+    * [Insecure Direct Object References (IDOR)](htb-cbbh/web-attacks/insecure-direct-object-references-idor.md)
