@@ -151,3 +151,5 @@
   * [Web Attacks](htb-cbbh/web-attacks/README.md)
     * [HTTP Verb Tampering](htb-cbbh/web-attacks/http-verb-tampering.md)
     * [Insecure Direct Object References (IDOR)](htb-cbbh/web-attacks/insecure-direct-object-references-idor.md)
+    * [XML External Entity (XXE) Injection](htb-cbbh/web-attacks/xml-external-entity-xxe-injection.md)
+    * [Skills Assessment](htb-cbbh/web-attacks/skills-assessment.md)
