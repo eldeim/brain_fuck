@@ -153,3 +153,6 @@
     * [Insecure Direct Object References (IDOR)](htb-cbbh/web-attacks/insecure-direct-object-references-idor.md)
     * [XML External Entity (XXE) Injection](htb-cbbh/web-attacks/xml-external-entity-xxe-injection.md)
     * [Skills Assessment](htb-cbbh/web-attacks/skills-assessment.md)
+  * [File Inclusion](htb-cbbh/file-inclusion/README.md)
+    * [File Disclosure](htb-cbbh/file-inclusion/file-disclosure.md)
+    * [Remote Code Execution](htb-cbbh/file-inclusion/remote-code-execution.md)
