@@ -156,3 +156,5 @@
   * [File Inclusion](htb-cbbh/file-inclusion/README.md)
     * [File Disclosure](htb-cbbh/file-inclusion/file-disclosure.md)
     * [Remote Code Execution](htb-cbbh/file-inclusion/remote-code-execution.md)
+    * [Automated Scanning](htb-cbbh/file-inclusion/automated-scanning.md)
+    * [Skills Assessment](htb-cbbh/file-inclusion/skills-assessment.md)
