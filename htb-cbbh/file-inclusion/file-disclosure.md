@@ -6,7 +6,7 @@
 
 If we select a language by clicking on it (e.g. `Spanish`), we see that the content text changes to spanish:
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So, if the web application is indeed pulling a file that is now being included in the page, we may be able to change the file being pulled to read the content of a different local file. Two common readable files that are available on most back-end servers are `/etc/passwd` on Linux and `C:\Windows\boot.ini` on Windows. So, let's change the parameter from `es` to `/etc/passwd`:
 
@@ -14,13 +14,13 @@ So, if the web application is indeed pulling a file that is now being included i
 http://<SERVER_IP>:<PORT>/index.php?language=/etc/passwd
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Path Traversal
 
 In this case, if we attempt to read `/etc/passwd`, then the path passed to `include()` would be (`./languages//etc/passwd`), and as this file does not exist, we will not be able to read anything:
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 As expected, the verbose error returned shows us the string passed to the `include()` function, stating that there is no `/etc/passwd` in the languages directory.
 
@@ -34,7 +34,7 @@ So, we can use this trick to go back several directories until we reach the root
 http://<SERVER_IP>:<PORT>/index.php?language=../../../../etc/passwd
 ```
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Tip: It can always be useful to be efficient and not add unnecessary `../` several times, especially if we were writing a report or writing an exploit. So, always try to find the minimum number of `../` that works and use it. You may also be able to calculate how many directories you are away from the root path and use that many. For example, with `/var/www/html/` we are `3` directories away from the root path, so we can use `../` 3 times (i.e. `../../../`).
 
@@ -52,7 +52,7 @@ In this case, if we try to traverse the directory with `../../../etc/passwd`, th
 http://<SERVER_IP>:<PORT>/index.php?language=../../../etc/passwd
 ```
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 As expected, the error tells us that this file does not exist. so, instead of directly using path traversal, we can prefix a `/` before our payload, and this should consider the prefix as a directory, and then we should bypass the filename and be able to traverse directories:
 
@@ -60,7 +60,7 @@ As expected, the error tells us that this file does not exist. so, instead of di
 http://<SERVER_IP>:<PORT>/index.php?language=/../../../etc/passwd
 ```
 
-<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Note: This may not always work, as in this example a directory named `lang_/` may not exist, so our relative path may not be correct. Furthermore, `any prefix appended to our input may break some file inclusion techniques` we will discuss in upcoming sections, like using PHP wrappers and filters or RFI.
 
@@ -78,7 +78,7 @@ This is quite common, as in this case, we would not have to write the extension 
 http://<SERVER_IP>:<PORT>/extension/index.php?language=/etc/passwd
 ```
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There are several techniques that we can use to bypass this, and we will discuss them in upcoming sections.
 
@@ -90,7 +90,7 @@ There are several techniques that we can use to bypass this, and we will discuss
 http://83.136.249.246:40300/index.php?language=../../../../../etc/passwd
 ```
 
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Submit the contents of the flag.txt file located in the /usr/share/flags directory.
 
@@ -98,7 +98,7 @@ http://83.136.249.246:40300/index.php?language=../../../../../etc/passwd
 http://83.136.249.246:40300/index.php?language=../../../../../usr/share/flags/flag.txt
 ```
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Basic Bypasses
 
@@ -116,7 +116,7 @@ The above code is supposed to prevent path traversal, and hence renders LFI usel
 http://<SERVER_IP>:<PORT>/index.php?language=../../../../etc/passwd
 ```
 
-<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We see that all `../` substrings were removed, which resulted in a final path being `./languages/etc/passwd`. However, this filter is very insecure, as it is not `recursively removing` the `../` substring, as it runs a single time on the input string and does not apply the filter on the output string. For example, if we use `....//` as our payload, then the filter would remove `../` and the output string would be `../`, which means we may still perform path traversal. Let's try applying this logic to include `/etc/passwd` again:
 
