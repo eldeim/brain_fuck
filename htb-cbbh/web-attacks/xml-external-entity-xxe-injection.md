@@ -286,11 +286,11 @@ First I try with a basic CDATA but it did not work ...
 ]>
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So i try an Error Based XXE, i will be to delete the heads root -->
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 NICE! it did not give us any error, so... create the "malware" -->
 
@@ -321,11 +321,11 @@ Then I modified the petition to refer to my hosted dtd:
 
 > NOTE: we refer to `&joined` which is the name of the entity on our hosted dtd
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So... It didnt work... i will try another error, i will modify the url /error/... -->
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So now I’ll try to generate a dtd, host it and then call it from the petition:
 
@@ -339,7 +339,7 @@ python3 -m http.server 8090
 
 > NOTE: save the previous xml into a `exploit.dtd`
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```xml
 <!DOCTYPE email [ 

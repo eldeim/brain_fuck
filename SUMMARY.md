@@ -159,6 +159,7 @@
     * [Session Fixation](htb-cbbh/session-security/session-fixation.md)
     * [Obtaining Session Identifiers without User Interaction](htb-cbbh/session-security/obtaining-session-identifiers-without-user-interaction.md)
     * [Cross-Site Scripting (XSS)](htb-cbbh/session-security/cross-site-scripting-xss.md)
+    * [Cross-Site Request Forgery (CSRF or XSRF)](htb-cbbh/session-security/cross-site-request-forgery-csrf-or-xsrf.md)
   * [Hacking WordPress](htb-cbbh/hacking-wordpress/README.md)
     * [Info](htb-cbbh/hacking-wordpress/info.md)
     * [Enumeration](htb-cbbh/hacking-wordpress/enumeration.md)
