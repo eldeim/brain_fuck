@@ -158,3 +158,7 @@
     * [Remote Code Execution](htb-cbbh/file-inclusion/remote-code-execution.md)
     * [Automated Scanning](htb-cbbh/file-inclusion/automated-scanning.md)
     * [Skills Assessment](htb-cbbh/file-inclusion/skills-assessment.md)
+  * [Session Security](htb-cbbh/session-security/README.md)
+    * [Session Hijacking](htb-cbbh/session-security/session-hijacking.md)
+    * [Session Fixation](htb-cbbh/session-security/session-fixation.md)
+    * [Obtaining Session Identifiers without User Interaction](htb-cbbh/session-security/obtaining-session-identifiers-without-user-interaction.md)
