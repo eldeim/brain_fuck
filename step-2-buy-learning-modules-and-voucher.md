@@ -6,19 +6,19 @@ ALL RIGHT, now, we have two options of buy the learning modules and voucher cert
 
 ## Option 1 - Buy Certification + Learning Modules together
 
-<figure><img src=".gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can get the certification (20 Modules + 1 Voucher) for $490. It includes everything, but the price is expensive
 
 ## Option 2 - Purchase Plan Feature Silver Cubes +  Voucher
 
-<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 Optaint the platium, because with that we get 1000 cubes
 
 The price in cubes of total modules is equal a 1080 cubes
 
-<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can see on the left the cost per modules and of the right the recompense per modules done
 
@@ -30,4 +30,4 @@ With the platinum supcrition, we have 1000 cubes, and for end all modules we nee
 
 With that, we only need select the "Bug Bounty Hunter" path, and start
 
-<figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>

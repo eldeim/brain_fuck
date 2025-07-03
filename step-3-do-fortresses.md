@@ -1,6 +1,6 @@
 # 🕸️ Step 3 - Do Fortresses
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://academy.hackthebox.com/academy-relations/exams/htb-certified-bug-bounty-hunter" %}
 

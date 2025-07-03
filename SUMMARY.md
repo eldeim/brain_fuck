@@ -16,4 +16,6 @@
 * [📄 Exam Structure](cbbh-how-is-it/exam-structure.md)
 * [📄 Content](cbbh-how-is-it/content.md)
 * [📄 Inform](cbbh-how-is-it/inform/README.md)
-  * [Page 1](cbbh-how-is-it/inform/page-1.md)
+  * [Example 1: Reporting Stored XSS](cbbh-how-is-it/inform/example-1-reporting-stored-xss.md)
+  * [Example 2: Reporting CSRF](cbbh-how-is-it/inform/example-2-reporting-csrf.md)
+  * [Example 3: Reporting RCE](cbbh-how-is-it/inform/example-3-reporting-rce.md)
