@@ -175,3 +175,4 @@
     * [Info](htb-cbbh/hacking-wordpress/info.md)
     * [Enumeration](htb-cbbh/hacking-wordpress/enumeration.md)
     * [Exploitin](htb-cbbh/hacking-wordpress/exploitin.md)
+* [📶 CWP - Certified WiFiChallenge Professional](cwp-certified-wifichallenge-professional.md)
