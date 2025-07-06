@@ -1,2 +1,0 @@
-# 📶 CWP - Certified WiFiChallenge Professional
-
