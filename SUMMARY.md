@@ -178,3 +178,6 @@
 * [📶 CWP - Certified WiFiChallenge Professional](cwp-certified-wifichallenge-professional/README.md)
   * [Capitulo 1: Teoría de redes Wi-Fi](cwp-certified-wifichallenge-professional/capitulo-1-teoria-de-redes-wi-fi.md)
   * [Capitulo 2: WiFiChallenge Lab - Primeros Pasos](cwp-certified-wifichallenge-professional/capitulo-2-wifichallenge-lab-primeros-pasos.md)
+  * [Capitulo 3: Fundamentos de Linux](cwp-certified-wifichallenge-professional/capitulo-3-fundamentos-de-linux.md)
+  * [Capitulo 4: Redes Wi-Fi en Linux](cwp-certified-wifichallenge-professional/capitulo-4-redes-wi-fi-en-linux/README.md)
+    * [Creación de Redes Wi-Fi (Access Points)](cwp-certified-wifichallenge-professional/capitulo-4-redes-wi-fi-en-linux/creacion-de-redes-wi-fi-access-points.md)
