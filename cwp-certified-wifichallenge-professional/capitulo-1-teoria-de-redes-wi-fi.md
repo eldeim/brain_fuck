@@ -8,7 +8,7 @@ Una red Wi-Fi básica está dividida en 2 tipos de dispositivos. El **punto de a
 
 Y en el caso de las redes corporativas, lo habitual es que haya un gran número de APs emitiendo la misma red y un gran número de clientes conectados a estos APs.
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Diagrama de red Wi-Fi corporativa</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>Diagrama de red Wi-Fi corporativa</p></figcaption></figure>
 
 Este gran número de APs es invisible de cara al usuario, ya que todas emiten la misma red, por lo que los dispositivos la muestran como una única red.
 

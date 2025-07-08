@@ -150,4 +150,4 @@ En este capítulo vamos a realizar los siguientes retos:
 
 * Challenge 0 - ¿Cuál es el contenido del fichero /root/flag.txt en la máquina virtual?
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>

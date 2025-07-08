@@ -52,9 +52,9 @@ Este comando asigna el puerto 9090 en el servidor remoto (ejemplo.com) al puerto
 
 Después de haber abierto el túnel dinámico, sigue los pasos a continuación para configurar Firefox para utilizar el proxy SOCKS:
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Haz clic en el botón de menú (tres líneas horizontales en la esquina superior derecha).
 * Selecciona Settings o Preferencias

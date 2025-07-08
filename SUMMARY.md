@@ -97,6 +97,7 @@
     * [DNS & Subdomains](htb-cbbh/information-gathering-web-edition/dns-and-subdomains.md)
   * [Attacking Web Applications with Ffuf](htb-cbbh/attacking-web-applications-with-ffuf/README.md)
     * [Fuzzing](htb-cbbh/attacking-web-applications-with-ffuf/fuzzing.md)
+    * [Skills Assessment](htb-cbbh/attacking-web-applications-with-ffuf/skills-assessment.md)
   * [JavaScript Deobfuscation](htb-cbbh/javascript-deobfuscation/README.md)
     * [Deobfuscation & Decode](htb-cbbh/javascript-deobfuscation/deobfuscation-and-decode.md)
   * [Cross-Site Scripting (XSS)](htb-cbbh/cross-site-scripting-xss/README.md)
