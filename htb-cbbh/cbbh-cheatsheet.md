@@ -22,7 +22,7 @@ description: by eldeim & gitblanc
 
 > _Once you have discovered all the website functionalities it’s time to check them ;D_
 
-## 3. XSS (Cross Site Scripting) <a href="#xss-cross-site-scripting" id="xss-cross-site-scripting"></a>
+### XSS (Cross Site Scripting) <a href="#xss-cross-site-scripting" id="xss-cross-site-scripting"></a>
 
 * Check [XSS Theory 🍣](cross-site-scripting-xss/)
 
@@ -70,7 +70,7 @@ If you find cookies in the website, it may be possible to perform a Blind Stored
 
 ***
 
-## 4. SQLi (SQL Injections) <a href="#sqli-sql-injections" id="sqli-sql-injections"></a>
+## 3. SQLi (SQL Injections) <a href="#sqli-sql-injections" id="sqli-sql-injections"></a>
 
 > _Check_ [_SQLi Fundamentals_ ](sql-injection/)_🐢 and search further to exploit the SQLi._
 
@@ -228,7 +228,7 @@ application/vnd.oipf.dae.svg+xml
 
 ***
 
-## 5. Server-side Attacks <a href="#server-side-attacks" id="server-side-attacks"></a>
+## 4. Server-side Attacks <a href="#server-side-attacks" id="server-side-attacks"></a>
 
 > _Check_ [_Server Side Attacks Theory 🗺️_](server-side-attacks/) _and search further to exploit the Server-side attack._ The following are contemplated:
 >
@@ -281,7 +281,7 @@ application/vnd.oipf.dae.svg+xml
 
 ***
 
-## 6. Login Brute Forcing && Broken Authentication <a href="#login-brute-forcing--broken-authentication" id="login-brute-forcing--broken-authentication"></a>
+## 5. Login Brute Forcing && Broken Authentication <a href="#login-brute-forcing--broken-authentication" id="login-brute-forcing--broken-authentication"></a>
 
 > _Check_ [_Login Brute Forcing_](login-brute-forcing/) _🦏 and_ [_Broken Authentication Theory_](broken-authentication/) _🐛 and search further to exploit the login brute forcing attack._
 
@@ -295,7 +295,7 @@ application/vnd.oipf.dae.svg+xml
 
 ***
 
-## 7. Web (Services) & API Attacks <a href="#web-services--api-attacks" id="web-services--api-attacks"></a>
+## 6. Web (Services) & API Attacks <a href="#web-services--api-attacks" id="web-services--api-attacks"></a>
 
 > _Check_ [_Web Attacks_ ](web-attacks/)_🐊 and_[ _Web Services & API Fundamentals_](web-service-and-api-attacks/) _🧨 and search further to exploit the web or API attack._
 
@@ -307,7 +307,7 @@ application/vnd.oipf.dae.svg+xml
 
 ***
 
-## 8. File Inclusion <a href="#file-inclusion" id="file-inclusion"></a>
+## 7. File Inclusion <a href="#file-inclusion" id="file-inclusion"></a>
 
 > _Check_ [_File Inclusion Theory_](file-inclusion/) _🍥 and search further to exploit the file inclusion attack._
 
@@ -318,7 +318,7 @@ application/vnd.oipf.dae.svg+xml
 * Remember that **if cookies are present**, **log poisoning** could be an interesting option to test for.
 * You can escalate it to **RCE**.
 
-## 9. Session security <a href="#session-security" id="session-security"></a>
+## 8. Session security <a href="#session-security" id="session-security"></a>
 
 > _Check_ [_Session Security Theory_ ](session-security/)_🦤 and search further to exploit the file cookie attack._
 
@@ -326,7 +326,7 @@ application/vnd.oipf.dae.svg+xml
   * Try to decode the cookie if possible.
 * Check for **patterns** (like the cookie is blablabla\_user1\_pass1 encoded in base64…).
 
-## 10. Hacking Wordpress <a href="#hacking-wordpress" id="hacking-wordpress"></a>
+## 9. Hacking Wordpress <a href="#hacking-wordpress" id="hacking-wordpress"></a>
 
 > _Check_ [_Hacking Wordpress_](hacking-wordpress/) _🍅 and search further to exploit the Wordpress._
 
