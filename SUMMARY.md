@@ -75,6 +75,7 @@
   * [FFmpeg - Geolocating Videos](osint/ffmpeg-geolocating-videos.md)
 * [🗒️ TO-DO](to-do.md)
 * [🕷️ HTB-CBBH](htb-cbbh/README.md)
+  * [CBBH Cheatsheet](htb-cbbh/cbbh-cheatsheet.md)
   * [Web Requests - Fundamentals](htb-cbbh/web-requests-fundamentals/README.md)
     * [HTTP Fundamentals](htb-cbbh/web-requests-fundamentals/http-fundamentals/README.md)
       * [HyperText Transfer Protocol (HTTP)](htb-cbbh/web-requests-fundamentals/http-fundamentals/hypertext-transfer-protocol-http/README.md)
