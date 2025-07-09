@@ -2,7 +2,7 @@
 description: by eldeim & gitblanc
 ---
 
-# CBBH Cheatsheet
+# 👑 CBBH Cheatsheet
 
 ## 1. Information Gathering <a href="#id-1-information-gathering" id="id-1-information-gathering"></a>
 
