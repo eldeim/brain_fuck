@@ -1,4 +1,4 @@
-# Privilege Escalation - Linux
+# 🏔️ Privilege Escalation - Linux
 
 ## Enumeration
 

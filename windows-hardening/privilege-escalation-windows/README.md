@@ -1,4 +1,4 @@
-# Privilege Escalation - Windows
+# 🌋 Privilege Escalation - Windows
 
 ## Enumeration
 
