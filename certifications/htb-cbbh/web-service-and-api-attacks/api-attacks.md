@@ -106,7 +106,7 @@ Number found! 2
 
 * What is the username of the third user (id=3)?
 
-<figure><img src="../../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 ffuf -w "/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt" -u 'http://10.129.202.133:3003/?FUZZ=test_value' -fs 19

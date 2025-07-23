@@ -190,4 +190,6 @@
   * [Capitulo 4: Redes Wi-Fi en Linux](certifications/cwp-certified-wifichallenge-professional/capitulo-4-redes-wi-fi-en-linux/README.md)
     * [Creación de Redes Wi-Fi (Access Points)](certifications/cwp-certified-wifichallenge-professional/capitulo-4-redes-wi-fi-en-linux/creacion-de-redes-wi-fi-access-points.md)
     * [Listado de herramientas Hacking Wi‑Fi](certifications/cwp-certified-wifichallenge-professional/capitulo-4-redes-wi-fi-en-linux/listado-de-herramientas-hacking-wi-fi.md)
-  * [Capítulo 5.0: Recon Wi-Fi Ofensivo](certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo.md)
+  * [Capítulo 5.0: Recon Wi-Fi Ofensivo](certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo/README.md)
+    * [Resume - 5.0](certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo/resume-5.0.md)
+    * [Challeges RECON](certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo/challeges-recon.md)
