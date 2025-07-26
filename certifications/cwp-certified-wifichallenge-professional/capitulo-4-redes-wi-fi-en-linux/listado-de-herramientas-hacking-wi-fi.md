@@ -149,7 +149,7 @@ Después, es necesario cerrar y abrir sesión para que los cambios tengan efecto
 
 ### Uso Básico
 
-<figure><img src="../../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Abrir Wireshark.
 * Seleccionar la interfaz de red para capturar paquetes.

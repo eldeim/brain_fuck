@@ -2,7 +2,7 @@
 
 ## Interfaz modo monitor
 
-```
+```bash
 ## Listamos todas la interfaces de red
 sudo su && iwconfig
 # or
@@ -38,7 +38,7 @@ airodump-ng wlan0 -w /home/user/wifi/scan --manufacturer --band bag
 >
 > `--band bag` scan 2.4g y 5g
 
-<figure><img src="../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 > `BSSID` MAC del punto de acceso
 >
@@ -50,19 +50,19 @@ airodump-ng wlan0 -w /home/user/wifi/scan --manufacturer --band bag
 >
 > `AUTH` tipo de autentificación
 
-<figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Con \<TAB> podemos seleccionar las APs y con \<TAB> + m, podemos marcar colores
 
 Podemos para la captura con `Q` y veremos en el directorio ejecutado varios archivos. El mas importante el el `.cap` ya que contiene toda la información en bruto, podemos abrirlo con `wireshark`
 
-<figure><img src="../../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 wireshark scan-01.cap
 ```
 
-<figure><img src="../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 Con esto podemos ver trafico de redes wifi abiertas en el que el que la comunicación no esta cifrada
 
@@ -76,7 +76,7 @@ airodump-ng wlan0 -w /home/user/wifi/scanCH6 --manufacturer --band bag -c6
 
 > `-c6` Seleccionamos el canal, en este caso el 6
 
-<figure><img src="../../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 Con esto, nos generan nuevos archivos dentro de la ruta y podemos verlos todos generando una base de datos con `Wifi_db`
 
@@ -90,10 +90,10 @@ python3 /root/tools/wifi_db/wifi_db.py -d Wifi1test.db /home/user/wifi/
 >
 > `/` Seleccionamos la ruta donde se encutrar los ficheros
 
-<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora podemos abrirlo con `sqlitebrowser Wifi1test.db`
 
-<figure><img src="../../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Con esto podemos ver toda la informacion ordenada incluyendo los handshake capturados

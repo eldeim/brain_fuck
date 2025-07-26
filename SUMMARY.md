@@ -192,4 +192,6 @@
     * [Listado de herramientas Hacking Wi‑Fi](certifications/cwp-certified-wifichallenge-professional/capitulo-4-redes-wi-fi-en-linux/listado-de-herramientas-hacking-wi-fi.md)
   * [Capítulo 5.0: Recon Wi-Fi Ofensivo](certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo/README.md)
     * [Resume - 5.0](certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo/resume-5.0.md)
-    * [Challeges RECON](certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo/challeges-recon.md)
+    * [Challenges RECON](certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo/challenges-recon.md)
+  * [Capítulo 5.1: Ataques Wi-Fi - OPN (Redes Públicas Abiertas)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.1-ataques-wi-fi-opn-redes-publicas-abiertas/README.md)
+    * [Challenges OPN](certifications/cwp-certified-wifichallenge-professional/capitulo-5.1-ataques-wi-fi-opn-redes-publicas-abiertas/challenges-opn.md)
