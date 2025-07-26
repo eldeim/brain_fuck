@@ -195,3 +195,6 @@
     * [Challenges RECON](certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo/challenges-recon.md)
   * [Capítulo 5.1: Ataques Wi-Fi - OPN (Redes Públicas Abiertas)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.1-ataques-wi-fi-opn-redes-publicas-abiertas/README.md)
     * [Challenges OPN](certifications/cwp-certified-wifichallenge-professional/capitulo-5.1-ataques-wi-fi-opn-redes-publicas-abiertas/challenges-opn.md)
+  * [Capítulo 5.2: Ataques Wi-Fi - OWE (Opportunistic Wireless Encryption)-(WPA-3)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.2-ataques-wi-fi-owe-opportunistic-wireless-encryption-wpa-3.md)
+  * [Capítulo 5.3: Ataques Wi-Fi - WEP (Wired Equivalent Privacy)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.3-ataques-wi-fi-wep-wired-equivalent-privacy/README.md)
+    * [Challenges WEP](certifications/cwp-certified-wifichallenge-professional/capitulo-5.3-ataques-wi-fi-wep-wired-equivalent-privacy/challenges-wep.md)

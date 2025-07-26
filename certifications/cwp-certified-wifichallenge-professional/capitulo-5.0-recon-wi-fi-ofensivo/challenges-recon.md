@@ -13,7 +13,7 @@ En este capítulo vamos a realizar los siguientes retos:
 
 * ¿Cuál es el canal que está utilizando actualmente el punto de acceso (AP) wifi-global?
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -23,7 +23,7 @@ En este capítulo vamos a realizar los siguientes retos:
 
 Primero veo que canal tiene; 11
 
-<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 Luego le lanzo un escaneo solo a ese canal para filtrar mejor
 
