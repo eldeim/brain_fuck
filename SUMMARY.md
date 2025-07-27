@@ -198,3 +198,7 @@
   * [Capítulo 5.2: Ataques Wi-Fi - OWE (Opportunistic Wireless Encryption)-(WPA-3)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.2-ataques-wi-fi-owe-opportunistic-wireless-encryption-wpa-3.md)
   * [Capítulo 5.3: Ataques Wi-Fi - WEP (Wired Equivalent Privacy)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.3-ataques-wi-fi-wep-wired-equivalent-privacy/README.md)
     * [Challenges WEP](certifications/cwp-certified-wifichallenge-professional/capitulo-5.3-ataques-wi-fi-wep-wired-equivalent-privacy/challenges-wep.md)
+  * [Capítulo 5.4: Ataques Wi-Fi - PSK (Pre Shared Key)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.4-ataques-wi-fi-psk-pre-shared-key/README.md)
+    * [Optimización cracking de contraseñas](certifications/cwp-certified-wifichallenge-professional/capitulo-5.4-ataques-wi-fi-psk-pre-shared-key/optimizacion-cracking-de-contrasenas.md)
+    * [Challenges PSK](certifications/cwp-certified-wifichallenge-professional/capitulo-5.4-ataques-wi-fi-psk-pre-shared-key/challenges-psk.md)
+  * [Capítulo 5.5: Ataques Wi-Fi - SAE (Simultaneous Authentication of Equals)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.5-ataques-wi-fi-sae-simultaneous-authentication-of-equals.md)
