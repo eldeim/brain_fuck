@@ -201,4 +201,5 @@
   * [Capítulo 5.4: Ataques Wi-Fi - PSK (Pre Shared Key)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.4-ataques-wi-fi-psk-pre-shared-key/README.md)
     * [Optimización cracking de contraseñas](certifications/cwp-certified-wifichallenge-professional/capitulo-5.4-ataques-wi-fi-psk-pre-shared-key/optimizacion-cracking-de-contrasenas.md)
     * [Challenges PSK](certifications/cwp-certified-wifichallenge-professional/capitulo-5.4-ataques-wi-fi-psk-pre-shared-key/challenges-psk.md)
-  * [Capítulo 5.5: Ataques Wi-Fi - SAE (Simultaneous Authentication of Equals)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.5-ataques-wi-fi-sae-simultaneous-authentication-of-equals.md)
+  * [Capítulo 5.5: Ataques Wi-Fi - SAE (Simultaneous Authentication of Equals)](certifications/cwp-certified-wifichallenge-professional/capitulo-5.5-ataques-wi-fi-sae-simultaneous-authentication-of-equals/README.md)
+    * [Challenges SAE](certifications/cwp-certified-wifichallenge-professional/capitulo-5.5-ataques-wi-fi-sae-simultaneous-authentication-of-equals/challenges-sae.md)
