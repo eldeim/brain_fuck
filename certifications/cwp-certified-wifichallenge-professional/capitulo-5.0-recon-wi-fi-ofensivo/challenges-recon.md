@@ -13,7 +13,7 @@ En este capítulo vamos a realizar los siguientes retos:
 
 * ¿Cuál es el canal que está utilizando actualmente el punto de acceso (AP) wifi-global?
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -23,7 +23,7 @@ En este capítulo vamos a realizar los siguientes retos:
 
 Primero veo que canal tiene; 11
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Luego le lanzo un escaneo solo a ese canal para filtrar mejor
 
@@ -31,7 +31,7 @@ Luego le lanzo un escaneo solo a ese canal para filtrar mejor
 airodump-ng wlan0 --manufacturer --band bag -c11
 ```
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -39,7 +39,7 @@ airodump-ng wlan0 --manufacturer --band bag -c11
 
 * ¿Cuál es el Probe de 78:C1:A7:BF:72:46 que sigue el formato de las otras redes del alcance (wifi-)?
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
