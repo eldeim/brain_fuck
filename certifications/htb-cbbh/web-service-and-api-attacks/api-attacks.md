@@ -106,7 +106,7 @@ Number found! 2
 
 * What is the username of the third user (id=3)?
 
-<figure><img src="../../../.gitbook/assets/image (19) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (19) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 ffuf -w "/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt" -u 'http://10.129.202.133:3003/?FUZZ=test_value' -fs 19
@@ -115,14 +115,14 @@ ________________________________________________
 id                      [Status: 200, Size: 38, Words: 7, Lines: 1, Duration: 24ms]
 ```
 
-<figure><img src="../../../.gitbook/assets/image (20) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (20) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 * Identify the username of the user that has a position of 736373 through SQLi. Submit it as your answer.\
 
 
-<figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 

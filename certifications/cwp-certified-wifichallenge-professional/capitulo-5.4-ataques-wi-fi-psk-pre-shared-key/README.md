@@ -12,7 +12,7 @@ El método PSK o de Clave Precompartida (en inglés, `Pre Shared Key`) para rede
 
 El Handshake, también conocido como apretón de manos, es un proceso de autenticación utilizado en redes Wi-Fi protegidas con WPA/WPA2-PSK. Este proceso asegura que tanto el cliente como el punto de acceso poseen la clave precompartida correcta sin transmitirla realmente por el aire. Un ataque contra el Handshake captura este intercambio para intentar descifrar la contraseña de la red mediante técnicas de fuerza bruta o diccionario. A continuación, podemos ver cómo funciona el proceso de Handshake entre un cliente y el AP.
 
-<figure><img src="../../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (22) (1).png" alt=""><figcaption></figcaption></figure>
 
 * **Mensaje 1: Iniciación por el AP.** El punto de acceso (AP) envía un frame EAPOL-Key al cliente. Este frame incluye un nonce generado aleatoriamente (ANonce), que se utiliza en el proceso de generación de claves.
 * **Mensaje 2: Respuesta del Cliente.** El cliente responde con su propio frame EAPOL-Key. Este frame incluye otro nonce (SNonce) y un Código de Integridad del Mensaje (MIC) para asegurar la integridad de los datos. El cliente utiliza el ANonce, el SNonce y la clave precompartida (PSK) para calcular la Clave Transitoria de Pareja (PTK). Por lo que este mensaje está cifrado con la clave PSK. Por lo que únicamente es necesario el mensaje 1 y 2 para crackear la contraseña.
@@ -116,7 +116,7 @@ sudo hashcat -m 22000 -a 0 capture.22000 /ruta/a/diccionario.txt
 
 Existen herramientas avanzadas como airgeddon, que facilitan el proceso de captura de handshakes y PMKID al automatizar gran parte de las tareas necesarias para estas acciones de seguridad en redes. Además, el paquete aircrack-ng ofrece la capacidad de analizar archivos de captura (.cap) para verificar si contienen un handshake o un PMKID, lo cual es particularmente útil para validar la efectividad de la captura antes de avanzar en el proceso de descifrado.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## NoAP
 
@@ -370,30 +370,30 @@ Una vez tenemos los handshakes y hemos obtenido la contraseña de la red podemos
 wireshark wifi/scanc6-01.cap
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 En este caso si filtramos por HTTP podemos ver el tráfico de la red abierta, por lo que no hay que confundirlos ya que en este método se muestra todo el tráfico, no solo el descifrado.
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Pero solo aparece información de la red 192.168.10.0/24, que es la red abierta. Por lo que temenos que poner la contraseña en la configuración de Wireshark para que descifre el tráfico. Para ello nos vamos a Edit → Preferences o Ctrl+Shift+P
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Y, en el apartado de protocolos buscamos IEEE 802.11:
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Verificamos que el check en Enable decryption está habilitado y pulsamos Edit.
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Aquí pulsamos el + y se nos crea una nueva entrada en la tabla. Para poner la contraseña en texto claro utilizamos el tipo wpa-pwd y en la key la contraseña en texto claro separada por dos puntos del ESSID.
 
 > Es posible poner únicamente la contraseña sin el ESSID, pero a veces da problemas.
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora si le damos a OK y podemos ver como aparece nueva información HTTP en la captura, en este caso de la red 192.168.2.1/24.
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
