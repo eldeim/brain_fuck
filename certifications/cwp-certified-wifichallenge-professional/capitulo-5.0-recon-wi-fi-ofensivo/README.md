@@ -71,15 +71,15 @@ En airodump-ng es posible clasificar los puntos de acceso (AP) y los clientes, s
 
 El proceso en sí es bastante sencillo. El primer paso recomendado es ordenar los AP y clientes por el número de paquetes de Datos. Esto ordena todo en función de la cantidad de tráfico real que emite cada uno, de forma que los primeros AP y clientes que aparecen son los que más tráfico tienen (que suelen ser los que nos interesan). Para ello sólo tenemos que pulsar s (minúscula) hasta que el texto muestre ordenar por número de paquetes de datos (sorting by number of data packets):
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Para entrar en modo selección, basta con pulsar TAB. Una vez en modo selección, podemos navegar por los AP utilizando las teclas de flecha y ver sus clientes resaltados al mismo tiempo.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Cuando tienes un AP seleccionado, puedes usar la tecla m para recorrer los diferentes colores soportados por airodump-ng. Esto nos permite tener capturas como las siguientes:
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -118,7 +118,7 @@ cd /root/tools/wifi_db
 python3 wifi_db.py -d database.sqlite /home/user/wifi/
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * -d Nombre del archivo de la base de datos SQLite donde queremos que se guarde el resultado. Podemos ejecutar wifi\_db múltiples veces con la misma base de datos y se suma la información.
 * \~/wifi/ Ruta donde se encuentran los archivos de captura de airodump-ng.
@@ -140,7 +140,7 @@ touch db.SQLITE
 docker run -t -v $PWD/db.SQLITE:/db.SQLITE -v $CAPTURESFOLDER:/captures/ r4ulcl/wifi_db
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Accede a la base de datos con un cliente como SQLite browser utilizando la interfaz gráfica:
 
@@ -148,7 +148,7 @@ Accede a la base de datos con un cliente como SQLite browser utilizando la inter
 sqlitebrowser database.sqlite
 ```
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 SQLitebrowser con wifi_db
@@ -156,7 +156,7 @@ SQLitebrowser con wifi_db
 
 Una vez abierto es necesario ir a la sección de Browse Data y seleccionar la base de datos del desplegable, a continuación, se puede ver un ejemplo de tabla ProbeClientsConnected, este ejemplo lista las solicitudes de los clientes a varias redes:
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Uso en CLI
 
@@ -168,7 +168,7 @@ sqlite3 db.SQLITE
 SELECT * FROM APs;
 ```
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
