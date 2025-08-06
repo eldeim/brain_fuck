@@ -209,3 +209,6 @@
     * [Ataques Wi-Fi - MGT](certifications/cwp-certified-wifichallenge-professional/capitulo-5.7-ataques-wi-fi-mgt/ataques-wi-fi-mgt.md)
     * [Otras funcionalidades MGT](certifications/cwp-certified-wifichallenge-professional/capitulo-5.7-ataques-wi-fi-mgt/otras-funcionalidades-mgt.md)
     * [Challenges MGT](certifications/cwp-certified-wifichallenge-professional/capitulo-5.7-ataques-wi-fi-mgt/challenges-mgt.md)
+  * [Capítulo 5.8: Ataques Wi-Fi - Detección](certifications/cwp-certified-wifichallenge-professional/capitulo-5.8-ataques-wi-fi-deteccion/README.md)
+    * [Challenges WIDS](certifications/cwp-certified-wifichallenge-professional/capitulo-5.8-ataques-wi-fi-deteccion/challenges-wids.md)
+  * [Capítulo 6: Ataques Avanzados Wi-Fi Enterprise aka Ataques MGT indirectos](certifications/cwp-certified-wifichallenge-professional/capitulo-6-ataques-avanzados-wi-fi-enterprise-aka-ataques-mgt-indirectos.md)
