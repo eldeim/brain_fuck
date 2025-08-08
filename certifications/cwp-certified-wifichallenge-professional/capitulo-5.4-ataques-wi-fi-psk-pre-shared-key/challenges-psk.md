@@ -36,7 +36,7 @@ Escanemos todas la redes hasta encontrar el BSSID y channel de la wifi-mobile --
 airodump-ng wlan0
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora escaneamos exclusiviamente ese canal y ese bssid -->
 

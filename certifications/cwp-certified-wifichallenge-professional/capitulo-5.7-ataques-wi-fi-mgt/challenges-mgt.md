@@ -54,17 +54,17 @@ python3 /root/tools/eaphammer/eaphammer --cert-wizard
 
 Esto nos ira pidiendo información que deberemos ir cogiendo de la información del certificado sacado con `pcapFilter`&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 mv "WiFiChallenge CA-1.pem" /home/user/wifi/MGT/
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Esto sirve por si un usuario mira el certificado del AP, veo los campos en texto, no es obligatorio para el lab pero si recomendable en la vida real
 
@@ -74,7 +74,7 @@ Ahora que tenemos el certificado, levantamos el punto de acceso con `eaphammer`
 python3 /root/tools/eaphammer/eaphammer -i wlan3 --auth wpa-eap --essid wifi-corp
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Una vez que este el falso AP levantado, volvemos a monitorizar con `airodump-ng` el canal correspondiente (el 44) -->
 
@@ -82,7 +82,7 @@ Una vez que este el falso AP levantado, volvemos a monitorizar con `airodump-ng`
 airodump-ng wlan0 -c44
 ```
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Vemos que wifi-corp tiene dos APs y hay otro mas, que es el nuestro (el que termina en `44:00`, el rojo)
 
@@ -101,7 +101,7 @@ aireplay-ng -0 0 -a F0:9F:C2:71:22:15 -c 64:32:A8:07:6C:40 wlan0
 
 <mark style="background-color:yellow;">Se lo tiramos al mismo cliente en ambas redes, para que asi, cuando se desconecte de una e intente ir a la otra que conoce, tambien se desconecte y por ultimo, vaya hacia la nuestra</mark>
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Vemos que el cliente se conecta y desconecta (ya que no tenemos su contraseña y no podemos continuar con la autentificación) pero tenemos un hash en `mschapv2`
 
@@ -114,7 +114,7 @@ nano juan.hash
 juan.tr::::e85353c383224cb95be75727ad5f86bf9486335aa76b9070:8c1fe46f72a842f1
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Rompemos con `hashcat` -->
 
@@ -295,7 +295,7 @@ nano /root/tools/wpa_sycophant/wpa_sycophant_example.conf
 
 Debemos modificar dos lineas, la de `ssid` y la de `blacklist_bssid` == Una es poner el nombre de la wifi a falsear y el otro es poner nuestra MAC para no conectarnos nosotros mismos
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 network={
@@ -330,7 +330,7 @@ Ahora para hacer el ataque necesitamos abrir varias ventanas
 
 > Nos pide una configuracion manual o que la dejemos por defecto (lo mejor siempre es manual ya que tenemos la info del certf del AP origin sacada en el reto 18)
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Una vez que esta montado ejecutamos `wpa_sycophant` en la otra ventana
 
@@ -344,7 +344,7 @@ Ahora para hacer el ataque necesitamos abrir varias ventanas
 airodump-ng wlan0 -c 44 --bssid F0:9F:C2:7A:33:28
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Vemos dos clientes, asi que ahora hacemos el ataque de des, contra uno de ellos
 
@@ -352,15 +352,15 @@ Vemos dos clientes, asi que ahora hacemos el ataque de des, contra uno de ellos
 aireplay-ng -0 0 wlan0 -a F0:9F:C2:7A:33:28 -c 64:32:A8:A9:DE:55
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora en wpa\_sycophant vemos como se conecta y tambien dando su hash -->
 
-<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Y tambien como nos conectamos auto a la red -->
 
-<figure><img src="../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora pedimo ip con `dhclient`
 
@@ -368,11 +368,11 @@ Ahora pedimo ip con `dhclient`
 dhclient wlan3 -v
 ```
 
-<figure><img src="../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora podemos apuntar desde el navegador a la puerta de enlace y coger la flag
 
-<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -384,7 +384,7 @@ Para esto, vamos a hacer casi lo mismo que el reto anterior
 
 Asi que tenemos que modificar el fichero `wpa_sycophant_example.conf`, modificando la primera linea que es la el nombre del AP -->
 
-<figure><img src="../../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Y ejecutamos directamente el `wpa_sycophant`
 
@@ -468,7 +468,7 @@ Esto lo podemos ver, escaneando el trafico de la wifi con `airodump-ng` y guarda
 airodump-ng wlan0 --band bag -c 44 --bssid F0:9F:C2:71:22:17 -w /home/user/wifi/MGT/wifi-globa
 ```
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 ```
 python3 /root/tools/wifi_db/wifi_db.py -d wifi-global.db /home/user/wifi/MGT/
@@ -478,7 +478,7 @@ python3 /root/tools/wifi_db/wifi_db.py -d wifi-global.db /home/user/wifi/MGT/
 sqlitebrowser wifi-global.db
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Todo apunta a que "Wifi-Restaurant" y "open-wifi" son wifis abiertas y "home-WiFi" una PSK
 
@@ -496,7 +496,7 @@ aireplay-ng wlan0 -0 0 -a F0:9F:C2:71:22:17 -c 64:32:A8:BC:53:51
 
 Al lanzar el ataque, vemos como el cliente se conecta y nos lanza un credenciales contra el portal cautivo, consigueindo asi su user and passw -->
 
-<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora, este ataque podemos hacerlo igual pero en vez de con un portal cautivo (`--captive-portal`) con un portal hostil (--`hostile-portal`)
 
@@ -506,7 +506,7 @@ Ahora, este ataque podemos hacerlo igual pero en vez de con un portal cautivo (`
 
 Y al lanzarle el ataque de desautentificacion, se conecta y nos da su hash NTMLv2 -->
 
-<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 Con este hash, podemos rompelo con hashcar -->
 
@@ -543,15 +543,15 @@ wpa_supplicant -i wlan3 -c regi-god.conf
 dhclient wlan3 -v
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 Apuntamos desde la web a la puerta de enlace 7.1 -->
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 Y iniciamos session con las cerds obtenidas -->
 
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -563,9 +563,9 @@ En el ejercicio 18 hemos visto dos clientes de "wifi-corp", uno era Juan y otro 
 
 > Al acceder en el ejercio 24, vimos carios ficheros descargables dentro de la 7.1
 
-<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 Me los descargo todos desde `wget`
 
@@ -579,7 +579,7 @@ Ahora utilizamos `eaphammer` para levantar el AP falso con los certificados -->
 python3 ./eaphammer --cert-wizard import --server-cert /home/user/Downloads/server.crt --ca-cert /home/user/Downloads/ca.crt --private-key /home/user/Downloads/server.key --private-key-passwd whatever
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ya nos ha generado el certificado y ahora podemo hacer el ataque de des autentifacion como en el reto 18, pero al otro cliente que nos pide el CA -->
 

@@ -184,6 +184,7 @@
     * [Enumeration](certifications/htb-cbbh/hacking-wordpress/enumeration.md)
     * [Exploitin](certifications/htb-cbbh/hacking-wordpress/exploitin.md)
 * [📶 CWP - Certified WiFiChallenge Professional](certifications/cwp-certified-wifichallenge-professional/README.md)
+  * [👑 CWP Cheatsheet](certifications/cwp-certified-wifichallenge-professional/cwp-cheatsheet.md)
   * [Capitulo 1: Teoría de redes Wi-Fi](certifications/cwp-certified-wifichallenge-professional/capitulo-1-teoria-de-redes-wi-fi.md)
   * [Capitulo 2: WiFiChallenge Lab - Primeros Pasos](certifications/cwp-certified-wifichallenge-professional/capitulo-2-wifichallenge-lab-primeros-pasos.md)
   * [Capitulo 3: Fundamentos de Linux](certifications/cwp-certified-wifichallenge-professional/capitulo-3-fundamentos-de-linux.md)
