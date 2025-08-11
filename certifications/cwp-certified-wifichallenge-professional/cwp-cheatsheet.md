@@ -1,3 +1,7 @@
+---
+description: With love, eldeim
+---
+
 # 👑 CWP Cheatsheet
 
 ## Redes Ocultas

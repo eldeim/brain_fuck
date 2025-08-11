@@ -2,6 +2,14 @@
 
 <figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
+***
+
+## Ver en formato Web <a href="#view-in-web-format" id="view-in-web-format"></a>
+
+{% embed url="https://eldeim.gitbook.io/brain_fuck/checklists/certifications/cwp-certified-wifichallenge-professional" %}
+
+***
+
 ## Estructura y Apartados
 
 ### 01. Teoría de Redes Wi-Fi
