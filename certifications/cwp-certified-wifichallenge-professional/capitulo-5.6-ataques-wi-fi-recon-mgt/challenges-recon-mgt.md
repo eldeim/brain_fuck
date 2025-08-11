@@ -128,3 +128,4 @@ Y ahora ejecutamos la herramienta, especificando el nombre de la red a la que qu
 bash /root/tools/EAP_buster/EAP_buster.sh wifi-global 'GLOBAL\\GlobalAdmin' wlan2
 ```
 
+<figure><img src="../../../.gitbook/assets/image (334).png" alt=""><figcaption></figcaption></figure>
