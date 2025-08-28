@@ -51,6 +51,8 @@
   * [Evil-wmr](others/tools/evil-wmr.md)
   * [Burpsuite](others/tools/burpsuite.md)
   * [KeyHunter](others/tools/keyhunter.md)
+* [📦 Modules HTB](others/modules-htb/README.md)
+  * [Attacking Wi-Fi Protected Setup (WPS)](others/modules-htb/attacking-wi-fi-protected-setup-wps.md)
 
 ***
 
@@ -183,7 +185,7 @@
     * [Info](certifications/htb-cbbh/hacking-wordpress/info.md)
     * [Enumeration](certifications/htb-cbbh/hacking-wordpress/enumeration.md)
     * [Exploitin](certifications/htb-cbbh/hacking-wordpress/exploitin.md)
-* [📶 CWP - Certified WiFiChallenge Professional](certifications/cwp-certified-wifichallenge-professional/README.md)
+* [📶 CWP-Certified WiFiChallenge Professional](certifications/cwp-certified-wifichallenge-professional/README.md)
   * [👑 CWP Cheatsheet](certifications/cwp-certified-wifichallenge-professional/cwp-cheatsheet.md)
   * [Capitulo 1: Teoría de redes Wi-Fi](certifications/cwp-certified-wifichallenge-professional/capitulo-1-teoria-de-redes-wi-fi.md)
   * [Capitulo 2: WiFiChallenge Lab - Primeros Pasos](certifications/cwp-certified-wifichallenge-professional/capitulo-2-wifichallenge-lab-primeros-pasos.md)
@@ -219,3 +221,5 @@
     * [Estructura del Informe](certifications/cwp-certified-wifichallenge-professional/capitulo-7-experiencia-en-el-mundo-real/estructura-del-informe.md)
   * [Capítulo 8: Securización de redes Wi-Fi](certifications/cwp-certified-wifichallenge-professional/capitulo-8-securizacion-de-redes-wi-fi.md)
   * [Examen FAQ y funcionamiento](certifications/cwp-certified-wifichallenge-professional/examen-faq-y-funcionamiento.md)
+* [📵 INE-eMAPT](certifications/ine-emapt/README.md)
+  * [Introduction to Mobile Application Security](certifications/ine-emapt/introduction-to-mobile-application-security.md)
