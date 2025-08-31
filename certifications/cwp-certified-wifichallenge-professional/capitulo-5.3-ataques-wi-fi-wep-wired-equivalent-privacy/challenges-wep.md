@@ -32,7 +32,7 @@ Ahora desde otra terminal mientras corre `airodump-ng`, realizamos una autentifi
 aireplay-ng -1 3600 -q 10 -a F0:9F:C2:71:22:11 wlan0
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Con esto dede el propio `airodump-ng` vemos a nuestra interfaz haciendo la falsa conexion con la wifi -->
 
