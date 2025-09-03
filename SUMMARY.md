@@ -225,3 +225,4 @@
   * [Introduction to Mobile Application Security](certifications/ine-emapt/introduction-to-mobile-application-security.md)
   * [Notes Android](certifications/ine-emapt/notes-android/README.md)
     * [Notes iOS](certifications/ine-emapt/notes-android/notes-ios.md)
+  * [OWASP Mobile Top 10](certifications/ine-emapt/owasp-mobile-top-10.md)
