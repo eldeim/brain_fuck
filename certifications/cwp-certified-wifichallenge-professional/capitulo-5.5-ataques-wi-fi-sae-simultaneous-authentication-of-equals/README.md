@@ -16,7 +16,7 @@ Para comprobar el soporte AP de PSK o SAE, se siguen estos pasos:
 
     Se ejecuta airodump-ng y se guarda la captura.
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. **Inspección del RSN IE en Wireshark**
 
@@ -24,7 +24,7 @@ Para comprobar el soporte AP de PSK o SAE, se siguen estos pasos:
 * Se localiza un Beacon Frame y, dentro de él, la sección: IEEE 802.11 Wireless Management ▶ Tagged parameters ▶ RSN IE ▶ Auth Key Management (AKM) list.
 * Se comprueba si aparece solo SAE, solo PSK o ambos (Transitional).
 
-<figure><img src="../../../.gitbook/assets/image (14) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (14) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Comprobación de MFP**
 
@@ -33,7 +33,7 @@ Para comprobar el soporte AP de PSK o SAE, se siguen estos pasos:
   * MFPC: **0** = no soportado; **1** = soportado.
   * MFPR: **0** = no obligatorio; **1** = obligatorio.
 
-<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Por defecto, todas las redes SAE requieren MFP.
 
