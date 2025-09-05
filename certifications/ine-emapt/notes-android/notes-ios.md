@@ -30,3 +30,8 @@ download --bundle-identifier com.linkedin.LinkedIn
 
 * **Info.plist**
 
+
+
+## Methodologies
+
+* Check Hardcoded Secrets
