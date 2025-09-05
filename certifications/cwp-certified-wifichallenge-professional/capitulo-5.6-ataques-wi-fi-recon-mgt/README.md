@@ -18,7 +18,7 @@ wireshark /home/user/wifi/scanc44-01.cap
 
 En Wireshark se filtran los paquetes por eap y se busca la respuesta de identidad para obtener nombres de usuario.
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Alternativamente, se puede usar la herramienta wifi\_db para extraer esta información de forma más automatizada.
 

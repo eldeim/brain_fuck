@@ -10,7 +10,7 @@ By browsing the application, we notice that Ela Stienen can't share her profile.
 
 Then, activate Burp Suite's proxy (_Intercept On_) and configure your browser to go through it. Now click _Make Public!_.
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 You should see the below inside Burp Suite's proxy.
 

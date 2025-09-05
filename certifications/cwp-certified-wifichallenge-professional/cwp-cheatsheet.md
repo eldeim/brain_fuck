@@ -37,7 +37,7 @@ cat /root/rockyou-top100000.txt | awk '{print "wifi-" $1}' > /root/wifi-rockyou.
 2. Probar contraseñas por defecto en el router/puerta de enlace
 3. Evadir portal cautivo cambiando nuestra MAC por la de otro cliente con macchanger (ejemplo en [Capitulo 5.1, reto 6](https://eldeim.gitbook.io/brain_fuck/checklists/certifications/cwp-certified-wifichallenge-professional/capitulo-5.1-ataques-wi-fi-opn-redes-publicas-abiertas/challenges-opn#challenge-6))
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 ## Apagamos la interfaz wlan2 (interfaz en modo normal que no utiliza modo monitor)
@@ -52,11 +52,11 @@ systemctl stop network-manager.service
 macchanger wlan2
 ```
 
-<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Interceptar trafico en escucha con `airodump-ng` y capturar peticiones como; credenciales de acceso al router
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://eldeim.gitbook.io/brain_fuck/checklists/certifications/cwp-certified-wifichallenge-professional/capitulo-5.1-ataques-wi-fi-opn-redes-publicas-abiertas/challenges-opn" %}
 
@@ -66,9 +66,9 @@ macchanger wlan2
 
 1. (Modo facil) - Utilizamos la herramienta automatizada `Besside-ng`, especificando el BSSID del AP para que haga el ataque de fuerza bruta al "PIN". Por ultimo nos conectamos
 
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://eldeim.gitbook.io/brain_fuck/checklists/certifications/cwp-certified-wifichallenge-professional/capitulo-5.3-ataques-wi-fi-wep-wired-equivalent-privacy/challenges-wep#besside-ng" %}
 

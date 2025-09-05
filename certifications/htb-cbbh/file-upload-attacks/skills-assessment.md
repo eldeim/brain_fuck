@@ -73,7 +73,7 @@ With it, i can test with a simple upload if i can see the picture -->
 
 First again, delete de front restriccions -->
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Then, with the burp active, intercept the peticon of upload a image and send to Repeater:
 

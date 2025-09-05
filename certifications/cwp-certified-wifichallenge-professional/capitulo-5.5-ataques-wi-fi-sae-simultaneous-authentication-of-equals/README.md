@@ -16,7 +16,7 @@ Para comprobar el soporte AP de PSK o SAE, se siguen estos pasos:
 
     Se ejecuta airodump-ng y se guarda la captura.
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. **Inspección del RSN IE en Wireshark**
 

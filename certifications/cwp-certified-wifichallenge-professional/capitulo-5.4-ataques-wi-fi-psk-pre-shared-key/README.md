@@ -378,22 +378,22 @@ En este caso si filtramos por HTTP podemos ver el tráfico de la red abierta, po
 
 Pero solo aparece información de la red 192.168.10.0/24, que es la red abierta. Por lo que temenos que poner la contraseña en la configuración de Wireshark para que descifre el tráfico. Para ello nos vamos a Edit → Preferences o Ctrl+Shift+P
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Y, en el apartado de protocolos buscamos IEEE 802.11:
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Verificamos que el check en Enable decryption está habilitado y pulsamos Edit.
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Aquí pulsamos el + y se nos crea una nueva entrada en la tabla. Para poner la contraseña en texto claro utilizamos el tipo wpa-pwd y en la key la contraseña en texto claro separada por dos puntos del ESSID.
 
 > Es posible poner únicamente la contraseña sin el ESSID, pero a veces da problemas.
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora si le damos a OK y podemos ver como aparece nueva información HTTP en la captura, en este caso de la red 192.168.2.1/24.
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
