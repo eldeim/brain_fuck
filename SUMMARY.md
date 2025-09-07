@@ -229,6 +229,7 @@
   * [OWASP Mobile Top 10 Vulnerabilities](certifications/ine-emapt/owasp-mobile-top-10-vulnerabilities/README.md)
     * [LAB -  XSS in Android](certifications/ine-emapt/owasp-mobile-top-10-vulnerabilities/lab-xss-in-android.md)
     * [LAB - Insecure Network Transmission](certifications/ine-emapt/owasp-mobile-top-10-vulnerabilities/lab-insecure-network-transmission.md)
+    * [LAB - Insecure Biometric Failover](certifications/ine-emapt/owasp-mobile-top-10-vulnerabilities/lab-insecure-biometric-failover.md)
   * [Notes Android](certifications/ine-emapt/notes-android/README.md)
     * [Notes iOS](certifications/ine-emapt/notes-android/notes-ios.md)
 * [TCM-Security](certifications/tcm-security/README.md)

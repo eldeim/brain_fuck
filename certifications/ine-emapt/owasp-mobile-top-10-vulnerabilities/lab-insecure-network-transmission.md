@@ -51,6 +51,8 @@ Now, try to log in and if all configurations are good, we can see the user and p
 
 <figure><img src="../../../.gitbook/assets/image (358).png" alt=""><figcaption></figcaption></figure>
 
+### BurpSuite Configuration
+
 So... now, we can try to intercept all trafict with burp -->
 
 <figure><img src="../../../.gitbook/assets/image (359).png" alt=""><figcaption></figcaption></figure>
@@ -58,3 +60,23 @@ So... now, we can try to intercept all trafict with burp -->
 Here, we need remplace the localhost ip (127.0.0.1) to us IP -->
 
 <figure><img src="../../../.gitbook/assets/image (361).png" alt=""><figcaption></figcaption></figure>
+
+Now, we need to add a proxy on the Android device. Open **Settings** and click on **Network & internet**.
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+Now, turn on the **Intercept** in Burp and navegate/login -->
+
+<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
