@@ -53,6 +53,8 @@
   * [KeyHunter](others/tools/keyhunter.md)
 * [📦 Modules HTB](others/modules-htb/README.md)
   * [Attacking Wi-Fi Protected Setup (WPS)](others/modules-htb/attacking-wi-fi-protected-setup-wps.md)
+* [🧮 TCM-Security](others/tcm-security/README.md)
+  * [🔎 OSINT Research Professional (PORP) Certification](others/tcm-security/osint-research-professional-porp-certification.md)
 
 ***
 
@@ -232,7 +234,6 @@
     * [LAB - Insecure Biometric Failover](certifications/ine-emapt/owasp-mobile-top-10-vulnerabilities/lab-insecure-biometric-failover.md)
     * [LAB - Testing Debuggability](certifications/ine-emapt/owasp-mobile-top-10-vulnerabilities/lab-testing-debuggability.md)
     * [LAB - Insecure Data Storage](certifications/ine-emapt/owasp-mobile-top-10-vulnerabilities/lab-insecure-data-storage.md)
+    * [LAB - Insecure Auth 1](certifications/ine-emapt/owasp-mobile-top-10-vulnerabilities/lab-insecure-auth-1.md)
   * [Notes Android](certifications/ine-emapt/notes-android/README.md)
     * [Notes iOS](certifications/ine-emapt/notes-android/notes-ios.md)
-* [TCM-Security](certifications/tcm-security/README.md)
-  * [🔎 OSINT Research Professional (PORP) Certification](certifications/tcm-security/osint-research-professional-porp-certification.md)
