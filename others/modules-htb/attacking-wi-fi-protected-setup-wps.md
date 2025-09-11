@@ -63,6 +63,8 @@ XX:XX:XX:XX:XX:XX    1  -63  2.0  No   Quantenn  FakeNetwork
 XX:XX:XX:XX:XX:XX    1  -61  2.0  No   AtherosC  FakeNetwork
 ```
 
+<figure><img src="../../.gitbook/assets/image (397).png" alt=""><figcaption></figcaption></figure>
+
 We can display much more verbose output with wash using the following command.
 
 ```shell-session
@@ -93,7 +95,9 @@ When attempting to test WPS, we want to note the following conditions:
 
 * How many WIFI networks with WPS are available? (Answer in digit format: e.g., 5)
 
-
+```
+wash -i wlan0
+```
 
 
 
