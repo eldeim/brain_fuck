@@ -48,7 +48,7 @@ vEAVomMlitCuPm2SSYnRkcgZG22fgq6randig/JpsHbToBtP0PEj+bacdSte29gJ
 
 Importa la llave haciendo un : `gpg --import NAMETOOLONG.asc` y quizás encuentres el mail de alguien:
 
-<figure><img src="../.gitbook/assets/Pasted image 20250310191916.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Pasted image 20250310191916.png" alt=""><figcaption></figcaption></figure>
 
 > Gracias [Gitblanc](https://gitblanc.github.io/c1b3rn0t3s/) por la información compartida
 

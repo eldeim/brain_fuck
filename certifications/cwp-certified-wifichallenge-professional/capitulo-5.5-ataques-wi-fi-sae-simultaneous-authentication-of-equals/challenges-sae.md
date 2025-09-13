@@ -21,7 +21,7 @@ Red SAE, WPA3, canal 11, ahora solo escaneamos esas canal y BSSID
 airodump-ng wlan0 --manufacturer --band bag -c 11 --bssid F0:9F:C2:11:0A:24
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">Las redes SAE no tiene handshake que se puedan atacar, se puede atacar a los clientes (si hay alguna mal configurado) o un ataque de fuerza bruta online</mark>
 
@@ -37,7 +37,7 @@ Para este ataque necesitamos la `frecuencia del AP,` no el canal. Para esto, con
 iwlist wlan0 frequency | grep 'Channel 11 :'
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Channel 11 : 2.462 GHz
 
@@ -47,7 +47,7 @@ iwlist wlan0 frequency | grep 'Channel 11 :'
 
 > `--interface` : Hay que poner una interfaz de red que no este en modo monitor
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora, sabiendo la credencial creamos el fichero de conexión con `wpasupplican`t -->
 
@@ -68,7 +68,7 @@ wpa_supplicant -i wlan2 -c sae.conf
 sudo dhclient wlan2 -v
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -82,7 +82,7 @@ Escaneamos toda las redes hasta encontrar "wifi-IT" y luego hacemos un scaneo es
 airodump-ng wlan0 --manufacturer --band bag -c 11 --bssid F0:9F:C2:1A:CA:25 -w sae2
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Vemos que tiene un cliente, asi que podemos intentar hacerle un ataque de downgrade
 
@@ -90,7 +90,7 @@ Vemos que tiene un cliente, asi que podemos intentar hacerle un ataque de downgr
 
 Para esto abrimos en fichero de la captura actual, pero abrimos el `.csv.` Asi podemos ver un poco mas de informacion de la que nos da `airodump-ng`
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Aqui vemos que este AP, soporta a WPA3 y WPA2, y a nivel de autentificación SAE y PSK
 
@@ -108,7 +108,7 @@ python3 /root/tools/wifi_db/wifi_db.py -d WifiSAE.db /home/user/wifi/SAE/
 sqlitebrowser WifiSAE.db
 ```
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Al ver que no tiene habilitado ni el mfpc y mfpr, podemo hacerle un ataque de desautentficcacion al cliente, para forzarle que se conecte a un AP nuestro
 
@@ -138,7 +138,7 @@ Ahora levantamos levantamos con `hostap-mana` -->
 hostapd-mana hostapd-sae.conf
 ```
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ya tenemos el AP falso con WPA2 corriendo.
 

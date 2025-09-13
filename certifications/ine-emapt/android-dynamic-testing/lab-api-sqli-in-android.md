@@ -19,11 +19,11 @@ Password: pass
 
 <figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 After exucte the app, we can see a login panel and we can input credentials to login. Then, we can see a search "Schoolmate"  -->
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can to try set a basic SLQi -->
 

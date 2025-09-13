@@ -54,7 +54,11 @@
 * [📦 Modules HTB](others/modules-htb/README.md)
   * [Attacking Wi-Fi Protected Setup (WPS)](others/modules-htb/attacking-wi-fi-protected-setup-wps.md)
 * [🧮 TCM-Security](others/tcm-security/README.md)
-  * [🔎 OSINT Research Professional (PORP) Certification](others/tcm-security/osint-research-professional-porp-certification.md)
+  * [🔎 OSINT Research Professional (PORP) Certification](others/tcm-security/osint-research-professional-porp-certification/README.md)
+    * [Image OSINT](others/tcm-security/osint-research-professional-porp-certification/image-osint.md)
+    * [Discovering Email Addresses](others/tcm-security/osint-research-professional-porp-certification/discovering-email-addresses.md)
+    * [Password OSINT](others/tcm-security/osint-research-professional-porp-certification/password-osint.md)
+    * [Hunting Usernames and Accounts](others/tcm-security/osint-research-professional-porp-certification/hunting-usernames-and-accounts.md)
 
 ***
 
@@ -73,13 +77,14 @@
   * [Pivoting](pentesting-methodology/pivoting/README.md)
     * [Ligolo-ng](pentesting-methodology/pivoting/ligolo-ng.md)
 * [🌐 OSINT](osint/README.md)
-  * [Gps-Coordinates](osint/gps-coordinates.md)
-  * [GPG](osint/gpg.md)
-  * [Sherlock](osint/sherlock.md)
-  * [Whatsmyname](osint/whatsmyname.md)
-  * [Wiggle](osint/wiggle.md)
-  * [Image & Geospatial Intelligence](osint/image-and-geospatial-intelligence.md)
-  * [FFmpeg - Geolocating Videos](osint/ffmpeg-geolocating-videos.md)
+  * [🔮 MIXs](osint/mixs/README.md)
+    * [Gps-Coordinates](osint/mixs/gps-coordinates.md)
+    * [GPG](osint/mixs/gpg.md)
+    * [Sherlock](osint/mixs/sherlock.md)
+    * [Wiggle](osint/mixs/wiggle.md)
+    * [Whatsmyname](osint/mixs/whatsmyname.md)
+    * [Image & Geospatial Intelligence](osint/mixs/image-and-geospatial-intelligence.md)
+    * [FFmpeg - Geolocating Videos](osint/mixs/ffmpeg-geolocating-videos.md)
 * [🗒️ TO-DO](to-do.md)
 
 ## 🪪 Certifications
@@ -239,5 +244,7 @@
     * [LAB - Insecure LogIn](certifications/ine-emapt/android-dynamic-testing/lab-insecure-login.md)
     * [LAB - API SQLi in Android](certifications/ine-emapt/android-dynamic-testing/lab-api-sqli-in-android.md)
     * [LAB - Mobile Vulnerabilities: SQLi in Android](certifications/ine-emapt/android-dynamic-testing/lab-mobile-vulnerabilities-sqli-in-android.md)
+    * [LAB -  Sensitive Information Leakage](certifications/ine-emapt/android-dynamic-testing/lab-sensitive-information-leakage.md)
   * [Notes Android](certifications/ine-emapt/notes-android/README.md)
-    * [Notes iOS](certifications/ine-emapt/notes-android/notes-ios.md)
+    * [How to import Burp Cetf](certifications/ine-emapt/notes-android/how-to-import-burp-cetf.md)
+  * [Notes iOS](certifications/ine-emapt/notes-ios.md)

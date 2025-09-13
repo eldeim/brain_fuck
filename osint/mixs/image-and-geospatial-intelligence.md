@@ -1,6 +1,6 @@
 # Image & Geospatial Intelligence
 
-<figure><img src="../.gitbook/assets/Pasted-image-20240426205652.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Pasted-image-20240426205652.png" alt=""><figcaption></figcaption></figure>
 
 ## Questions
 

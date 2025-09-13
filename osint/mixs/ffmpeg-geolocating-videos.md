@@ -34,7 +34,7 @@ Si no, puedes especificar la ruta al archivo después con `-i`
 
 ### Grabbing Frames
 
-<figure><img src="../.gitbook/assets/Pasted-image-20240427003908.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Pasted-image-20240427003908.png" alt=""><figcaption></figcaption></figure>
 
 Capturar fotogramas de un vídeo permite utilizar técnicas de imagen inversa, así como realizar una evaluación fotograma a fotograma de un vídeo.&#x20;
 

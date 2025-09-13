@@ -6,7 +6,7 @@ Usalo para **buscar todos las redes sociales de un nic**k
 
 {% embed url="https://github.com/sherlock-project/sherlock" %}
 
-<figure><img src="../.gitbook/assets/Pasted image 20250310190812.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Pasted image 20250310190812.png" alt=""><figcaption></figcaption></figure>
 
 ### Instalation
 
