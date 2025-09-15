@@ -36,7 +36,7 @@ Escanemos todas la redes hasta encontrar el BSSID y channel de la wifi-mobile --
 airodump-ng wlan0
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora escaneamos exclusiviamente ese canal y ese bssid -->
 
@@ -44,13 +44,13 @@ Ahora escaneamos exclusiviamente ese canal y ese bssid -->
 airodump-ng wlan0 --band bag -c 6 --bssid F0:9F:C2:71:22:12 -w /home/user/wifi/PSK/wifi-mobile
 ```
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Para obtener el handshake, debemos esperar a que un cliente se autentifique solo a la red, o hacer un ataque de des autentificación -->
 
 ### Espera del handshake
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Ataque de des autentificación
 
@@ -62,13 +62,13 @@ aireplay-ng -0 10 -a F0:9F:C2:71:22:12 -c 28:6C:07:6F:F9:43 wlan0
 * `-a` : El BSSID de la red / wifi-mobile
 * `-c` : La MAC de un usuario conectado a esa red
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > TAMBIEN se puede hacer sin especificar la MAC "-c" para des autentificar a todo los usuarios de la red, solo que algunos AP da problemas: `aireplay-ng -0 10 -a F0:9F:C2:71:22:12 wlan0`
 
 Ahora vemos que en la seccion `NOTES : EAPOL` por que tenemos el handshake de esos usuarios
 
-<figure><img src="../../../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Utilizamos `aircrack-ng` para romper la contraseña del `handshake`, previamente habiendo capturado el trafico con `airodump-ng` -->
 
@@ -76,7 +76,7 @@ Utilizamos `aircrack-ng` para romper la contraseña del `handshake`, previamente
 aircrack-ng -w /root/rockyou-top100000.txt wifi-mobile-02.cap
 ```
 
-<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -94,7 +94,7 @@ airdecap-ng -e wifi-mobile -p starwars1 wifi-mobile-02.cap
 * `-p` : Contraseña crackeada
 * `.cap` : Trafico y handshake capturado
 
-<figure><img src="../../../.gitbook/assets/image (16) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (16) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Vemos que se ha `descifrado 5402 paquetes` y este nuevo archivo descifrado se guarda como&#x20;
 >
@@ -106,7 +106,7 @@ Ahora abrimos con wireshark para leer le trafico:
 wireshark wifi-mobile-02-dec.cap
 ```
 
-<figure><img src="../../../.gitbook/assets/image (17) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (17) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Vemos mucho trafico TCP y entre ello, conexiones a la `192.168.2.1` (siendo este el servidor/router)
 

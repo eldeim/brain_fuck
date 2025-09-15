@@ -63,7 +63,7 @@ Based on the parameter name `user_id`, we can infer that the parameter specifies
 
 To login with us credential and intercept te request, we can see it into dashboard -->
 
-<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Fuzzing it number with Intruder. The number of admin is `372`
 
