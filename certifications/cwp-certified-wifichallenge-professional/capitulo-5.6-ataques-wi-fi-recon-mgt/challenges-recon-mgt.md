@@ -18,7 +18,7 @@ Primero como siempre, escaneamos todos los canales con `airodump-ng` y encontram
 airodump-ng wlan0 --band bag -c 44 --bssid F0:9F:C2:71:22:16 -w /home/user/wifi/MGT/regi
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Tras escanear un rato, obtenemos un handshake del usuario conectado, <mark style="background-color:yellow;">este handshake no nos sirve para ningún ataque (por el tipo de red MGT que es)</mark>, pero nos indica que hemos visto a un cliente autentificarse contra el AP,  que es donde se manda la info sin cifrar.
 
@@ -30,7 +30,7 @@ Ahora podemos abrir la captura con `wireshark` y filtramos por `eap` -->
 wireshark regi-01.cap
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Buscamos en la cabecera `Info` un `Response, Identity` para que aparezcan todos juntos
 

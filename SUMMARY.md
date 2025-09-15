@@ -249,6 +249,7 @@
       * [API BFLA in Android](certifications/ine-emapt/android-dynamic-testing/labs-api/api-bfla-in-android.md)
       * [API Fuzzing](certifications/ine-emapt/android-dynamic-testing/labs-api/api-fuzzing.md)
       * [LAB - JWT Token Manipulation](certifications/ine-emapt/android-dynamic-testing/labs-api/lab-jwt-token-manipulation.md)
+      * [LAB - Insecure Token Management](certifications/ine-emapt/android-dynamic-testing/labs-api/lab-insecure-token-management.md)
   * [Notes Android](certifications/ine-emapt/notes-android/README.md)
     * [How to import Burp Cetf](certifications/ine-emapt/notes-android/how-to-import-burp-cetf.md)
   * [Notes iOS](certifications/ine-emapt/notes-ios.md)

@@ -36,5 +36,16 @@ With it do, intercept the login peticion -->
 
 <figure><img src="../../../../.gitbook/assets/image (433).png" alt=""><figcaption></figcaption></figure>
 
-We can get a login token, so... copy and put in into cybercheft -\_>
+We can get a login token, and we can see three points so... copy and put in into jwio -\_>
 
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+Know it, we can decode of base64 the content "white selection" and manipulate it. For example, change the role to admin -->
+
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>

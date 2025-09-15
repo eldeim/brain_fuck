@@ -8,7 +8,7 @@ Una red Wi-Fi básica está dividida en 2 tipos de dispositivos. El **punto de a
 
 Y en el caso de las redes corporativas, lo habitual es que haya un gran número de APs emitiendo la misma red y un gran número de clientes conectados a estos APs.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Diagrama de red Wi-Fi corporativa</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Diagrama de red Wi-Fi corporativa</p></figcaption></figure>
 
 Este gran número de APs es invisible de cara al usuario, ya que todas emiten la misma red, por lo que los dispositivos la muestran como una única red.
 
@@ -56,19 +56,19 @@ Las características clave de los estándares Wi-Fi 802.11 incluyen:
 
 La banda de 2.4 GHz se usa ampliamente y es compatible con todas las generaciones de Wi-Fi. Ofrece un buen rango pero es más susceptible a interferencias de otros dispositivos, como hornos microondas y dispositivos Bluetooth.
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Banda de 5 GHz
 
 La banda de 5 GHz, utilizada por Wi-Fi 2, Wi-Fi 4, Wi-Fi 5 y Wi-Fi 6, proporciona tasas de datos más rápidas pero a un rango más corto en comparación con 2.4 GHz. Está menos congestionada y, por lo tanto, es menos propensa a interferencias.
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Banda de 6 GHz
 
 Introducida con Wi-Fi 6E, la banda de 6 GHz ofrece más ancho de banda y canales, reduciendo significativamente la interferencia y mejorando las tasas de datos y la latencia. Esta banda es especialmente beneficiosa para aplicaciones de alto ancho de banda en entornos con muchos dispositivos.
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Sondas, autenticación y asociación
 

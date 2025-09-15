@@ -24,7 +24,7 @@ El Protocolo de Autenticación Desafío Mutuo (MSCHAPv2) es común en redes corp
 python3 ./eaphammer -i wlan3 --auth wpa-eap --essid $ESSID --creds
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 En el caso de que un cliente se conecte a la red y nos envíe credenciales aparecerán por pantalla, donde se puede ver un challenge y su response. Imprimiendo también el hash listo para crackear con hashcat:
 
@@ -32,9 +32,9 @@ En el caso de que un cliente se conecte a la red y nos envíe credenciales apare
 hashcat -a 0 -m 5500 hashcat.5500 ~/rockyou-top100000.txt --force
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A diferencia de NetNTLMv1, que permite ataques de challenge pre-calculado, MS-CHAPv2 utiliza un "Peer-Challenge" aleatorio generado por el cliente, combinado con el challenge del servidor y el nombre de usuario en su ChallengeHash basado en SHA-1, de modo que no a pesar de mandar siempre el mismo challenge, su response cada vez sería diferente.
 
