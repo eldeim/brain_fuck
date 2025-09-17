@@ -59,6 +59,7 @@
     * [Discovering Email Addresses](others/tcm-security/osint-research-professional-porp-certification/discovering-email-addresses.md)
     * [Password OSINT](others/tcm-security/osint-research-professional-porp-certification/password-osint.md)
     * [Hunting Usernames and Accounts](others/tcm-security/osint-research-professional-porp-certification/hunting-usernames-and-accounts.md)
+  * [📳 Mobile Application Penetration Testing](others/tcm-security/mobile-application-penetration-testing.md)
 
 ***
 
@@ -250,6 +251,8 @@
       * [API Fuzzing](certifications/ine-emapt/android-dynamic-testing/labs-api/api-fuzzing.md)
       * [LAB - JWT Token Manipulation](certifications/ine-emapt/android-dynamic-testing/labs-api/lab-jwt-token-manipulation.md)
       * [LAB - Insecure Token Management](certifications/ine-emapt/android-dynamic-testing/labs-api/lab-insecure-token-management.md)
+  * [Mobile Security & Malware Analysis](certifications/ine-emapt/mobile-security-and-malware-analysis.md)
   * [Notes Android](certifications/ine-emapt/notes-android/README.md)
     * [How to import Burp Cetf](certifications/ine-emapt/notes-android/how-to-import-burp-cetf.md)
-  * [Notes iOS](certifications/ine-emapt/notes-ios.md)
+  * [Notes iOS](certifications/ine-emapt/notes-ios/README.md)
+    * [LAB - iOS: Insufficient Cryptography](certifications/ine-emapt/notes-ios/lab-ios-insufficient-cryptography.md)

@@ -4,6 +4,14 @@ One time we have download the APK and Burpsuite, we can Download the certficatio
 
 <figure><img src="../../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../../../.gitbook/assets/image (447).png" alt=""><figcaption></figcaption></figure>
+
+> Save it .CER
+
 Now, with it import/downloaded, upload into certifications mobile settings -->
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+
+
+<figure><img src="../../../.gitbook/assets/image (448).png" alt=""><figcaption></figcaption></figure>
