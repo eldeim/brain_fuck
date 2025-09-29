@@ -24,7 +24,7 @@ El Protocolo de Autenticación Desafío Mutuo (MSCHAPv2) es común en redes corp
 python3 ./eaphammer -i wlan3 --auth wpa-eap --essid $ESSID --creds
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 En el caso de que un cliente se conecte a la red y nos envíe credenciales aparecerán por pantalla, donde se puede ver un challenge y su response. Imprimiendo también el hash listo para crackear con hashcat:
 
@@ -32,9 +32,9 @@ En el caso de que un cliente se conecte a la red y nos envíe credenciales apare
 hashcat -a 0 -m 5500 hashcat.5500 ~/rockyou-top100000.txt --force
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A diferencia de NetNTLMv1, que permite ataques de challenge pre-calculado, MS-CHAPv2 utiliza un "Peer-Challenge" aleatorio generado por el cliente, combinado con el challenge del servidor y el nombre de usuario en su ChallengeHash basado en SHA-1, de modo que no a pesar de mandar siempre el mismo challenge, su response cada vez sería diferente.
 
@@ -46,13 +46,13 @@ Si el cliente utiliza GTC el ataque es prácticamente igual pero para evitar que
 python3 ./eaphammer -i wlan3 --auth wpa-eap --essid wifi-corp --creds --negotiate weakest
 ```
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Otras herramientas
 
 Este ataque también se puede realizar con otras herramientas como airgeddon, que en este caso permite realizar el ataque utilizando su interfaz de CLI para todo el proceso
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Manualmente
 
@@ -322,7 +322,7 @@ Un ataque de reenvío (en inglés, relay attack), permite al atacante reenviar l
 
 En la siguiente imagen se puede ver un diagrama del proceso y como, al acabar el atacante se encuentra en un MiTM entre el cliente y el AP real, ya que este está conectado completamente de forma legítima con el AP real y el cliente con el atacante.
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### wpa\_sycophant + berate\_ap
 
@@ -533,7 +533,7 @@ Se crea un Rogue AP con un portal cautivo utilizando eaphammer para obtener las 
 
 Este ataque también se puede hacer con airgeddon que tiene plantillas generadas directamente o con wifiphisher que está orientado a este tipo de ataques más automáticamente. Mi ataque favorito con wifiphisher es el que imita a Windows, que muestra un mensaje de error de que no hay internet emulando la ventana de redes Wi-Fi de Windows pidiendo que pongas la contraseña.
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 wifiphisher -aI wlan0 -p wifi_connect --handshake-capture handshake.pcap
@@ -679,7 +679,7 @@ Ahora podemos crear la base de datos:
 python3 mksqlitedb.py /root/rockyou-top100000.db /root/rockyou-top100000.csv
 ```
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > NOTA: Convertir un archivo CSV a SQLite suele aumentar el tamaño en disco en aproximadamente un 61 %. Por ejemplo, el conjunto de datos rockyou pasa de 462 MiB como CSV a 746 MiB como base de datos SQLite, que luego se comprime a 339 MiB al archivarse con BZ2.
 
@@ -697,7 +697,7 @@ Ejemplo:
 python3 assless-chaps.py 5d79b2a85966d347 556fdda5f67d2b746ca3315fd8b93adcab5c792790a92e87 /root/rockyou-top100000.db
 ```
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Una vez tenemos el hash podemos acceder a la red haciendo un Pass The Hash, o buscar la contraseña en texto claro si la hemos sacado de un diccionario. Por ejemplo, para obtener la contraseña en el caso que hemos hecho de rockyou se podría hacer lo siguiente:
 
