@@ -105,7 +105,7 @@ Vemos que la "wifi-guest" se encuentra en el canal 6, asi que hacemos un escaneo
 airodump-ng wlan0 -w /home/user/wifi/OPN/wifi-guest --manufacturer --band bag -c6
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### MACChanger
 
@@ -124,7 +124,7 @@ systemctl stop network-manager.service
 macchanger wlan2
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>MAC cambiada</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>MAC cambiada</p></figcaption></figure>
 
 Ahora tras configurar esto, volvemos a conectarnos con `wpa_supplicant` -->
 
