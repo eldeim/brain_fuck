@@ -26,9 +26,11 @@ Dicho esto…[ **Me invitas a un café**?? ☞ ☕ ☜](https://buymeacoffee.com
 
 ***
 
-> {(Actualmente 01/2025 tengo el eJPTv2 y eWPTv2, tenia intención de hacer la eCPPTv2 pero en la nueva versión v3, se acerca mucho a lo que es la OSCP, así que... he decidido tirarle de golpe a este. Quizás sea un acierto o quizás no, pero lo que si es un fallo, es no hacer nada ;D )}
+> {(Actualmente 05/01/2025 tengo el eJPTv2 y eWPTv2, tenia intención de hacer la eCPPTv2 pero en la nueva versión v3, se acerca mucho a lo que es la OSCP, así que... he decidido tirarle de golpe a este. Quizás sea un acierto o quizás no, pero lo que si es un fallo, es no hacer nada ;D )}
 
 ***
+
+> {(Actualmente 05/10/2025 conseguí aprender conceptos totalmente nuevos de hacking movil/APK, web, wifi y demás. Estoy ya a las puertas de la OSCP y... solo decir que la vida da muchas vueltas. A veces es necesario dar un paso hacia atras, para luego dar dos hacia delante. Espero que esto pueda inspirar a otros en su camino, salu2)}
 
 {% hint style="info" %}
 +⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\[i] Social Media \[i]⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯+
