@@ -260,4 +260,6 @@
     * [How to import Burp Cetf](certifications/ine-emapt/notes-android/how-to-import-burp-cetf.md)
   * [Notes iOS](certifications/ine-emapt/notes-ios/README.md)
     * [LAB - iOS: Insufficient Cryptography](certifications/ine-emapt/notes-ios/lab-ios-insufficient-cryptography.md)
-* [🗡️ HTB-CPTS](certifications/htb-cpts.md)
+* [🗡️ HTB-CPTS](certifications/htb-cpts/README.md)
+  * [Background & Preparation](certifications/htb-cpts/background-and-preparation.md)
+  * [Getting Started](certifications/htb-cpts/getting-started.md)
