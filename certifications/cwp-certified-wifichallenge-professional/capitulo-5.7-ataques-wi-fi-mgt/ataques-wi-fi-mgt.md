@@ -24,7 +24,7 @@ El Protocolo de Autenticación Desafío Mutuo (MSCHAPv2) es común en redes corp
 python3 ./eaphammer -i wlan3 --auth wpa-eap --essid $ESSID --creds
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 En el caso de que un cliente se conecte a la red y nos envíe credenciales aparecerán por pantalla, donde se puede ver un challenge y su response. Imprimiendo también el hash listo para crackear con hashcat:
 

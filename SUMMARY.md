@@ -263,3 +263,7 @@
 * [🗡️ HTB-CPTS](certifications/htb-cpts/README.md)
   * [Background & Preparation](certifications/htb-cpts/background-and-preparation.md)
   * [Getting Started](certifications/htb-cpts/getting-started.md)
+  * [Attacking Your First Box - Nibbles](certifications/htb-cpts/attacking-your-first-box-nibbles.md)
+  * [Network Enumeration with Nmap](certifications/htb-cpts/network-enumeration-with-nmap/README.md)
+    * [Bypass Security Measures](certifications/htb-cpts/network-enumeration-with-nmap/bypass-security-measures.md)
+  * [Footprinting](certifications/htb-cpts/footprinting.md)

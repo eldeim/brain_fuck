@@ -21,7 +21,7 @@ Red SAE, WPA3, canal 11, ahora solo escaneamos esas canal y BSSID
 airodump-ng wlan0 --manufacturer --band bag -c 11 --bssid F0:9F:C2:11:0A:24
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">Las redes SAE no tiene handshake que se puedan atacar, se puede atacar a los clientes (si hay alguna mal configurado) o un ataque de fuerza bruta online</mark>
 
@@ -37,7 +37,7 @@ Para este ataque necesitamos la `frecuencia del AP,` no el canal. Para esto, con
 iwlist wlan0 frequency | grep 'Channel 11 :'
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Channel 11 : 2.462 GHz
 
@@ -47,7 +47,7 @@ iwlist wlan0 frequency | grep 'Channel 11 :'
 
 > `--interface` : Hay que poner una interfaz de red que no este en modo monitor
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora, sabiendo la credencial creamos el fichero de conexión con `wpasupplican`t -->
 

