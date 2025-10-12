@@ -266,4 +266,5 @@
   * [Attacking Your First Box - Nibbles](certifications/htb-cpts/attacking-your-first-box-nibbles.md)
   * [Network Enumeration with Nmap](certifications/htb-cpts/network-enumeration-with-nmap/README.md)
     * [Bypass Security Measures](certifications/htb-cpts/network-enumeration-with-nmap/bypass-security-measures.md)
-  * [Footprinting](certifications/htb-cpts/footprinting.md)
+  * [Footprinting](certifications/htb-cpts/footprinting/README.md)
+    * [Footprinting v2](certifications/htb-cpts/footprinting/footprinting-v2.md)
