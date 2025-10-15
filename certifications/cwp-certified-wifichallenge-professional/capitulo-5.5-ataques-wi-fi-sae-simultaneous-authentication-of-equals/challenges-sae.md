@@ -21,7 +21,7 @@ Red SAE, WPA3, canal 11, ahora solo escaneamos esas canal y BSSID
 airodump-ng wlan0 --manufacturer --band bag -c 11 --bssid F0:9F:C2:11:0A:24
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">Las redes SAE no tiene handshake que se puedan atacar, se puede atacar a los clientes (si hay alguna mal configurado) o un ataque de fuerza bruta online</mark>
 

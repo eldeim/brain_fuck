@@ -142,7 +142,7 @@ Just like before, we can obtain a valid JWT by logging in to the application:
 
 We can then check the signature algorithm by inspecting the `alg`-claim on `jwt.io`:
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the token uses the symmetric algorithm `HS256`; thus, we can potentially brute-force the signing secret.
 
