@@ -45,7 +45,7 @@ Para simplificar, es posible diferenciar dos grandes tipos de métodos EAP:
 
 * EAP con Autenticación mediante Certificado de Cliente (por ejemplo, EAP-TLS, PEAPv0 (EAP-TLS)):
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * EAP con Autenticación por Credenciales (por ejemplo, LEAP, PEAPv0 (MSCHAPv2), EAP-TTLS (MSCHAPv2), etc.). Los procesos de autenticación EAP se pueden desglosar en 2 fases:
   * Fase 1: El servidor se autentica utilizando un certificado (o un PAC en EAP-FAST) y se establece un túnel TLS seguro.

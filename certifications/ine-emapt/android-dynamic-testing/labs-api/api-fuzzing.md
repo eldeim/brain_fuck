@@ -30,7 +30,7 @@ hostname -I
 adb shell settings put global http_proxy <host-ip>:8080
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 In the basic functionatility of APK, we can get a appointment with the doctor selecting the hours -->
 

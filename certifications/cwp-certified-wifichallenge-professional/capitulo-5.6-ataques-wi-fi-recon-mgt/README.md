@@ -35,7 +35,7 @@ sqlitebrowser wifidata.SQLITE
 
 Y abrir la tabla de IdentityAP:
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Otra opción es utilizar tshark para filtrar los paquetes que contienen identidades EAP directamente desde la línea de comandos:
 

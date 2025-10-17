@@ -268,3 +268,4 @@
     * [Bypass Security Measures](certifications/htb-cpts/network-enumeration-with-nmap/bypass-security-measures.md)
   * [Footprinting](certifications/htb-cpts/footprinting/README.md)
     * [Footprinting v2](certifications/htb-cpts/footprinting/footprinting-v2.md)
+    * [Footprinting v3](certifications/htb-cpts/footprinting/footprinting-v3.md)

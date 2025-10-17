@@ -54,7 +54,7 @@ python3 /root/tools/eaphammer/eaphammer --cert-wizard
 
 Esto nos ira pidiendo información que deberemos ir cogiendo de la información del certificado sacado con `pcapFilter`&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -295,7 +295,7 @@ nano /root/tools/wpa_sycophant/wpa_sycophant_example.conf
 
 Debemos modificar dos lineas, la de `ssid` y la de `blacklist_bssid` == Una es poner el nombre de la wifi a falsear y el otro es poner nuestra MAC para no conectarnos nosotros mismos
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 network={
@@ -478,7 +478,7 @@ python3 /root/tools/wifi_db/wifi_db.py -d wifi-global.db /home/user/wifi/MGT/
 sqlitebrowser wifi-global.db
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Todo apunta a que "Wifi-Restaurant" y "open-wifi" son wifis abiertas y "home-WiFi" una PSK
 
