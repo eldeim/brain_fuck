@@ -2,7 +2,7 @@
 
 ## DNS
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <table data-header-hidden><thead><tr><th width="132"></th><th></th></tr></thead><tbody><tr><td><strong>DNS Record</strong></td><td><strong>Description</strong></td></tr><tr><td><code>A</code></td><td>Returns an IPv4 address of the requested domain as a result.</td></tr><tr><td><code>AAAA</code></td><td>Returns an IPv6 address of the requested domain.</td></tr><tr><td><code>MX</code></td><td>Returns the responsible mail servers as a result.</td></tr><tr><td><code>NS</code></td><td>Returns the DNS servers (nameservers) of the domain.</td></tr><tr><td><code>TXT</code></td><td>This record can contain various information. The all-rounder can be used, e.g., to validate the Google Search Console or validate SSL certificates. In addition, SPF and DMARC entries are set to validate mail traffic and protect it from spam.</td></tr><tr><td><code>CNAME</code></td><td>This record serves as an alias for another domain name. If you want the domain www.hackthebox.eu to point to the same IP as hackthebox.eu, you would create an A record for hackthebox.eu and a CNAME record for www.hackthebox.eu.</td></tr><tr><td><code>PTR</code></td><td>The PTR record works the other way around (reverse lookup). It converts IP addresses into valid domain names.</td></tr><tr><td><code>SOA</code></td><td>Provides information about the corresponding DNS zone and email address of the administrative contact.</td></tr></tbody></table>
 
@@ -954,7 +954,7 @@ SNMP also transmits control commands using agents over UDP port `161`. SNMP also
 ### **SNMPwalk**
 
 ```shell-session
-eldeim@htb[/htb]$ snmpwalk -v2c -c public 10.129.14.128
+snmpwalk -v2c -c public 10.129.14.128
 
 iso.3.6.1.2.1.1.1.0 = STRING: "Linux htb 5.11.0-34-generic #36~20.04.1-Ubuntu SMP Fri Aug 27 08:06:32 UTC 2021 x86_64"
 iso.3.6.1.2.1.1.2.0 = OID: iso.3.6.1.4.1.8072.3.2.10
@@ -1098,4 +1098,4 @@ We can optain it with the previus command (InFreight SNMP v0.91)
 
 We can optain it with the previus commnad too!
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>

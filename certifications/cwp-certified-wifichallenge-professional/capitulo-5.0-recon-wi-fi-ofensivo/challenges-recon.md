@@ -13,7 +13,7 @@ En este capítulo vamos a realizar los siguientes retos:
 
 * ¿Cuál es el canal que está utilizando actualmente el punto de acceso (AP) wifi-global?
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -23,7 +23,7 @@ En este capítulo vamos a realizar los siguientes retos:
 
 Primero veo que canal tiene; 11
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Luego le lanzo un escaneo solo a ese canal para filtrar mejor
 
@@ -31,7 +31,7 @@ Luego le lanzo un escaneo solo a ese canal para filtrar mejor
 airodump-ng wlan0 --manufacturer --band bag -c11
 ```
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -39,7 +39,7 @@ airodump-ng wlan0 --manufacturer --band bag -c11
 
 * ¿Cuál es el Probe de 78:C1:A7:BF:72:46 que sigue el formato de las otras redes del alcance (wifi-)?
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -49,7 +49,7 @@ airodump-ng wlan0 --manufacturer --band bag -c11
 
 Primero vemos el BSSID de esa MAC, descubriendo el canal que usa
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora tras saber que esta en el canal  cono la BSSID F0:9F:C2:6A:88:26, configuramos el iwconfig y lanzamos el ataque de fuerza bruta -->
 
@@ -60,7 +60,7 @@ iwconfig wlan0 channel 11
 mdk4 wlan0 p -t F0:9F:C2:6A:88:26 -f /root/rockyou-top100000.txt 
 ```
 
-<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Con esto vemos que hace un ataque de fuerza bruta en los nombres y prueba todos los del rocku. Suponiendo que es un wifi, filtro dentro del rocku por algo que empiece por "wifi" y repito el ataque. Descubriendo asi la el SSID de la wifi -->
 
@@ -68,7 +68,7 @@ Con esto vemos que hace un ataque de fuerza bruta en los nombres y prueba todos 
 cat /root/rockyou-top100000.txt | awk '{print "wifi-" $1}' > /root/wifi-rockyou.txt
 ```
 
-<figure><img src="../../../.gitbook/assets/image (16) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (16) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (18) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

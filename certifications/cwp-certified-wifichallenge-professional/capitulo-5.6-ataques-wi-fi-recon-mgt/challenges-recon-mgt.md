@@ -18,7 +18,7 @@ Primero como siempre, escaneamos todos los canales con `airodump-ng` y encontram
 airodump-ng wlan0 --band bag -c 44 --bssid F0:9F:C2:71:22:16 -w /home/user/wifi/MGT/regi
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Tras escanear un rato, obtenemos un handshake del usuario conectado, <mark style="background-color:yellow;">este handshake no nos sirve para ningún ataque (por el tipo de red MGT que es)</mark>, pero nos indica que hemos visto a un cliente autentificarse contra el AP,  que es donde se manda la info sin cifrar.
 
@@ -30,11 +30,11 @@ Ahora podemos abrir la captura con `wireshark` y filtramos por `eap` -->
 wireshark regi-01.cap
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Buscamos en la cabecera `Info` un `Response, Identity` para que aparezcan todos juntos
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Wifi\_db
 
@@ -48,11 +48,11 @@ Abirmos la bbdd con `sqlitebrowser`
 sqlitebrowser wifiMGT
 ```
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Filtramos por `IdentifyAP`
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Tshark
 
@@ -62,7 +62,7 @@ Esta información tambien la podemos sacar con `tshark` directamente filtrando p
 tshark -r /home/user/wifi/MGT/regi-01.cap -Y "eap.identity" -T fields -e eap.identity
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -80,7 +80,7 @@ bash /root/tools/pcapFilter.sh -f /home/user/wifi/MGT/regi-01.cap -C | more
 >
 > `| more` : para mostrar por paginas
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -96,7 +96,7 @@ Escanemos la red en busca de "wifi-global" y guardamos su info -->
 airodump-ng wlan0 --band bag --bssid F0:9F:C2:71:22:17 -c 44 -w /home/user/wifi/MGT/wifi-global
 ```
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora montamos la bbdd con `wifi_bd`
 
@@ -104,11 +104,11 @@ Ahora montamos la bbdd con `wifi_bd`
 python3 /root/tools/wifi_db/wifi_db.py -d wifiGLOBAL /home/user/wifi/MGT/wifi-global/
 ```
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Abrimos con `sqlitebrowser` -->
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Encontramos a un `GLOBAL\GlobalAdmin` que podemos utilizar
 
@@ -120,7 +120,7 @@ Antes <mark style="background-color:yellow;">es recomendable parar todos los pro
 airmon-ng check kill
 ```
 
-<figure><img src="../../../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Y ahora ejecutamos la herramienta, especificando el nombre de la red a la que queremos conectarnos, el nombre del usuario y interfaz a utilizar, esperamos....
 
