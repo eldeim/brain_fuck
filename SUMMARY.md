@@ -276,3 +276,4 @@
     * [Footprinting Lab - Hard](certifications/htb-cpts/footprinting/footprinting-lab-hard.md)
   * [Information Gathering - Web Edition](certifications/htb-cbbh/information-gathering-web-edition/README.md)
   * [Vulnerability Assessment](certifications/htb-cpts/vulnerability-assessment.md)
+  * [File Transfers - Windows](certifications/htb-cpts/file-transfers-windows.md)
