@@ -2,7 +2,7 @@
 
 ## Windows File Transfer Methods
 
-<figure><img src="../../.gitbook/assets/image (486).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (486).png" alt=""><figcaption></figcaption></figure>
 
 ### PowerShell Base64 Encode & Decode
 
@@ -91,7 +91,7 @@ PS C:\htb> (New-Object Net.WebClient).DownloadString('https://raw.githubusercont
 
 There may be cases when the Internet Explorer first-launch configuration has not been completed, which prevents the download.
 
-<figure><img src="../../.gitbook/assets/image (487).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (487).png" alt=""><figcaption></figcaption></figure>
 
 This can be bypassed using the parameter `-UseBasicParsing`.
 
@@ -479,10 +479,10 @@ Now, unzip this file into windows -->
 Expand-Archive -Path "C:\Users\htb-student\Downloads\upload_win.zip" -DestinationPath "C:\Users\htb-student\Downloads\"
 ```
 
-<figure><img src="../../.gitbook/assets/image (488).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (488).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (489).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (489).png" alt=""><figcaption></figcaption></figure>
 
 For end, we need do the command required:
 
-<figure><img src="../../.gitbook/assets/image (490).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (490).png" alt=""><figcaption></figcaption></figure>

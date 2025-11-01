@@ -15,7 +15,7 @@ The valid credentials for InsecureBankv2 are as follows:
 
 First, execute the android emulator and open the APK. After this, we can see and configurate a server IP into preferences, secute python app web server an set us IP and Port -->
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Before it, we can try to login and we can see the credentials send -->
 

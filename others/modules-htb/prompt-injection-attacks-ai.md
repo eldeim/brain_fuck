@@ -39,7 +39,7 @@ After providing the password, the command will hang. We can access the lab's web
 
 When accessing the lab, we can see an overview of all exercises in this module. As such, we can use the same lab for the entire module. If we take a look at the lab for `Prompt Leak 1`, we can see a task and parts of the system prompt:
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The goal is to leak the secret key from the model's system prompt. The user prompt we provided will be appended to the system prompt. We can ask the LLM for the key; however, since the system prompt asks the model to keep the secret, the response will not contain the key:
 

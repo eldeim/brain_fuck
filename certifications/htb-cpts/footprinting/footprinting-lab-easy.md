@@ -62,11 +62,11 @@ PORT    STATE SERVICE
 
 So... We have credentials, now try to log in via ftp access -->
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Into the port 21, we havent anything, so... exist another port, there is 2121, try to login -->
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can see a .ssh folder, perharps we can optain the id\_rsa -->
 
