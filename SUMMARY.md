@@ -1,8 +1,8 @@
 # Table of contents
 
-## 👑 MY ROADMAP TO CBBH
+## 👑 MY ROADMAP TO CWES
 
-* [🕷️ What is CBBH](README.md)
+* [🕷️ What is CWES](README.md)
 
 ***
 
@@ -11,11 +11,11 @@
 * [🕸️ Step 3 - Do Fortresses](step-3-do-fortresses.md)
 * [🕸️ Step 4 - Pay the Voucher](step-4-pay-the-voucher.md)
 
-## 📋 CBBH - HOW IS IT
+## 📋 CWES - HOW IS IT
 
-* [📄 Exam Structure](cbbh-how-is-it/exam-structure.md)
-* [📄 Content](cbbh-how-is-it/content.md)
-* [📄 Inform](cbbh-how-is-it/inform/README.md)
-  * [Example 1: Reporting Stored XSS](cbbh-how-is-it/inform/example-1-reporting-stored-xss.md)
-  * [Example 2: Reporting CSRF](cbbh-how-is-it/inform/example-2-reporting-csrf.md)
-  * [Example 3: Reporting RCE](cbbh-how-is-it/inform/example-3-reporting-rce.md)
+* [📄 Exam Structure](cwes-how-is-it/exam-structure.md)
+* [📄 Content](cwes-how-is-it/content.md)
+* [📄 Inform](cwes-how-is-it/inform/README.md)
+  * [Example 1: Reporting Stored XSS](cwes-how-is-it/inform/example-1-reporting-stored-xss.md)
+  * [Example 2: Reporting CSRF](cwes-how-is-it/inform/example-2-reporting-csrf.md)
+  * [Example 3: Reporting RCE](cwes-how-is-it/inform/example-3-reporting-rce.md)

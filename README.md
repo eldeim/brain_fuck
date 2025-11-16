@@ -1,6 +1,6 @@
-# 🕷️ What is CBBH
+# 🕷️ What is CWES
 
-<figure><img src=".gitbook/assets/image (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
 
 The HTB Certified Bug Bounty Hunter (CBBH) is a hands-on certification that evaluates studens skills in bug hunting and web application testing profesional. Holders will have intermediate level technical competency.&#x20;
 
@@ -10,6 +10,6 @@ The HTB Certified Bug Bounty Hunter (CBBH) is a hands-on certification that eval
 
 **Summary of Content:**
 
-{% content-ref url="cbbh-how-is-it/content.md" %}
-[content.md](cbbh-how-is-it/content.md)
+{% content-ref url="cwes-how-is-it/content.md" %}
+[content.md](cwes-how-is-it/content.md)
 {% endcontent-ref %}
