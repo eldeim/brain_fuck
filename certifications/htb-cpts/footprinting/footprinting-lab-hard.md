@@ -95,17 +95,17 @@ snmpwalk -v2c -c backup 10.129.202.20
 
 > -v2c : Is the version, maybe in other labs exist v3 o simple v (v1)
 
-<figure><img src="../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice, we know exists the admin (tech) user into this company, now continue...
 
-<figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 YOOO... WTF, try to login via SSH with this credentials -->
 
 `tom:NMds732Js2761`
 
-<figure><img src="../../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 We cant... so... try to continue with the enumeration about IMAP/POP3 for example with its credentials:
 
@@ -215,9 +215,9 @@ NICE! We can see they sends cleartext once private key with the subject: KEY, tr
 ssh -i id_rsa tom@10.129.202.20
 ```
 
-<figure><img src="../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 So... I sense that sql server is work
 
@@ -225,7 +225,7 @@ So... I sense that sql server is work
 ps aux | egrep 'mysqld|mysql|mariadbd' --color
 ```
 
-<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 Its true!, Now connect -->
 

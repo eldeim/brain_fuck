@@ -283,3 +283,6 @@
   * [Shells & Payloads](certifications/htb-cpts/shells-and-payloads/README.md)
     * [Infiltrating Windows](certifications/htb-cpts/shells-and-payloads/infiltrating-windows.md)
     * [NIX Shells](certifications/htb-cpts/shells-and-payloads/nix-shells.md)
+    * [Web Shells](certifications/htb-cpts/shells-and-payloads/web-shells.md)
+    * [Skills Assessment](certifications/htb-cpts/shells-and-payloads/skills-assessment.md)
+  * [Using the Metasploit Framework](certifications/htb-cpts/using-the-metasploit-framework.md)
