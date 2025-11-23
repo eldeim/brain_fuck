@@ -462,8 +462,7 @@ Error: Permission denied @ rb_sysopen - /root/Desktop/TeamViewerInstall.exe
 
 ![VirusTotal report showing 52 out of 65 engines detected TeamViewerInstall.exe as malicious, listing various trojans and suspicious detections by different antivirus engines.](https://cdn.services-k8s.prod.aws.htb.systems/content/modules/39/S8_SS02.png)
 
-As we can see, it is still not enough for AV evasion. There is a high number of products that still detect the payload. Alternatively, Metasploit offers a tool called `msf-virustotal` that we can use with an API key to analyze our payloads. However, this requires free registration on VirusTotal.\
-
+As we can see, it is still not enough for AV evasion. There is a high number of products that still detect the payload. Alternatively, Metasploit offers a tool called `msf-virustotal` that we can use with an API key to analyze our payloads. However, this requires free registration on VirusTotal.<br>
 
 ### **MSF - VirusTotal**
 
@@ -1211,7 +1210,7 @@ Host script results:
 
 And we can observe the port 5000 http -->
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 > It has the creds admin:admin
 
@@ -1225,4 +1224,4 @@ windows/http/fortilogger_arbitrary_fileupload
 
 * Retrieve the NTLM password hash for the "htb-student" user. Submit the hash as the answer.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>

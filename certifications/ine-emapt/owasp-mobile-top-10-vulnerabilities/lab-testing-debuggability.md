@@ -83,8 +83,7 @@ jdb -connect com.sun.jdi.SocketAttach:hostname=localhost,port=55555
 
 <figure><img src="../../../.gitbook/assets/image (377).png" alt=""><figcaption></figcaption></figure>
 
-Let's try the command given below.\
-
+Let's try the command given below.<br>
 
 <figure><img src="../../../.gitbook/assets/image (378).png" alt=""><figcaption></figcaption></figure>
 

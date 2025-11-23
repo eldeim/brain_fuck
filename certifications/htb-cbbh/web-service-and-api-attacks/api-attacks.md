@@ -119,8 +119,7 @@ id                      [Status: 200, Size: 38, Words: 7, Lines: 1, Duration: 24
 
 
 
-* Identify the username of the user that has a position of 736373 through SQLi. Submit it as your answer.\
-
+* Identify the username of the user that has a position of 736373 through SQLi. Submit it as your answer.<br>
 
 <figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

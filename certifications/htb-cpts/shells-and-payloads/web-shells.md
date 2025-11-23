@@ -42,7 +42,7 @@ First copy the webshell .aspx and upload into the website, before that search di
 eldeim@htb[/htb]$ cp /usr/share/laudanum/aspx/shell.aspx /home/tester/demo.aspx
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Where is the Laudanum aspx web shell located on Pwnbox? Submit the full path. (Format: /path/to/laudanum/aspx)
 
@@ -56,7 +56,7 @@ eldeim@htb[/htb]$ cp /usr/share/laudanum/aspx/shell.aspx /home/tester/demo.aspx
 
 One great resource to use in learning is `IPPSEC's` blog site [ippsec.rocks](https://ippsec.rocks/?). The site is a powerful learning tool.&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Working with Antak
 
@@ -94,7 +94,7 @@ As seen in the following image, we will be granted access if our credentials are
 
 Now that we have access, we can utilize PowerShell commands to navigate and take actions against the host
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Lab - Questions
 
@@ -108,7 +108,7 @@ Now that we have access, we can utilize PowerShell commands to navigate and take
 
 Upload de the webshell, and after target this we can see a login endpoint, to access of that, we need the credentials that are in the file -->
 
-<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 

@@ -286,3 +286,8 @@
     * [Web Shells](certifications/htb-cpts/shells-and-payloads/web-shells.md)
     * [Skills Assessment](certifications/htb-cpts/shells-and-payloads/skills-assessment.md)
   * [Using the Metasploit Framework](certifications/htb-cpts/using-the-metasploit-framework.md)
+  * [Password Attacks](certifications/htb-cpts/password-attacks/README.md)
+    * [Password Cracking Techniques](certifications/htb-cpts/password-attacks/password-cracking-techniques.md)
+    * [Remote Password Attacks](certifications/htb-cpts/password-attacks/remote-password-attacks.md)
+    * [Password Attacks](certifications/htb-cpts/password-attacks/password-attacks/README.md)
+      * [Attacking SAM, SYSTEM, and SECURITY](certifications/htb-cpts/password-attacks/password-attacks/attacking-sam-system-and-security.md)
