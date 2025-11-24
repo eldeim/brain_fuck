@@ -291,3 +291,4 @@
     * [Remote Password Attacks](certifications/htb-cpts/password-attacks/remote-password-attacks.md)
     * [Password Attacks](certifications/htb-cpts/password-attacks/password-attacks/README.md)
       * [Attacking SAM, SYSTEM, and SECURITY](certifications/htb-cpts/password-attacks/password-attacks/attacking-sam-system-and-security.md)
+      * [Attacking LSASS](certifications/htb-cpts/password-attacks/password-attacks/attacking-lsass.md)
