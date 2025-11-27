@@ -116,7 +116,7 @@ sudo hashcat -m 22000 -a 0 capture.22000 /ruta/a/diccionario.txt
 
 Existen herramientas avanzadas como airgeddon, que facilitan el proceso de captura de handshakes y PMKID al automatizar gran parte de las tareas necesarias para estas acciones de seguridad en redes. Además, el paquete aircrack-ng ofrece la capacidad de analizar archivos de captura (.cap) para verificar si contienen un handshake o un PMKID, lo cual es particularmente útil para validar la efectividad de la captura antes de avanzar en el proceso de descifrado.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## NoAP
 
@@ -370,7 +370,7 @@ Una vez tenemos los handshakes y hemos obtenido la contraseña de la red podemos
 wireshark wifi/scanc6-01.cap
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 En este caso si filtramos por HTTP podemos ver el tráfico de la red abierta, por lo que no hay que confundirlos ya que en este método se muestra todo el tráfico, no solo el descifrado.
 

@@ -1224,4 +1224,4 @@ windows/http/fortilogger_arbitrary_fileupload
 
 * Retrieve the NTLM password hash for the "htb-student" user. Submit the hash as the answer.
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

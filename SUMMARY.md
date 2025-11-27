@@ -292,3 +292,6 @@
     * [Password Attacks](certifications/htb-cpts/password-attacks/password-attacks/README.md)
       * [Attacking SAM, SYSTEM, and SECURITY](certifications/htb-cpts/password-attacks/password-attacks/attacking-sam-system-and-security.md)
       * [Attacking LSASS](certifications/htb-cpts/password-attacks/password-attacks/attacking-lsass.md)
+      * [Attacking Windows Credential Manager](certifications/htb-cpts/password-attacks/password-attacks/attacking-windows-credential-manager.md)
+      * [Attacking Active Directory and NTDS.dit](certifications/htb-cpts/password-attacks/password-attacks/attacking-active-directory-and-ntds.dit.md)
+      * [Credential Hunting in Windows](certifications/htb-cpts/password-attacks/password-attacks/credential-hunting-in-windows.md)

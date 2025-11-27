@@ -35,7 +35,7 @@ sqlitebrowser wifidata.SQLITE
 
 Y abrir la tabla de IdentityAP:
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Otra opción es utilizar tshark para filtrar los paquetes que contienen identidades EAP directamente desde la línea de comandos:
 
@@ -63,7 +63,7 @@ cd /root/tools/
 bash pcapFilter.sh -f /home/user/wifi/scan-02.cap -C
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahí podemos ver toda la información del certificado, siendo lo más importante la línea de Issuer, que son los campos de texto de la CA que ha firmado ese certificado y los de Subject que son los campos de texto del certificado final, es decir, el certificado del AP.
 
