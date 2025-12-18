@@ -296,3 +296,7 @@
       * [Attacking Active Directory and NTDS.dit](certifications/htb-cpts/password-attacks/extracting-passwords-from-windows-systems/attacking-active-directory-and-ntds.dit.md)
       * [Credential Hunting in Windows](certifications/htb-cpts/password-attacks/extracting-passwords-from-windows-systems/credential-hunting-in-windows.md)
     * [Extracting Passwords from Linux Systems](certifications/htb-cpts/password-attacks/extracting-passwords-from-linux-systems.md)
+    * [Extracting Passwords from the Network](certifications/htb-cpts/password-attacks/extracting-passwords-from-the-network.md)
+    * [Windows Lateral Movement Techniques](certifications/htb-cpts/password-attacks/windows-lateral-movement-techniques/README.md)
+      * [Pass the Ticket (PtT) from Windows](certifications/htb-cpts/password-attacks/windows-lateral-movement-techniques/pass-the-ticket-ptt-from-windows.md)
+      * [Pass the Ticket (PtT) from Linux](certifications/htb-cpts/password-attacks/windows-lateral-movement-techniques/pass-the-ticket-ptt-from-linux.md)
