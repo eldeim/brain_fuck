@@ -123,19 +123,19 @@ So... we have credentials and... the port 389 RDP open... soo... try to login --
 xfreerdp /u:Alex /p:'lol123!mD' /v:10.129.202.41 /f /clipboard
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Onece connected, we can see the user alex and two atyppical folders in the root directory.
 
 I research in devshare and found a credentials -->
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 `sa:87N1ns@slls83`
 
 We have a user sa (i have not idea what it is) and his password, so... after research more, i can found into Desktop, a redirect of SQL Server Login -->
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

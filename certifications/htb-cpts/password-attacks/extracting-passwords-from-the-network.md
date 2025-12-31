@@ -99,7 +99,7 @@ Download the attached `credential-hunting-in-network-traffic` and extract the `d
 
 * The packet capture contains cleartext credit card information. What is the number that was transmitted?
 
-<figure><img src="../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * What is the SNMPv2 community string that was used?
 

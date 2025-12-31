@@ -302,3 +302,4 @@
       * [Pass the Ticket (PtT) from Linux](certifications/htb-cpts/password-attacks/windows-lateral-movement-techniques/pass-the-ticket-ptt-from-linux.md)
       * [Pass the Certificate](certifications/htb-cpts/password-attacks/windows-lateral-movement-techniques/pass-the-certificate.md)
       * [Skills Assessment - Password Attacks](certifications/htb-cpts/password-attacks/windows-lateral-movement-techniques/skills-assessment-password-attacks.md)
+  * [Attacking Common Services](certifications/htb-cpts/attacking-common-services.md)
