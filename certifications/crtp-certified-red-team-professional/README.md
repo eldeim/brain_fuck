@@ -1,6 +1,6 @@
 # 🌇 CRTP-Certified Red Team Professional
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://www.alteredsecurity.com/adlab" %}
 
@@ -95,10 +95,9 @@
 
 ### Tools
 
-{% embed url="https://monikaalteredsecurity-my.sharepoint.com/personal/coursevideosone_monikaalteredsecurity_onmicrosoft_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcoursevideosone%5Fmonikaalteredsecurity%5Fonmicrosoft%5Fcom%2FDocuments%2FAccess%2DLab%2DMaterial%2FCRTP%2FTools%2DBootcamp%2FTools%2Ezip&parent=%2Fpersonal%2Fcoursevideosone%5Fmonikaalteredsecurity%5Fonmicrosoft%5Fcom%2FDocuments%2FAccess%2DLab%2DMaterial%2FCRTP%2FTools%2DBootcamp&ga=1" %}
+{% embed url="https://mega.nz/folder/bAMlHBSL#a4Av9X02nRCxfGZz9Nj89Q" %}
 
-> ```
-> CRTPRocks!
->
-> Use 7Zip to Extract Tools.zip
-> ```
+```bash
+CRTPRocks!
+## Use 7Zip to Extract Tools.zip
+```

@@ -865,7 +865,7 @@ carlos@inlanefreight.htb@linux01:~/.scripts$ python3 /opt/keytabextract.py /home
 
 Pass it to crackstation and obtain the clear password and make a escalation -->
 
-<figure><img src="../../../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 `john : Password3`
 
@@ -886,7 +886,7 @@ carlos@inlanefreight.htb@linux01:~/.scripts$
 
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (15) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 `svc_workstations : Password4`
 
@@ -918,7 +918,7 @@ root@linux01:~#
 
 * Check the /tmp directory and find Julio's Kerberos ticket (ccache file). Import the ticket and read the contents of julio.txt from the domain share folder \DC01\julio.
 
-<figure><img src="../../../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (16) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 root@linux01:/tmp# klist

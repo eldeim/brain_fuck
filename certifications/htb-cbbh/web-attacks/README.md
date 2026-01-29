@@ -1,6 +1,6 @@
 # Web Attacks
 
-{% file src="../../.gitbook/assets/Web_Attacks_Module_Cheat_Sheet.pdf" %}
+{% file src="../../../.gitbook/assets/Web_Attacks_Module_Cheat_Sheet.pdf" %}
 
 ## **HTTP Verb Tampering**
 
