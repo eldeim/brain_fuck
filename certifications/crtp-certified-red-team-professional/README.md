@@ -1,6 +1,6 @@
 # 🌇 CRTP-Certified Red Team Professional
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://www.alteredsecurity.com/adlab" %}
 

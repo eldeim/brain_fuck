@@ -315,4 +315,6 @@
     * [Learning Objetive 3](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-3.md)
     * [Learning Objetive 4](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-4.md)
     * [Learning Objetive 5](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-5.md)
+    * [Learning Objetive 6](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-6.md)
+    * [Learning Objtetive 7](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objtetive-7.md)
   * [🏁 Cheatsheet - Fast Commands](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands.md)
