@@ -221,7 +221,7 @@ Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "stu
 
 > Note that the output in your lab for the below command will be different and will depend on your lab instance:
 
-<table><thead><tr><th width="228">Commands</th><th width="136">Function</th><th>Example</th></tr></thead><tbody><tr><td><code>Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "RDPUsers"}</code></td><td>List all users in the current domain</td><td><pre><code>ObjectDN                : CN=ControlxUser,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local
+<table><thead><tr><th width="228">Commands</th><th width="136">Function</th><th>Example</th></tr></thead><tbody><tr><td><code>Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "RDPUsers"}</code></td><td>List all users in the current domain with RDP permissions</td><td><pre><code>ObjectDN                : CN=ControlxUser,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local
 AceQualifier            : AccessAllowed
 ActiveDirectoryRights   : GenericAll
 ObjectAceType           : None
@@ -236,19 +236,58 @@ IdentityReferenceClass  : group
 [snip]
 </code></pre></td></tr></tbody></table>
 
-### Analyze the permissions - BloodHound UI
+***
 
-> Note that it is easier to analyze ACLs using BloodHound as it shows interesting ACLs for the user and the groups it is a member of. Let's look at the 'Outbound Object Control' for the studentx in the BloodHound CE UI:
+## Analyze the permissions - BloodHound UI (local machine)
 
-<figure><img src="https://eldeim.gitbook.io/brain_fuck/~gitbook/image?url=https%3A%2F%2F3697469405-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FSrcwXlKGkwhzbrKa8vLU%252Fuploads%252FYEpsbPeJVuxnn9TDIbzx%252Fimage.png%3Falt%3Dmedia%26token%3Dec0dd414-580e-42dd-b12b-02caedb13579&#x26;width=768&#x26;dpr=3&#x26;quality=100&#x26;sign=d69bf187&#x26;sv=2" alt=""><figcaption></figcaption></figure>
+> DO IT with ADMIN LOCAL PRIVILEGES!
 
-Multiple permissions stand out in the above diagram. Due to the membership of the RDPUsers group, the studentx user has following interesting permissions
+### Install Bloodhound - Neo4j
 
-* Full Control/Generic All over supportx and controlx users.
-* Enrollment permissions on multiple certificate templates.
-* Full Control/Generic All on the Applocked Group Policy.
+```bash
+## Unzip it
+C:\AD\Tools\neo4j-community-4.4.5-windows.zip
+## Exec \bin
+neo4j.bat install-service
+## Start
+neo4j.bat start
+```
 
-<figure><img src="https://eldeim.gitbook.io/brain_fuck/~gitbook/image?url=https%3A%2F%2F3697469405-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FSrcwXlKGkwhzbrKa8vLU%252Fuploads%252FXmy9FfZOxfrmYm3Q1IaT%252Fimage.png%3Falt%3Dmedia%26token%3Dca1979bc-79a5-4f91-a6c5-d26bd1e6e457&#x26;width=768&#x26;dpr=3&#x26;quality=100&#x26;sign=d5d3c98d&#x26;sv=2" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (543).png" alt=""><figcaption></figcaption></figure>
+
+Once the service is started, browse to [http://localhost:7474](http://localhost:7474/)
+
+> Username: neo4j Password: neo4j
+>
+> After do login, we need change the passwd, set BloodHound or neo4j!
+
+#### Install/Start BloodHound
+
+Now, open BloodHound from C:\AD\Tools\BloodHound-win32-x64\BloodHound-win32-x64 and provide the following details:
+
+```
+C:\AD\Tools\BloodHound-win32-x64\BloodHound-win32-x64\BloodHound.exe
+```
+
+> Set the same user and password that before
+
+<figure><img src="../../.gitbook/assets/image (544).png" alt=""><figcaption></figcaption></figure>
+
+### BloofHound Ingestor
+
+Once we have do all of this, execute the ingestor and upload it -->
+
+> It save into `C:\AD\Tools\neo4j-community-4.4.5-windows\neo4j-community-4.4.5\bin`
+
+```
+C:\AD\Tools\BloodHound-master\BloodHound-master\Collectors\SharpHound.exe --collectionmethods Group,GPOLocalGroup,Session,Trusts,ACL,Container,ObjectProps,SPNTargets --excludedcs
+```
+
+<mark style="background-color:yellow;">IMPORT!:</mark> Upload all zip file, not stract it
+
+<figure><img src="../../.gitbook/assets/image (545).png" alt="" width="375"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (542).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -482,5 +521,36 @@ UplevelOnly : False
 UsesAESKeys : False
 UsesRC4Encryption : False	
 </code></pre></td></tr></tbody></table>
+
+***
+
+## Enumeate File shares with Write permissions
+
+> **Invisi-Shell & PowerHuntShares exec**
+>
+> > Remenber use `C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat`&#x20;
+>
+> > After this, we need save into a file txt in C:\AD\Tools, all Domain Computer, extract its using:
+> >
+> > ```
+> > Get-DomainComputer | select -ExpandProperty dnshostname
+> > ```
+>
+> ```
+> PS C:\AD\Tools> notepad servers.txt
+> ## Paste the servers
+> cat C:\AD\Tools\servers.txt
+> ```
+
+```
+Import-Module C:\AD\Tools\PowerHuntShares.psm1
+Invoke-HuntSMBShares -NoPing -OutputDirectory C:\AD\Tools\ -HostList C:\AD\Tools\servers.txt
+```
+
+<figure><img src="../../.gitbook/assets/image (541).png" alt=""><figcaption></figcaption></figure>
+
+> You need to copy the summary report to your host machine because the report needs interent access, which is not available on the student VM.
+>
+> Connect via RDP to download it, for example
 
 [^1]: 

@@ -1,4 +1,4 @@
-# Cheatsheet - Fast Commands (PRIVILEGE ESCALATION)
+# 🏁 Cheatsheet - Fast Commands (PRIVILEGE ESCALATION)
 
 Enumeration - Local Privilege Escalation
 
