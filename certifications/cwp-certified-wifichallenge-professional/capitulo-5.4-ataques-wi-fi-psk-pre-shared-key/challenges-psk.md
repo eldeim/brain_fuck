@@ -36,7 +36,7 @@ Escanemos todas la redes hasta encontrar el BSSID y channel de la wifi-mobile --
 airodump-ng wlan0
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahora escaneamos exclusiviamente ese canal y ese bssid -->
 
@@ -44,7 +44,7 @@ Ahora escaneamos exclusiviamente ese canal y ese bssid -->
 airodump-ng wlan0 --band bag -c 6 --bssid F0:9F:C2:71:22:12 -w /home/user/wifi/PSK/wifi-mobile
 ```
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Para obtener el handshake, debemos esperar a que un cliente se autentifique solo a la red, o hacer un ataque de des autentificación -->
 

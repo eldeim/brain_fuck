@@ -95,7 +95,7 @@ snmpwalk -v2c -c backup 10.129.202.20
 
 > -v2c : Is the version, maybe in other labs exist v3 o simple v (v1)
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice, we know exists the admin (tech) user into this company, now continue...
 
