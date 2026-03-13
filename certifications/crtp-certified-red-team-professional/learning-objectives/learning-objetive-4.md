@@ -1,6 +1,6 @@
 # Learning Objetive 4
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Trust Direction for the trust between dollarcorp.moneycorp.local and eurocorp.local
 

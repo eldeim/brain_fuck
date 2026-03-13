@@ -46,5 +46,5 @@
 | 27. [Documentation & Reporting](https://academy.hackthebox.com/module/details/162)     |
 | 28. [Attacking Enterprise Networks](https://academy.hackthebox.com/module/details/163) |
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

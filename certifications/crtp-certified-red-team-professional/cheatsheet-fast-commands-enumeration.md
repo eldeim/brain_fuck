@@ -370,13 +370,13 @@ To enumerate the ACLs for the Applocked and DevOps GPO, let's use the BloodHound
 
 Search for Applocker in the UI -> Click on the node -> Click on Inboud Object Control
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It turns out that the RDPUsers group has GenericAll over the policy.
 
 Similary, search for DevOps and look at its 'Inbound Object Control':
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A user named 'devopsadmin' has 'WriteDACL' on DevOps Policy.
 
@@ -390,7 +390,7 @@ A user named 'devopsadmin' has 'WriteDACL' on DevOps Policy.
 Get-ForestDomain -Verbose
 ```
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -402,7 +402,7 @@ Get-ForestDomain -Verbose
 Get-DomainTrust
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### List external trusts & Extact Infromation
 
