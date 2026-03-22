@@ -15,7 +15,7 @@ The valid credentials for InsecureBankv2 are as follows:
 
 First, execute the android emulator and open the APK. After this, we can see and configurate a server IP into preferences, secute python app web server an set us IP and Port -->
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Before it, we can try to login and we can see the credentials send -->
 
@@ -27,7 +27,7 @@ Now, Open a new terminal and run the following command to find the process ID (P
 adb shell ps | grep bank
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > The PID of the target app is 12543. Please note, this value may differ for you.
 
@@ -37,7 +37,7 @@ Next, run the following command to monitor the device log related to the Insecur
 adb logcat | grep 12543
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 You will observe that the credentials are logged, leading to sensitive information leakage
 
@@ -56,7 +56,7 @@ adb pull /data/app/com.android.insecurebankv2-xu-xOuIlKClfvJjYmNC-Jw==/base.apk 
 jadx-gui base.apk
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This logs a message with the username and password of the successfully logged-in user. It uses the `Log.d()` method to print debug-level information, which is commonly used for development and debugging.
 

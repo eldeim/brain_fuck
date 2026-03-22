@@ -6,7 +6,7 @@ description: With love, eldeim
 
 ## Redes Ocultas
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 1. Escanear redes ocultas para encontrar su nombre. Esto lo hacemos con `mk4` -->
 
@@ -23,9 +23,9 @@ mdk4 wlan0 p -t F0:9F:C2:6A:88:26 -f /root/rockyou-top100000.txt
 cat /root/rockyou-top100000.txt | awk '{print "wifi-" $1}' > /root/wifi-rockyou.txt
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://eldeim.gitbook.io/brain_fuck/checklists/certifications/cwp-certified-wifichallenge-professional/capitulo-5.0-recon-wi-fi-ofensivo/challenges-recon" %}
 
@@ -37,7 +37,7 @@ cat /root/rockyou-top100000.txt | awk '{print "wifi-" $1}' > /root/wifi-rockyou.
 2. Probar contraseñas por defecto en el router/puerta de enlace
 3. Evadir portal cautivo cambiando nuestra MAC por la de otro cliente con macchanger (ejemplo en [Capitulo 5.1, reto 6](https://eldeim.gitbook.io/brain_fuck/checklists/certifications/cwp-certified-wifichallenge-professional/capitulo-5.1-ataques-wi-fi-opn-redes-publicas-abiertas/challenges-opn#challenge-6))
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 ## Apagamos la interfaz wlan2 (interfaz en modo normal que no utiliza modo monitor)
@@ -52,7 +52,7 @@ systemctl stop network-manager.service
 macchanger wlan2
 ```
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Interceptar trafico en escucha con `airodump-ng` y capturar peticiones como; credenciales de acceso al router
 
@@ -82,7 +82,7 @@ macchanger wlan2
 3. Una vez dentro de la red, podemos comprobar si existe aislamiento entre clientes, lanzado un `arp-scan` y `nmap` para ver sus puertos y tambien si tienen webs corriendo
 4. Comprobar usuarios conectados a APs/BSSIDs imbisibles, pero con probes. Si existen, realizar un ataque `NO AP` con `hostapd-mana` para obtener su hash y crakear la password ([Capitulo 5.4, challenge 12](https://eldeim.gitbook.io/brain_fuck/checklists/certifications/cwp-certified-wifichallenge-professional/capitulo-5.4-ataques-wi-fi-psk-pre-shared-key/challenges-psk#challenge-12))
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://eldeim.gitbook.io/brain_fuck/checklists/certifications/cwp-certified-wifichallenge-professional/capitulo-5.4-ataques-wi-fi-psk-pre-shared-key/challenges-psk#challenge-12" %}
 
