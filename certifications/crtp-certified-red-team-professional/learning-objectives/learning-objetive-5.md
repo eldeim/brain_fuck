@@ -1,6 +1,6 @@
 # Learning Objetive 5
 
-<figure><img src="../../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (21) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -261,7 +261,7 @@ Once all it's done, check the visibility with the share, run the build and see t
 
 <figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
 
-> Note: I dont need disable anything. If you have issues, reboot the machine
+> Note: If you have issues, reboot the machine
 
 Nice! One we have visibility, weak up the netcat and execute it again-->
 

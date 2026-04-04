@@ -324,3 +324,6 @@
     * [Learning Objetive 12](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-12.md)
   * [🏁 Cheatsheet - Fast Commands (ENUMERATION)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-enumeration.md)
   * [🏁 Cheatsheet - Fast Commands (PRIVILEGE ESCALATION)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-privilege-escalation.md)
+  * [🏁 Cheatsheet - Fast Commands (LATERAL MOVEMENT)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-lateral-movement.md)
+  * [🏁 Cheatsheet - Fast Commands (EXPLOTATION)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-explotation/README.md)
+    * [🚩 Cheetsheet - Fast Commands (Applocker Policy)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-explotation/cheetsheet-fast-commands-applocker-policy.md)

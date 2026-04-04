@@ -54,9 +54,9 @@ dcorp-std111.dollarcorp.moneycorp.local
 [snip]
 </code></pre></td></tr><tr><td><code>Get-DomainGroup -Identity "Domain Admins"</code></td><td>List Domain Admins: members, SID, descriptions, DN, etc..</td><td><pre><code>samaccountname : Domain Admins
 member : {CN=svc admin,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local, CN=Administrator,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local}
-</code></pre></td></tr><tr><td><p><code>Get-DomainGroupMember</code> </p><p><code>-Identity "Domain Admins"</code></p></td><td>List Doamin Admins into the forest</td><td><pre><code>MemberName : Administrator
+</code></pre></td></tr><tr><td><code>Get-DomainGroupMember -Identity "Domain Admins"</code></td><td>List Doamin Admins into the forest</td><td><pre><code>MemberName : Administrator
 MemberName : svcadmin
-</code></pre></td></tr><tr><td><code>Get-DomainGroupMember</code></td><td>List members of the Enterprise Administrators</td><td><pre><code>GroupDomain : moneycorp.local
+</code></pre></td></tr><tr><td><code>Get-Domain GroupMember</code></td><td>List members of the Enterprise Administrators</td><td><pre><code>GroupDomain : moneycorp.local
 GroupName : Enterprise Admin
 MemberName : Administrator
 </code></pre></td></tr></tbody></table>
@@ -136,7 +136,7 @@ Once the service is started, browse to [http://localhost:7474](http://localhost:
 
 Enter the username: neo4j and password: neo4j. You need to enter a new password. Let's use BloodHound as the new password.
 
-Now, open BloodHound from C:\AD\Tools\BloodHound-win32-x64\BloodHound-win32-x64 and provide the following details:
+Now, open BloodHound from `C:\AD\Tools\BloodHound-win32-x64\BloodHound-win32-x64` and provide the following details:
 
 > bolt://localhost:7687
 >
@@ -249,7 +249,7 @@ IdentityReferenceClass  : group
 C:\AD\Tools\neo4j-community-4.4.5-windows.zip
 ## Exec \bin
 neo4j.bat install-service
-## Start
+## Startcd bin    
 neo4j.bat start
 ```
 
@@ -273,15 +273,14 @@ C:\AD\Tools\BloodHound-win32-x64\BloodHound-win32-x64\BloodHound.exe
 
 <figure><img src="../../.gitbook/assets/image (544).png" alt=""><figcaption></figcaption></figure>
 
-### BloofHound Ingestor
+### BloodHound Ingestor
 
 Once we have do all of this, execute the ingestor and upload it -->
 
-> It save into `C:\AD\Tools\neo4j-community-4.4.5-windows\neo4j-community-4.4.5\bin`
+> It save into `C:\AD\Tools\BloodHound-4.0.3_old\BloodHound-master\Collectors`
 
-```
-C:\AD\Tools\BloodHound-master\BloodHound-master\Collectors\SharpHound.exe --collectionmethods Group,GPOLocalGroup,Session,Trusts,ACL,Container,ObjectProps,SPNTargets --excludedcs
-```
+<pre><code><strong>.\SharpHound.exe
+</strong></code></pre>
 
 <mark style="background-color:yellow;">IMPORT!:</mark> Upload all zip file, not stract it
 
@@ -305,7 +304,7 @@ dscorepropagationdata  : {11/15/2022 3:49:24 AM, 11/12/2022 5:59:41 AM, 1/1/1601
 name                   : Domain Controllers
 distinguishedname      : OU=Domain Controllers,DC=dollarcorp,DC=moneycorp,DC=local
 ou                     : Domain Controllers
-</code></pre></td></tr><tr><td><p><code>Get-DomainOU | select</code> </p><p><code>-ExpandProperty name</code></p></td><td>Enumerate only the names of the folder of AD</td><td><pre><code><strong>Domain Controllers
+</code></pre></td></tr><tr><td><code>Get-DomainOU | select -ExpandProperty name</code></td><td>Enumerate only the names of the folder of AD</td><td><pre><code><strong>Domain Controllers
 </strong>StudentMachines
 Applocked
 Servers
@@ -370,13 +369,13 @@ To enumerate the ACLs for the Applocked and DevOps GPO, let's use the BloodHound
 
 Search for Applocker in the UI -> Click on the node -> Click on Inboud Object Control
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It turns out that the RDPUsers group has GenericAll over the policy.
 
 Similary, search for DevOps and look at its 'Inbound Object Control':
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A user named 'devopsadmin' has 'WriteDACL' on DevOps Policy.
 
@@ -390,7 +389,7 @@ A user named 'devopsadmin' has 'WriteDACL' on DevOps Policy.
 Get-ForestDomain -Verbose
 ```
 
-<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -402,7 +401,7 @@ Get-ForestDomain -Verbose
 Get-DomainTrust
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### List external trusts & Extact Infromation
 

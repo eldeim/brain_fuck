@@ -175,7 +175,7 @@ write_gpo_dacl student113 {0BF8D01C-1F62-4BDC-958C-57140B67D147}
 
 <figure><img src="../../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
 
-## Alternative - GPO abuse PC
+### Alternative - GPO abuse PC
 
 Alternatively, if we do not have access to any doman users, we can add a computer object and provide it the 'write\_gpo\_dacl' permissions on DevOps policy {0BF8D01C-1F62-4BDC-958C-57140B67D147}
 
@@ -210,7 +210,7 @@ Stop the ldap shell and ntlmrelayx using `Ctrl + C`.
 
 Now, run the GPOddity command to create the new template.
 
-### GPOddity commands
+## GPOddity commands
 
 > 1️⃣ Descarga la GPO legítima desde **SYSVOL**\
 > 2️⃣ Inserta una **Scheduled Task maliciosa**\

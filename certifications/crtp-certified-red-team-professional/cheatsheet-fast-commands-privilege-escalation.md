@@ -111,9 +111,19 @@ set computername
 
 ### PowerShell Remoting
 
-> Note: Remenber use a new invishell
+> Note: Remember use a new invishell
+>
+> ```
+> C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
+> . C:\AD\Tools\Find-PSRemotingLocalAdminAccess.ps1
+> ```
 
 ```
+## Search
+Find-PSRemotingLocalAdminAccess
+## Conect
+winrs -r:dcorp-adminsrv cmd
+### or
 Enter-PSSession -ComputerName dcorp-adminsrv.dollarcorp.moneycorp.local
 ## After
 $env:username
