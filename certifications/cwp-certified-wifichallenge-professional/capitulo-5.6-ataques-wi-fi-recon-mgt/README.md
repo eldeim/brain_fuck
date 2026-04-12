@@ -18,7 +18,7 @@ wireshark /home/user/wifi/scanc44-01.cap
 
 En Wireshark se filtran los paquetes por eap y se busca la respuesta de identidad para obtener nombres de usuario.
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Alternativamente, se puede usar la herramienta wifi\_db para extraer esta información de forma más automatizada.
 
@@ -35,7 +35,7 @@ sqlitebrowser wifidata.SQLITE
 
 Y abrir la tabla de IdentityAP:
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Otra opción es utilizar tshark para filtrar los paquetes que contienen identidades EAP directamente desde la línea de comandos:
 
@@ -63,7 +63,7 @@ cd /root/tools/
 bash pcapFilter.sh -f /home/user/wifi/scan-02.cap -C
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ahí podemos ver toda la información del certificado, siendo lo más importante la línea de Issuer, que son los campos de texto de la CA que ha firmado ese certificado y los de Subject que son los campos de texto del certificado final, es decir, el certificado del AP.
 
@@ -92,6 +92,6 @@ cd /root/tools/EAP_buster/
 bash ./EAP_buster.sh ssid 'DOMAIN\User' wlan1
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Esta información inicialmente parece que no puede ser de utilidad, ya que si el AP soporta todos los métodos pero los clientes utilizan un método seguro como EAP-TLS no es posible atacar la comunicación de esos clientes, pero es muy útil para descartar redes que, por ejemplo, solo soportan EAP-TLS, y no vamos a poder atacar o para detectar el nivel de seguridad general configurado. Si soporta todos los métodos suele significar que el equipo de Sistemas no le ha puesto mucho esfuerzo a securizar la red, por lo que es muy posible que haya clientes mal configurados conectados a la red.

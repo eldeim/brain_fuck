@@ -31,7 +31,7 @@ If the studentx does not have replication rights, let’s add the rights.
 
 Start a process as Domain Administrator by running the below command from an elevated command prompt:
 
-### If you havent it, add the replication rights
+### If it havent, add the replication rights
 
 Start a process as Domain Administrator by running the below command from an elevated command prompt:
 

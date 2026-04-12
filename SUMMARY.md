@@ -90,7 +90,6 @@
     * [Whatsmyname](osint/mixs/whatsmyname.md)
     * [Image & Geospatial Intelligence](osint/mixs/image-and-geospatial-intelligence.md)
     * [FFmpeg - Geolocating Videos](osint/mixs/ffmpeg-geolocating-videos.md)
-* [🗒️ TO-DO](to-do.md)
 
 ## 🪪 Certifications
 
@@ -322,8 +321,14 @@
     * [Learning Objetive 10](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-10.md)
     * [Learning Objetive 11](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-11.md)
     * [Learning Objetive 12](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-12.md)
+    * [Learning Objetive 13](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-13.md)
+    * [Learning Objetive 14](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-14.md)
+    * [Learning Objetive 15](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-15.md)
+    * [Learning Objetive 16](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-16.md)
   * [🏁 Cheatsheet - Fast Commands (ENUMERATION)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-enumeration.md)
   * [🏁 Cheatsheet - Fast Commands (PRIVILEGE ESCALATION)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-privilege-escalation.md)
   * [🏁 Cheatsheet - Fast Commands (LATERAL MOVEMENT)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-lateral-movement.md)
   * [🏁 Cheatsheet - Fast Commands (EXPLOTATION)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-explotation/README.md)
     * [🚩 Cheetsheet - Fast Commands (Applocker Policy)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-explotation/cheetsheet-fast-commands-applocker-policy.md)
+  * [🏁 Cheatsheet - Fast Commands (POST-EXPLOTATION)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-post-explotation.md)
+  * [🏁 Cheatsheet - Fast Commands (PERSISTENCE)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-persistence.md)
