@@ -106,7 +106,7 @@ Number found! 2
 
 * What is the username of the third user (id=3)?
 
-<figure><img src="../../../.gitbook/assets/image (19) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (19) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 ffuf -w "/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt" -u 'http://10.129.202.133:3003/?FUZZ=test_value' -fs 19
@@ -115,13 +115,13 @@ ________________________________________________
 id                      [Status: 200, Size: 38, Words: 7, Lines: 1, Duration: 24ms]
 ```
 
-<figure><img src="../../../.gitbook/assets/image (20) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (20) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 * Identify the username of the user that has a position of 736373 through SQLi. Submit it as your answer.<br>
 
-<figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -131,7 +131,7 @@ Suppose we are assessing an application residing in `http://<TARGET IP>:3001`.
 
 When we browse the application, an anonymous file uploading functionality sticks out.
 
-<figure><img src="../../../.gitbook/assets/image (23) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (23) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Let us create the below file (save it as `backdoor.php`) and try to upload it via the available functionality.
 
@@ -141,7 +141,7 @@ Let us create the below file (save it as `backdoor.php`) and try to upload it vi
 
 > The above allows us to append the parameter _cmd_ to our request (to backdoor.php), which will be executed using _system()_. This is if we can determine _backdoor.php_'s location, if _backdoor.php_ will be rendered successfully and if no PHP function restrictions exist.
 
-<figure><img src="../../../.gitbook/assets/image (24) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (24) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can use the below Python script (save it as `web_shell.py`) to obtain a shell, leveraging the uploaded `backdoor.php` file.
 
@@ -261,7 +261,7 @@ The API is indeed vulnerable to Local File Inclusion!
 
 ## Cross-Site Scripting (XSS)
 
-<figure><img src="../../../.gitbook/assets/image (25) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (25) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 `test_value` is reflected in the response.
 
@@ -273,7 +273,7 @@ Code: javascript
 <script>alert(document.domain)</script>
 ```
 
-<figure><img src="../../../.gitbook/assets/image (26) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (26) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It looks like the application is encoding the submitted payload. We can try URL-encoding our payload once and submitting it again, as follows.
 
@@ -281,7 +281,7 @@ It looks like the application is encoding the submitted payload. We can try URL-
 %3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 ```
 
-<figure><img src="../../../.gitbook/assets/image (27) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (27) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -353,7 +353,7 @@ eldeim@htb[/htb]$ curl "http://<TARGET IP>:3000/api/check-email?email=test_value
 
 Submit the above regex to [regex101.com](https://regex101.com/) for an in-depth explanation. Then, submit the above regex to [https://jex.im/regulex/](https://jex.im/regulex/#!flags=\&re=%5E\(%5Ba-zA-Z0-9_.-%5D\)%2B%40\(\(%5Ba-zA-Z0-9-%5D\)%2B.\)%2B\(%5Ba-zA-Z0-9%5D%7B2%2C4%7D\)%2B%24) for a visualization.
 
-<figure><img src="../../../.gitbook/assets/image (28) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (28) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The second and third groups are doing bad iterative checks.
 
@@ -388,7 +388,7 @@ Activate burp suite's proxy (_Intercept On_) and configure your browser to go th
 
 Now let us try authenticating. We should see the below inside Burp Suite's proxy.
 
-<figure><img src="../../../.gitbook/assets/image (29) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (29) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```http
 POST /api/login/ HTTP/1.1

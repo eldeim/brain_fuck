@@ -329,6 +329,8 @@
     * [Learning Objetive 18](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-18.md)
     * [Learning Objetive 19](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-19.md)
     * [Learning Objetive 20](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-20.md)
+    * [Learning Objective 21](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objective-21.md)
+    * [Learning Objective 22](certifications/crtp-certified-red-team-professional/learning-objectives/learning-objective-22.md)
   * [🏁 Cheatsheet - Fast Commands (ENUMERATION)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-enumeration.md)
   * [🏁 Cheatsheet - Fast Commands (PRIVILEGE ESCALATION)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-privilege-escalation.md)
   * [🏁 Cheatsheet - Fast Commands (LATERAL MOVEMENT)](certifications/crtp-certified-red-team-professional/cheatsheet-fast-commands-lateral-movement.md)

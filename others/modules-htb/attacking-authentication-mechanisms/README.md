@@ -63,13 +63,13 @@ The last part of the JWT is its signature, which is computed based on the JWT's 
 
 Traditionally, the user presents a session token to the web application, which then proceeds to look up the user's associated data in some kind of database. Since the web application needs to keep track of the state, i.e., the data associated with the session, this approach is called **stateful** authentication.
 
-<figure><img src="../../../.gitbook/assets/image (20) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (20) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Stateless Authentication**
 
 On the other hand, in JWT-based authentication, the session token is replaced by a JWT containing user information. After verifying the token's signature, the server can retrieve all user information from the JWT's claims sent by the user. Because the server does not need to keep a state, this approach is called **stateless** authentication. Remember that the JWT's signature prevents an attacker from manipulating the data within it, and any manipulation would result in a failed signature verification.
 
-<figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
