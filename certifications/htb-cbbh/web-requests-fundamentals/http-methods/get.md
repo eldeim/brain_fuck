@@ -2,7 +2,7 @@
 
 ## HTTP Basic Auth
 
-&#x20;Unlike the usual login forms, which utilize HTTP parameters to validate the user credentials (e.g. POST request), this type of authentication utilizes a `basic HTTP authentication`, which is handled directly by the webserver to protect a specific page/directory, without directly interacting with the web application.
+Unlike the usual login forms, which utilize HTTP parameters to validate the user credentials (e.g. POST request), this type of authentication utilizes a `basic HTTP authentication`, which is handled directly by the webserver to protect a specific page/directory, without directly interacting with the web application.
 
 To access the page, we have to enter a valid pair of credentials, which are `admin`:`admin` in this case:
 
@@ -102,7 +102,7 @@ eldeim@htb[/htb]$ curl -H 'Authorization: Basic YWRtaW46YWRtaW4=' http://<SERVER
 
 Once we are authenticated, we get access to a `City Search` function, in which we can enter a search term and get a list of matching cities:
 
-<figure><img src="../../../../.gitbook/assets/http_auth_index (1).jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/http_auth_index.jpg" alt=""><figcaption></figcaption></figure>
 
 We can enter any search term and hit enter, and we will immediately notice a new request being sent to the backend:
 

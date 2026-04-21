@@ -24,8 +24,6 @@ eldeim@htb[/htb]$ airmon-ng start wlan0
 
 To begin searching for networks with WPS we employ the following command. We specify `--wps` to display WPS information and `--ignore-negative-one` to remove -1 PWR error messages.
 
-
-
 ```shell-session
 eldeim@htb[/htb]$ airodump-ng --wps --ignore-negative-one wlan0mon
 
@@ -50,7 +48,7 @@ eldeim@htb[/htb]$ airodump-ng --wps --ignore-negative-one -c 8 --bssid 60:38:E0:
 
 Wash is another great tool for scanning networks with WPS. We can employ a simple command with wash to display all networks with WPS and their respective versions.
 
-&#x20; WPS Reconnaissance
+WPS Reconnaissance
 
 ```shell-session
 eldeim@htb[/htb]$ wash -i wlan0mon
@@ -63,7 +61,7 @@ XX:XX:XX:XX:XX:XX    1  -63  2.0  No   Quantenn  FakeNetwork
 XX:XX:XX:XX:XX:XX    1  -61  2.0  No   AtherosC  FakeNetwork
 ```
 
-<figure><img src="../../.gitbook/assets/image (397).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1271).png" alt=""><figcaption></figcaption></figure>
 
 We can display much more verbose output with wash using the following command.
 
@@ -99,13 +97,11 @@ When attempting to test WPS, we want to note the following conditions:
 wash -i wlan0
 ```
 
-
-
 ***
 
 ## **Online PIN Brute-Forcing Attacks**
 
-<figure><img src="../../.gitbook/assets/image (351).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1225).png" alt=""><figcaption></figcaption></figure>
 
 ### Brute-forcing WPS PIN
 

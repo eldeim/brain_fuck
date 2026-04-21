@@ -268,7 +268,7 @@ msf6 auxiliary(scanner/mssql/mssql_ping) > run
 
 ### **Connecting with Mssqlclient.py**
 
-If we can guess or gain access to credentials, this allows us to remotely connect to the MSSQL server and start interacting with databases using T-SQL (`Transact-SQL`).&#x20;
+If we can guess or gain access to credentials, this allows us to remotely connect to the MSSQL server and start interacting with databases using T-SQL (`Transact-SQL`).
 
 ```shell-session
 eldeim@htb[/htb]$ python3 mssqlclient.py Administrator@10.129.201.248 -windows-auth
@@ -692,7 +692,7 @@ eldeim@htb[/htb]$ ./odat.py utlfile -s 10.129.204.235 -d XE -U scott -P tiger --
 
 Finally, we can test if the file upload approach worked with `curl`. Therefore, we will use a `GET http://<IP>` request, or we can visit via browser.
 
-&#x20; Oracle TNS
+Oracle TNS
 
 ```shell-session
 eldeim@htb[/htb]$ curl -X GET http://10.129.204.235/testing.txt
@@ -735,7 +735,7 @@ scott/tiger
 
 ```
 
-<figure><img src="../../../.gitbook/assets/image (16) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (294).png" alt=""><figcaption></figcaption></figure>
 
 I mean, now use `SQLplus` to login -->
 

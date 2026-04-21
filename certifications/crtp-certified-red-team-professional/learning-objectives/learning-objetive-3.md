@@ -1,6 +1,6 @@
 # Learning Objetive 3
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (131).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -17,7 +17,8 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 
 ## Enumerate OUs
 
-<pre><code>Get-DomainOU
+```
+Get-DomainOU
 
 description            : Default container for domain controllers
 systemflags            : -1946157056
@@ -28,10 +29,10 @@ objectclass            : {top, organizationalUnit}
 showinadvancedviewonly : False
 usnchanged             : 7921
 dscorepropagationdata  : {11/15/2022 3:49:24 AM, 11/12/2022 5:59:41 AM, 1/1/1601 12:04:16 AM}
-<a data-footnote-ref href="#user-content-fn-1">name                   : Domain Controllers</a>
+name                   : Domain Controllers
 distinguishedname      : OU=Domain Controllers,DC=dollarcorp,DC=moneycorp,DC=local
 ou                     : Domain Controllers
-</code></pre>
+```
 
 ### Names of the OUs
 
@@ -60,20 +61,21 @@ DCORP-CI
 
 ## Enumerate GPOs
 
-<pre><code>Get-DomainGPO
+```
+Get-DomainGPO
 
 flags                    : 0
 systemflags              : -1946157056
-<a data-footnote-ref href="#user-content-fn-1">displayname              : Default Domain Policy</a>
+displayname              : Default Domain Policy
 
 [snip]
 
 flags                    : 0
-<a data-footnote-ref href="#user-content-fn-1">displayname              : DevOps Policy</a>
+displayname              : DevOps Policy
 gpcmachineextensionnames : [{35378EAC-683F-11D2-A89A-00C04FBBCFA2}{D02B1F72-3407-48AE-BA88-E8213C6761F1}][{827D319E-6EAC-11D2-A4EA-00C04F79F83A}{803E14A0-B4FB-11D0-A0D0-00A0C90F574B}]
 whenchanged              : 12/19/2024 12:00:15 PM
 versionnumber            : 3
-<a data-footnote-ref href="#user-content-fn-1">name                     : {0BF8D01C-1F62-4BDC-958C-57140B67D147}</a>
+name                     : {0BF8D01C-1F62-4BDC-958C-57140B67D147}
 cn                       : {0BF8D01C-1F62-4BDC-958C-57140B67D147}
 usnchanged               : 314489
 dscorepropagationdata    : {12/18/2024 7:31:56 AM, 1/1/1601 12:00:00 AM}
@@ -88,16 +90,17 @@ instancetype             : 4
 objectclass              : {top, container, groupPolicyContainer}
 objectcategory           : CN=Group-Policy-Container,CN=Schema,CN=Configuration,DC=moneycorp,DC=local
 [snip]
-</code></pre>
+```
 
 ### GPO applied on the DevOps OU
 
 We need the name of the policy from the gplink attribute from the OU
 
-<pre><code>(Get-DomainOU -Identity DevOps).gplink
+```
+(Get-DomainOU -Identity DevOps).gplink
 
-[LDAP://cn={<a data-footnote-ref href="#user-content-fn-1">0BF8D01C-1F62-4BDC-958C-57140B67D147</a>},cn=policies,cn=system,DC=dollarcorp,DC=moneycorp,DC=local;0]
-</code></pre>
+[LDAP://cn={0BF8D01C-1F62-4BDC-958C-57140B67D147},cn=policies,cn=system,DC=dollarcorp,DC=moneycorp,DC=local;0]
+```
 
 Now, copy the highlighted string from above (no square brackets, no semicolon and nothing after semicolon) and use the it below:
 
@@ -105,15 +108,16 @@ Now, copy the highlighted string from above (no square brackets, no semicolon an
 Get-DomainGPO -Identity '{0BF8D01C-1F62-4BDC-958C-57140B67D147}'
 ```
 
-<pre><code>PS C:\AD\Tools>Get-DomainGPO -Identity '{0BF8D01C-1F62-4BDC-958C-57140B67D147}'
+```
+PS C:\AD\Tools>Get-DomainGPO -Identity '{0BF8D01C-1F62-4BDC-958C-57140B67D147}'
 
 
 flags                    : 0
-<a data-footnote-ref href="#user-content-fn-1">displayname              : DevOps Policy</a>
+displayname              : DevOps Policy
 gpcmachineextensionnames : [{35378EAC-683F-11D2-A89A-00C04FBBCFA2}{D02B1F72-3407-48AE-BA88-E8213C6761F1}][{827D319E-6EAC-11D2-A4EA-00C04F79F83A}{803E14A0-B4FB-11D0-A0D0-00A0C90F574B}]
 whenchanged              : 12/19/2024 12:00:15 PM
 versionnumber            : 3
-<a data-footnote-ref href="#user-content-fn-1">name                     : {0BF8D01C-1F62-4BDC-958C-57140B67D147}</a>
+name                     : {0BF8D01C-1F62-4BDC-958C-57140B67D147}
 cn                       : {0BF8D01C-1F62-4BDC-958C-57140B67D147}
 usnchanged               : 314489
 dscorepropagationdata    : {12/18/2024 7:31:56 AM, 1/1/1601 12:00:00 AM}
@@ -127,7 +131,7 @@ gpcfunctionalityversion  : 2
 instancetype             : 4
 objectclass              : {top, container, groupPolicyContainer}
 objectcategory           : CN=Group-Policy-Container,CN=Schema,CN=Configuration,DC=moneycorp,DC=local
-</code></pre>
+```
 
 <mark style="background-color:yellow;">It is possible to hack both the commands together in a single command</mark> (profiting from the static length for GUIDs)
 
@@ -185,5 +189,3 @@ instancetype             : 4
 objectclass              : {top, container, groupPolicyContainer}
 objectcategory           : CN=Group-Policy-Container,CN=Schema,CN=Configuration,DC=moneycorp,DC=local
 ```
-
-[^1]: 

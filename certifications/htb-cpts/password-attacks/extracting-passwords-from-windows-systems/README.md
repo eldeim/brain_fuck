@@ -1,6 +1,6 @@
-# Password Attacks
+# Extracting Passwords from Windows Systems
 
-<figure><img src="../../../../.gitbook/assets/image (492).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1364).png" alt=""><figcaption></figcaption></figure>
 
 ### **LSASS**
 

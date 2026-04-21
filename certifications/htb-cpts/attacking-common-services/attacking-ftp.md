@@ -79,7 +79,7 @@ An FTP bounce attack is a network attack that uses FTP servers to deliver outbou
 
 Consider we are targetting an FTP Server `FTP_DMZ` exposed to the internet. Another device within the same network, `Internal_DMZ`, is not exposed to the internet. We can use the connection to the `FTP_DMZ` server to scan `Internal_DMZ` using the FTP Bounce attack and obtain information about the server's open ports. Then, we can use that information as part of our attack against the infrastructure.
 
-<figure><img src="../../../.gitbook/assets/image (522).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1394).png" alt=""><figcaption></figcaption></figure>
 
 > Note: The `Nmap` -b flag can be used to perform an FTP bounce attack
 
@@ -159,7 +159,7 @@ Host script results:
 
 `anonymous:anonymous`
 
-<figure><img src="../../../.gitbook/assets/image (523).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1395).png" alt=""><figcaption></figcaption></figure>
 
 ```
 medusa -U users.list -P passwords.list -h 10.129.133.8 -n 2121 -M ftp

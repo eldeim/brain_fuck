@@ -1,6 +1,6 @@
 # Learning Objetive 4
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
 
 * Trust Direction for the trust between dollarcorp.moneycorp.local and eurocorp.local
 
@@ -8,11 +8,12 @@
 
 > Note: Remenber use a silent powershell
 
-<pre><code>PS C:\AD\Tools> Get-ForestDomain -Verbose
+```
+PS C:\AD\Tools> Get-ForestDomain -Verbose
 
-VERBOSE: [Get-DomainUser] filter string: (&#x26;(samAccountType=805306368)(|(samAccountName=krbtgt))
+VERBOSE: [Get-DomainUser] filter string: (&(samAccountType=805306368)(|(samAccountName=krbtgt))
 VERBOSE: [Get-DomainSearcher] search base: LDAP://DCORP-DC.DOLLARCORP.MONEYCORP.LOCAL/DC=moneycorp,DC=local
-VERBOSE: [Invoke-LDAPQuery] filter string: (&#x26;(samAccountType=805306368)(|(samAccountName=krbtgt)))
+VERBOSE: [Invoke-LDAPQuery] filter string: (&(samAccountType=805306368)(|(samAccountName=krbtgt)))
 
 
 Forest                  : moneycorp.local
@@ -24,7 +25,7 @@ Parent                  : moneycorp.local
 PdcRoleOwner            : dcorp-dc.dollarcorp.moneycorp.local
 RidRoleOwner            : dcorp-dc.dollarcorp.moneycorp.local
 InfrastructureRoleOwner : dcorp-dc.dollarcorp.moneycorp.local
-<a data-footnote-ref href="#user-content-fn-1">Name                    : dollarcorp.moneycorp.local</a>
+Name                    : dollarcorp.moneycorp.local
 
 Forest                  : moneycorp.local
 DomainControllers       : {mcorp-dc.moneycorp.local}
@@ -35,7 +36,7 @@ Parent                  :
 PdcRoleOwner            : mcorp-dc.moneycorp.local
 RidRoleOwner            : mcorp-dc.moneycorp.local
 InfrastructureRoleOwner : mcorp-dc.moneycorp.local
-<a data-footnote-ref href="#user-content-fn-1">Name                    : moneycorp.local</a>
+Name                    : moneycorp.local
 
 Forest                  : moneycorp.local
 DomainControllers       : {us-dc.us.dollarcorp.moneycorp.local}
@@ -46,66 +47,69 @@ Parent                  : dollarcorp.moneycorp.local
 PdcRoleOwner            : us-dc.us.dollarcorp.moneycorp.local
 RidRoleOwner            : us-dc.us.dollarcorp.moneycorp.local
 InfrastructureRoleOwner : us-dc.us.dollarcorp.moneycorp.local
-<a data-footnote-ref href="#user-content-fn-1">Name                    : us.dollarcorp.moneycorp.local</a>
-</code></pre>
+Name                    : us.dollarcorp.moneycorp.local
+```
 
 ## Enumerate all trust of "dollarcorp" domain
 
-<pre><code>PS C:\AD\Tools> Get-DomainTrust
+```
+PS C:\AD\Tools> Get-DomainTrust
 
-<a data-footnote-ref href="#user-content-fn-1">SourceName      : dollarcorp.moneycorp.local</a>
-<a data-footnote-ref href="#user-content-fn-1">TargetName      : moneycorp.local</a>
+SourceName      : dollarcorp.moneycorp.local
+TargetName      : moneycorp.local
 TrustType       : WINDOWS_ACTIVE_DIRECTORY
 TrustAttributes : WITHIN_FOREST
-<a data-footnote-ref href="#user-content-fn-1">TrustDirection  : Bidirectional</a>
+TrustDirection  : Bidirectional
 WhenCreated     : 11/12/2022 5:59:01 AM
 WhenChanged     : 1/25/2026 4:05:24 AM
 
-<a data-footnote-ref href="#user-content-fn-1">SourceName      : dollarcorp.moneycorp.local</a>
-<a data-footnote-ref href="#user-content-fn-1">TargetName      : us.dollarcorp.moneycorp.local</a>
+SourceName      : dollarcorp.moneycorp.local
+TargetName      : us.dollarcorp.moneycorp.local
 TrustType       : WINDOWS_ACTIVE_DIRECTORY
-<a data-footnote-ref href="#user-content-fn-1">TrustAttributes : WITHIN_FOREST</a>
-<a data-footnote-ref href="#user-content-fn-1">TrustDirection  : Bidirectional</a>
+TrustAttributes : WITHIN_FOREST
+TrustDirection  : Bidirectional
 WhenCreated     : 11/12/2022 6:22:51 AM
 WhenChanged     : 1/25/2026 4:16:41 AM
 
-<a data-footnote-ref href="#user-content-fn-1">SourceName      : dollarcorp.moneycorp.local</a>
-<a data-footnote-ref href="#user-content-fn-1">TargetName      : eurocorp.local</a>
+SourceName      : dollarcorp.moneycorp.local
+TargetName      : eurocorp.local
 TrustType       : WINDOWS_ACTIVE_DIRECTORY
 TrustAttributes : FILTER_SIDS
-<a data-footnote-ref href="#user-content-fn-1">TrustDirection  : Bidirectional</a>
+TrustDirection  : Bidirectional
 WhenCreated     : 11/12/2022 8:15:23 AM
 WhenChanged     : 1/25/2026 4:16:41 AM
-</code></pre>
+```
 
 ### List only the external trusts in the "moneycorp.local" forest
 
-<pre><code>Get-ForestDomain | %{Get-DomainTrust -Domain $_.Name} | ?{$_.TrustAttributes -eq "FILTER_SIDS"}
+```
+Get-ForestDomain | %{Get-DomainTrust -Domain $_.Name} | ?{$_.TrustAttributes -eq "FILTER_SIDS"}
 
 
 SourceName      : dollarcorp.moneycorp.local
 TargetName      : eurocorp.local
 TrustType       : WINDOWS_ACTIVE_DIRECTORY
-<a data-footnote-ref href="#user-content-fn-1">TrustAttributes : FILTER_SIDS</a>
+TrustAttributes : FILTER_SIDS
 TrustDirection  : Bidirectional
 WhenCreated     : 11/12/2022 8:15:23 AM
 WhenChanged     : 1/25/2026 4:16:41 AM
-</code></pre>
+```
 
 > **External Trust** con filtrado de SID habilitado
 
 ### Enumerate external trusts of the "dollarcorp" domain
 
-<pre><code>Get-DomainTrust | ?{$_.TrustAttributes -eq "FILTER_SIDS"}
+```
+Get-DomainTrust | ?{$_.TrustAttributes -eq "FILTER_SIDS"}
 
-<a data-footnote-ref href="#user-content-fn-1">SourceName      : dollarcorp.moneycorp.local</a>
-<a data-footnote-ref href="#user-content-fn-1">TargetName      : eurocorp.local</a>
+SourceName      : dollarcorp.moneycorp.local
+TargetName      : eurocorp.local
 TrustType       : WINDOWS_ACTIVE_DIRECTORY
-<a data-footnote-ref href="#user-content-fn-1">TrustAttributes : FILTER_SIDS</a>
+TrustAttributes : FILTER_SIDS
 TrustDirection  : Bidirectional
 WhenCreated     : 11/12/2022 8:15:23 AM
 WhenChanged     : 1/25/2026 4:16:41 AM
-</code></pre>
+```
 
 Since the above is a Bi-Directional trust, we can extract information from the eurocorp.local forest.
 
@@ -113,20 +117,21 @@ Since the above is a Bi-Directional trust, we can extract information from the e
 
 Let's go for the last task and enumerate trusts for eurocorp.local forest:
 
-### &#x20;Extract information from the eurocorp.local forest
+### Extract information from the eurocorp.local forest
 
-<pre><code>S C:\AD\Tools> Get-ForestDomain -Forest eurocorp.local | %{Get-DomainTrust -Domain $_.Name}
+```
+S C:\AD\Tools> Get-ForestDomain -Forest eurocorp.local | %{Get-DomainTrust -Domain $_.Name}
 
-<a data-footnote-ref href="#user-content-fn-1">SourceName      : eurocorp.local</a>
-<a data-footnote-ref href="#user-content-fn-1">TargetName      : eu.eurocorp.local</a>
+SourceName      : eurocorp.local
+TargetName      : eu.eurocorp.local
 TrustType       : WINDOWS_ACTIVE_DIRECTORY
-<a data-footnote-ref href="#user-content-fn-1">TrustAttributes : WITHIN_FOREST</a>
-<a data-footnote-ref href="#user-content-fn-1">TrustDirection  : Bidirectional</a>
+TrustAttributes : WITHIN_FOREST
+TrustDirection  : Bidirectional
 WhenCreated     : 11/12/2022 5:49:08 AM
 WhenChanged     : 3/3/2023 10:15:16 AM
 
-<a data-footnote-ref href="#user-content-fn-1">SourceName      : eurocorp.local</a>
-<a data-footnote-ref href="#user-content-fn-1">TargetName      : dollarcorp.moneycorp.local</a>
+SourceName      : eurocorp.local
+TargetName      : dollarcorp.moneycorp.local
 TrustType       : WINDOWS_ACTIVE_DIRECTORY
 TrustAttributes : FILTER_SIDS
 TrustDirection  : Bidirectional
@@ -134,7 +139,7 @@ WhenCreated     : 11/12/2022 8:15:23 AM
 WhenChanged     : 2/24/2023 9:10:52 AM
 
 Exception calling "FindAll" with "0" argument(s): "A referral was returned from the server.
-</code></pre>
+```
 
 > Notice the error above. It occurred because PowerView attempted to list trusts even for eu.eurocorp.local. Because external trust is non-transitive it was not possible!
 
@@ -164,7 +169,8 @@ us.dollarcorp.moneycorp.local
 
 ### Enumerate all the Trusts in the current domain
 
-<pre><code>Get-ADTrust -Filter *
+```
+Get-ADTrust -Filter *
 
 Direction : BiDirectional
 DisallowTransivity : False
@@ -174,7 +180,7 @@ ForestTransitive : False
 IntraForest : True
 IsTreeParent : False
 IsTreeRoot : False
-<a data-footnote-ref href="#user-content-fn-1">Name : moneycorp.local</a>
+Name : moneycorp.local
 ObjectClass : trustedDomain
 ObjectGUID : 01c3b68d-520b-44d8-8e7f-4c10927c2b98
 SelectiveAuthentication : False
@@ -191,13 +197,14 @@ UplevelOnly : False
 UsesAESKeys : False
 UsesRC4Encryption : False
 [snip]
-</code></pre>
+```
 
 ### Enumerate all the trusts in the moneycorp.local forest
 
-<pre><code>Get-ADForest | %{Get-ADTrust -Filter *} 
+```
+Get-ADForest | %{Get-ADTrust -Filter *} 
 
-<a data-footnote-ref href="#user-content-fn-1">Direction : BiDirectional</a>
+Direction : BiDirectional
 DisallowTransivity : False
 DistinguishedName :
 CN=moneycorp.local,CN=System,DC=dollarcorp,DC=moneycorp,DC=local
@@ -211,8 +218,8 @@ ObjectGUID : 01c3b68d-520b-44d8-8e7f-4c10927c2b98
 SelectiveAuthentication : False
 SIDFilteringForestAware : False
 SIDFilteringQuarantined : False
-<a data-footnote-ref href="#user-content-fn-1">Source : DC=dollarcorp,DC=moneycorp,DC=local</a>
-<a data-footnote-ref href="#user-content-fn-1">Target : moneycorp.local</a>
+Source : DC=dollarcorp,DC=moneycorp,DC=local
+Target : moneycorp.local
 TGTDelegation : False
 TrustAttributes : 32
 TrustedPolicy :
@@ -222,18 +229,19 @@ UplevelOnly : False
 UsesAESKeys : False
 UsesRC4Encryption : False
 [snip]
-</code></pre>
+```
 
 ### Enumerate external trusts in moneycorp.local domain
 
-<pre><code>(Get-ADForest).Domains | %{Get-ADTrust -Filter '(intraForest -ne $True) -and (ForestTransitive -ne $True)' -Server $_} 
+```
+(Get-ADForest).Domains | %{Get-ADTrust -Filter '(intraForest -ne $True) -and (ForestTransitive -ne $True)' -Server $_} 
 
 Direction : BiDirectional
 DisallowTransivity : False
 DistinguishedName :
 CN=eurocorp.local,CN=System,DC=dollarcorp,DC=moneycorp,DC=local
-<a data-footnote-ref href="#user-content-fn-1">ForestTransitive : False</a>
-<a data-footnote-ref href="#user-content-fn-1">IntraForest : False</a>
+ForestTransitive : False
+IntraForest : False
 IsTreeParent : False
 IsTreeRoot : False
 Name : eurocorp.local
@@ -242,8 +250,8 @@ ObjectGUID : d4d64a77-63be-4d77-93c2-6524e73d306d
 SelectiveAuthentication : False
 SIDFilteringForestAware : False
 SIDFilteringQuarantined : True
-<a data-footnote-ref href="#user-content-fn-1">Source : DC=dollarcorp,DC=moneycorp,DC=local</a>
-<a data-footnote-ref href="#user-content-fn-1">Target : eurocorp.local</a>
+Source : DC=dollarcorp,DC=moneycorp,DC=local
+Target : eurocorp.local
 TGTDelegation : False
 TrustAttributes : 4
 TrustedPolicy :
@@ -252,8 +260,4 @@ TrustType : Uplevel
 UplevelOnly : False
 UsesAESKeys : False
 UsesRC4Encryption : False	
-</code></pre>
-
-
-
-[^1]: 
+```

@@ -75,7 +75,7 @@ Having identified the FTP server, you can proceed to brute-force its authenticat
 
 If we explore the `/home` directory on the target system, we see an `ftpuser` folder, which implies the likelihood of the FTP server username being `ftpuser`. Based on this, we can modify our Medusa command accordingly:
 
-&#x20; Web Services
+Web Services
 
 ```shell-session
 eldeim@htb[/htb]$ medusa -h 127.0.0.1 -u ftpuser -P 2020-200_most_used_passwords.txt -M ftp -t 5
@@ -136,7 +136,7 @@ ftp> exit
 
 With the credentials optains with the ssh bruteforce, we loging into victim machine, then see the open internal ports -->
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (800).png" alt=""><figcaption></figcaption></figure>
 
 FTP server active, nice, we will can brute force it too -->
 

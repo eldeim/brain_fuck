@@ -50,7 +50,7 @@ Let's try adding a rule that skips any lines that start with a `.` (as shown in 
 
 ![payload processing](https://academy.hackthebox.com/storage/modules/110/burp_intruder_payload_processing_1.jpg)
 
-We can see that our rule gets added and enabled:&#x20;
+We can see that our rule gets added and enabled:
 
 <figure><img src="https://academy.hackthebox.com/storage/modules/110/burp_intruder_payload_processing_2.jpg" alt=""><figcaption></figcaption></figure>
 
@@ -96,7 +96,7 @@ The attack payloads in ZAP's Fuzzer are similar in concept to Intruder's Payload
 * `File Fuzzers`: This allows us to select wordlists from built-in databases of wordlists.
 * `Numberzz`: Generates sequences of numbers with custom increments
 
-&#x20;So, we can select `File Fuzzers` as the `Type`, and then we will select the first wordlist from `dirbuster`:
+So, we can select `File Fuzzers` as the `Type`, and then we will select the first wordlist from `dirbuster`:
 
 ![payload processing](https://academy.hackthebox.com/storage/modules/110/zap_fuzzer_add_payload.jpg)
 
@@ -120,7 +120,7 @@ We can click on the `Generate Preview` button to preview how our final payload w
 
 Once that's done, we can click on `Add` to add the processor and click on `Ok` in the processors and payloads windows to close them.
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (892).png" alt=""><figcaption></figcaption></figure>
 
 ### Start
 
@@ -128,6 +128,6 @@ With all of our options configured, we can finally click on the `Start Fuzzer` b
 
 ![payload processing](https://academy.hackthebox.com/storage/modules/110/zap_fuzzer_attack.jpg)
 
-As we can see, we got one hit with code `200` with the `skills` payload, meaning that the `/skills/` directory exists on the server and is accessible. We can click on the request in the results window to view its details:&#x20;
+As we can see, we got one hit with code `200` with the `skills` payload, meaning that the `/skills/` directory exists on the server and is accessible. We can click on the request in the results window to view its details:
 
 <figure><img src="https://academy.hackthebox.com/storage/modules/110/zap_fuzzer_dir.jpg" alt=""><figcaption></figcaption></figure>

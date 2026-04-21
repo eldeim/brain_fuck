@@ -2,7 +2,7 @@
 
 ## Intercepting Requests
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (893).png" alt=""><figcaption></figcaption></figure>
 
 Let us turn request interception back on in the tool of our choosing, set the `IP` value on the page, then click on the `Ping` button. Once our request is intercepted, we should get a similar HTTP request to the following :
 
@@ -34,8 +34,6 @@ Once we click continue/forward, we will see that the response changed from the d
 <figure><img src="https://academy.hackthebox.com/storage/modules/110/ping_inject.jpg" alt=""><figcaption></figcaption></figure>
 
 This demonstrates a basic example of how request interception and manipulation can help with testing web applications for various vulnerabilities, which is considered an essential tool to be able to test different web applications effectively.
-
-
 
 ## Repeating Requests
 

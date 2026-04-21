@@ -64,15 +64,15 @@ aireplay-ng -0 0 <INTERFAZ> -a <BSSID> -c
 
 Este ataque crea un AP con un espacio al final indistinguible del real desde la mayoría de los clientes.
 
-<figure><img src="../../.gitbook/assets/image (326).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1201).png" alt=""><figcaption></figcaption></figure>
 
 Y si escaneamos vemos que en airodump-ng son indistinguibles.
 
-<figure><img src="../../.gitbook/assets/image (327).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1202).png" alt=""><figcaption></figcaption></figure>
 
 Y en la interfaz gráfica podemos ver como aparece duplicada pero no es posible diferenciarlas a simple vista.
 
-<figure><img src="../../.gitbook/assets/image (328).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1203).png" alt=""><figcaption></figcaption></figure>
 
 ## 6 GHz
 

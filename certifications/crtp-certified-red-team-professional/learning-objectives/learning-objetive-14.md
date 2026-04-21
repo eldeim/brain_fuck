@@ -14,7 +14,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-DomainUser -SPN
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
 The `svcadmin`, which is a domain administrator has a SPN set! Let’s Kerberoast it!
 
@@ -69,15 +69,15 @@ We can now use John the Ripper to brute-force the hashes.
 
 > Please note that you need to remove “**:1433**” from the SPN in hashes.txt before running John
 >
-> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local:1433*`&#x20;
+> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local:1433*`
 >
-> should be&#x20;
+> should be
 >
-> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local*`&#x20;
+> `$krb5tgs$23$*svcadmin$dollarcorp.moneycorp.local$MSSQLSvc/dcorp-mgmt.dollarcorp.moneycorp.local*`
 >
 > in hashes.txt
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
 
 Run the below command after making above changes:
 
@@ -96,7 +96,7 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
 `svcadmin:*ThisisBlasphemyThisisMadness!!`
 

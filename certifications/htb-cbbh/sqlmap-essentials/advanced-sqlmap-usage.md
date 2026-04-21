@@ -21,7 +21,7 @@ POST parameter 'csrf-token' appears to hold anti-CSRF token. Do you want sqlmap 
 
 ## Unique Value Bypass
 
-&#x20;For this, the option `--randomize` should be used, pointing to the parameter name containing a value which should be randomized before being sent:
+For this, the option `--randomize` should be used, pointing to the parameter name containing a value which should be randomized before being sent:
 
 ```shell-session
 eldeim@htb[/htb]$ sqlmap -u "http://www.example.com/?id=1&rp=29125" --randomize=rp --batch -v 5 | grep URI
@@ -57,7 +57,7 @@ If we wanted to be sure that Tor is properly being used, to prevent unwanted beh
 
 ## WAF Bypass
 
-&#x20;SQLMap sends a predefined malicious looking payload using a non-existent parameter name (e.g. `?pfov=...`) to test for the existence of a WAF (Web Application Firewall)
+SQLMap sends a predefined malicious looking payload using a non-existent parameter name (e.g. `?pfov=...`) to test for the existence of a WAF (Web Application Firewall)
 
 For example, if one of the most popular WAF solutions (ModSecurity) is implemented, there should be a `406 - Not Acceptable` response after such a request.
 
@@ -73,8 +73,6 @@ For example, one of the most popular tamper scripts [between](https://github.com
 
 Tamper scripts can be chained, one after another, within the `--tamper` option (e.g. `--tamper=between,randomcase`), where they are run based on their predefined priority. A priority is predefined to prevent any unwanted behavior, as some scripts modify payloads by modifying their SQL syntax (e.g. [ifnull2ifisnull](https://github.com/sqlmapproject/sqlmap/blob/master/tamper/ifnull2ifisnull.py)). In contrast, some tamper scripts do not care about the inner content (e.g. [appendnullbyte](https://github.com/sqlmapproject/sqlmap/blob/master/tamper/appendnullbyte.py)).
 
-
-
 ## Miscellaneous Bypasses
 
 The first one is the `Chunked` transfer encoding, turned on using the switch `--chunked`, which splits the POST request's body into so-called "chunks." Blacklisted SQL keywords are split between chunks in a way that the request containing them can pass unnoticed.
@@ -89,7 +87,7 @@ What's the contents of table flag8? (Case #8)
 
 We can see a Sqli with POST method in parameter id and anti-CSRF
 
-<figure><img src="../../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (945).png" alt=""><figcaption></figcaption></figure>
 
 ```
 sqlmap 'http://94.237.57.57:43651/case8.php' -X POST --data="id=1&t0ken=hwg6OrC2k8UGNUnITV3vnZ3EIHih3GA9HiONXgWDY" --csrf-token="t0ken" --batch -p id

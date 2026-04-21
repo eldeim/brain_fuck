@@ -99,9 +99,9 @@ Version: v1.0.3 (9dad6e1) - 04/25/25 - Ronnie Flathers @ropnop
 
 #### **Event logs from the attack**
 
-<figure><img src="../../../../.gitbook/assets/image (504).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1376).png" alt=""><figcaption></figcaption></figure>
 
-On any Windows operating system, an admin can navigate to `Event Viewer` and view the Security events to see the exact actions that were logged.&#x20;
+On any Windows operating system, an admin can navigate to `Event Viewer` and view the Security events to see the exact actions that were logged.
 
 ## Capturing NTDS.dit
 
@@ -111,7 +111,7 @@ On any Windows operating system, an admin can navigate to `Event Viewer` and vie
 
 We can connect to a target DC using the credentials we captured.
 
-&#x20; Attacking Active Directory and NTDS.dit
+Attacking Active Directory and NTDS.dit
 
 ```shell-session
 eldeim@htb[/htb]$ evil-winrm -i 10.129.201.57  -u bwilliamson -p 'P@55w0rd!'
@@ -350,7 +350,7 @@ We can attempt to use this attack when needing to move laterally across a networ
 
 * On an engagement you have gone on several social media sites and found the Inlanefreight employee names: John Marston IT Director, Carol Johnson Financial Controller and Jennifer Stapleton Logistics Manager. You decide to use these names to conduct your password attacks against the target domain controller. Submit John Marston's credentials as the answer. (Format: username:password, Case-Sensitive)
 
-**Info -> People;** John Marston IT Director |  Carol Johnson Financial Controller | Jennifer Stapleton Logistics Manager
+**Info -> People;** John Marston IT Director | Carol Johnson Financial Controller | Jennifer Stapleton Logistics Manager
 
 Fristly, save into a file the three names obtanided -->
 
@@ -368,7 +368,7 @@ Before that, git clone the user anarquie repositori and generame usernames -->
 ./username-anarchy -i names-im.txt > names-in-usernames.txt
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (18) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (254).png" alt=""><figcaption></figcaption></figure>
 
 Once we have it, try to bruteforce via SMB and using rocku to password diccitionarie -->
 
@@ -410,7 +410,7 @@ Once we know the real user, try to bruteforce smb -->
 nxc smb 10.129.202.85 -u jmarston -p /usr/share/wordlists/fasttrack.txt
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (255).png" alt=""><figcaption></figcaption></figure>
 
 * Capture the NTDS.dit file and dump the hashes. Use the techniques taught in this section to crack Jennifer Stapleton's password. Submit her clear-text password as the answer. (Format: Case-Sensitive)
 

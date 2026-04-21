@@ -29,13 +29,13 @@ eldeim@htb[/htb]$ sudo apt install tmux -y
 
 Once we have `tmux`, we can start it by entering `tmux` as our command:
 
-<figure><img src="../../.gitbook/assets/image (452).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1324).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Vim
 
 If we want to create a new file, input the new file name, and `Vim` will open a new window with that file. Once we open a file, we are in read-only `normal mode`, which allows us to navigate and read the file. To edit the file, we hit `i` to enter `insert mode`, shown by the "`-- INSERT --`" at the bottom of `Vim`. Afterward, we can move the text cursor and edit the file:
 
-<figure><img src="../../.gitbook/assets/image (453).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1325).png" alt=""><figcaption></figcaption></figure>
 
 Once we are finished editing a file, we can hit the escape key `esc` to get out of `insert mode`, back into `normal mode`. When we are in `normal mode`, we can use the following keys to perform some useful shortcuts:
 
@@ -392,13 +392,13 @@ nmap 10.129.42.254 -p- --open
 smbclient -N -L \\\\10.129.42.253
 ```
 
-<figure><img src="../../.gitbook/assets/image (454).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1326).png" alt=""><figcaption></figcaption></figure>
 
 ```
 smbclient \\\\10.129.42.254\\users -U bob
 ```
 
-<figure><img src="../../.gitbook/assets/image (455).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1327).png" alt=""><figcaption></figcaption></figure>
 
 ```
 smb: \> cd flag
@@ -406,7 +406,7 @@ smb: \flag\> ls
 smb: \flag\> get flag.txt
 ```
 
-<figure><img src="../../.gitbook/assets/image (456).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1328).png" alt=""><figcaption></figcaption></figure>
 
 ## Privilege Escalation Linux - Basic
 
@@ -477,7 +477,7 @@ If we can write to a directory called by a cron job, we can write a bash script 
 
 This is very common with `configuration` files, `log` files, and user history files (`bash_history` in Linux and `PSReadLine` in Windows). The enumeration scripts we discussed at the beginning usually look for potential passwords in files and provide them to us, as below:
 
-&#x20; Privilege Escalation
+Privilege Escalation
 
 ```shell-session
 ...SNIP...
@@ -489,7 +489,7 @@ This is very common with `configuration` files, `log` files, and user history fi
 
 As we can see, the database password '`password123`' is exposed, which would allow us to log in to the local `mysql` databases and look for interesting information. We may also check for `Password Reuse`, as the system user may have used their password for the databases, which may allow us to use the same password to switch to that user, as follows:
 
-&#x20; Privilege Escalation
+Privilege Escalation
 
 ```shell-session
 eldeim@htb[/htb]$ su -

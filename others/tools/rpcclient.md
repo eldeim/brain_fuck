@@ -16,7 +16,7 @@ rpcclient -U "" <DC_IP> -N -c "enumdomusers"
 rpcclient -U "deimcorp.local\champi%Password2" <AD_IP> -c "enumdomusers"
 ```
 
-### Enumeration Description All Domain Users&#x20;
+### Enumeration Description All Domain Users
 
 {% code overflow="wrap" %}
 ```bash
@@ -24,7 +24,7 @@ for rid in $(rpcclient -U "deimcorp.local\champi%Password2" <DC-IP> -c "enumdomu
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (895).png" alt=""><figcaption></figcaption></figure>
 
 ### Enumeration All Admins Users
 

@@ -8,7 +8,7 @@ The `pam_unix.so` module uses standardized API calls from system libraries to up
 
 The `/etc/passwd` file contains information about every user on the system and is readable by all users and services. Each entry in the file corresponds to a single user and consists of `seven fields`, which store user-related data in a structured format. These fields are separated by colons (`:`). As such, a typical entry may look something like this:
 
-&#x20; Linux Authentication Process
+Linux Authentication Process
 
 ```shell-session
 htb-student:x:1000:1000:,,,:/home/htb-student:/bin/bash
@@ -606,7 +606,7 @@ elapsed time = 0.2310788631439209
 
 Fristly, see the bash history-->
 
-<figure><img src="../../../.gitbook/assets/image (514).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1386).png" alt=""><figcaption></figcaption></figure>
 
 There is nothing... but have a hint about the management of this user, go to download firefox decrypt -->
 
@@ -625,4 +625,4 @@ chmod +x firefox_decrypt_fixed.py
 python3.9 firefox_decrypt_fixed.py
 ```
 
-<figure><img src="../../../.gitbook/assets/image (515).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1387).png" alt=""><figcaption></figcaption></figure>

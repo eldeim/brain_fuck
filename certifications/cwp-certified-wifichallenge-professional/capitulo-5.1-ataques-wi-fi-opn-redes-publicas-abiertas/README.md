@@ -55,7 +55,7 @@ sudo wpa_supplicant -i <INTERFAZ> -c wifi-opn.conf
 
 Este ataque puede dar problemas si el usuario al que se suplanta la MAC sigue activo, ya que al haber conflicto de MAC con el cliente legitimo pueden perderse paquetes a nivel de red y tener problemas. Por eso la mejor opción es utilizar la MAC de un cliente con muy poco tráfico o que hemos visto en el pasado y ya no está activo.
 
-#### Autorización Basada en IP (Suplantación de IP)&#x20;
+#### Autorización Basada en IP (Suplantación de IP)
 
 Si la autorización está vinculada a direcciones IP, los atacantes pueden suplantar la dirección IP de un dispositivo autenticado. A continuación, se describe este proceso de forma sencilla:
 
@@ -116,7 +116,7 @@ sudo airodump-ng <INTERFAZ MON> -w ~/wifi/scan --manufacturer --wps -c <CHANNEL>
 
 Una vez tenemos la captura monitorizando suficiente tiempo podemos abrir el fichero .cap con wireshark filtrando por comunicaciones HTTP.
 
-<figure><img src="../../../.gitbook/assets/image (310).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1185).png" alt=""><figcaption></figcaption></figure>
 
 #### Bypass del portal cautivo con túnel DNS
 
@@ -233,26 +233,26 @@ cd ~/tools/eaphammer/
 ./eaphammer -i wlan0 --essid karma --cloaking full -c 1 --auth open --karma
 ```
 
-<figure><img src="../../../.gitbook/assets/image (311).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1186).png" alt=""><figcaption></figcaption></figure>
 
 En este ejemplo, el cliente objetivo está actualmente conectado a wifi-global pero tiene otras dos redes en su PNL que parecen estar abiertas: open-wifi y WiFi-Restaurant.
 
-<figure><img src="../../../.gitbook/assets/image (312).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1187).png" alt=""><figcaption></figcaption></figure>
 
 Luego desautenticamos al cliente para forzarlo a desconectarse de wifi-global:
 
-<figure><img src="../../../.gitbook/assets/image (313).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1188).png" alt=""><figcaption></figcaption></figure>
 
 Inmediatamente después, el cliente se conecta al falso AP:
 
-<figure><img src="../../../.gitbook/assets/image (314).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1189).png" alt=""><figcaption></figcaption></figure>
 
 En la siguiente imagen, vemos el falso AP emitiendo el WiFi-Restaurant SSID
 
-<figure><img src="../../../.gitbook/assets/image (315).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1190).png" alt=""><figcaption></figcaption></figure>
 
 También podemos ver que eaphammer intenta recrear todos los ESSIDs encontrados en las solicitudes de sondeo del cliente:
 
-<figure><img src="../../../.gitbook/assets/image (316).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1191).png" alt=""><figcaption></figcaption></figure>
 
 > También puedes usar las opciones "--hostile-portal" o "--captive-portal" para mostrar una página de inicio de sesión falsa y atacar activamente al cliente, en lugar de solo monitorear el tráfico.

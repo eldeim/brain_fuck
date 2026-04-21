@@ -1,6 +1,6 @@
 # Footprinting
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (298).png" alt=""><figcaption></figcaption></figure>
 
 ## Domain Information
 
@@ -8,7 +8,7 @@ Another source to find more subdomains is [crt.sh](https://crt.sh/). This source
 
 {% embed url="https://crt.sh/" %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (299).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -1018,7 +1018,7 @@ netname: IPC$
 
 `Network File System` (`NFS`) is a network file system developed by Sun Microsystems and has the same purpose as SMB. Its purpose is to access file systems over a network as if they were local
 
-<table data-header-hidden><thead><tr><th width="86"></th><th></th></tr></thead><tbody><tr><td><strong>Version</strong></td><td><strong>Features</strong></td></tr><tr><td><code>NFSv2</code></td><td>It is older but is supported by many systems and was initially operated entirely over UDP.</td></tr><tr><td><code>NFSv3</code></td><td>It has more features, including variable file size and better error reporting, but is not fully compatible with NFSv2 clients.</td></tr><tr><td><code>NFSv4</code></td><td><p></p><p>It includes Kerberos, works through firewalls and on the Internet, no longer requires portmappers, supports ACLs, applies state-based operations, and provides performance improvements and high security. It is also the first version to have a stateful protocol.</p></td></tr></tbody></table>
+<table data-header-hidden><thead><tr><th width="86"></th><th></th></tr></thead><tbody><tr><td><strong>Version</strong></td><td><strong>Features</strong></td></tr><tr><td><code>NFSv2</code></td><td>It is older but is supported by many systems and was initially operated entirely over UDP.</td></tr><tr><td><code>NFSv3</code></td><td>It has more features, including variable file size and better error reporting, but is not fully compatible with NFSv2 clients.</td></tr><tr><td><code>NFSv4</code></td><td>It includes Kerberos, works through firewalls and on the Internet, no longer requires portmappers, supports ACLs, applies state-based operations, and provides performance improvements and high security. It is also the first version to have a stateful protocol.</td></tr></tbody></table>
 
 ### Dangerous Settings
 

@@ -6,7 +6,7 @@
 
 En el siguiente diagrama se puede ver las partes de una conexión MGT.
 
-<figure><img src="../../../.gitbook/assets/image (22) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (505).png" alt=""><figcaption></figcaption></figure>
 
 * Cliente (Supplicant): Cliente que intenta conectarse a la red. En la ilustración, se representa como un ordenador junto a una figura humana.
 * autenticador (Authenticator): El autenticador es el dispositivo de red intermedio (en el caso de redes Wi-Fi es el punto de acceso) que recibe las solicitudes de autenticación del cliente. Está representado por un dispositivo con flechas rojas que indican el flujo de tráfico.
@@ -45,24 +45,23 @@ Para simplificar, es posible diferenciar dos grandes tipos de métodos EAP:
 
 * EAP con Autenticación mediante Certificado de Cliente (por ejemplo, EAP-TLS, PEAPv0 (EAP-TLS)):
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (506).png" alt=""><figcaption></figcaption></figure>
 
 * EAP con Autenticación por Credenciales (por ejemplo, LEAP, PEAPv0 (MSCHAPv2), EAP-TTLS (MSCHAPv2), etc.). Los procesos de autenticación EAP se pueden desglosar en 2 fases:
   * Fase 1: El servidor se autentica utilizando un certificado (o un PAC en EAP-FAST) y se establece un túnel TLS seguro.
   * Fase 2: El cliente se autentica utilizando un método de autenticación basado en credenciales como MSCHAPv2, CHAP, PAP, GTC, etc.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (507).png" alt=""><figcaption></figcaption></figure>
 
 ## Comparación de Métodos EAP <a href="#comparacion-de-metodos-eap" id="comparacion-de-metodos-eap"></a>
 
-| Característica                                            | EAP-TLS	                                    | EAP-TTLS	                                   | PEAPv0 (EAP-MSCHAPv2)	                      | PEAPv0 (EAP-TLS)	 | PEAPv1 (EAP-GTC)                            |
-| --------------------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ----------------- | ------------------------------------------- |
-| **Certificado de Servidor**                               | Sí                                          | Sí                                          | Sí                                          | Sí                | Sí                                          |
-| **Certificado de Cliente**                                | Sí, obligatorio (también soporta smartcard) | Opcional                                    | No                                          | Sí                | Opcional                                    |
-| **Autenticación del Cliente Soportada**                   | Via Certif./Smartcard                       | PAP, CHAP, MSCHAPv2, GTC, Certif.           | MSCHAPv2                                    | Certif.           | GTC                                         |
-| **Autenticación Mutua**                                   | Sí                                          | Sí                                          | Sí                                          | Sí                | Sí                                          |
-| **Protección de Identidad del Usuario**                   | Sí (anónima)                                | Sí (cifrado TLS)                            | Sí (cifrado TLS)                            | Sí (cifrado TLS)  | Sí (cifrado TLS)                            |
-| **Autenticación del Cliente en texto claro**              | No                                          | No                                          | No                                          | No                | Sí, - Permite contraseñas en texto claro    |
-| **Autenticación de Cliente Vulnerable a Ataques Offline** | No                                          | Herramienta Asleap (para MSCHAPv2)          | Herramienta Asleap                          | No                | Texto claro (dentro del túnel TLS)          |
-| **AtaqueEvil Twin Posible?**                              | No                                          | Sí si no se valida certificado del servidor | Sí si no se valida certificado del servidor | No                | Sí si no se valida certificado del servidor |
-
+| Característica                                            | EAP-TLS                                     | EAP-TTLS                                    | PEAPv0 (EAP-MSCHAPv2)                       | PEAPv0 (EAP-TLS) | PEAPv1 (EAP-GTC)                            |
+| --------------------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ---------------- | ------------------------------------------- |
+| **Certificado de Servidor**                               | Sí                                          | Sí                                          | Sí                                          | Sí               | Sí                                          |
+| **Certificado de Cliente**                                | Sí, obligatorio (también soporta smartcard) | Opcional                                    | No                                          | Sí               | Opcional                                    |
+| **Autenticación del Cliente Soportada**                   | Via Certif./Smartcard                       | PAP, CHAP, MSCHAPv2, GTC, Certif.           | MSCHAPv2                                    | Certif.          | GTC                                         |
+| **Autenticación Mutua**                                   | Sí                                          | Sí                                          | Sí                                          | Sí               | Sí                                          |
+| **Protección de Identidad del Usuario**                   | Sí (anónima)                                | Sí (cifrado TLS)                            | Sí (cifrado TLS)                            | Sí (cifrado TLS) | Sí (cifrado TLS)                            |
+| **Autenticación del Cliente en texto claro**              | No                                          | No                                          | No                                          | No               | Sí, - Permite contraseñas en texto claro    |
+| **Autenticación de Cliente Vulnerable a Ataques Offline** | No                                          | Herramienta Asleap (para MSCHAPv2)          | Herramienta Asleap                          | No               | Texto claro (dentro del túnel TLS)          |
+| **AtaqueEvil Twin Posible?**                              | No                                          | Sí si no se valida certificado del servidor | Sí si no se valida certificado del servidor | No               | Sí si no se valida certificado del servidor |

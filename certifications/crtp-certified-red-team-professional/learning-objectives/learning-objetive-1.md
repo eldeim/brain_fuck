@@ -1,6 +1,6 @@
 # Learning Objetive 1
 
-<figure><img src="../../../.gitbook/assets/image (39) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (211).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -171,7 +171,7 @@ MemberSID               : S-1-5-21-719815819-3726368948-3917688648-500
 
 > We can see the MemberName : svcadmin and Administrator withhis MemberSID
 
-### &#x20;Members of the Enterprise Admins group
+### Members of the Enterprise Admins group
 
 ```
 Get-DomainGroupMember -Identity "Enterprise Admins"
@@ -249,7 +249,7 @@ We can list specific properties. Let's list samaccountname and description for t
 Get-ADUser -Filter * -Properties *| select Samaccountname,Description
 ```
 
-<figure><img src="../../../.gitbook/assets/image (40) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (212).png" alt=""><figcaption></figcaption></figure>
 
 ### All Computers
 
@@ -321,9 +321,9 @@ SID : S-1-5-21-335606122-960912869-3279953914-500
 
 For BloodHound, we will try with both the Legacy version and Community Edition.
 
-&#x20;      BloodHound Legacy (To be done only after getting admin privileges)
+BloodHound Legacy (To be done only after getting admin privileges)
 
-&#x20;      BloodHound uses neo4j graph database, so that needs to be set up first.
+BloodHound uses neo4j graph database, so that needs to be set up first.
 
 > Note: Exit BloodHound once you have stopped using it as it uses good amount of RAM. You may also like to stop the neo4j service if you are not using BloodHound.
 
@@ -331,7 +331,7 @@ For BloodHound, we will try with both the Legacy version and Community Edition.
 
 We need to install the neo4j service. Unzip the archive C:\AD\Tools\neo4j-community-4.1.1-windows.zip
 
-> Install and start the neo4j service as follows, into:&#x20;
+> Install and start the neo4j service as follows, into:
 >
 > ```
 > cd C:\AD\Tools\neo4j-community-4.4.5-windows\neo4j-community-4.4.5\bin
@@ -344,11 +344,11 @@ neo4j.bat install-service
 neo4j.bat start
 ```
 
-<figure><img src="../../../.gitbook/assets/image (30) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
 
 Once the service is started, browse to [http://localhost:7474](http://localhost:7474/)
 
-<figure><img src="../../../.gitbook/assets/image (31) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (204).png" alt=""><figcaption></figcaption></figure>
 
 Enter the username: neo4j and password: neo4j. You need to enter a new password. Let's use BloodHound as the new password.
 
@@ -422,7 +422,6 @@ This instance of BloodHound CE already has the database populated. Feel free to 
 
 File share where studentx has Write permissions
 
-
 We will use PowerHuntShares to search for file shares where studentx has Write permissions.
 
 We will not scan the domain controller for Writable shares for a better OPSEC.
@@ -447,11 +446,11 @@ Import-Module C:\AD\Tools\PowerHuntShares.psm1
 Invoke-HuntSMBShares -NoPing -OutputDirectory C:\AD\Tools\ -HostList C:\AD\Tools\servers.txt
 ```
 
-<figure><img src="../../../.gitbook/assets/image (33) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
 
 > It generate us a .htlm in the same folder
 
-<figure><img src="../../../.gitbook/assets/image (35) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (207).png" alt=""><figcaption></figcaption></figure>
 
 > You need to copy the summary report to your host machine because the report needs interent access, which is not available on the student VM.
 

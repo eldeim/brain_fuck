@@ -10,13 +10,13 @@ A Linux system can be configured in various ways to store Kerberos tickets. We'l
 
 In most cases, Linux machines store Kerberos tickets as [ccache files](https://web.mit.edu/kerberos/krb5-1.12/doc/basic/ccache_def.html) in the `/tmp` directory. By default, the location of the Kerberos ticket is stored in the environment variable `KRB5CCNAME`
 
-Another everyday use of Kerberos in Linux is with [keytab](https://servicenow.iu.edu/kb?sys_kb_id=2c10b87f476456583d373803846d4345\&id=kb_article_view#intro) files. A `keytab` is a file containing pairs of Kerberos principals and encrypted keys (which are derived from the Kerberos password).&#x20;
+Another everyday use of Kerberos in Linux is with [keytab](https://servicenow.iu.edu/kb?sys_kb_id=2c10b87f476456583d373803846d4345\&id=kb_article_view#intro) files. A `keytab` is a file containing pairs of Kerberos principals and encrypted keys (which are derived from the Kerberos password).
 
 ### **Linux auth from MS01**
 
 > To practice and understand how we can abuse Kerberos from a Linux system, we have a computer (`LINUX01`) connected to the Domain Controller. This machine is only reachable through `MS01`. To access this machine over SSH, we can connect to `MS01` via RDP and, from there, connect to the Linux machine using SSH from the Windows command line. Another option is to use a port forward. If you don't know how to do it, you can read the module [Pivoting, Tunneling, and Port Forwarding](https://academy.hackthebox.com/module/details/158).
 
-<figure><img src="../../../../.gitbook/assets/image (519).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1391).png" alt=""><figcaption></figcaption></figure>
 
 As an alternative, we created a port forward to simplify the interaction with `LINUX01`. By connecting to port TCP/2222 on `MS01`, we will gain access to port TCP/22 on `LINUX01`.
 
@@ -769,7 +769,7 @@ david@inlanefreight.htb@linux01:~$ python3 /opt/keytabextract.py /opt/specialfil
 
 Once we have it, pass this hash for crackstation to obtain the clear password and do su-->
 
-<figure><img src="../../../../.gitbook/assets/image (520).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1392).png" alt=""><figcaption></figcaption></figure>
 
 ```
 david@inlanefreight.htb@linux01:~$ su - carlos@inlanefreight.htb
@@ -817,7 +817,7 @@ kinit svc_workstations@INLANEFREIGHT.HTB -k -t /home/carlos@inlanefreight.htb/.s
 smbclient //dc01.inlanefreight.htb/svc_workstations -c 'ls'  -k -no-pass > /home/carlos@inlanefreight.htb/script-test-results.txt
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (521).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1393).png" alt=""><figcaption></figcaption></figure>
 
 Also, we can see the .kt of svc user, so... now, we need extrat the NTML again -->
 
@@ -865,7 +865,7 @@ carlos@inlanefreight.htb@linux01:~/.scripts$ python3 /opt/keytabextract.py /home
 
 Pass it to crackstation and obtain the clear password and make a escalation -->
 
-<figure><img src="../../../../.gitbook/assets/image (14) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (233).png" alt=""><figcaption></figcaption></figure>
 
 `john : Password3`
 
@@ -886,7 +886,7 @@ carlos@inlanefreight.htb@linux01:~/.scripts$
 
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (234).png" alt=""><figcaption></figcaption></figure>
 
 `svc_workstations : Password4`
 
@@ -918,7 +918,7 @@ root@linux01:~#
 
 * Check the /tmp directory and find Julio's Kerberos ticket (ccache file). Import the ticket and read the contents of julio.txt from the domain share folder \DC01\julio.
 
-<figure><img src="../../../../.gitbook/assets/image (16) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (235).png" alt=""><figcaption></figcaption></figure>
 
 ```
 root@linux01:/tmp# klist

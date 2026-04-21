@@ -23,7 +23,7 @@ The best tools for this lab are:
 
 Frist excute the emulator with `./emulator`, then the app and it request us credentials -->
 
-<figure><img src="../../../.gitbook/assets/image (354).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1228).png" alt=""><figcaption></figcaption></figure>
 
 > This application relies on a back-end server to function properly
 
@@ -35,48 +35,48 @@ cd /root/Tools/AndroLabServer
 python2.7 app.py
 ```
 
-<figure><img src="../../../.gitbook/assets/image (355).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1229).png" alt=""><figcaption></figcaption></figure>
 
 Then, into the app go to the "Preferences" settings -->
 
-<figure><img src="../../../.gitbook/assets/image (356).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1230).png" alt=""><figcaption></figcaption></figure>
 
 Enter the IP address of the host machine where the back-end server is running, then click **Submit**
 
 > **Note:** (use the `ifconfig` command to find the IP address). Use the device’s on-screen keyboard to enter your input.
 
-<figure><img src="../../../.gitbook/assets/image (357).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1231).png" alt=""><figcaption></figcaption></figure>
 
 Now, try to log in and if all configurations are good, we can see the user and password in text plain, try (test:test)
 
-<figure><img src="../../../.gitbook/assets/image (358).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1232).png" alt=""><figcaption></figcaption></figure>
 
 ### BurpSuite Configuration
 
 So... now, we can try to intercept all trafict with burp -->
 
-<figure><img src="../../../.gitbook/assets/image (359).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1233).png" alt=""><figcaption></figcaption></figure>
 
 Here, we need remplace the localhost ip (127.0.0.1) to us IP -->
 
-<figure><img src="../../../.gitbook/assets/image (361).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1235).png" alt=""><figcaption></figcaption></figure>
 
 Now, we need to add a proxy on the Android device. Open **Settings** and click on **Network & internet**.
 
-<figure><img src="../../../.gitbook/assets/image (18) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (406).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (407).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (408).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (409).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (410).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (411).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (412).png" alt=""><figcaption></figcaption></figure>
 
 Now, turn on the **Intercept** in Burp and navegate/login -->
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (413).png" alt=""><figcaption></figcaption></figure>

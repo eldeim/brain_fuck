@@ -1,6 +1,6 @@
 # 🌇 CRTP-Certified Red Team Professional
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://www.alteredsecurity.com/adlab" %}
 
@@ -58,7 +58,7 @@
 * Execute intra-forest trust attacks to access resources across forest.
 * Abuse SQL Server database links to achieve code execution across forest by just using the databases.
 
-**VIII. Abusing AD CS**&#x20;
+**VIII. Abusing AD CS**
 
 * Learn about Active Directory Certificate Services and execute some of the most popular attacks.
 * Execute attacks across Domain trusts to escalate privileges to Enterprise Admins.

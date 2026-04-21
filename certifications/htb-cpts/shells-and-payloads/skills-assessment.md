@@ -64,7 +64,7 @@ xfreerdp /v:10.129.204.126 /u:htb-student /p:HTB_@cademy_stdnt! /clipboard
 
 Once do that, we can see the etc hosts for locate other hosts -->
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (271).png" alt=""><figcaption></figcaption></figure>
 
 With it, i run a nmap to 172.16.1.11 to detect ports -->
 
@@ -207,7 +207,7 @@ This deskto that we connect, it havent firefox or other navegator, so... we need
 ssh -L 9999:172.16.1.11:8080 htb-student@10.129.204.126
 </code></pre>
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (272).png" alt=""><figcaption></figcaption></figure>
 
 > Note: _This host has two upload vulnerabilities. If you look at status.inlanefreight.local or browse to the IP on port 8080, you will see the vector. When messing with one of them, the creds ” tomcat | Tomcatadm ” may come in handy._
 
@@ -228,7 +228,7 @@ listening on [any] 443 ...
 
 Now, upload the file and target him -->
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (273).png" alt=""><figcaption></figcaption></figure>
 
 And cd C:\Shares\\
 
@@ -240,13 +240,13 @@ Go away to us linux machine provided and execute nmap
 nmap -A 172.16.1.12
 ```
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (274).png" alt=""><figcaption></figcaption></figure>
 
 * What language is the shell written in that gets uploaded when using the 50064.rb exploit?
 
 > Hint : Have you taken the time to validate the scan results? Did you browse to the webpage being hosted? blog.inlanefreight.local looks like a nice space for team members to chat. If you need the credentials for the blog, “ admin:admin123!@# “ have been given out to all members to edit their posts. At least, that’s what our recon showed.
 
-`Login admin:admin123!@#`&#x20;
+`Login admin:admin123!@#`
 
 php
 
@@ -258,7 +258,6 @@ Do again ssh tunneling to the website of this host -->
 ssh -L 1234:172.16.1.12:80 htb-student@10.129.204.126
 ```
 
-<figure><img src="../../../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (275).png" alt=""><figcaption></figcaption></figure>
 
 But! he is blind, so... connect via RDP to the linux machine provided and execute msfconsole -->
-

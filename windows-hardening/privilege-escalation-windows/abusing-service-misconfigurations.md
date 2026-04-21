@@ -23,9 +23,9 @@ SERVICE_NAME: apphostsvc
 	SERVICE_START_NAME : localSystem
 ```
 
-Lista de Control de Acceso Discrecional (DACL), indica quién tiene permiso para iniciar, detener, pausar, consultar el estado, la configuración o reconfigurar el servicio, entre otros privilegios&#x20;
+Lista de Control de Acceso Discrecional (DACL), indica quién tiene permiso para iniciar, detener, pausar, consultar el estado, la configuración o reconfigurar el servicio, entre otros privilegios
 
-<figure><img src="../../.gitbook/assets/Pasted image 20250123180414 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Pasted image 20250123180414.png" alt=""><figcaption></figcaption></figure>
 
 TODAS las configuraciones de los servicios se guardan en : `HKLM\SYSTEM\CurrentControlSet\Services\`
 

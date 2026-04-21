@@ -104,7 +104,7 @@ msf6 > use exploit/linux/http/rconfig_vendors_auth_file_upload_rce
 
 With this exploit selected, we can list the options, input the proper settings specific to our network environment, and launch the exploit.
 
-&#x20;Use what you have learned in the module thus far to fill out the options associated with the exploit.
+Use what you have learned in the module thus far to fill out the options associated with the exploit.
 
 ### **Execute the Exploit**
 
@@ -220,6 +220,6 @@ PORT     STATE SERVICE  VERSION
 
 ```
 
-<figure><img src="../../../.gitbook/assets/image (491).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1363).png" alt=""><figcaption></figcaption></figure>
 
 Use msfconsole to this exploit

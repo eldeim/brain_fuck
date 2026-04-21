@@ -19,7 +19,7 @@ or
 +----------- Minuto (0 - 59)
 ```
 
-Ejemplo de explotación:&#x20;
+Ejemplo de explotación:
 
 El script backup.sh fue configurado para ejecutarse cada minuto (en la captura). Vemos su contenido:
 
@@ -29,4 +29,4 @@ Podemos modificar el contenido y dar **permiso +x**
 
 <figure><img src="../../.gitbook/assets/Pasted image 20250120175414.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (898).png" alt=""><figcaption></figcaption></figure>

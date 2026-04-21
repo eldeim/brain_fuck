@@ -7,7 +7,7 @@
 
 > Una vez que tienes privilegios de Domain Admin, modificas los Security Descriptors (permisos) de WMI y PowerShell Remoting en el Domain Controller para que tu usuario normal (student453) pueda ejecutar comandos remotos sin necesidad de ser administrador local en el DC.
 
-<mark style="background-color:orange;">Once we have administrative privileges on a machine</mark>, we can modify security descriptors of services to access the services without administrative privileges.&#x20;
+<mark style="background-color:orange;">Once we have administrative privileges on a machine</mark>, we can modify security descriptors of services to access the services without administrative privileges.
 
 > 1. Abre una **cmd como Administrator** (elevada) en tu student VM (dcorp-std453).
 > 2. Desde esa cmd elevada, lanza un proceso **como Domain Admin** (svcadmin) usando el ticket que ya tienes del ejercicio anterior:
@@ -30,7 +30,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Set-RemoteWMI -SamAccountName studentx -ComputerName dcorp-dc -namespace 'root\cimv2' -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
 
 #### Check It
 
@@ -49,7 +49,7 @@ Version         : 10.0.20348
 
 ## Option 2 – Enable PowerShell Remoting for student453
 
-Similar modification can be done to PowerShell remoting configuration. (In rare cases, you may get an I/O error while using the below command, please ignore it).&#x20;
+Similar modification can be done to PowerShell remoting configuration. (In rare cases, you may get an I/O error while using the below command, please ignore it).
 
 > **Please note that this is unstable since some patches in August 2020**:
 
@@ -89,4 +89,3 @@ ComputerName                        BackdoorTrustee
 dcorp-dc.dollarcorp.moneycorp.local studentx
 
 ```
-

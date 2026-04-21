@@ -2,7 +2,7 @@
 
 ## Invisible Shells + Addons
 
-<table><thead><tr><th width="134">Herramienta</th><th width="159">Para qué sirve</th><th width="410">Ejemplos de comandos</th></tr></thead><tbody><tr><td><strong>Invisi-Shell</strong></td><td>PowerShell stealth (AMSI + logging bypass)</td><td><p><code>C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat</code> </p><blockquote><p>or</p></blockquote><p><code>C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat</code></p></td></tr><tr><td><strong>PowerView</strong></td><td>Enumeración ofensiva de Active Directory</td><td><p><code>. C:\AD\Tools\PowerView.ps1</code> </p><blockquote><p>Example Commands:</p><p><code>powershell Get-DomainUser powershell Get-DomainGroup</code> </p><p><code>powershell Find-InterestingDomainAcl</code> </p><p><code>powershell Get-DomainObjectAcl -Identity administrador -ResolveGUIDs</code></p></blockquote></td></tr><tr><td><strong>ADModule</strong></td><td>Módulo oficial de Microsoft para administrar AD</td><td><p><code>Import-Module C:\AD\Tools\ADModulemaster\Microsoft.ActiveDirectory.Management.dll</code> </p><blockquote><p>and</p></blockquote><p><code>Import-Module C:\AD\Tools\ADModule-master\ActiveDirectory\ActiveDirectory.psd1</code> </p><blockquote><p>Example Commands:</p><p><code>powershell Get-ADUser -Filter * powershell Get-ADGroup -Filter *</code></p></blockquote></td></tr></tbody></table>
+<table><thead><tr><th width="134">Herramienta</th><th width="159">Para qué sirve</th><th width="410">Ejemplos de comandos</th></tr></thead><tbody><tr><td><strong>Invisi-Shell</strong></td><td>PowerShell stealth (AMSI + logging bypass)</td><td><p><code>C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat</code></p><blockquote><p>or</p></blockquote><p><code>C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat</code></p></td></tr><tr><td><strong>PowerView</strong></td><td>Enumeración ofensiva de Active Directory</td><td><p><code>. C:\AD\Tools\PowerView.ps1</code></p><blockquote><p>Example Commands:</p><p><code>powershell Get-DomainUser powershell Get-DomainGroup</code></p><p><code>powershell Find-InterestingDomainAcl</code></p><p><code>powershell Get-DomainObjectAcl -Identity administrador -ResolveGUIDs</code></p></blockquote></td></tr><tr><td><strong>ADModule</strong></td><td>Módulo oficial de Microsoft para administrar AD</td><td><p><code>Import-Module C:\AD\Tools\ADModulemaster\Microsoft.ActiveDirectory.Management.dll</code></p><blockquote><p>and</p></blockquote><p><code>Import-Module C:\AD\Tools\ADModule-master\ActiveDirectory\ActiveDirectory.psd1</code></p><blockquote><p>Example Commands:</p><p><code>powershell Get-ADUser -Filter * powershell Get-ADGroup -Filter *</code></p></blockquote></td></tr></tbody></table>
 
 ### Using Invisi-Shell
 
@@ -10,7 +10,7 @@
 > `RunWithPathAsAdmin.bat`\
 > • With non-admin privileges:\
 > `RunWithRegistryNonAdmin.bat`\
-> •  Type exit from the new PowerShell session to complete the clean-up.
+> • Type exit from the new PowerShell session to complete the clean-up.
 
 ```
 cd \AD\Tools
@@ -86,13 +86,13 @@ krbtgt         Key Distribution Center Service Account
 </code></pre></td></tr><tr><td><code>Get-ADComputer -Filter *</code></td><td>List All Computers</td><td><pre><code>DistinguishedName : CN=DCORP-ADMINSRV,OU=Applocked,DC=dollarcorp,DC=moneycorp,DC=local
 DNSHostName       : dcorp-adminsrv.dollarcorp.moneycorp.local
 Enabled           : True
-<a data-footnote-ref href="#user-content-fn-1">Name              : DCORP-ADMINSRV</a>
+Name              : DCORP-ADMINSRV
 ObjectClass       : computer
 ObjectGUID        : 2e036483-7f45-4416-8a62-893618556370
 SamAccountName    : DCORP-ADMINSRV$
 SID               : S-1-5-21-719815819-3726368948-3917688648-1105
 [snip]
-</code></pre></td></tr><tr><td><p><code>Get-ADGroupMember</code> </p><p><code>-Identity 'Domain Admins'</code></p></td><td>List Domain Admins: members, SID, descriptions, DN, etc..</td><td><pre><code>samaccountname : Domain Admins
+</code></pre></td></tr><tr><td><p><code>Get-ADGroupMember</code></p><p><code>-Identity 'Domain Admins'</code></p></td><td>List Domain Admins: members, SID, descriptions, DN, etc..</td><td><pre><code>samaccountname : Domain Admins
 member : {CN=svc admin,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local, CN=Administrator,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local}
 </code></pre></td></tr><tr><td><code>Get-ADGroupMember -Identity 'Enterprise Admins' -Server moneycorp.local</code></td><td>List Doamin Admins into the forest</td><td><pre><code>distinguishedName : CN=Administrator,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local
 name              : Administrator
@@ -100,7 +100,6 @@ objectClass       : user
 objectGUID        : d954e824-f549-47c2-9809-646c218cef36
 SamAccountName    : Administrator
 SID               : S-1-5-21-719815819-3726368948-3917688648-500
-
 distinguishedName : CN=svc admin,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local
 name              : svc admin
 objectClass       : user
@@ -217,7 +216,7 @@ Finally, to check for modify rights/permissions for the studentx, we can use Fin
 Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "student113"}
 ```
 
-### Member of the RDPUsers group&#xD;
+### Member of the RDPUsers group
 
 > Note that the output in your lab for the below command will be different and will depend on your lab instance:
 
@@ -253,7 +252,7 @@ neo4j.bat install-service
 neo4j.bat start
 ```
 
-<figure><img src="../../.gitbook/assets/image (543).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1415).png" alt=""><figcaption></figcaption></figure>
 
 Once the service is started, browse to [http://localhost:7474](http://localhost:7474/)
 
@@ -271,7 +270,7 @@ C:\AD\Tools\BloodHound-win32-x64\BloodHound-win32-x64\BloodHound.exe
 
 > Set the same user and password that before
 
-<figure><img src="../../.gitbook/assets/image (544).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1416).png" alt=""><figcaption></figcaption></figure>
 
 ### BloodHound Ingestor
 
@@ -284,9 +283,9 @@ Once we have do all of this, execute the ingestor and upload it -->
 
 <mark style="background-color:yellow;">IMPORT!:</mark> Upload all zip file, not stract it
 
-<figure><img src="../../.gitbook/assets/image (545).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1417).png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (542).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1414).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -339,8 +338,8 @@ instancetype             : 4
 objectclass              : {top, container, groupPolicyContainer}
 objectcategory           : CN=Group-Policy-Container,CN=Schema,CN=Configuration,DC=moneycorp,DC=local
 [snip]
-</code></pre></td></tr><tr><td><p><code>(Get-DomainOU</code> </p><p><code>-Identity DevOps).gplink</code></p></td><td>Get GUID of specific police</td><td><pre><code>[LDAP://cn={0BF8D01C-1F62-4BDC-958C-57140B67D147},cn=policies,cn=system,DC=dollarcorp,DC=moneycorp,DC=local;0]
-</code></pre></td></tr><tr><td><p><code>Get-DomainGPO</code> </p><p><code>-Identity '{GUID}'</code></p></td><td>List all datails of specific GPO</td><td><pre><code>flags                    : 0
+</code></pre></td></tr><tr><td><p><code>(Get-DomainOU</code></p><p><code>-Identity DevOps).gplink</code></p></td><td>Get GUID of specific police</td><td><pre><code>[LDAP://cn={0BF8D01C-1F62-4BDC-958C-57140B67D147},cn=policies,cn=system,DC=dollarcorp,DC=moneycorp,DC=local;0]
+</code></pre></td></tr><tr><td><p><code>Get-DomainGPO</code></p><p><code>-Identity '{GUID}'</code></p></td><td>List all datails of specific GPO</td><td><pre><code>flags                    : 0
 displayname              : DevOps Policy
 gpcmachineextensionnames : [{35378EAC-683F-11D2-A89A-00C04FBBCFA2}{D02B1F72-3407-48AE-BA88-E8213C6761F1}][{827D319E-6EAC-11D2-A4EA-00C04F79F83A}{803E14A0-B4FB-11D0-A0D0-00A0C90F574B}]
 whenchanged              : 12/19/2024 12:00:15 PM
@@ -369,13 +368,13 @@ To enumerate the ACLs for the Applocked and DevOps GPO, let's use the BloodHound
 
 Search for Applocker in the UI -> Click on the node -> Click on Inboud Object Control
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
 
 It turns out that the RDPUsers group has GenericAll over the policy.
 
 Similary, search for DevOps and look at its 'Inbound Object Control':
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (90).png" alt=""><figcaption></figcaption></figure>
 
 A user named 'devopsadmin' has 'WriteDACL' on DevOps Policy.
 
@@ -389,7 +388,7 @@ A user named 'devopsadmin' has 'WriteDACL' on DevOps Policy.
 Get-ForestDomain -Verbose
 ```
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -401,13 +400,13 @@ Get-ForestDomain -Verbose
 Get-DomainTrust
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
 
 ### List external trusts & Extact Infromation
 
 {% embed url="https://eldeim.gitbook.io/brain_fuck/checklists/certifications/crtp-certified-red-team-professional/learning-objectives/learning-objetive-4#list-only-the-external-trusts-in-the-moneycorp.local-forest" %}
 
-<table><thead><tr><th width="274">Commands</th><th width="136">Function</th><th>Example</th></tr></thead><tbody><tr><td><p><code>Get-ForestDomain</code> </p><p><code>| %{Get-DomainTrust</code> </p><p><code>-Domain $_</code><em><code>.Name} | ?{$_.</code></em><code>TrustAttributes -eq</code> </p><p><code>"FILTER_SIDS"}</code></p></td><td>List only the external trusts in the "moneycorp.local" forest</td><td><pre><code><strong>SourceName      : dollarcorp.moneycorp.local
+<table><thead><tr><th width="274">Commands</th><th width="136">Function</th><th>Example</th></tr></thead><tbody><tr><td><p><code>Get-ForestDomain</code></p><p><code>| %{Get-DomainTrust</code></p><p><code>-Domain $_</code><em><code>.Name} | ?{$_.</code></em><code>TrustAttributes -eq</code></p><p><code>"FILTER_SIDS"}</code></p></td><td>List only the external trusts in the "moneycorp.local" forest</td><td><pre><code><strong>SourceName      : dollarcorp.moneycorp.local
 </strong>TargetName      : eurocorp.local
 TrustType       : WINDOWS_ACTIVE_DIRECTORY
 TrustAttributes : FILTER_SIDS
@@ -470,7 +469,7 @@ UplevelOnly : False
 UsesAESKeys : False
 UsesRC4Encryption : False
 [snip]
-</code></pre></td></tr><tr><td><p><code>Get-ADForest | %{Get-ADTrust</code></p><p> <code>-Filter *}</code></p></td><td>Enumerate all the trusts in the moneycorp.local forest</td><td><pre><code>Direction : BiDirectional
+</code></pre></td></tr><tr><td><p><code>Get-ADForest | %{Get-ADTrust</code></p><p><code>-Filter *}</code></p></td><td>Enumerate all the trusts in the moneycorp.local forest</td><td><pre><code>Direction : BiDirectional
 DisallowTransivity : False
 DistinguishedName :
 CN=moneycorp.local,CN=System,DC=dollarcorp,DC=moneycorp,DC=local
@@ -527,7 +526,7 @@ UsesRC4Encryption : False
 
 > **Invisi-Shell & PowerHuntShares exec**
 >
-> > Remenber use `C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat`&#x20;
+> > Remenber use `C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat`
 >
 > > After this, we need save into a file txt in C:\AD\Tools, all Domain Computer, extract its using:
 > >
@@ -546,10 +545,8 @@ Import-Module C:\AD\Tools\PowerHuntShares.psm1
 Invoke-HuntSMBShares -NoPing -OutputDirectory C:\AD\Tools\ -HostList C:\AD\Tools\servers.txt
 ```
 
-<figure><img src="../../.gitbook/assets/image (541).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1413).png" alt=""><figcaption></figcaption></figure>
 
 > You need to copy the summary report to your host machine because the report needs interent access, which is not available on the student VM.
 >
 > Connect via RDP to download it, for example
-
-[^1]: 

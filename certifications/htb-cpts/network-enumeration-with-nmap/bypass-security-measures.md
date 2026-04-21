@@ -255,8 +255,6 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 ```
 
-
-
 ## Firewall and IDS/IPS Evasion - Medium Lab
 
 > Note: To successfully solve the exercise, we must use the UDP protocol on the VPN.
@@ -320,4 +318,4 @@ PORT      STATE SERVICE    REASON         VERSION
 netcat -nv -p 53 10.129.2.47 50000
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (297).png" alt=""><figcaption></figcaption></figure>

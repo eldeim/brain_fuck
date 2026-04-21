@@ -15,5 +15,4 @@
 
 > Search by; https, api, password, user
 
-<figure><img src="../../.gitbook/assets/image (439).png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../.gitbook/assets/image (1311).png" alt=""><figcaption></figcaption></figure>
