@@ -306,6 +306,8 @@
     * [Attacking FTP](certifications/htb-cpts/attacking-common-services/attacking-ftp.md)
     * [Attacking SMB](certifications/htb-cpts/attacking-common-services/attacking-smb.md)
 * [🌇 CRTP-Certified Red Team Professional](certifications/crtp-certified-red-team-professional/README.md)
+  * [📋 Índice](certifications/crtp-certified-red-team-professional/indice.md)
+  * [🎓 Exam Master Notes](certifications/crtp-certified-red-team-professional/crtp-exam-master.md)
   * [📄 Class Notes](certifications/crtp-certified-red-team-professional/class-notes/README.md)
     * [Class One - Notes](certifications/crtp-certified-red-team-professional/class-notes/class-one-notes.md)
     * [Class Two - Notes](certifications/crtp-certified-red-team-professional/class-notes/class-two-notes.md)
