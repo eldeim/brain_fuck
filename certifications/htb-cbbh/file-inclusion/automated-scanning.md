@@ -158,7 +158,7 @@ Finally, we can utilize a number of LFI tools to automate much of the process we
 
 * Fuzz the web application for exposed parameters, then try to exploit it with one of the LFI wordlists to read /flag.txt
 
-<figure><img src="../../../.gitbook/assets/image (1132).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (256).png" alt=""><figcaption></figcaption></figure>
 
 First, in the website, fuzzing to LFI -->
 
@@ -224,6 +224,6 @@ ________________________________________________
 ../../../../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 3309, Words: 526, Lines: 82, Duration: 49ms]
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1133).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (257).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1134).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (258).png" alt=""><figcaption></figcaption></figure>

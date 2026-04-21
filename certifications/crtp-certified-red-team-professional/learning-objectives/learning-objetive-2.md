@@ -1,6 +1,6 @@
 # Learning Objetive 2
 
-<figure><img src="../../../.gitbook/assets/image (1401).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (529).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -82,7 +82,7 @@ IdentityReferenceClass  : group
 
 > Note that it is easier to analyze ACLs using BloodHound as it shows interesting ACLs for the user and the groups it is a member of. Let's look at the 'Outbound Object Control' for the studentx in the BloodHound CE UI:
 
-<figure><img src="../../../.gitbook/assets/image (1396).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (524).png" alt=""><figcaption></figcaption></figure>
 
 Multiple permissions stand out in the above diagram. Due to the membership of the RDPUsers group, the studentx user has following interesting permissions
 
@@ -90,4 +90,4 @@ Multiple permissions stand out in the above diagram. Due to the membership of th
 * Enrollment permissions on multiple certificate templates.
 * Full Control/Generic All on the Applocked Group Policy.
 
-<figure><img src="../../../.gitbook/assets/image (1397).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (525).png" alt=""><figcaption></figcaption></figure>

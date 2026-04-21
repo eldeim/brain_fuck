@@ -16,13 +16,13 @@ In the most basic cases, we can try incrementing the values of the object refere
 
 Let's start with a basic example that showcases a typical IDOR vulnerability. The exercise below is an `Employee Manager` web application that hosts employee records:
 
-<figure><img src="../../../.gitbook/assets/image (1040).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (160).png" alt=""><figcaption></figcaption></figure>
 
 Our web application assumes that we are logged in as an employee with user id `uid=1` to simplify things. This would require us to log in with credentials in a real web application, but the rest of the attack would be the same. Once we click on `Documents`, we are redirected to
 
 `/documents.php`:
 
-<figure><img src="../../../.gitbook/assets/image (1041).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (161).png" alt=""><figcaption></figcaption></figure>
 
 When we get to the `Documents` page, we see several documents that belong to our user. These can be files uploaded by our user or files set for us by another department (e.g., HR Department). Checking the file links, we see that they have individual names:
 
@@ -33,7 +33,7 @@ When we get to the `Documents` page, we see several documents that belong to our
 
 When we try changing the `uid` to `?uid=2`, we don't notice any difference in the page output, as we are still getting the same list of documents, and may assume that it still returns our own documents:
 
-<figure><img src="../../../.gitbook/assets/image (1041).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (161).png" alt=""><figcaption></figcaption></figure>
 
 However, `we must be attentive to the page details during any web pentest` and always keep an eye on the source code and page size. If we look at the linked files, or if we click on them to view them, we will notice that these are indeed different files, which appear to be the documents belonging to the employee with `uid=2`:
 
@@ -95,11 +95,11 @@ When we run the script, it will download all documents from all employees with `
 
 If I intercept the main web peticion /documents.php, we can see a uid -->
 
-<figure><img src="../../../.gitbook/assets/image (1042).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
 
 Go to intruder and ffuf by this uid -->
 
-<figure><img src="../../../.gitbook/assets/image (1043).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
 
 After the attack, i can see the biggest peticion length and see the doc flag, gg
 
@@ -109,11 +109,11 @@ In the previous section, we saw an example of an IDOR that uses employee uids in
 
 Let's go back to the `Employee Manager` web application to test the `Contracts` functionality:
 
-<figure><img src="../../../.gitbook/assets/image (1044).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (165).png" alt=""><figcaption></figcaption></figure>
 
 If we click on the `Employment_contract.pdf` file, it starts downloading the file. The intercepted request in Burp looks as follows
 
-<figure><img src="../../../.gitbook/assets/image (1045).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (166).png" alt=""><figcaption></figcaption></figure>
 
 We see that it is sending a `POST` request to `download.php` with the following data:
 
@@ -210,15 +210,15 @@ PoCs - Questions
 
 To intercept the contract pdf peticon, we can see a uid encode with, url -> base64 -->
 
-<figure><img src="../../../.gitbook/assets/image (1046).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (167).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1047).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
 
 Go to intruder and configurate the numbers of 0-20 == 21, run list and then base64 endoce + url and send the peticion -->
 
-<figure><img src="../../../.gitbook/assets/image (1048).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1049).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (170).png" alt=""><figcaption></figcaption></figure>
 
 ## IDOR in Insecure APIs
 
@@ -228,15 +228,15 @@ While `IDOR Information Disclosure Vulnerabilities` allow us to read various typ
 
 Going back to our `Employee Manager` web application, we can start testing the `Edit Profile` page for IDOR vulnerabilities:
 
-<figure><img src="../../../.gitbook/assets/image (1040).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (160).png" alt=""><figcaption></figcaption></figure>
 
 When we click on the `Edit Profile` button, we are taken to a page to edit information of our user profile, namely `Full Name`, `Email`, and `About Me`, which is a common feature in many web applications:
 
-<figure><img src="../../../.gitbook/assets/image (1050).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (172).png" alt=""><figcaption></figcaption></figure>
 
 We can change any of the details in our profile and click `Update profile`, and we'll see that they get updated and persist through refreshes, which means they get updated in a database somewhere. Let's intercept the `Update` request in Burp and look at it:
 
-<figure><img src="../../../.gitbook/assets/image (1051).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (173).png" alt=""><figcaption></figcaption></figure>
 
 We see that the page is sending a `PUT` request to the `/profile/api.php/profile/1` API endpoint. `PUT` requests are usually used in APIs to update item details, while `POST` is used to create new items, `DELETE` to delete items, and `GET` to retrieve item details. So, a `PUT` request for the `Update profile` function is expected. The interesting bit is the JSON parameters it is sending:
 
@@ -268,13 +268,13 @@ There are a few things we could try in this case:
 
 Let's start by changing our `uid` to another user's `uid` (e.g. `"uid": 2`). However, any number we set other than our own `uid` gets us a response of `uid mismatch`:
 
-<figure><img src="../../../.gitbook/assets/image (1052).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
 
 The web application appears to be comparing the request's `uid` to the API endpoint (`/1`). This means that a form of access control on the back-end prevents us from arbitrarily changing some JSON parameters, which might be necessary to prevent the web application from crashing or returning errors.
 
 Perhaps we can try changing another user's details. We'll change the API endpoint to `/profile/api.php/profile/2`, and change `"uid": 2` to avoid the previous `uid mismatch`:
 
-<figure><img src="../../../.gitbook/assets/image (1053).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (175).png" alt=""><figcaption></figcaption></figure>
 
 Next, let's see if we can create a new user with a `POST` request to the API endpoint. We can change the request method to `POST`, change the `uid` to a new `uid`, and send the request to the API endpoint of the new `uid`:
 
@@ -282,7 +282,7 @@ We get an error message saying `Creating new employees is for admins only`. The 
 
 Finally, let's try to change our `role` to `admin`/`administrator` to gain higher privileges. Unfortunately, without knowing a valid `role` name, we get `Invalid role` in the HTTP response, and our `role` does not update:
 
-<figure><img src="../../../.gitbook/assets/image (1054).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
 
 So, `all of our attempts appear to have failed`. We cannot create or delete users as we cannot change our `role`. We cannot change our own `uid`, as there are preventive measures on the back-end that we cannot control, nor can we change another user's details for the same reason. `So, is the web application secure against IDOR attacks?`.
 
@@ -296,13 +296,13 @@ So far, we have only been testing the `IDOR Insecure Function Calls`. However, w
 
 I interrcept the enter perticion for us info profile and we can see your uid, we can modify this parameter:
 
-<figure><img src="../../../.gitbook/assets/image (1055).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (177).png" alt=""><figcaption></figcaption></figure>
 
 ## Chaining IDOR Vulnerabilities
 
 Usually, a `GET` request to the API endpoint should return the details of the requested user, so we may try calling it to see if we can retrieve our user's details. We also notice that after the page loads, it fetches the user details with a `GET` request to the same API endpoint:
 
-<figure><img src="../../../.gitbook/assets/image (1056).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (178).png" alt=""><figcaption></figcaption></figure>
 
 As mentioned in the previous section, the only form of authorization in our HTTP requests is the `role=employee` cookie, as the HTTP request does not contain any other form of user-specific authorization, like a JWT token, for example.
 
@@ -310,7 +310,7 @@ As mentioned in the previous section, the only form of authorization in our HTTP
 
 Let's send a `GET` request with another `uid`:
 
-<figure><img src="../../../.gitbook/assets/image (1057).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (179).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, this returned the details of another user, with their own `uuid` and `role`, confirming an `IDOR Information Disclosure vulnerability`:
 
@@ -333,11 +333,11 @@ This provides us with new details, most notably the `uuid`, which we could not c
 
 Now, with the user's `uuid` at hand, we can change this user's details by sending a `PUT` request to `/profile/api.php/profile/2` with the above details along with any modifications we made, as follows:
 
-<figure><img src="../../../.gitbook/assets/image (1058).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
 
 We don't get any access control error messages this time, and when we try to `GET` the user details again, we see that we did indeed update their details:
 
-<figure><img src="../../../.gitbook/assets/image (1059).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (181).png" alt=""><figcaption></figcaption></figure>
 
 ### Chaining Two IDOR Vulnerabilities
 
@@ -358,7 +358,7 @@ Once we enumerate all users, we will find an admin user with the following detai
 
 We may modify the admin's details and then perform one of the above attacks to take over their account. However, as we now know the admin role name (`web_admin`), we can set it to our user so we can create new users or delete current users. To do so, we will intercept the request when we click on the `Update profile` button and change our role to `web_admin`:
 
-<figure><img src="../../../.gitbook/assets/image (1060).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (182).png" alt=""><figcaption></figcaption></figure>
 
 This time, we do not get the `Invalid role` error message, nor do we get any access control error messages, meaning that there are no back-end access control measures to what roles we can set for our user. If we `GET` our user details, we see that our `role` has indeed been set to `web_admin`:
 
@@ -377,11 +377,11 @@ Code: json
 
 Now, we can refresh the page to update our cookie, or manually set it as `Cookie: role=web_admin`, and then intercept the `Update` request to create a new user and see if we'd be allowed to do so:
 
-<figure><img src="../../../.gitbook/assets/image (1061).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (183).png" alt=""><figcaption></figcaption></figure>
 
 We did not get an error message this time. If we send a `GET` request for the new user, we see that it has been successfully created:
 
-<figure><img src="../../../.gitbook/assets/image (1062).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 
 PoCs - Questions
 
@@ -389,16 +389,16 @@ PoCs - Questions
 
 After intercept the profile peticion, i modify the uid profile to 10 -->
 
-<figure><img src="../../../.gitbook/assets/image (1069).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (191).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1063).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (185).png" alt=""><figcaption></figcaption></figure>
 
 I can see the information of admin in the front too, with it, i can modify the email and intercept the peticion -->
 
-<figure><img src="../../../.gitbook/assets/image (1064).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (186).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1065).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (187).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1068).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (190).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1070).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (193).png" alt=""><figcaption></figcaption></figure>

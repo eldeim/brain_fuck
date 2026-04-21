@@ -695,7 +695,7 @@ Ticket             : 0x00000012 - aes256_hmac ; kvno = 2 ; [...]
 
 Before export all tickets to this currenly folder, get the .kirbi of john and do a ptt -->
 
-<figure><img src="../../../../.gitbook/assets/image (1388).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (516).png" alt=""><figcaption></figcaption></figure>
 
 ```powershell
 mimikatz.exe

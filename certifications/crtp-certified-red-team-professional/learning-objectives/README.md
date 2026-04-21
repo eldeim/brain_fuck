@@ -1,8 +1,8 @@
 # 🎯 Learning Objectives
 
-<figure><img src="../../../.gitbook/assets/image (1398).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (526).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1399).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (527).png" alt=""><figcaption></figcaption></figure>
 
 ## **Instructions**
 

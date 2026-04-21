@@ -9,13 +9,13 @@ This is an account that we created to look at the application's functionality.
 
 Now, browse Julie Rogers' profile and click _Save_. You should see the below.
 
-<figure><img src="../../../.gitbook/assets/image (1153).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (277).png" alt=""><figcaption></figcaption></figure>
 
 Activate burp suite's proxy (_Intercept On_) and configure your browser to go through it. Now click _Save_ again.
 
 You should see the below.
 
-<figure><img src="../../../.gitbook/assets/image (1154).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (278).png" alt=""><figcaption></figcaption></figure>
 
 Let us simulate an attacker on the local network that sniffed the abovementioned request and wants to deface Julie Rogers' profile through a CSRF attack. Of course, they could have just performed a session hijacking attack using the sniffed session cookie.
 
@@ -52,4 +52,4 @@ Serving HTTP on 0.0.0.0 port 1337 (http://0.0.0.0:1337/) ...
 
 While still logged in as Julie Rogers, open a new tab and visit the page you are serving from your attacking machine `http://<VPN/TUN Adapter IP>:1337/notmalicious_get.html`. You will notice that Julie Rogers' profile details will change to the ones we specified in the HTML page you are serving.
 
-<figure><img src="../../../.gitbook/assets/image (1155).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (279).png" alt=""><figcaption></figcaption></figure>

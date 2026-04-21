@@ -606,7 +606,7 @@ elapsed time = 0.2310788631439209
 
 Fristly, see the bash history-->
 
-<figure><img src="../../../.gitbook/assets/image (1386).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (514).png" alt=""><figcaption></figcaption></figure>
 
 There is nothing... but have a hint about the management of this user, go to download firefox decrypt -->
 
@@ -625,4 +625,4 @@ chmod +x firefox_decrypt_fixed.py
 python3.9 firefox_decrypt_fixed.py
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1387).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (515).png" alt=""><figcaption></figcaption></figure>
