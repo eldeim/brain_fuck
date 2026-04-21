@@ -220,6 +220,6 @@ PORT     STATE SERVICE  VERSION
 
 ```
 
-<figure><img src="../../../.gitbook/assets/image (491).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1363).png" alt=""><figcaption></figcaption></figure>
 
 Use msfconsole to this exploit

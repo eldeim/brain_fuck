@@ -22,7 +22,7 @@ C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
 Get-DomainUser -TrustedToAuth
 ```
 
-<figure><img src="../../../.gitbook/assets/image (569).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1441).png" alt=""><figcaption></figcaption></figure>
 
 > websvc → Tiene Constrained Delegation hacia CIFS/dcorp-mssql.dollarcorp.moneycorp.local
 

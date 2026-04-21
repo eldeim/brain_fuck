@@ -4,17 +4,17 @@
 
 Many platforms provide lists of default credentials for a wide variety of web applications. Such an example is the web database maintained by [CIRT.net](https://www.cirt.net/passwords). For instance, if we identified a Cisco device during a penetration test, we can search the database for default credentials for Cisco devices:
 
-<figure><img src="../../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1030).png" alt=""><figcaption></figcaption></figure>
 
 Further resources include [SecLists Default Credentials](https://github.com/danielmiessler/SecLists/tree/master/Passwords/Default-Credentials) as well as the [SCADA](https://github.com/scadastrangelove/SCADAPASS/tree/master) GitHub repository which contains a list of default passwords for a variety of different vendors.
 
 A targeted internet search is a different way of obtaining default credentials for a web application. Let us assume we stumble across a [BookStack](https://github.com/BookStackApp/BookStack) web application during an engagement:
 
-<figure><img src="../../../.gitbook/assets/image (151).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1031).png" alt=""><figcaption></figcaption></figure>
 
 We can try to search for default credentials by searching something like `bookstack default credentials`:
 
-<figure><img src="../../../.gitbook/assets/image (152).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1032).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the results contain the installation instructions for BookStack, which state that the default admin credentials are `admin@admin.com:password`.
 
@@ -37,7 +37,7 @@ While these questions seem tied to the individual user, they can often be obtain
 
 For instance, assuming a web application uses a security question like `What city were you born in?`:
 
-<figure><img src="../../../.gitbook/assets/image (153).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1033).png" alt=""><figcaption></figcaption></figure>
 
 We can attempt to brute-force the answer to this question by using a proper wordlist. There are multiple lists containing large cities in the world. For instance, [this](https://github.com/datasets/world-cities/blob/master/data/world-cities.csv) CSV file contains a list of more than 25,000 cities with more than 15,000 inhabitants from all over the world. This is a great starting point for brute-forcing the city a user was born in.
 
@@ -55,11 +55,11 @@ As we can see, this results in a total of 26,468 cities.
 
 To set up our brute-force attack, we first need to specify the user we want to target:
 
-<figure><img src="../../../.gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1034).png" alt=""><figcaption></figcaption></figure>
 
 As an example, we will target the user `admin`. After specifying the username, we must answer the user's security question. The corresponding request looks like this:
 
-<figure><img src="../../../.gitbook/assets/image (155).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1035).png" alt=""><figcaption></figcaption></figure>
 
 We can set up the corresponding `ffuf` command from this request to brute-force the answer. Keep in mind that we need to specify our session cookie to associate our request with the username `admin` we specified in the previous step:
 
@@ -74,7 +74,7 @@ eldeim@htb[/htb]$ ffuf -w ./city_wordlist.txt -u http://pwreset.htb/security_que
 
 After obtaining the security response, we can reset the admin user's password and entirely take over the account:
 
-<figure><img src="../../../.gitbook/assets/image (156).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1036).png" alt=""><figcaption></figcaption></figure>
 
 For instance, if we knew that our target user was from Germany, we could create a wordlist containing only German cities, reducing the number to about a thousand cities:
 
@@ -90,7 +90,7 @@ eldeim@htb[/htb]$ wc -l german_cities.txt
 
 For instance, consider the following password reset flow, which is similar to the one discussed above. First, we specify the username:
 
-<figure><img src="../../../.gitbook/assets/image (157).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1037).png" alt=""><figcaption></figcaption></figure>
 
 We will use our demo account `htb-stdnt`, which results in the following request:
 
@@ -106,7 +106,7 @@ username=htb-stdnt
 
 Afterward, we need to supply the response to the security question:
 
-<figure><img src="../../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1038).png" alt=""><figcaption></figcaption></figure>
 
 Supplying the security response `London` results in the following request:
 
@@ -122,7 +122,7 @@ security_response=London&username=htb-stdnt
 
 As we can see, the username is contained in the form as a hidden parameter and sent along with the security response. Finally, we can reset the user's password:
 
-<figure><img src="../../../.gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1039).png" alt=""><figcaption></figcaption></figure>
 
 The final request looks like this:
 

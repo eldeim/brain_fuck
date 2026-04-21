@@ -15,9 +15,9 @@ The valid credentials for the **HeyDoc** app are as follows:
 
 ***
 
-<figure><img src="../../../../.gitbook/assets/image (435).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1307).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (436).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1308).png" alt=""><figcaption></figcaption></figure>
 
 Frist, run the andorid emultor and up the APP. After it, we can see a Reset Password Option, so... configurate the proxi -->
 
@@ -30,10 +30,10 @@ adb shell settings put global http_proxy <host-ip>:8080
 
 Now intercept the reset password peticion -->
 
-<figure><img src="../../../../.gitbook/assets/image (437).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1309).png" alt=""><figcaption></figcaption></figure>
 
 This app know we are alice because we have a token, if we can enumate other token, maybe we can change the password of other user
 
 But I can see one stranger thing into the token: "token\_number", if i change 101 by 102, i can change the password of others users -->
 
-<figure><img src="../../../../.gitbook/assets/image (438).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1310).png" alt=""><figcaption></figcaption></figure>

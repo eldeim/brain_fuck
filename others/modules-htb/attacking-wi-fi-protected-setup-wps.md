@@ -61,7 +61,7 @@ XX:XX:XX:XX:XX:XX    1  -63  2.0  No   Quantenn  FakeNetwork
 XX:XX:XX:XX:XX:XX    1  -61  2.0  No   AtherosC  FakeNetwork
 ```
 
-<figure><img src="../../.gitbook/assets/image (397).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1271).png" alt=""><figcaption></figcaption></figure>
 
 We can display much more verbose output with wash using the following command.
 
@@ -101,7 +101,7 @@ wash -i wlan0
 
 ## **Online PIN Brute-Forcing Attacks**
 
-<figure><img src="../../.gitbook/assets/image (351).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1225).png" alt=""><figcaption></figcaption></figure>
 
 ### Brute-forcing WPS PIN
 

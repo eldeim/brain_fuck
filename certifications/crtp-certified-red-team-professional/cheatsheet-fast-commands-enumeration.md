@@ -252,7 +252,7 @@ neo4j.bat install-service
 neo4j.bat start
 ```
 
-<figure><img src="../../.gitbook/assets/image (543).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1415).png" alt=""><figcaption></figcaption></figure>
 
 Once the service is started, browse to [http://localhost:7474](http://localhost:7474/)
 
@@ -270,7 +270,7 @@ C:\AD\Tools\BloodHound-win32-x64\BloodHound-win32-x64\BloodHound.exe
 
 > Set the same user and password that before
 
-<figure><img src="../../.gitbook/assets/image (544).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1416).png" alt=""><figcaption></figcaption></figure>
 
 ### BloodHound Ingestor
 
@@ -283,9 +283,9 @@ Once we have do all of this, execute the ingestor and upload it -->
 
 <mark style="background-color:yellow;">IMPORT!:</mark> Upload all zip file, not stract it
 
-<figure><img src="../../.gitbook/assets/image (545).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1417).png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (542).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1414).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -368,13 +368,13 @@ To enumerate the ACLs for the Applocked and DevOps GPO, let's use the BloodHound
 
 Search for Applocker in the UI -> Click on the node -> Click on Inboud Object Control
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
 
 It turns out that the RDPUsers group has GenericAll over the policy.
 
 Similary, search for DevOps and look at its 'Inbound Object Control':
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (90).png" alt=""><figcaption></figcaption></figure>
 
 A user named 'devopsadmin' has 'WriteDACL' on DevOps Policy.
 
@@ -388,7 +388,7 @@ A user named 'devopsadmin' has 'WriteDACL' on DevOps Policy.
 Get-ForestDomain -Verbose
 ```
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -400,7 +400,7 @@ Get-ForestDomain -Verbose
 Get-DomainTrust
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
 
 ### List external trusts & Extact Infromation
 
@@ -545,7 +545,7 @@ Import-Module C:\AD\Tools\PowerHuntShares.psm1
 Invoke-HuntSMBShares -NoPing -OutputDirectory C:\AD\Tools\ -HostList C:\AD\Tools\servers.txt
 ```
 
-<figure><img src="../../.gitbook/assets/image (541).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1413).png" alt=""><figcaption></figcaption></figure>
 
 > You need to copy the summary report to your host machine because the report needs interent access, which is not available on the student VM.
 >

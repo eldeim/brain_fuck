@@ -6,17 +6,17 @@
 
 Before jumping into the attack, let us look at our target web application. Starting our target and accessing the provided URL, we are greeted with a simple login page:
 
-<figure><img src="../../../../.gitbook/assets/image (22) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (346).png" alt=""><figcaption></figcaption></figure>
 
 We can use the provided credentials to log in to the web application, which displays an almost empty page:
 
-<figure><img src="../../../../.gitbook/assets/image (23) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (347).png" alt=""><figcaption></figcaption></figure>
 
 Due to the message `You are not an admin!`, we can infer that there are users with different privilege levels. Let us investigate if we can find a way to escalate our privileges to an administrator to see if this will display more information to us.
 
 As we can see in the response to a successful login request, the web application uses a JWT as our session cookie to identify our user:
 
-<figure><img src="../../../../.gitbook/assets/image (24) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (348).png" alt=""><figcaption></figcaption></figure>
 
 The response contains the following JWT:
 
@@ -34,7 +34,7 @@ To analyze the contents of a JWT, we can use web services such as [jwt.io](https
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (25) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (349).png" alt=""><figcaption></figcaption></figure>
 
 The JWT contains our username, an `isAdmin` claim, and an expiry timestamp. Since our goal is to escalate our privileges to an administrator, the `isAdmin` claim seems to be an obvious way to achieve that goal. We can simply manipulate that parameter in the payload, and `jwt.io` will automatically re-encode the JWT on the left side. However, as discussed previously, this will invalidate the JWT's signature.
 
@@ -44,7 +44,7 @@ Due to recent update of `jwt.io`, certain actions have been limited, such as edi
 
 To achieve this, let us change the `isAdmin` parameter's value to `true` in `jwt.io`:
 
-<figure><img src="../../../../.gitbook/assets/image (26) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (350).png" alt=""><figcaption></figcaption></figure>
 
 We can then pass the manipulated JWT in the `session` cookie in the request to `/home`:
 
@@ -56,7 +56,7 @@ Cookie: session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaHRiLXN0ZG50Iiw
 
 Since the web application does not verify the JWT's signature, it will grant us admin access:
 
-<figure><img src="../../../../.gitbook/assets/image (27) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (351).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -76,7 +76,7 @@ Code: json
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (28) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (352).png" alt=""><figcaption></figcaption></figure>
 
 Just like before, we can then pass the manipulated JWT in the `session` cookie in the request to `/home`:
 
@@ -90,7 +90,7 @@ Since the web application accepts the JWT with the none algorithm, it will grant
 
 Since the web application accepts the JWT with the `none` algorithm, it will grant us admin access:
 
-<figure><img src="../../../../.gitbook/assets/image (29) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (353).png" alt=""><figcaption></figcaption></figure>
 
 > Note: Even though the JWT does not contain a signature, the final period (`.`) still needs to be present.
 
@@ -100,11 +100,11 @@ Since the web application accepts the JWT with the `none` algorithm, it will gra
 
 * Escalate your privileges to obtain the flag
 
-<figure><img src="../../../../.gitbook/assets/image (30) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (354).png" alt=""><figcaption></figcaption></figure>
 
 First, login into the web and see we arent admin user, and read us JWT token -->
 
-<figure><img src="../../../../.gitbook/assets/image (31) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (355).png" alt=""><figcaption></figcaption></figure>
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaHRiLXN0ZG50IiwiaXNBZG1pbiI6ZmFsc2UsImV4cCI6MTc1OTE2ODMwMn0.XIYDwO686JUF7AuOL5j2izk8WggqlSxYifIRkCpJ4Tw
@@ -112,17 +112,17 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaHRiLXN0ZG50IiwiaXNBZG1pbiI6ZmF
 
 Now, read it into [https://jwt.lannysport.net/](https://jwt.lannysport.net/)
 
-<figure><img src="../../../../.gitbook/assets/image (32) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (356).png" alt=""><figcaption></figcaption></figure>
 
 Change isAdmin same True, copy this JWT and paste into the new in the website and reload
 
-<figure><img src="../../../../.gitbook/assets/image (33) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (357).png" alt=""><figcaption></figcaption></figure>
 
 We can see a errror, so... with this changes, create a new into cybercheft with null sing -->
 
-<figure><img src="../../../../.gitbook/assets/image (34) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (358).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (35) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (359).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -138,11 +138,11 @@ JWT supports three symmetric algorithms based on potentially guessable secrets: 
 
 Just like before, we can obtain a valid JWT by logging in to the application:
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (303).png" alt=""><figcaption></figcaption></figure>
 
 We can then check the signature algorithm by inspecting the `alg`-claim on `jwt.io`:
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (304).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the token uses the symmetric algorithm `HS256`; thus, we can potentially brute-force the signing secret.
 
@@ -187,11 +187,11 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaHRiLXN0ZG50IiwiaXNBZG1pbiI6ZmF
 
 Now that we have successfully brute-forced the JWT's signing secret, we can forge valid JWTs. After manipulating the JWT's body, we can paste the signing secret `rayruben1` into jwt.io. The site will then compute a valid signature for our manipulated JWT:
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (305).png" alt=""><figcaption></figcaption></figure>
 
 We can now use the forged JWT to obtain administrator access to the web application:
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (306).png" alt=""><figcaption></figcaption></figure>
 
 ### Labs - Questions
 
@@ -199,9 +199,9 @@ We can now use the forged JWT to obtain administrator access to the web applicat
 
 Singin into the web with the credenitals and get the JWT
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (307).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (308).png" alt=""><figcaption></figcaption></figure>
 
 With it we can se that is HS256 and it is vulnerable to burte force, save it token and brute force it -->
 
@@ -215,13 +215,13 @@ Run hashcat to decode it -->
 hashcat -m 16500 jwt.txt /usr/share/wordlists/rockyou.txt
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (309).png" alt=""><figcaption></figcaption></figure>
 
 With it password, paste the JWT into [https://jwt.lannysport.net/](https://jwt.lannysport.net/) and set the secret, with it modify the JWT and paste again into the website -->
 
-<figure><img src="../../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (310).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (311).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -235,7 +235,7 @@ This attack only works if the web application uses the algorithm specified in th
 
 Like before, we can log in to our sample web application to obtain a JWT. If we analyze the token, we can see that it was signed using an asymmetric algorithm (`RS256`):
 
-<figure><img src="../../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (312).png" alt=""><figcaption></figcaption></figure>
 
 To execute an algorithm confusion attack, we need access to the public key used by the web application for signature verification. While this public key is often provided by the web application, there are cases where we cannot obtain it directly. However, since the key is not meant to be kept private, it can be computed from the JWTs themselves.
 
@@ -281,11 +281,11 @@ The tool may compute multiple public key candidates. To reduce the number of can
 
 If we analyze the JWT created by the tool, we can see that it indeed uses a symmetric signature algorithm (`HS256`):
 
-<figure><img src="../../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (313).png" alt=""><figcaption></figcaption></figure>
 
 Furthermore, if we send this token to the web application, it is accepted. Thus proving that the web application is vulnerable to algorithm confusion:
 
-<figure><img src="../../../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (314).png" alt=""><figcaption></figcaption></figure>
 
 ### Forging a Token
 
@@ -307,11 +307,11 @@ VQIDAQAB
 
 Now, we can use `CyberChef` to forge our JWT by selecting the `JWT Sign` operation. We must set the `Signing algorithm` to `HS256` and paste the public key into the `Private/Secret key` field. Additionally, we need to add a newline (`\n`) at the end of the public key:
 
-<figure><img src="../../../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (315).png" alt=""><figcaption></figcaption></figure>
 
 Finally, we need to provide the forged JWT to the web application to escalate our privileges:
 
-<figure><img src="../../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (316).png" alt=""><figcaption></figcaption></figure>
 
 ### Labs - Questions
 
@@ -319,7 +319,7 @@ Finally, we need to provide the forged JWT to the web application to escalate ou
 
 Sing in into the web and obtaint the JWT -->
 
-<figure><img src="../../../../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (317).png" alt=""><figcaption></figcaption></figure>
 
 It is a RS256, so... install rsa\_sign2n into env python -->
 
@@ -379,7 +379,7 @@ VQIDAQAB
 
 Now, we can use `CyberChef` to forge our JWT by selecting the `JWT Sign` operation. We must set the `Signing algorithm` to `HS256` and paste the public key into the `Private/Secret key` field. Additionally, we need to add a newline (`\n`) at the end of the public key:
 
-<figure><img src="../../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (318).png" alt=""><figcaption></figcaption></figure>
 
 ```
 eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaHRiLXN0ZG50IiwiaXNBZG1pbiI6dHJ1ZSwiZXhwIjoxNzU5MjY3OTY0LCJpYXQiOjE3NTkxODI4OTF9.w6nyDgS-L5YRA2xiFmVF4MnMB7yMBMj-eYcMtYp27JPIy_5VD0_jEqDEwqD372noOn1w07jzS6Q_mVCsdpJeFA
@@ -387,7 +387,7 @@ eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaHRiLXN0ZG50IiwiaXNBZG1pbiI6dHJ
 
 Rempalce it into the website -->
 
-<figure><img src="../../../../.gitbook/assets/image (16) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (319).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -416,7 +416,7 @@ As we can see, `jwk` contains information about the public key used for key veri
 
 Just like before, let us obtain and analyze a JWT by logging into the web application:
 
-<figure><img src="../../../../.gitbook/assets/image (17) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (320).png" alt=""><figcaption></figcaption></figure>
 
 We can see that this time, the JWT's header contains a `jwk` claim with the details about the public key. Let us attempt to execute our exploit plan, which we discussed before.
 
@@ -472,11 +472,11 @@ eyJhbGciOiJSUzI1NiIsImp3ayI6eyJhbGciOiJSUzI1NiIsImUiOiJBUUFCIiwia3R5IjoiUlNBIiwi
 
 Analyzing our forged token, we can see that the payload was successfully manipulated, and the `jwk` claim now contains our public key's details:
 
-<figure><img src="../../../../.gitbook/assets/image (18) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (321).png" alt=""><figcaption></figcaption></figure>
 
 Finally, we can use our forged token to obtain administrative access:
 
-<figure><img src="../../../../.gitbook/assets/image (19) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (322).png" alt=""><figcaption></figcaption></figure>
 
 ### Exploiting jku
 
@@ -512,7 +512,7 @@ eldeim@htb[/htb]$ openssl genpkey -algorithm RSA -out exploit_private.pem -pkeyo
 eldeim@htb[/htb]$ openssl rsa -pubout -in exploit_private.pem -out exploit_public.pem
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (20) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (323).png" alt=""><figcaption></figcaption></figure>
 
 With these keys, we need to perform the following steps:
 
@@ -556,4 +556,4 @@ eyJhbGciOiJSUzI1NiIsImp3ayI6eyJhbGciOiJSUzI1NiIsImUiOiJBUUFCIiwia3R5IjoiUlNBIiwi
 
 Now, remplace it -->
 
-<figure><img src="../../../../.gitbook/assets/image (21) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (324).png" alt=""><figcaption></figcaption></figure>

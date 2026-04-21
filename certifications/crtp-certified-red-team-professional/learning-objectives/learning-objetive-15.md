@@ -18,7 +18,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-DomainComputer -Unconstrained | select -ExpandProperty name
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
 
 Since the prerequisite for elevation using Unconstrained delegation is having admin access to the machine, we need to compromise a user which has local admin access on appsrv.
 
@@ -77,7 +77,7 @@ C:\Users\appadmin> netsh interface portproxy add v4tov4 listenport=8080 listenad
 >
 > > Remember upload too the Rubeus to us webserver
 > >
-> > <img src="../../../.gitbook/assets/image (5) (1).png" alt="" data-size="original">
+> > <img src="../../../.gitbook/assets/image (42).png" alt="" data-size="original">
 
 Execute Rubeus
 
@@ -143,7 +143,7 @@ After execute some of these options, on the Rubeus listener (dcorp-appsrv), we c
 [snip]
 ```
 
-<figure><img src="../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">Copy the base64 encoded ticket and use it with Rubeus on student VM.</mark>
 

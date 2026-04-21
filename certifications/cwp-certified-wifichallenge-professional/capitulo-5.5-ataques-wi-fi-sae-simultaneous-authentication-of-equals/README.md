@@ -14,7 +14,7 @@ Para comprobar el soporte AP de PSK o SAE, se siguen estos pasos:
 
     Se ejecuta airodump-ng y se guarda la captura.
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (545).png" alt=""><figcaption></figcaption></figure>
 
 2. **Inspección del RSN IE en Wireshark**
 
@@ -22,7 +22,7 @@ Para comprobar el soporte AP de PSK o SAE, se siguen estos pasos:
 * Se localiza un Beacon Frame y, dentro de él, la sección: IEEE 802.11 Wireless Management ▶ Tagged parameters ▶ RSN IE ▶ Auth Key Management (AKM) list.
 * Se comprueba si aparece solo SAE, solo PSK o ambos (Transitional).
 
-<figure><img src="../../../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (546).png" alt=""><figcaption></figcaption></figure>
 
 **Comprobación de MFP**
 
@@ -31,7 +31,7 @@ Para comprobar el soporte AP de PSK o SAE, se siguen estos pasos:
   * MFPC: **0** = no soportado; **1** = soportado.
   * MFPR: **0** = no obligatorio; **1** = obligatorio.
 
-<figure><img src="../../../.gitbook/assets/image (15) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (547).png" alt=""><figcaption></figcaption></figure>
 
 Por defecto, todas las redes SAE requieren MFP.
 
@@ -59,9 +59,9 @@ El estado de protección de tramas se verifica así:
      * **0** = no soportado.
      * **1** = soportado.
 
-<figure><img src="../../../.gitbook/assets/image (16) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (548).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (17) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (549).png" alt=""><figcaption></figcaption></figure>
 
 ### Detección de tipo de conexión de clientes en redes de transición (PSK ↔ SAE)
 
@@ -80,11 +80,11 @@ Para verificar si el cliente emplea PSK o SAE en la red de transición, se reali
 
     * **PSK:** (AID = `0x01C0`): `00-0F-AC-02`
 
-<figure><img src="../../../.gitbook/assets/image (18) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (550).png" alt=""><figcaption></figcaption></figure>
 
 * **SAE:** (AID = `0x02C0`): `00-0F-AC-08`
 
-<figure><img src="../../../.gitbook/assets/image (19) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (551).png" alt=""><figcaption></figcaption></figure>
 
 ## Ataques de Degradación a WPA2
 
@@ -98,7 +98,7 @@ sudo airodump-ng wlan0
 
 **2.Verificar si el AP y el cliente utilizan MFP**: Podemos utilizar wifi\_db o Wireshark para verificar si el cliente y la red soportan y están utilizando MFP, ya que si estuviese habilitado no sería posible realizar un ataque de desautenticación
 
-<figure><img src="../../../.gitbook/assets/image (20) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (552).png" alt=""><figcaption></figcaption></figure>
 
 Toda la información sobre MFP está en el capitulo 1 802.11w (MFP)
 
@@ -163,7 +163,7 @@ Realiza intentos de fuerza bruta utilizando wacker:
 
 La frecuencia la podemos obtener de la tabla de canales de, por ejemplo en la siguiente imagen podemos ver las frecuencias de los canales de 2.4 GHz.
 
-<figure><img src="../../../.gitbook/assets/image (21) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (553).png" alt=""><figcaption></figcaption></figure>
 
 También se puede obtener desde la terminal con iwlist:
 

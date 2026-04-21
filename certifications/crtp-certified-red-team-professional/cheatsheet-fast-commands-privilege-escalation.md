@@ -26,7 +26,7 @@ net localgroup administrators
 Invoke-AllChecks
 ```
 
-<figure><img src="../../.gitbook/assets/image (537).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1409).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -52,7 +52,7 @@ You can use WinPEAS using the following command. Note that we use an obfuscated 
 C:\AD\Tools\Loader.exe -Path C:\AD\Tools\winPEASx64.exe -args notcolor log
 ```
 
-<figure><img src="../../.gitbook/assets/image (538).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1410).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -128,7 +128,7 @@ Enter-PSSession -ComputerName dcorp-adminsrv.dollarcorp.moneycorp.local
 $env:username
 ```
 
-<figure><img src="../../.gitbook/assets/image (539).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1411).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -187,7 +187,7 @@ C:\AD\Tools\netcat-win32-1.12\nc64.exe -lvp 443
 
 > Note: I dont need disable anything. If you have issues, reboot the machine
 
-<figure><img src="../../.gitbook/assets/image (540).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1412).png" alt=""><figcaption></figcaption></figure>
 
 We can now run commands on the reverse shell:
 

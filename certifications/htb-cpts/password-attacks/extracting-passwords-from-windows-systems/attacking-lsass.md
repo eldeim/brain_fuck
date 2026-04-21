@@ -15,7 +15,7 @@ With access to an interactive graphical session on the target, we can use task m
 3. Find and right click the `Local Security Authority Process`
 4. Select `Create dump file`
 
-<figure><img src="../../../../.gitbook/assets/image (493).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1365).png" alt=""><figcaption></figcaption></figure>
 
 A file called `lsass.DMP` is created and saved in `%temp%`. This is the file we will transfer to our attack host. We can use the file transfer method discussed in the previous section of this module to transfer the dump file to our attack host.
 
@@ -249,9 +249,9 @@ xfreerdp /v:10.129.202.149 /u:htb-student /p:HTB_@cademy_stdnt!
 
 Once we are into the desktop go to the task manager and sear by "Local Security Authority Process" and duplicate the lsass.DMP
 
-<figure><img src="../../../../.gitbook/assets/image (495).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1367).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (494).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1366).png" alt=""><figcaption></figcaption></figure>
 
 Now, weak up in my linex a SMB server an upload from cmd in windows the lsass file -->
 
@@ -617,7 +617,7 @@ luid 41459
 
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (496).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1368).png" alt=""><figcaption></figcaption></figure>
 
 Copy the hash and save it to proceed of crack -->
 

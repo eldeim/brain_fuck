@@ -21,9 +21,9 @@
 
 * Exported vs. Non-Exported Components
 
-<figure><img src="../../../.gitbook/assets/image (449).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1321).png" alt=""><figcaption></figcaption></figure>
 
 * Normal System Permissions
   * Dangerous System Permissions
 
-<figure><img src="../../../.gitbook/assets/image (450).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1322).png" alt=""><figcaption></figcaption></figure>

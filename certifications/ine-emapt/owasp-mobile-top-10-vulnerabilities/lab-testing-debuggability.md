@@ -18,7 +18,7 @@ The following Android application can be useful:
 
 After run the andorid emulator, we can see an app "Allsafe", excute it
 
-<figure><img src="../../../.gitbook/assets/image (370).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1244).png" alt=""><figcaption></figcaption></figure>
 
 Now in another terminal, use adb to get the apk file -->
 
@@ -37,15 +37,15 @@ jadx-gui base.apk
 
 Here, navigate to the "Resources" folder and look for the "AndroidManifest.xml" file.
 
-<figure><img src="../../../.gitbook/assets/image (371).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1245).png" alt=""><figcaption></figcaption></figure>
 
 ### Search debuggable
 
 Inside the "AndroidManifest.xml" file. search for the "`android:debuggable`" attribute
 
-<figure><img src="../../../.gitbook/assets/image (372).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1246).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (373).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1247).png" alt=""><figcaption></figcaption></figure>
 
 We can see that the attribute is present, having "true" as its value; hence, we can conclude that the app is debuggable.
 
@@ -55,7 +55,7 @@ You can also check if an application is debuggable by connecting `jdb` to its ru
 
 Let's start a new process by running the "Allsafe" app.
 
-<figure><img src="../../../.gitbook/assets/image (374).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1248).png" alt=""><figcaption></figcaption></figure>
 
 Now, using adb and jdwp, we can identify the PID of the active application that we want to debug -->
 
@@ -63,7 +63,7 @@ Now, using adb and jdwp, we can identify the PID of the active application that 
 adb jdwp
 ```
 
-<figure><img src="../../../.gitbook/assets/image (375).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1249).png" alt=""><figcaption></figcaption></figure>
 
 The last launched PID corresponds to our application.
 
@@ -73,7 +73,7 @@ Now we will create a communication channel by using adb between the application 
 adb forward tcp:55555 jdwp:<PID>
 ```
 
-<figure><img src="../../../.gitbook/assets/image (376).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1250).png" alt=""><figcaption></figcaption></figure>
 
 Now, using jdb, attach the debugger to the local communication channel port and start a debug session.
 
@@ -81,11 +81,11 @@ Now, using jdb, attach the debugger to the local communication channel port and 
 jdb -connect com.sun.jdi.SocketAttach:hostname=localhost,port=55555
 ```
 
-<figure><img src="../../../.gitbook/assets/image (377).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1251).png" alt=""><figcaption></figcaption></figure>
 
 Let's try the command given below.<br>
 
-<figure><img src="../../../.gitbook/assets/image (378).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1252).png" alt=""><figcaption></figcaption></figure>
 
 We successfully attached jdb to the running process. Hence, debugging is activated.
 
