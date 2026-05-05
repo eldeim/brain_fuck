@@ -14,7 +14,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-DomainUser -SPN
 ```
 
-<figure><img src="../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (38) (1).png" alt=""><figcaption></figcaption></figure>
 
 The `svcadmin`, which is a domain administrator has a SPN set! Let’s Kerberoast it!
 
@@ -77,7 +77,7 @@ We can now use John the Ripper to brute-force the hashes.
 >
 > in hashes.txt
 
-<figure><img src="../../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (39) (1).png" alt=""><figcaption></figcaption></figure>
 
 Run the below command after making above changes:
 
@@ -96,7 +96,7 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed
 ```
 
-<figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (40) (1).png" alt=""><figcaption></figcaption></figure>
 
 `svcadmin:*ThisisBlasphemyThisisMadness!!`
 

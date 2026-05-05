@@ -12,7 +12,7 @@ Let’s check if Applocker is configured on dcorp-adminsrv by querying registry 
 reg query HKLM\Software\Policies\Microsoft\Windows\SRPV2
 ```
 
-<figure><img src="../../../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (52) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">Looks like Applocker is configured.</mark>
 
@@ -24,13 +24,13 @@ First search the scripts and examine its at found something -->
 reg query HKLM\Software\Policies\Microsoft\Windows\SRPV2\Script\
 ```
 
-<figure><img src="../../../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (53) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 reg query HKLM\Software\Policies\Microsoft\Windows\SRPV2\Script\06dce67b-934c-454f-a263-2515c8796a5d
 ```
 
-<figure><img src="../../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (54) (1).png" alt=""><figcaption></figcaption></figure>
 
 **A default rule is enabled that allows everyone to run scripts from the `C:\Program Files` folder!**
 
@@ -76,7 +76,7 @@ So, we must modify `Invoke-TheKat.ps1` to include the function call in the scrip
 
 > How create it into --> [https://eldeim.gitbook.io/brain\_fuck/checklists/\~/revisions/VYj9kqVgOpXEZj5m3Bz6/certifications/crtp-certified-red-team-professional/learning-objectives/learning-objtetive-7](https://eldeim.gitbook.io/brain_fuck/checklists/~/revisions/VYj9kqVgOpXEZj5m3Bz6/certifications/crtp-certified-red-team-professional/learning-objectives/learning-objtetive-7)
 
-<figure><img src="../../../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (55) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Copy of `Invoke-TheKat.ps1` and rename it to `Invoke-TheKatEx-keys-stdX.ps1` , `Invoke-TheKatEx-vault-stdX.ps1`(where X is your student ID).
 
@@ -114,7 +114,7 @@ Now, run the script. Again, it may take a couple of minutes for the script execu
 .\Invoke-TheKatEx-vault-std453.ps1
 ```
 
-<figure><img src="../../../.gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (56) (1).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! We got credentials for the `srvadmin` user in clear-text!
 

