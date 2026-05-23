@@ -1,0 +1,17 @@
+# 🔬 Hacking Android Labs
+
+### IPC (Inter-Process Communication) <a href="#el_1710671879067_369" id="el_1710671879067_369"></a>
+
+> Android Attack Surface
+
+<table><thead><tr><th>NAME</th><th>INFO</th><th data-type="checkbox">TODO</th></tr></thead><tbody><tr><td><a href="https://www.mobilehackinglab.com/course/lab-iot-connect">IoT Connect</a></td><td><strong>Exported broadcast receivers</strong></td><td>false</td></tr><tr><td><a href="https://www.mobilehackinglab.com/course/lab-strings">Strings</a></td><td><strong>Exported Activities</strong></td><td>false</td></tr><tr><td><a href="https://www.mobilehackinglab.com/course/lab-cyclic-scanner">Cyclic Scanner</a></td><td><strong>Exported Services</strong></td><td>false</td></tr><tr><td><a href="https://www.mobilehackinglab.com/course/lab-secure-notes">Secure Notes</a></td><td><strong>Exported Content Providers</strong></td><td>false</td></tr><tr><td><a href="https://www.mobilehackinglab.com/course/lab-guess-me">Guess Me</a></td><td><strong>Deep link hijacking</strong></td><td>false</td></tr></tbody></table>
+
+### Code Issues <a href="#el_1710672597753_624" id="el_1710672597753_624"></a>
+
+> Below vulnerabilities are a result of code issues and [Insufficient Input/Output Validation](https://owasp.org/www-project-mobile-top-10/2023-risks/m4-insufficient-input-output-validation.html) from OWASP.
+
+<table><thead><tr><th>NAME</th><th>INFO</th><th data-type="checkbox">TODO</th></tr></thead><tbody><tr><td><a href="https://www.mobilehackinglab.com/course/lab-food-store">Food Store</a></td><td><strong>SQL injection</strong></td><td>false</td></tr><tr><td><a href="https://www.mobilehackinglab.com/course/lab-postboard">Post Board</a></td><td><strong>Cross-site scripting (XSS) / WebView</strong></td><td>false</td></tr><tr><td><a href="https://www.mobilehackinglab.com/course/lab-tokenbleed">TokenBleed</a></td><td>Web View / JavaScript bridge</td><td>false</td></tr><tr><td><a href="https://www.mobilehackinglab.com/course/lab-document-viewer-rce">Document Viewer</a></td><td><strong>Path Traversal / Remote Code Execution</strong></td><td>false</td></tr><tr><td><a href="https://www.mobilehackinglab.com/course/lab-notekeeper">Notekeeper</a></td><td><strong>Buffer Overflow / Insufficient Binary Protections</strong></td><td>false</td></tr></tbody></table>
+
+### Platform issues <a href="#el_1710673534641_763" id="el_1710673534641_763"></a>
+
+<table><thead><tr><th>NAME</th><th>INFO</th><th data-type="checkbox">TODO</th></tr></thead><tbody><tr><td><a href="https://www.mobilehackinglab.com/course/lab-config-editor-rce">Config Editor</a></td><td><strong>Insecure third party libraries</strong></td><td>false</td></tr></tbody></table>

@@ -362,3 +362,7 @@
         * [Devices needed](certifications/mobile-hacking-lab/capt-android-penetration-tester/android-penetration-tester/host-software-setup/devices-needed.md)
       * [Frida Usage](certifications/mobile-hacking-lab/capt-android-penetration-tester/android-penetration-tester/frida-usage.md)
     * [Android Reverse Engineering](certifications/mobile-hacking-lab/capt-android-penetration-tester/android-reverse-engineering.md)
+    * [Discovering the Android Attack Surface](certifications/mobile-hacking-lab/capt-android-penetration-tester/discovering-the-android-attack-surface/README.md)
+      * [IPC (Inter-Process Communication)](certifications/mobile-hacking-lab/capt-android-penetration-tester/discovering-the-android-attack-surface/ipc-inter-process-communication.md)
+    * [🔬 Hacking Android Labs](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/README.md)
+      * [Strings](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/strings.md)
