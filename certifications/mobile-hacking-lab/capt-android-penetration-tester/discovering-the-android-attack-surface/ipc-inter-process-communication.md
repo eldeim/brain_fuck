@@ -44,3 +44,29 @@ adb shell am start –a [action] –c [category] com.example.package/.className
 ```
 
 * Verify you successfully bypassed the 'pin screen' and can directly download the sensitive information from the 'invoice screen'
+
+***
+
+## Exported Services <a href="#el_1715342932965_354" id="el_1715342932965_354"></a>
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+### Exploitation <a href="#el_1715342932968_363" id="el_1715342932968_363"></a>
+
+* Extract the source code from the AndroGoat APK
+* Open “AndroidManifest.xml”
+* $DIR/resources/AndroidManifest.xml
+* Find the exported service that has an “intent-filter” or attribute “android:exported” set to “true”
+* Open the AndroGoat app
+* Open a user shell with ADB
+* Start the service using “am"
+
+```
+adb shell am startservice com.example.package/.className
+```
+
+* Open the “Downloads” folder via the Files system app
+* Open the downloaded file
+* Extract the sensitive information

