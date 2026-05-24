@@ -366,4 +366,4 @@
       * [IPC (Inter-Process Communication)](certifications/mobile-hacking-lab/capt-android-penetration-tester/discovering-the-android-attack-surface/ipc-inter-process-communication.md)
     * [🔬 Hacking Android Labs](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/README.md)
       * [Strings](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/strings.md)
-      * [Page 1](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/page-1.md)
+      * [Cyclic Scanner](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/cyclic-scanner.md)
