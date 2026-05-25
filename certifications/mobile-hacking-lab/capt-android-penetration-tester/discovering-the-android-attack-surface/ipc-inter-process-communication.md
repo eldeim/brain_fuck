@@ -70,3 +70,25 @@ adb shell am startservice com.example.package/.className
 * Open the “Downloads” folder via the Files system app
 * Open the downloaded file
 * Extract the sensitive information
+
+***
+
+Export Broadcast receivers
+
+
+<figure><img src="../../../../.gitbook/assets/image (1488).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/image (1487).png" alt=""><figcaption></figcaption></figure>
+
+### Exploitation <a href="#el_1715343305479_363" id="el_1715343305479_363"></a>
+
+* Extract the source code from the AndroGoat APK
+* Open “AndroidManifest.xml”
+* $DIR/resources/AndroidManifest.xml
+* Find the exported activity that has an “intent-filter” or attribute “android:exported” set to “true”
+* Open the AndroGoat app
+* Open a user shell with ADB
+* Broadcast to the receiver using “am”
+* am broadcast -n "…"
+* Quickly check your device’s screen
+* Extract the sensitive information from the Toast message

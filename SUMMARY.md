@@ -367,3 +367,4 @@
     * [🔬 Hacking Android Labs](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/README.md)
       * [Strings](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/strings.md)
       * [Cyclic Scanner](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/cyclic-scanner.md)
+      * [IoT Connect](certifications/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/iot-connect.md)
