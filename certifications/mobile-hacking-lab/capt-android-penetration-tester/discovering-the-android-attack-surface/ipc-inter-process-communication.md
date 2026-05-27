@@ -49,9 +49,9 @@ adb shell am start –a [action] –c [category] com.example.package/.className
 
 ## Exported Services <a href="#el_1715342932965_354" id="el_1715342932965_354"></a>
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Exploitation <a href="#el_1715342932968_363" id="el_1715342932968_363"></a>
 

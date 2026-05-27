@@ -38,7 +38,7 @@ C:\AD\Tools\Certify.exe cas
 
 We can list all the templates using the following command. Going through the output we can find some interesting templates:
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Privilege Escalation to DA using ESC1
 

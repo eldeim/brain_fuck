@@ -168,4 +168,4 @@ Once the ticket is injected, we can access explicitly shared resources on `euroc
 dir \\eurocorp-dc.eurocorp.local\SharedwithDCorp\
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

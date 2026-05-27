@@ -3,7 +3,7 @@ description: >-
   https://www.mobilehackinglab.com/path-player?courseid=lab-cyclic-scanner&unit=6606a95991b0d69cf906f66fUnit
 ---
 
-# Page 1
+# Cyclic Scanner
 
 #### Objective <a href="#el_1700338310850_408" id="el_1700338310850_408"></a>
 
@@ -46,7 +46,7 @@ description: >-
 
 Fristly i will chek the android:exported="true"
 
-<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 

@@ -127,5 +127,46 @@ Deep Link final:&#x20;mhl://labs/bWhsX3NlY3JldF8xMzM3
 
 ## Explotación Completa
 
+Paso 1 — Lanzar la app con Frida
 
+```
+frida -U -f com.mobilehackinglab.challenge
+```
 
+Paso 2 — Conectar Objection (otra terminal)
+
+```
+objection -g com.mobilehackinglab.challenge explore
+```
+
+Paso 3 — Invocar KLOW manualmente
+
+> KLOW nunca se llama solo, hay que forzarlo desde el heap de la app:>
+
+```
+android heap search instances com.mobilehackinglab.challenge.MainActivity
+```
+
+Te devuelve un hash (ej: 207990455). Úsalo para ejecutar KLOW:
+
+```
+android heap execute 207990455 KLOW
+```
+
+Esto crea DAD4.xml con UUU0133 = fecha de hoy → satisface la validación de Activity2.
+
+Paso 4 — Disparar el Deep Link
+
+```
+adb shell am start -a android.intent.action.VIEW -d "mhl://labs/bWhsX3NlY3JldF8xMzM3" -n com.mobilehackinglab.challenge/.Activity2
+```
+
+> Activity2 valida todo, carga libflag.so y pone el flag en memoria. Aparece un Toast pero no se ve
+
+Paso 5 — Memory Scan
+
+Dentro de objection:
+
+```
+memory search "MHL{" --string
+```
