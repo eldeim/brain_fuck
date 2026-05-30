@@ -51,7 +51,7 @@ adb shell am start –a [action] –c [category] com.example.package/.className
 
 <figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Exploitation <a href="#el_1715342932968_363" id="el_1715342932968_363"></a>
 
@@ -92,3 +92,20 @@ Export Broadcast receivers
 * am broadcast -n "…"
 * Quickly check your device’s screen
 * Extract the sensitive information from the Toast message
+
+Deep Links
+
+
+### Exploitation <a href="#el_1715346764817_363" id="el_1715346764817_363"></a>
+
+* Extract the source code from the AndroGoat APK
+* Open “AndroidManifest.xml”
+* $DIR/resources/AndroidManifest.xml
+* Search for Deep Links starting with "scheme:" in the AndroidManifest.xml
+* Figure out how to use the defined links, and start / exploit them via adb commands, like the below one:
+
+```
+adb shell am start -W "[schema]://[host]/[path]?[queryparm]=[value]"
+```
+
+<br>

@@ -51,7 +51,7 @@ This Broadcast Receiver Exploitation Challenge provides a unique opportunity to 
 
 I will be decode the apk using JADX to read the Android Manifest and analize exporteds recourses.
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice! There is a BroadcastReceiver called `MasterReceiver con android:exported="true".`
 
@@ -67,7 +67,7 @@ Also, we can read that the executabe is called "MASTER\_ON"...
 
 We can read the class called "masterReceiver":
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > Apparently, exist a key/ PIN to insert and if it is corret call to "OnAllDevices()" all devices
 
