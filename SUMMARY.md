@@ -356,6 +356,7 @@
     * [iOS Reversing Engineering](certifications/mobile-hacking-lab/cipt-ios-penetration-tester/ios-reversing-engineering/README.md)
       * [Extracting the IPA file](certifications/mobile-hacking-lab/cipt-ios-penetration-tester/ios-reversing-engineering/extracting-the-ipa-file.md)
   * [🤖 CAPT - Android Penetration Tester](certifications/mobile-hacking-lab/capt-android-penetration-tester/README.md)
+    * [❓ How is the exam?](certifications/mobile-hacking-lab/capt-android-penetration-tester/how-is-the-exam.md)
     * [Android Basics](certifications/mobile-hacking-lab/capt-android-penetration-tester/android-basics.md)
     * [Android Penetration Tester](certifications/mobile-hacking-lab/capt-android-penetration-tester/android-penetration-tester/README.md)
       * [Host software setup](certifications/mobile-hacking-lab/capt-android-penetration-tester/android-penetration-tester/host-software-setup/README.md)
