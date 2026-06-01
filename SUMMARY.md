@@ -1,7 +1,7 @@
 # Table of contents
 
 * [👨‍💻 $ whoami](README.md)
-* [📂 Checklists](https://eldeim.gitbook.io/brain_fuck/checklists)
+* [📂 Notes](https://eldeim.gitbook.io/brain_fuck/notes)
 * [🏴‍☠️ My Roadmap To OSCP](https://eldeim.gitbook.io/brain_fuck/oscp-roadmap)
 * [📡 My Roadmap to OSWP](https://eldeim.gitbook.io/brain_fuck/oswp-roadmap)
 * [🕷️ My Roadmap To CWES](https://eldeim.gitbook.io/brain_fuck/cbbh-roadmap)

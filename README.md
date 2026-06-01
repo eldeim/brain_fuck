@@ -2,7 +2,7 @@
 
 <div align="center"><figure><img src=".gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
-Buenas! Soy **eldeim**, ese es mi nombre hacksor pero... me llamo Dani y tengo 22 años.
+Buenas! Soy **eldeim**, ese es mi nombre hacksor pero... me llamo Dani y tengo 23 años.
 
 Soy un chico cualquiera de un barrio cualquiera de Murcia y de todas las ramas de la informática, me apasiona la ciberseguridad, el Pentesting y el Hacking Ético. Supongo que es algo que me acompaña desde pequeño. Desde los 14 años, he tenido interés en esta área y la verdad que fue ahí cuando empecé a _"programar virus"_ en un bloc de notas e instalar keyloggers para joder a mi hermano.
 
@@ -14,7 +14,7 @@ Estoy decidido a cumplir mis objetivos personales y sueños. No tengo limite
 
 
 
-> <mark style="background-color:yellow;">**Esta web, esta pensada**</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">para documentar y compartir</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">**roadmaps y checklists**</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">de varias certificaciones como la OSCP o CBBH.</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">**(Lo que significa que la web esta en constante construcción y puede haber partes incompletas o cambiar).**</mark>&#x20;
+> <mark style="background-color:yellow;">**Esta web, esta pensada**</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">para documentar y compartir</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">**roadmaps y checklists**</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">de varias certificaciones</mark> <mark style="background-color:yellow;"></mark><mark style="background-color:yellow;">**(Lo que significa que la web esta en constante construcción y puede haber partes incompletas o cambiar).**</mark>&#x20;
 >
 >
 >
@@ -31,6 +31,8 @@ Dicho esto…[ **Me invitas a un café**?? ☞ ☕ ☜](https://buymeacoffee.com
 ***
 
 > {(Actualmente 05/10/2025 conseguí aprender conceptos totalmente nuevos de hacking movil/APK, web, wifi y demás. Estoy ya a las puertas de la OSCP y... solo decir que la vida da muchas vueltas. A veces es necesario dar un paso hacia atras, para luego dar dos hacia delante. Espero que esto pueda inspirar a otros en su camino, salu2)}
+
+***
 
 {% hint style="info" %}
 +⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\[i] Social Media \[i]⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯+
