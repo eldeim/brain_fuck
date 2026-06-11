@@ -83,6 +83,7 @@
     * [Ligolo-ng](pentesting-methodology/pivoting/ligolo-ng.md)
   * [Firebase](pentesting-methodology/firebase.md)
   * [MQTT Pentesting](pentesting-methodology/mqtt-pentesting.md)
+  * [Open Redirect](pentesting-methodology/open-redirect.md)
 * [🌐 OSINT](osint/README.md)
   * [🔮 MIXs](osint/mixs/README.md)
     * [Gps-Coordinates](osint/mixs/gps-coordinates.md)
