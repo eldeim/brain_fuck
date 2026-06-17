@@ -218,6 +218,7 @@
           * [Dynamic Instrumenting with Objetion](certifications/eastereggs/mobile-hacking-lab/cipt-ios-penetration-tester/ios-penetration-tester/mobile-hacking-lab-device-setup/dynamic-instrumenting-with-objetion.md)
       * [iOS Reversing Engineering](certifications/eastereggs/mobile-hacking-lab/cipt-ios-penetration-tester/ios-reversing-engineering/README.md)
         * [Extracting the IPA file](certifications/eastereggs/mobile-hacking-lab/cipt-ios-penetration-tester/ios-reversing-engineering/extracting-the-ipa-file.md)
+        * [Decompiling the App](certifications/eastereggs/mobile-hacking-lab/cipt-ios-penetration-tester/ios-reversing-engineering/decompiling-the-app.md)
     * [🤖 CAPT - Android Penetration Tester](certifications/eastereggs/mobile-hacking-lab/capt-android-penetration-tester/README.md)
       * [❓ How is the exam?](certifications/eastereggs/mobile-hacking-lab/capt-android-penetration-tester/how-is-the-exam.md)
       * [Android Basics](certifications/eastereggs/mobile-hacking-lab/capt-android-penetration-tester/android-basics.md)

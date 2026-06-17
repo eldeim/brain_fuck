@@ -39,3 +39,68 @@ find /var/containers/Bundle/Application/ -name "*.app"
 
 This will list the UUID directories, and inside each directory, you will find the app bundles (e.g., **DVIA-2.app**).\
 Take note of the app's directory (e.g., **/var/containers/Bundle/Application/70961402-4C6E-4FF6-B316-59D3ED83828F/DVIA-v2.app**).
+
+***
+
+## Part 2: Packaging the App into an IPA <a href="#el_1726938172103_446" id="el_1726938172103_446"></a>
+
+> An **IPA** is essentially a zipped archive containing the app's **.app** folder and a **Payload** directory.
+
+### Step 1: Create the Payload Directory <a href="#el_1726938517198_650" id="el_1726938517198_650"></a>
+
+SSH into the device and navigate to a writable directory (e.g., **/tmp/**):
+
+```
+cd /tmp/
+```
+
+Create a directory named **Payload**:
+
+```
+mkdir Payload
+```
+
+Copy the app bundle into the **Payload** directory:
+
+```
+cp -r /var/containers/Bundle/Application/70961402-4C6E-4FF6-B316-59D3ED83828F/DVIA-v2.app /tmp/Payload/
+```
+
+> _Note: Replace the UUID to match the UUID on your device._
+
+### Step 2: Compress the Payload Directory into an IPA <a href="#el_1726938323649_509" id="el_1726938323649_509"></a>
+
+Navigate to **/tmp/**:
+
+```
+cd /tmp/
+```
+
+Compress the **Payload** folder into a **.zip** file:
+
+```
+zip -r DVIA-v2.ipa Payload
+```
+
+You should now have an IPA file located at **/tmp/DVIA-v2.ipa**.
+
+***
+
+## Part 3: Transferring the IPA to Your Computer <a href="#el_1726938357979_534" id="el_1726938357979_534"></a>
+
+Now that you have the IPA file, you need to transfer it to your computer.\
+On your computer, use the **scp** command to copy the IPA file from the iOS device to your computer.
+
+```
+scp root@10.11.1.1:/tmp/DVIA-v2.ipa ~/Downloads/
+```
+
+This command copies the IPA file from the device to your downloads.
+
+## Part 4: Clean Up Temporary Files <a href="#el_1726938428413_590" id="el_1726938428413_590"></a>
+
+After transferring the IPA, it’s a good idea to remove the temporary files from your device.1. SSH into your device (if not already connected).2. Remove the **Payload** folder and the IPA file from **/tmp/**:
+
+```
+rm -rf /tmp/Payload /tmp/DVIA-v2.ipa
+```
