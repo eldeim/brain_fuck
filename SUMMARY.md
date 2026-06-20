@@ -234,6 +234,8 @@
         * [Cyclic Scanner](certifications/eastereggs/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/cyclic-scanner.md)
         * [IoT Connect](certifications/eastereggs/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/iot-connect.md)
         * [Guess Me](certifications/eastereggs/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/guess-me.md)
+        * [Secure Notes](certifications/eastereggs/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/secure-notes.md)
+        * [Food Store](certifications/eastereggs/mobile-hacking-lab/capt-android-penetration-tester/hacking-android-labs/food-store.md)
   * [🌇 CRTP-Certified Red Team Professional](certifications/eastereggs/crtp-certified-red-team-professional/README.md)
     * [📋 Índice](certifications/eastereggs/crtp-certified-red-team-professional/indice.md)
     * [📄 Class Notes](certifications/eastereggs/crtp-certified-red-team-professional/class-notes/README.md)
