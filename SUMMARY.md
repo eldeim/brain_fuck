@@ -64,6 +64,10 @@
     * [Password OSINT](others/tcm-security/osint-research-professional-porp-certification/password-osint.md)
     * [Hunting Usernames and Accounts](others/tcm-security/osint-research-professional-porp-certification/hunting-usernames-and-accounts.md)
   * [📳 Mobile Application Penetration Testing](others/tcm-security/mobile-application-penetration-testing.md)
+* [🔬 BBLABS](others/bblabs/README.md)
+  * [Stored XSS in Post Body - 01](others/bblabs/stored-xss-in-post-body-01.md)
+  * [Reflected XSS on 404 Error Page - 02](others/bblabs/reflected-xss-on-404-error-page-02.md)
+  * [12 DOM XSS Parameters for Automated Scanning  - 03](others/bblabs/12-dom-xss-parameters-for-automated-scanning-03.md)
 
 ***
 
@@ -84,6 +88,7 @@
   * [Firebase](pentesting-methodology/firebase.md)
   * [MQTT Pentesting](pentesting-methodology/mqtt-pentesting.md)
   * [Open Redirect](pentesting-methodology/open-redirect.md)
+  * [Email Header Injection](pentesting-methodology/email-header-injection.md)
 * [🌐 OSINT](osint/README.md)
   * [🔮 MIXs](osint/mixs/README.md)
     * [Gps-Coordinates](osint/mixs/gps-coordinates.md)
