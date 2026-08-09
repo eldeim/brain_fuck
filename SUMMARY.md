@@ -12,3 +12,4 @@
 * [🌐 Exam Experience + Info - eWPTv2](https://medium.com/@eldeim/mi-experiencia-con-el-ewptv2-en-2024-d44b834909e2)
 * [🪜 Exam Experience + Info - eJPTv2](https://medium.com/@eldeim/mi-experiencia-y-consejos-para-el-ejptv2-en-2024-7a28a4410f4d)
 * [📦 Machines](https://eldeim.gitbook.io/brain_fuck/machines/)
+* [🇪🇸 ECSC 2026](https://eldeim.gitbook.io/brain_fuck/ecsc_2026)
